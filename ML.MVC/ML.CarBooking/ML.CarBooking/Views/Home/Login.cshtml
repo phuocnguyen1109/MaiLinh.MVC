@@ -1,0 +1,14 @@
+﻿@model ML.CarBooking.Models.Accounts.LoginModel
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>\
+@using (Html.BeginForm())
+{
+    <label>User Name:</label>
+    @Html.EditorFor(model => model.UserName);
+
+    <input type="submit" value="Login" />
+}
+
