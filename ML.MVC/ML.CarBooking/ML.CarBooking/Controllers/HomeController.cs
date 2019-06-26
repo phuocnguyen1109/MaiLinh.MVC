@@ -13,15 +13,15 @@ namespace ML.CarBooking.Controllers
         {
             //TODO : CHeck account Login
             var userName = Session["UserName"];
+            
 
-
-            bool logedIn = false;
+            bool logedIn = userName != null && !string.IsNullOrEmpty(userName.ToString());
             if (!logedIn)
             {
                 return RedirectToAction("Login");
             }
-            
-            return View();
+            LoginModel a = new LoginModel { UserName = userName.ToString() };
+            return View(a);
         }
 
         public ActionResult Login()

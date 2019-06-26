@@ -1,0 +1,37 @@
+﻿<h3>CHỈNH SỬA THÔNG TIN NHÂN VIÊN</h3>
+<div class="panel panel-default form-control" style="height:15%; margin-bottom: 10px;">
+    <div class="panel-body row">
+        <div class="col-lg-4">
+            <img src="../../../Content/Images/anh.jpg" style="width:150px;" class="img-thumbnail" />
+        </div>
+        <div class="col-lg-4">
+            <label for="id">MÃ SỐ NHÂN VIÊN:</label>
+            <span>00001</span>
+        </div>
+        <div class="col-lg-4">
+            <label for="id">HỌ TÊN :</label>
+            <input class="form-control" value="David Beckham" />
+        </div>
+
+    </div>
+</div>
+
+<div class="panel panel-default form-control" style="height: 60vh;">
+    <div class="panel-body row">
+        <uib-tabset justified="true" style="margin-left:10px; width:100%;">
+            <uib-tab index="0" heading="LÝ LỊCH"><div>dsadshakdlsjakdljsadljskadljskla</div></uib-tab>
+            <uib-tab index="1" heading="TRÌNH ĐỘ HỌC VẤN">Short Labeled Justified content</uib-tab>
+            <uib-tab index="2" heading="KHÁM SỨC KHỎE">
+                <div ng-include="'/AngularModules/HrModules/Templates/healthCheckManagement.html'"></div>
+            </uib-tab>
+            <uib-tab index="3" heading="HÔN NHÂN">Long Labeled Justified content</uib-tab>
+            <uib-tab index="4" heading="LỊCH SỬ CÔNG TÁC">Long Labeled Justified content</uib-tab>
+            <uib-tab index="5" heading="THIẾT BỊ">Long Labeled Justified content</uib-tab>
+        </uib-tabset>
+
+    </div>
+</div>
+<div class="row" style="float:right; margin-right:10px; margin-top:20px;">
+    <button class="btn btn-success" style="height: 50px; width:200px; margin-right: 20px;">LƯU THAY ĐỔI</button>
+    <button class="btn btn-danger" style="height: 50px; width:200px;">HỦY BỎ</button>
+</div>

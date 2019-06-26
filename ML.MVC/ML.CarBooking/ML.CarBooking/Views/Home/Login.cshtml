@@ -1,14 +1,46 @@
 ﻿@model ML.CarBooking.Models.Accounts.LoginModel
 @{
     ViewBag.Title = "Login";
+    Layout = null;
 }
 
-<h2>Login</h2>\
+<link rel="stylesheet" href="~/Content/CustomCSS/sb-admin-2.css" />
 @using (Html.BeginForm())
 {
-    <label>User Name:</label>
-    @Html.EditorFor(model => model.UserName);
+    <div class="container">
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <div class="p-5 main-color">
+                        <div class="text-center">
+                            <img src="~/Content/Images/Logo_MLXCT.jpg" style="height: 200px; margin-bottom: 20px;">
+                        </div>
+                        <form class="user">
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control form-control-user", @placeholder = "Tên Đăng Nhập..." } })
+                            </div>
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control form-control-user", @placeholder = "Mật Khẩu...", @type = "password" } })
+                            </div>
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox small">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck">
+                                    <label class="custom-control-label" for="customCheck">Remember Me</label>
+                                </div>
+                            </div>
+                            <input type="submit" class="btn btn-primary btn-user btn-block" value="Đăng Nhập" />
+                            <div class="text-center">
+                                <a class="small" href="#!forgotPassword">Quên mật khẩu</a>
+                            </div>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
 
-    <input type="submit" value="Login" />
+        </div>
+
+    </div>
 }
 

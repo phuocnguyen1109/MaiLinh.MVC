@@ -1,31 +1,242 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Mai Linh Car Booking";
+    Layout = null;
+
+    @model ML.CarBooking.Models.Accounts.LoginModel
 }
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<head>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        .department :hover {
+            background-color: lightgrey;
+            cursor: pointer;
+        }
+    </style>
+
+    <title>Mai Linh </title>
+</head>
+<body ng-app="mainApp">
+    <!-- Page Wrapper -->
+    <div ng-controller="mainController as vm" id="wrapper">
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" ui-sref="dashboard">
+                <div class="sidebar-brand-text mx-3"><img src="~/Content/Images/Logo_MLXCT.jpg" style="height: 50px;" /></div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" ui-sref="dashboard">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading" ng-if='isAdmin'>
+                Administration
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link" ng-click="gotoPermission()" ng-if="isAdmin">
+                    <i class="fas fa-fw fa-cog"></i>
+                    Phân Quyền Hệ Thống
+                </a>
+                <a class="nav-link" ng-click="gotoRoles()" ng-if="isAdmin">
+                    <i class="fas fa-fw fa-user"></i>
+                    Quản Lý Roles
+                </a>
+                <div class="sidebar-heading">
+                    Các Phòng Ban
+                </div>
+
+                <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapsePagesHR" aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Phòng Nhân Sự</span>
+                </a>
+                <div id="collapsePagesHR" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" ng-click="vm.gotoEmployees()">Quản Lý Nhân Sự</a>
+                        @*<a class="collapse-item" ng-click="vm.gotoMarriage()">Hôn nhân</a>
+                            <a class="collapse-item" ng-click="gotoPreviousJobs()">Công việc trước</a>
+                            <div class="collapse-divider"></div>
+                            <a class="collapse-item" ng-click="gotoEquipment()">Trang thiết bị</a>
+                            <a class="collapse-item">Module Nghiệp vụ 5</a>*@
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapsePagesSEO" aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Điều Hành - Kinh Doanh</span>
+                </a>
+                <div id="collapsePagesSEO" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+
+                        <a class="collapse-item">Module Nghiệp vụ 1</a>
+                        <a class="collapse-item">Module Nghiệp Vụ 2</a>
+                        <div class="collapse-divider"></div>
+                        <a class="collapse-item">Module Nghiệp Vụ 4</a>
+                        <a class="collapse-item">Module Nghiệp vụ 5</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapsePagesTECH" aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Kỹ Thuật - An Toàn</span>
+                </a>
+                <div id="collapsePagesTECH" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item">Module Nghiệp vụ 1</a>
+                        <a class="collapse-item">Module Nghiệp Vụ 2</a>
+                        <div class="collapse-divider"></div>
+                        <a class="collapse-item">Module Nghiệp Vụ 4</a>
+                        <a class="collapse-item">Module Nghiệp vụ 5</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapsePagesACC" aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-dollar-sign"></i>
+                    <span>Kế Toán</span>
+                </a>
+                <div id="collapsePagesACC" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item">Module Nghiệp vụ 1</a>
+                        <a class="collapse-item">Module Nghiệp Vụ 2</a>
+                        <div class="collapse-divider"></div>
+                        <a class="collapse-item">Module Nghiệp Vụ 4</a>
+                        <a class="collapse-item">Module Nghiệp vụ 5</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+        </ul>
+        <!-- End of Sidebar -->
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img class="img-profile rounded-circle" src="~/Content/Images/avatar.jpg">
+                                <p>
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">@Model.UserName</span> <br />
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Administrator</span>
+                                </p>
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                <a class="dropdown-item">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Thông Tin Cá Nhân
+                                </a>
+                                <a class="dropdown-item">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Đổi Mật Khẩu
+                                </a>
+                                <a class="dropdown-item">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Xem Log Cá Nhân
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Đăng Xuất
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+                <!-- Begin Page Content -->
+                <div ui-view class="container-fluid" style="height:100vh;"></div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+        </div>
+        <!-- End of Content Wrapper -->
+
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    <!-- End of Page Wrapper -->
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Bạn muốn thoát khỏi hệ thống ?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Nhấn vào Logout để thoát</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <input type="button" class="btn btn-primary" value="Đăng Xuất" onclick="window.location.href='<%= Url.Action(" Login", "Home" ) %>';" />
+                    <button class="btn btn-primary" data-dismiss="modal" ng-click="logout()">Logout</button>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/angularJS")
+    @Scripts.Render("~/bundles/CustomScripts")
+
+    <script type="text/javascript" src="~/AngularModules/MainApp.js"></script>
+    <script type="text/javascript" src="~/AngularModules/mainApp.routes.js"></script>
+
+    <script type="text/javascript" src="~/AngularModules/HrModules/employeesController.js"></script>
+    <script type="text/javascript" src="~/AngularModules/HrModules/editEmployeeController.js"></script>
+    <script type="text/javascript" src="~/AngularModules/HrModules/healthCheckManagementController.js"></script>
+
+
+</body>
+</html>

@@ -96,3 +96,9 @@ D:\Source\Others\MaiLinh\Source\ML.MVC\ML.CarBooking\ML.CarBooking\obj\Debug\ML.
 D:\Source\Others\MaiLinh\Source\ML.MVC\ML.CarBooking\ML.CarBooking\obj\Debug\ML.CarBooking.csproj.CopyComplete
 D:\Source\Others\MaiLinh\Source\ML.MVC\ML.CarBooking\ML.CarBooking\obj\Debug\ML.CarBooking.dll
 D:\Source\Others\MaiLinh\Source\ML.MVC\ML.CarBooking\ML.CarBooking\obj\Debug\ML.CarBooking.pdb
+D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\roslyn\System.IO.Compression.dll
+D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\roslyn\VBCSCompiler.exe
