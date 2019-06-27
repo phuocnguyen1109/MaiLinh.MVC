@@ -6,6 +6,5 @@
     function editEmployeeController($scope, $state) {
         var vm = this;
 
-        vm.test = 'Edit employee work ' + $state.params.id;
     }
 })();

@@ -1,32 +1,74 @@
-﻿<h3>CHỈNH SỬA THÔNG TIN NHÂN VIÊN</h3>
+﻿<style>
+    input {
+        height: 1.9em !important;
+    }
+    label {
+        font-size:12px !important;
+        font-weight:bold;
+    }
+
+    button {
+        font-size:12px !important;
+    }
+
+    .nav-tabs.nav-justified > li{
+        font-size:12px !important;
+        font-weight:bolder;
+    }
+
+    select {
+    font-size: 12px !important;
+    }
+</style>
+
+<h3>CHỈNH SỬA THÔNG TIN NHÂN VIÊN</h3>
 <div class="panel panel-default form-control" style="height:15%; margin-bottom: 10px;">
     <div class="panel-body row">
-        <div class="col-lg-4">
-            <img src="../../../Content/Images/anh.jpg" style="width:150px;" class="img-thumbnail" />
+        <div class="col-lg-1">
+            <img src="../../../Content/Images/anh.jpg" style="width:100%;" class="img-thumbnail" />
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-2">
             <label for="id">MÃ SỐ NHÂN VIÊN:</label>
-            <span>00001</span>
+            <input id="id" class="form-control" type="text" disabled value="0001" />
         </div>
-        <div class="col-lg-4">
-            <label for="id">HỌ TÊN :</label>
-            <input class="form-control" value="David Beckham" />
+        <div class="col-lg-5">
+            <label for="fName">HỌ VÀ TÊN:</label>
+            <div style="display:inline-flex;">
+                <input id="fName" class="form-control mr-2" style="width:50% !important" placeholder="Họ và tên lót..." type="text" value="Nguyễn Hữu " />
+                <input id="lName" class="form-control" style="width:45% !important" placeholder="Tên..." type="text" value="Phước" />
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <label>GIỚI TÍNH:</label>
+            <div class="w-100">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="optradio">Nam
+                </label>
+                <label class="form-check-label ml-4">
+                    <input type="radio" class="form-check-input" name="optradio">Nữ
+                </label>
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <button class="btn btn-primary" style="height:100%;">LỊCH SỬ NGHỈ VIỆC</button>
         </div>
 
     </div>
 </div>
 
-<div class="panel panel-default form-control" style="height: 60vh;">
+<div class="panel panel-default " style="display: block; overflow-x: hidden;">
     <div class="panel-body row">
         <uib-tabset justified="true" style="margin-left:10px; width:100%;">
-            <uib-tab index="0" heading="LÝ LỊCH"><div>dsadshakdlsjakdljsadljskadljskla</div></uib-tab>
-            <uib-tab index="1" heading="TRÌNH ĐỘ HỌC VẤN">Short Labeled Justified content</uib-tab>
+            <uib-tab index="0" heading="LÝ LỊCH">
+            <div ng-include="'/AngularModules/HrModules/Templates/employeeInfo.html'"></div>
+            </uib-tab>
+            <uib-tab index="1" heading="TRÌNH ĐỘ HỌC VẤN"><div ng-include="'/AngularModules/HrModules/Templates/education.html'"></div></uib-tab>
             <uib-tab index="2" heading="KHÁM SỨC KHỎE">
                 <div ng-include="'/AngularModules/HrModules/Templates/healthCheckManagement.html'"></div>
             </uib-tab>
-            <uib-tab index="3" heading="HÔN NHÂN">Long Labeled Justified content</uib-tab>
-            <uib-tab index="4" heading="LỊCH SỬ CÔNG TÁC">Long Labeled Justified content</uib-tab>
-            <uib-tab index="5" heading="THIẾT BỊ">Long Labeled Justified content</uib-tab>
+            <uib-tab index="3" heading="HÔN NHÂN"><div ng-include="'/AngularModules/HrModules/Templates/marriage.html'"></div></uib-tab>
+            <uib-tab index="4" heading="LỊCH SỬ CÔNG TÁC"><div ng-include="'/AngularModules/HrModules/Templates/workingHistories.html'"></div></uib-tab>
+            <uib-tab index="5" heading="THIẾT BỊ"><div ng-include="'/AngularModules/HrModules/Templates/equiments.html'"></div></uib-tab>
         </uib-tabset>
 
     </div>
