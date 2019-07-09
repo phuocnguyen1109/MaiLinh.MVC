@@ -180,6 +180,7 @@
     <Content Include="AngularModules\HrModules\Templates\healthCheckManagement.html" />
     <Content Include="AngularModules\HrModules\Templates\marriage.html" />
     <Content Include="AngularModules\HrModules\Templates\workingHistories.html" />
+    <Content Include="AngularModules\HrModules\workingHistoriesController.js" />
     <Content Include="AngularModules\MainApp.js" />
     <Content Include="AngularModules\mainApp.routes.js" />
     <Content Include="Content\fontawesome-free\css\all.css" />

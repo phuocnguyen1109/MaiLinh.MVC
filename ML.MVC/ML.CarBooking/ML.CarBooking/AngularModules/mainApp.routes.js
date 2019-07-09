@@ -15,6 +15,12 @@
                     templateUrl: 'AngularModules/HrModules/Templates/editEmployee.html',
                     controller: 'editEmployeeController',
                     controllerAs: 'vm'
+                })
+                .state('workingHistories', {
+                    url: '/employee/edit/:id/workHistories',
+                    templateUrl: 'AngularModules/HrModules/Templates/workingHistories.html',
+                    controller: 'workingHistoriesController',
+                    controllerAs: 'vm'
                 });
         });
 })();
