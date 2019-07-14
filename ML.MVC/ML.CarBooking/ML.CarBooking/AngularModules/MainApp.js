@@ -14,9 +14,14 @@
         ];
 
         vm.gotoEmployees = gotoEmployees;
+        vm.gotoVehicleManagement = gotoVehicleManagement;
 
         function gotoEmployees() {
             $state.go('employees');
+        }
+
+        function gotoVehicleManagement() {
+            $state.go('vehicle');
         }
     }
 })();

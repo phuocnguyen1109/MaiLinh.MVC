@@ -15,6 +15,13 @@
                     templateUrl: 'AngularModules/HrModules/Templates/editEmployee.html',
                     controller: 'editEmployeeController',
                     controllerAs: 'vm'
+                })
+            //Vehicle 
+                .state('vehicle', {
+                    url: '/vehicle',
+                    templateUrl: 'AngularModules/Vehicle/Templates/VehicleManagements.html',
+                    controller: 'vehicleManagementController',
+                    controllerAs: 'vm'
                 });
         });
 })();

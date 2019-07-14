@@ -16,6 +16,7 @@
     <meta name="author" content="">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link type="text/css" href="~/Content/CustomCSS/" />
     <style>
         .department :hover {
             background-color: lightgrey;
@@ -78,16 +79,11 @@
                 <div id="collapsePagesHR" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" ng-click="vm.gotoEmployees()">Quản Lý Nhân Sự</a>
-                        @*<a class="collapse-item" ng-click="vm.gotoMarriage()">Hôn nhân</a>
-                            <a class="collapse-item" ng-click="gotoPreviousJobs()">Công việc trước</a>
-                            <div class="collapse-divider"></div>
-                            <a class="collapse-item" ng-click="gotoEquipment()">Trang thiết bị</a>
-                            <a class="collapse-item">Module Nghiệp vụ 5</a>*@
                     </div>
                 </div>
             </li>
 
-            <li class="nav-item">
+            @*<li class="nav-item">
                 <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapsePagesSEO" aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Điều Hành - Kinh Doanh</span>
@@ -102,7 +98,7 @@
                         <a class="collapse-item">Module Nghiệp vụ 5</a>
                     </div>
                 </div>
-            </li>
+            </li>*@
 
             <li class="nav-item">
                 <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapsePagesTECH" aria-expanded="true" aria-controls="collapsePages">
@@ -111,11 +107,11 @@
                 </a>
                 <div id="collapsePagesTECH" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item">Module Nghiệp vụ 1</a>
-                        <a class="collapse-item">Module Nghiệp Vụ 2</a>
+                        <a class="collapse-item" ng-click="vm.gotoVehicleManagement()">Quản Lý Phương Tiện</a>
+                        @*<a class="collapse-item">Module Nghiệp Vụ 2</a>
                         <div class="collapse-divider"></div>
                         <a class="collapse-item">Module Nghiệp Vụ 4</a>
-                        <a class="collapse-item">Module Nghiệp vụ 5</a>
+                        <a class="collapse-item">Module Nghiệp vụ 5</a>*@
                     </div>
                 </div>
             </li>
