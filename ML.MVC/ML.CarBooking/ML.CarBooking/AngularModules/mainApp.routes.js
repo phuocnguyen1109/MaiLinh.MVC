@@ -2,7 +2,7 @@
     'use strict'
     angular.module('mainApp')
         .config(function ($stateProvider, $urlRouterProvider) {
-           // $urlRouterProvider.otherwise('/employees');
+            // $urlRouterProvider.otherwise('/employees');
             $stateProvider
                 .state('employees', {
                     url: '/employees',
@@ -16,11 +16,17 @@
                     controller: 'editEmployeeController',
                     controllerAs: 'vm'
                 })
-            //Vehicle 
+                //Vehicle 
                 .state('vehicle', {
                     url: '/vehicle',
                     templateUrl: 'AngularModules/Vehicle/Templates/VehicleManagements.html',
                     controller: 'vehicleManagementController',
+                    controllerAs: 'vm'
+                })
+                .state('editVehicle', {
+                    url: '/vehicle/edit/:id',
+                    templateUrl: 'AngularModules/Vehicle/Templates/EditVehicle.html',
+                    controller: 'editVehicleController',
                     controllerAs: 'vm'
                 });
         });

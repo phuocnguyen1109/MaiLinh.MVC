@@ -84,21 +84,21 @@
             </li>
 
             @*<li class="nav-item">
-                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapsePagesSEO" aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-user"></i>
-                    <span>Điều Hành - Kinh Doanh</span>
-                </a>
-                <div id="collapsePagesSEO" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapsePagesSEO" aria-expanded="true" aria-controls="collapsePages">
+                        <i class="fas fa-fw fa-user"></i>
+                        <span>Điều Hành - Kinh Doanh</span>
+                    </a>
+                    <div id="collapsePagesSEO" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
 
-                        <a class="collapse-item">Module Nghiệp vụ 1</a>
-                        <a class="collapse-item">Module Nghiệp Vụ 2</a>
-                        <div class="collapse-divider"></div>
-                        <a class="collapse-item">Module Nghiệp Vụ 4</a>
-                        <a class="collapse-item">Module Nghiệp vụ 5</a>
+                            <a class="collapse-item">Module Nghiệp vụ 1</a>
+                            <a class="collapse-item">Module Nghiệp Vụ 2</a>
+                            <div class="collapse-divider"></div>
+                            <a class="collapse-item">Module Nghiệp Vụ 4</a>
+                            <a class="collapse-item">Module Nghiệp vụ 5</a>
+                        </div>
                     </div>
-                </div>
-            </li>*@
+                </li>*@
 
             <li class="nav-item">
                 <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapsePagesTECH" aria-expanded="true" aria-controls="collapsePages">
@@ -109,9 +109,9 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" ng-click="vm.gotoVehicleManagement()">Quản Lý Phương Tiện</a>
                         @*<a class="collapse-item">Module Nghiệp Vụ 2</a>
-                        <div class="collapse-divider"></div>
-                        <a class="collapse-item">Module Nghiệp Vụ 4</a>
-                        <a class="collapse-item">Module Nghiệp vụ 5</a>*@
+                            <div class="collapse-divider"></div>
+                            <a class="collapse-item">Module Nghiệp Vụ 4</a>
+                            <a class="collapse-item">Module Nghiệp vụ 5</a>*@
                     </div>
                 </div>
             </li>
@@ -226,12 +226,18 @@
     @Scripts.Render("~/bundles/angularJS")
     @Scripts.Render("~/bundles/CustomScripts")
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
+
     <script type="text/javascript" src="~/AngularModules/MainApp.js"></script>
     <script type="text/javascript" src="~/AngularModules/mainApp.routes.js"></script>
 
     <script type="text/javascript" src="~/AngularModules/HrModules/employeesController.js"></script>
     <script type="text/javascript" src="~/AngularModules/HrModules/editEmployeeController.js"></script>
     <script type="text/javascript" src="~/AngularModules/HrModules/healthCheckManagementController.js"></script>
+
+    <script type="text/javascript" src="~/AngularModules/Vehicle/vehicleManagementController.js"></script>
+    <script type="text/javascript" src="~/AngularModules/Vehicle/editVehicleController.js"></script>
+
 
 
 </body>

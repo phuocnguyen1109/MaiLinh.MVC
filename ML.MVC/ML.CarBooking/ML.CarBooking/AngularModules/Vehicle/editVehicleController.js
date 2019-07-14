@@ -1,11 +1,11 @@
 ﻿(function () {
     'use strict'
-    angular.module('mainApp').controller('vehicleManagementController', vehicleManagementController);
+    angular.module('mainApp').controller('editVehicleController', editVehicleController);
 
-    function vehicleManagementController($rootScope, $scope, $state) {
+    function editVehicleController($rootScope, $scope, $state) {
         var vm = this;
         vm.test = "Vehicle worked";
-
+        
         vm.gotoEdit = gotoEdit;
         vm.initialize = initialize;
 
