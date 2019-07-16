@@ -1,0 +1,159 @@
+﻿<style>
+    table th {
+        font-size: 12px;
+        background-color: cornflowerblue;
+        color: white;
+        text-align: center;
+    }
+
+    table td {
+        font-size: 12px;
+    }
+
+    button {
+        border-radius: 0;
+    }
+
+    .w200 {
+        width: 100px;
+        font-size: 14px;
+    }
+
+    .w100p {
+        width: 100%;
+    }
+
+    .float-mr {
+        float: left;
+        margin-right: 10px;
+    }
+</style>
+
+<div class="row" style="width:100%; margin-left:10px; margin-right:10px;">
+    <button class="btn btn-primary" data-toggle="modal" data-target="#addModal" style="margin-top:10px; margin-bottom:10px;">THÊM MỚI</button>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th colspan="2">ĐỊNH MỨC</th>
+                <th colspan="9">CẬP NHẬT NHIÊN LIỆU</th>
+            </tr>
+            <tr>
+                <th>
+                    SỐ LÍT(KM)
+                </th>
+                <th>LOẠI NL</th>
+                <th>NGÀY ĐỔ</th>
+                <th>KM ĐẦU</th>
+                <th>KM CUỐI</th>
+                <th>LOẠI NL</th>
+                <th>SỐ LÍT</th>
+                <th>CÂY XĂNG</th>
+                <th>LÁI XE</th>
+                <th>GHI CHÚ</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>0.2</td>
+                <td>RON95</td>
+                <td>15/07/2019</td>
+                <td>13092</td>
+                <td>14112</td>
+                <td>RON95</td>
+                <td>60</td>
+                <td>HÓC MÔN 01</td>
+                <td>NGUYỄN HỮU PHƯỚC</td>
+                <td></td>
+                <td>
+                    <button class="btn btn-success" style="width:45%; float:left; margin-right:5px;"><i class="fa fa-edit"></i></button>
+                    <button class="btn btn-danger" style="width:45%; float: left;"><i class="fa fa-trash"></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="addModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">THÊM MỚI </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th colspan="2">ĐỊNH MỨC</th>
+                                </tr>
+                                <tr>
+                                    <th>SỐ LÍT(KM)</th>
+                                    <th>LOẠI NL</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <input type="text" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row" style="margin-left:10px;">
+                    <div class="col-lg-4">
+                        <label for="date">NGÀY ĐỔ:</label>
+                        <input id="date" type="date" class="form-control" />
+                        <label>KM ĐẦU:</label>
+                        <input type="number" class="form-control" />
+                    </div>
+                    <div class="col-lg-4">
+                        <label>LOẠI NHIÊN LIỆU:</label>
+                        <input type="text" class="form-control" />
+                        <label>KM CUỐI:</label>
+                        <input type="number" class="form-control" />
+                    </div>
+                    <div class="col-lg-4">
+                        <label>SỐ LÍT:</label>
+                        <input type="number" class="form-control" />
+                        <label>LÁI XE:</label>
+                        <input type="text" class="form-control" />
+                    </div>
+                </div>
+                <div class="row" style="margin-left:10px;">
+                    <div class="col-lg-6">
+                        <label>CÂY XĂNG:</label>
+                        <select class="form-control">
+                            <optgroup label="HCM">
+                                <option>CÂY XĂNG TRƯỜNG CHINH -Q12</option>
+                                <option>CÂY XĂNG COMECO HÀNG XANH -BÌNH THẠNH</option>
+                            </optgroup>
+                            <optgroup label="HÀ NỘI">
+                                <option>CÂY XĂNG VĨNH TUY</option>
+                                <option>CÂY XĂNG THỤY KHÊ</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="col-lg-12">
+                        <label>GHI CHÚ:</label>
+                        <textarea class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">LƯU</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">HỦY BỎ</button>
+            </div>
+        </div>
+
+    </div>
+</div>
