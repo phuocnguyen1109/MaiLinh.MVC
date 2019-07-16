@@ -1680,12 +1680,13 @@ pre code {
 .table th,
 .table td {
   padding: 0.75rem;
-  vertical-align: top;
+  vertical-align: middle;
   border-top: 1px solid #e3e6f0;
 }
 
 .table thead th {
-  vertical-align: bottom;
+  /*vertical-align: bottom;*/
+  vertical-align: middle;
   border-bottom: 2px solid #e3e6f0;
 }
 
@@ -2018,7 +2019,7 @@ pre code {
   display: block;
   width: 100%;
   height: calc(1.5em + 0.75rem + 2px);
-  padding: 0.375rem 0.75rem;
+  padding: 1rem 0.75rem;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -2192,7 +2193,7 @@ textarea.form-control {
 
 .form-check-input {
   position: absolute;
-  margin-top: 0.3rem;
+  /*margin-top: 0.3rem;*/
   margin-left: -1.25rem;
 }
 
@@ -10971,12 +10972,14 @@ a:focus {
 
 .sidebar .nav-item .nav-link .img-profile,
 .topbar .nav-item .nav-link .img-profile {
-  height: 2rem;
-  width: 2rem;
+  /*height: 2rem;
+  width: 2rem;*/
+  height: 3rem;
+  width: 3rem;
 }
 
 .topbar {
-  height: 4.375rem;
+  height: 3.375rem;
 }
 
 .topbar #sidebarToggleTop {
@@ -11143,7 +11146,7 @@ a:focus {
 }
 
 .sidebar .nav-item.active .nav-link {
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .sidebar .nav-item .collapse {

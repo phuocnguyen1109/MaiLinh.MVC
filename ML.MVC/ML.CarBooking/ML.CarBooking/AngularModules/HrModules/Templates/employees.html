@@ -1,24 +1,4 @@
-﻿<style>
-    table th {
-        font-size: 12px;
-        background-color: cornflowerblue;
-        color: white;
-    }
-
-    table td {
-        font-size: 12px;
-    }
-
-    button {
-        border-radius: 0;
-    }
-
-    .w200 {
-        width: 100px;
-        font-size: 14px;
-    }
-</style>
-<div ng-init="vm.initialize()">
+﻿<div ng-init="vm.initialize()">
     <h3>QUẢN LÝ DANH SÁCH NHÂN VIÊN</h3>
     <div class="w-100" style="float:right; margin-top:30px; margin-bottom:10px;">
         <div class="input-group" style="width:50%;">
@@ -30,28 +10,29 @@
             </div>
         </div>
     </div>
-        <div>
-        
-        <table class="table table-bordered table-hover">
-            <thead>
-            <th style="width: 2%;"></th>
-            <th style="width:5%">MSNV</th>
-            <th style="width: 3%;">Ảnh</th>
-            <th style="width: 10%;">Họ</th>
-            <th style="width: 5%;">Tên</th>
-            <th style="width: 5%;">Ngày Sinh</th>
-            <th style="width: 5%;">Điện Thoại</th>
-            <th style="width: 5%;">Ngày Vào CTY</th>
-            <th style="width: 10%;">Chức Vụ</th>
-            <th style="width: 5%;">HDLD/HDHT</th>
-            <th style="width: 10%;">Thời Hạn HĐ</th>
-            <th style="width: 5%;">Ngày Hết Hạn HĐ</th>
+    <div>
+        <table class="table table-hover">
+            <thead class="thead-light shadow_tb txt-center">
+                <tr>
+                    <th style="width: 1%;"></th>
+                    <th style="width: 6%">Mã NV</th>
+                    <th style="width: 3%;">Ảnh</th>
+                    <th style="width: 10%;">Họ</th>
+                    <th style="width: 5%;">Tên</th>
+                    <th style="width: 5%;">Ngày Sinh</th>
+                    <th style="width: 5%;">Điện Thoại</th>
+                    <th style="width: 10%;">Ngày Vào Cty</th>
+                    <th style="width: 10%;">Chức Vụ</th>
+                    <th style="width: 5%;">HDLD/HDHT</th>
+                    <th style="width: 10%;">Thời Hạn HĐ</th>
+                    <th style="width: 5%;">Ngày Hết Hạn HĐ</th>
+                </tr>
             </thead>
-            <tbody>
+            <tbody class="txt-center">
                 <tr ng-repeat="row in vm.employees">
-                    <td><input type="checkbox" ng-model="row.selected" /></td>
+                    <td><input type="checkbox" class="mt-2" ng-model="row.selected" /></td>
                     <td>{{row.id}}</td>
-                    <td><img class="img-circle" style="width:50px;" src="../../../Content/Images/{{row.picture}}" /></td>
+                    <td><img class="circle-img" style="height:45px;" src="../../../Content/Images/{{row.picture}}" /></td>
                     <td>{{row.firstName}}</td>
                     <td>{{row.lastName}}</td>
                     <td>{{row.doB}}</td>
