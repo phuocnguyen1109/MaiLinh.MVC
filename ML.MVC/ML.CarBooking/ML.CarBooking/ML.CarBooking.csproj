@@ -171,6 +171,7 @@
   <ItemGroup>
     <Content Include="AngularModules\HrModules\editEmployeeController.js" />
     <Content Include="AngularModules\HrModules\employeesController.js" />
+    <Content Include="AngularModules\HrModules\equipmentController.js" />
     <Content Include="AngularModules\HrModules\healthCheckManagementController.js" />
     <Content Include="AngularModules\HrModules\Templates\editEmployee.html" />
     <Content Include="AngularModules\HrModules\Templates\education.html" />

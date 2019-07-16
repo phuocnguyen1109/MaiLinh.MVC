@@ -1,4 +1,4 @@
-﻿<div style="margin:10px;">
+﻿<div ng-controller ="equipmentController as vm" style="margin:10px;">
     <table class="table table-hover mt-5">
         <thead class="thead-light shadow_tb txt-center">
             <tr>
@@ -9,27 +9,9 @@
             </tr>
         </thead>
         <tbody class="txt-center">
-            <tr>
-                <td>1</td>
-                <td>DÙ</td>
-                <td><input type="checkbox" /></td>
-                <td><input type="date" class="form-control" /></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>TÚI XÁCH</td>
-                <td><input type="checkbox" /></td>
-                <td><input type="date" class="form-control" /></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>BÌA TRÌNH KÝ</td>
-                <td><input type="checkbox" /></td>
-                <td><input type="date" class="form-control" /></td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>SIM ĐIỆN THOẠI</td>
+            <tr ng-repeat="row in vm.equipments">
+                <td>{{row.id}}</td>
+                <td>{{row.name}}</td>
                 <td><input type="checkbox" /></td>
                 <td><input type="date" class="form-control" /></td>
             </tr>
