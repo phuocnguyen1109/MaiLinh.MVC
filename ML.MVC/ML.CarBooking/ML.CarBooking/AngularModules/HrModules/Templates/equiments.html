@@ -1,4 +1,4 @@
-﻿<div ng-controller ="equipmentController as vm" style="margin:10px;">
+﻿<div ng-controller="equipmentController as vm" ng-init="vm.initialize()"style="margin:10px;">
     <table class="table table-hover mt-5">
         <thead class="thead-light shadow_tb txt-center">
             <tr>
@@ -9,11 +9,11 @@
             </tr>
         </thead>
         <tbody class="txt-center">
-            <tr ng-repeat="row in vm.equipments">
-                <td>{{row.id}}</td>
+            <tr ng-repeat="row in vm.equipments" >
+                <td>{{row.equipmentId}}</td>
                 <td>{{row.name}}</td>
-                <td><input type="checkbox" /></td>
-                <td><input type="text" class="form-control" ng-model="row.date" /></td>
+                <td><input type="checkbox" ng-model="row.isReceive"/></td>
+                <td><input type="date" class="form-control" ng-disabled="!row.isReceive" ng-model="row.receivedDate" /></td>
             </tr>
         </tbody>
     </table>

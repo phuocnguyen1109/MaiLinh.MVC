@@ -493,8 +493,8 @@ D:\New folder\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\Microsoft.AI.De
 D:\New folder\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\Microsoft.AI.WindowsServer.xml
 D:\New folder\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\Microsoft.AI.Web.xml
 D:\New folder\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\New folder\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\obj\Debug\ML.CarBooking.csprojAssemblyReference.cache
 D:\New folder\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\obj\Debug\ML.CarBooking.csproj.CoreCompileInputs.cache
 D:\New folder\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\obj\Debug\ML.CarBooking.csproj.CopyComplete
 D:\New folder\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\obj\Debug\ML.CarBooking.dll
 D:\New folder\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\obj\Debug\ML.CarBooking.pdb
+D:\New folder\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\obj\Debug\ML.CarBooking.csprojAssemblyReference.cache
