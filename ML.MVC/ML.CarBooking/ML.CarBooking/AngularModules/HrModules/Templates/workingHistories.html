@@ -1,6 +1,6 @@
 ﻿<div ng-controller="workingHistoriesController as vm" style="margin:10px;">
     <div ng-init="vm.initialize()">
-        <button class="btn btn-primary mt-4 mb-2 mr-1 float-right" data-toggle="modal" data-target="#addWhModal">
+        <button class="btn btn-primary mt-4 mb-2 mr-1 float-right" data-toggle="modal" data-target="#WorkingHistoryModal" ng-click="vm.add()">
             <i class="fas fa-fw fa-plus"></i> THÊM MỚI
         </button>
 
@@ -19,47 +19,67 @@
                     <td>{{row.endDate}}</td>
                     <td>{{row.companyName}}</td>
                     <td>
-                        <button class="btn btn-outline-success"><i class="fas fa-fw fa-pen"></i></button>
-                        <button class="btn btn-outline-danger"><i class="fas fa-fw fa-trash"></i></button>
+                        <button class="btn btn-outline-success" data-toggle="modal" data-target="#WorkingHistoryModal" ng-click="vm.editWokingHistory(row)">
+                            <i class="fas fa-fw fa-pen"></i>
+                        </button>
+                        <button class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteModal">
+                            <i class="fas fa-fw fa-trash"></i>
+                        </button>
                     </td>
                 </tr>
                 <tr></tr>
             </tbody>
         </table>
 
-
-        <!--Add Modal -->
-        <div class="modal fade" id="addWhModal" tabindex="-1" role="dialog" aria-labelledby="addWhModalTitle" aria-hidden="true">
+        <!--WorkingHistory Modal -->
+        <div class="modal fade" id="WorkingHistoryModal" tabindex="-1" role="dialog" aria-labelledby="ModalTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="addWhModalTitle">Thêm mới lịch sử công tác</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <h5 class="modal-title text-uppercase" id="ModalTitle">Lịch sử công tác</h5>
+                        <button type="button" class="modal-btnClose close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
+                        <p class="err-message" ng-if="vm.message">{{vm.message}}</p>
                         <form class="form-group">
                             <div class="row">
-                                <span class="col-md-6">
-                                    <label>Từ ngày: </label>
-                                    <input class="form-control" type="text" placeholder="dd/mm/yyyy" ng-model="newWh.startDate" />
-                                </span>
-                                <span class="col-md-6">
-                                    <label>Đến ngày: </label>
-                                    <input class="form-control" type="text" placeholder="dd/mm/yyyy" ng-model="newWh.endDate" />
-                                </span>
+                                <div class="col-md-6">
+                                    <label for="startDate">Từ ngày: <span class="required_ico">*</span> </label>
+                                    <input name="startDate" class="form-control" type="date" ng-model="vm.userWorkingHistory.startDate" ng-change="vm.checkValid()" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="endDate">Đến ngày: <span class="required_ico">*</span></label>
+                                    <input name="endDate" class="form-control" type="date" ng-model="vm.userWorkingHistory.endDate" ng-change="vm.checkValid()" />
+                                </div>
                             </div>
+                            <br />
                             <div>
-                                <label>Đơn vị công tác</label>
-                                <input class="form-control" type="text" placeholder="Tên đơn vị công tác..." ng-model="newWh.companyName" />
+                                <label for="companyName">Đơn vị công tác: <span class="required_ico">*</span></label>
+                                <textarea name="companyName" class="form-control" type="text" placeholder="Tên đơn vị công tác..." ng-model="vm.userWorkingHistory.companyName" ng-change="vm.checkValid()" />
                             </div>
 
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addWorkingHistory(newWh)">Tạo mới</button>
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
+                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.addWorkingHistory(vm.userWorkingHistory)" ng-disabled="!vm.isValid">Lưu</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Delete WH Modal -->
+        <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p>Bạn có muốn xóa lịch sử công tác này?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
+                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" >Đồng ý</button>
                     </div>
                 </div>
             </div>
