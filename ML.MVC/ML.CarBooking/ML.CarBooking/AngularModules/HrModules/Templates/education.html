@@ -1,4 +1,4 @@
-﻿<div ng-controller="educationController as vm" style="margin:15px;">
+﻿<div ng-controller="educationController as vm" id="education" style="margin:15px;">
     <div ng-init="vm.initialize()">
         <div class="row">
             <div class="col-lg-2">
@@ -60,7 +60,7 @@
                             <td>{{row.name}}</td>
                             <td>{{row.qualification}}</td>
                             <td>
-                                <button class="btn btn-outline-success" data-toggle="modal" data-target="#LanguageModal" ng-click="vm.editWokingHistory(row)">
+                                <button class="btn btn-outline-success" data-toggle="modal" data-target="#LanguageModal" ng-click="vm.editLanguage(row)">
                                     <i class="fas fa-fw fa-pen"></i>
                                 </button>
                                 <button class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteLanguageModal">
@@ -88,24 +88,27 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="language">Ngoại ngữ</label>
-                                <select id="language" class="form-control" 
-                                        ng-model="selectedLanguage"
-                                        ng-options=" l.name for l in vm.listLanguages">
+                                <select id="language" class="form-control"
+                                        ng-model="vm.selectedLanguage"
+                                        ng-options="l.id as l.name for l in vm.listLanguages"
+                                        ng-change="vm.changeLang(vm.selectedLanguage); vm.checkValid()">
+                                    <option value="">--Select Language--</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
                                 <label for="qualification">Đánh giá</label>
-                                <select id="qualification" class="form-control" 
-                                        ng-model="selectedQualification"
-                                        ng-options="q.qualification for q in vm.listQualifications"
-                                        ng-change="vm.checkValid()">
+                                <select id="qualification" class="form-control"
+                                        ng-model="vm.selectedQualification"
+                                        ng-options="q.id as q.qualification for q in vm.listQualifications"
+                                        ng-change="vm.changeQuali(vm.selectedQualification); vm.checkValid()">
+                                    <option value="">--Select Qualification--</option>
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
-                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.addLanguage()" ng-disabled="!vm.isValid">Lưu</button>
+                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.saveChanges()" ng-disabled="!vm.isValid" >Lưu</button>
                     </div>
                 </div>
             </div>

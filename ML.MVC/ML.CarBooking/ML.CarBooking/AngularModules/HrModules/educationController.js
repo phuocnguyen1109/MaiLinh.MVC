@@ -10,12 +10,15 @@
 
 
         vm.isValid = false;
+        vm.isSelected = false;
 
 
         function initialize() {
             vm.userLanguage = { id: null, name: null, qualification: null };
             getLanguageCertifications();
             getLicenses();
+            getListLanguages();
+            getListQualifications();
         }
 
         function getLanguageCertifications() {
@@ -42,52 +45,68 @@
 
         function getListLanguages() {
             vm.listLanguages = [
-                { name: "Tiếng Anh" }, { name: "Tiếng Hàn" }, { name: "Tiếng Trung" }, { name: "Tiếng Đức" },
-                { name: "Tiếng Nga" }, { name: "Tiếng Tây Ban Nha" }, { name: "Tiếng Nhật   " }, { name: "Tiếng Ý" },
+                { id: "1", name: "Tiếng Anh" }, { id: "2", name: "Tiếng Hàn" },
+                { id: "3", name: "Tiếng Trung" }, { id: "4", name: "Tiếng Đức" },
+                { id: "5", name: "Tiếng Nga" }, { id: "6", name: "Tiếng Tây Ban Nha" },
+                { id: "7", name: "Tiếng Nhật" }, { id: "8", name: "Tiếng Ý" },
             ];
         }
 
         function getListQualifications() {
             vm.listQualifications = [
-                { qualification: "Giỏi" }, { qualification: "Khá" }, { qualification: "Trung bình" }, { qualification: "Yếu" },
+                { id: "1", qualification: "Giỏi" },
+                { id: "2", qualification: "Khá" },
+                { id: "3", qualification: "Trung bình" },
+                { id: "4", qualification: "Yếu" },
             ];
         }
 
         function add() {
-            getListLanguages();
-            getListQualifications();
             vm.userLanguage = { id: null, name: null, qualification: null };
+            vm.selectedLanguage = null;
+            vm.selectedQualification = null;
             vm.modalTitle = "Thêm mới ngoại ngữ";
         }
 
-        vm.addLanguage = function addLanguage() {
-            var nid = new Date();
-            nid = nid.getMilliseconds();
-            var newl = [
-                { id: nid.toString(), name: selectedLanguage, qualification: selectedQualification }
-            ];
+        vm.saveChanges = function saveChanges() {
+            //var nId = new Date();
+            //nId = nId.getMilliseconds().toString();
+            //vm.userLanguage.id = nId;
+            vm.languagesCertifications.push(vm.userLanguage);
+            console.log(vm.languagesCertifications);
 
-            vm.languages.push(newl);
-            console.log(vm.languages);
         }
 
+        vm.changeLang = function (value) {
+            if (value != null) {
+                vm.userLanguage.name = vm.listLanguages[value - 1].name;
+                vm.userLanguage.id = vm.listLanguages[value - 1].id;
+            }
+        }
+        vm.changeQuali = function (value) {
+            console.log(value);
+            if (value != null) {
+                vm.userLanguage.qualification = vm.listQualifications[value-1].qualification;
+            }
+        }
 
         function checkValid() {
             console.log(vm.userLanguage);
-            if (vm.userLanguage.name != "" && vm.userLanguage.qualification != "") {
-                vm.message = null;
-                vm.isValid = true;
+            if (vm.userLanguage.name == null || vm.userLanguage.qualification == null) {
+                vm.message = "Nhập đầy đủ các mục!";
+                return;
             }
-            vm.message = "Nhập đầy đủ các mục!";
-            vm.isValid = false;
+            vm.message = null;
+            vm.isValid = true;
         }
 
         vm.editLanguage = function editLanguage(l) {
+            console.log(l);
             vm.modalTitle = "Chỉnh sửa ngoại ngữ";
             vm.isValid = true;
-            vm.userLanguage = {
-                name: l.name, qualifications: l.qualifications
-            };
+
+            vm.selectedLanguage = l.id;
+            vm.selectedQualification = l.id;
         }
     }
 
