@@ -44,6 +44,7 @@
         }
 
         function getListLanguages() {
+            //TODO: get data by api
             vm.listLanguages = [
                 { id: "1", name: "Tiếng Anh" }, { id: "2", name: "Tiếng Hàn" },
                 { id: "3", name: "Tiếng Trung" }, { id: "4", name: "Tiếng Đức" },
@@ -53,6 +54,7 @@
         }
 
         function getListQualifications() {
+            //TODO: get data by api
             vm.listQualifications = [
                 { id: "1", qualification: "Giỏi" },
                 { id: "2", qualification: "Khá" },
@@ -81,19 +83,25 @@
             if (value != null) {
                 vm.userLanguage.name = vm.listLanguages[value - 1].name;
                 vm.userLanguage.id = vm.listLanguages[value - 1].id;
+                return;
             }
+            vm.userLanguage.name = null;
+            vm.userLanguage.id = null;
         }
         vm.changeQuali = function (value) {
             console.log(value);
             if (value != null) {
-                vm.userLanguage.qualification = vm.listQualifications[value-1].qualification;
+                vm.userLanguage.qualification = vm.listQualifications[value - 1].qualification;
+                return;
             }
+            vm.userLanguage.qualification = null;
         }
 
         function checkValid() {
             console.log(vm.userLanguage);
             if (vm.userLanguage.name == null || vm.userLanguage.qualification == null) {
                 vm.message = "Nhập đầy đủ các mục!";
+                vm.isValid = false;
                 return;
             }
             vm.message = null;
@@ -103,6 +111,7 @@
         vm.editLanguage = function editLanguage(l) {
             console.log(l);
             vm.modalTitle = "Chỉnh sửa ngoại ngữ";
+            vm.message = null;
             vm.isValid = true;
 
             vm.selectedLanguage = l.id;
