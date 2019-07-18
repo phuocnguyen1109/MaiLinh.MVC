@@ -22,11 +22,10 @@
 
         function getworkingHistories() {
             //TODO: get data by api
-            var workingHistories = [
+            vm.workingHistories = [
                 { id: "1", startDate: "01/01/2016", endDate: "12/12/2018", companyName: "Công Ty TNHH MTV ABC" },
                 { id: "2", startDate: "01/01/2019", endDate: "30/05/2019", companyName: "Công Ty TNHH MTV DEF" },
             ];
-            vm.workingHistories = workingHistories;
             console.log(vm.workingHistories);
         }
 
@@ -34,17 +33,17 @@
         vm.addWorkingHistory = function addWorkingHistory(newWh) {
             var newId = new Date();
             newId = newId.getMilliseconds();
-            newWh.id = newId;
+            newWh.id = newId.toString();
 
             vm.workingHistories.push(newWh);
             console.log(vm.workingHistories);
-            $scope.newWh = null;
         }
 
         function add() {
             vm.userWorkingHistory = {
                 startDate: null, endDate: null, companyName: null
             };
+            vm.modalTitle = "Thêm mới lịch sử công tác";
         }
 
         function checkValid() {
@@ -65,6 +64,7 @@
         }
 
         vm.editWokingHistory = function editWokingHistory(workingHistory) {
+            vm.modalTitle = "Chỉnh sửa lịch sử công tác";
             vm.isValid = true;
             var sDate = new Date(workingHistory.startDate);
             var eDate = new Date(workingHistory.endDate);
@@ -72,7 +72,6 @@
             vm.userWorkingHistory = {
                 startDate: sDate, endDate: eDate, companyName: workingHistory.companyName
             };
-            
         }
     }
 
