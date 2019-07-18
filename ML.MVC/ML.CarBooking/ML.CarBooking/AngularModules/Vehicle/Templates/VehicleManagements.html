@@ -1,24 +1,4 @@
-﻿<style>
-    table th {
-        font-size: 12px;
-        background-color: cornflowerblue;
-        color: white;
-    }
-
-    table td {
-        font-size: 12px;
-    }
-
-    button {
-        border-radius: 0;
-    }
-
-    .w200 {
-        width: 100px;
-        font-size: 14px;
-    }
-</style>
-<div ng-init="vm.initialize()">
+﻿<div ng-init="vm.initialize()">
     <h3>DANH SÁCH PHƯƠNG TIỆN</h3>
     <div class="w-100" style="float:right; margin-top:30px; margin-bottom:10px;">
         <div class="input-group" style="width:50%;">
@@ -33,11 +13,11 @@
     <div>
 
         <table class="table table-bordered table-hover">
-            <thead>
+            <thead class="thead-light shadow_tb">
                 <tr>
                     <th rowspan="2" style="width: 2%;"></th>
                     <th rowspan="2" style="width:2%">STT</th>
-                    <th rowspan="2" style="width: 6%;">HIỆU XE</th>
+                    <th rowspan="2" style="width: 7%;">HIỆU XE</th>
                     <th rowspan="2" style="width: 5%;">SỐ CHỔ</th>
                     <th rowspan="2" style="width: 5%;">NĂM SẢN XUẤT</th>
                     <th rowspan="2" style="width: 5%;">MÀU XE</th>
@@ -73,8 +53,8 @@
                 </tr>
             </tbody>
         </table>
-        <button class="btn btn-primary mr-1 w200 " ng-click="vm.add()">THÊM MỚI</button>
-        <button class="btn btn-success mr-1 w200" ng-click="vm.gotoEdit(1)">CHỈNH SỬA</button>
-        <button class="btn btn-danger w200" ng-click="vm.remove()">XÓA</button>
+        <button class="btn btn-outline-primary mr-1 w200 " ng-click="vm.add()">THÊM MỚI</button>
+        <button class="btn btn-outline-success mr-1 w200" ng-click="vm.gotoEdit(1)">CHỈNH SỬA</button>
+        <button class="btn btn-outline-danger w200" ng-click="vm.remove()">XÓA</button>
     </div>
 </div>
