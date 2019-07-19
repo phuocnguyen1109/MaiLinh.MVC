@@ -6,6 +6,7 @@
     function equipmentController($scope, $state) {
         var vm = this;
         vm.initialize = initialize;
+        vm.save = save;
 
         function initialize() {
             var userId = "0001";
@@ -47,6 +48,9 @@
             ]
         };
 
+        function save(row) {
+            console.log(row)
+        };
 
         console.log("vm", vm)
 

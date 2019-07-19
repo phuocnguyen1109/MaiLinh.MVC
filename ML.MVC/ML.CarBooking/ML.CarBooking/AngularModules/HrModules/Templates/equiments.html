@@ -5,15 +5,24 @@
                 <th style="width:10%;"> MÃ THIẾT BỊ</th>
                 <th style="width:50%;"> TÊN THIẾT BỊ</th>
                 <th style="width:10%;"> ĐÃ CẤP</th>
-                <th style="width:30%;"> NGÀY CẤP</th>
+                <th style="width:25%;"> NGÀY CẤP</th>
+                <th style="width:5%"></th>
             </tr>
         </thead>
         <tbody class="txt-center">
-            <tr ng-repeat="row in vm.equipments" >
+            <tr ng-repeat="row in vm.equipments">
                 <td>{{row.equipmentId}}</td>
                 <td>{{row.name}}</td>
-                <td><input type="checkbox" ng-model="row.isReceive"/></td>
-                <td><input type="date" class="form-control" ng-disabled="!row.isReceive" ng-model="row.receivedDate" /></td>
+                <td><input type="checkbox" ng-model="row.isReceive" /></td>
+                <td>
+                    <input type="date" class="form-control" ng-disabled="!row.isReceive" ng-model="row.receivedDate" />
+                </td>
+                <td>
+                    <button class="btn btn-outline-primary" ng-disabled="!(row.isReceive && row.receivedDate)" ng-click="vm.save(row)">
+                    <i class="fas fa-fw fa-save"></i>
+                    </button>
+                </td>
+                <!--(row.isReceive && row.receivedDate == null) || (!row.isReceive && row.receivedDate) || (!row.isReceive && row.receivedDate == null)-->
             </tr>
         </tbody>
     </table>
