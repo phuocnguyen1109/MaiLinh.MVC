@@ -1,10 +1,8 @@
-﻿<div style="margin:10px;">
+﻿<div ng-controller="marriageController as vm" ng-init="vm.initialize()" style="margin:10px;">
     <div class="row mt-2">
         <div class="col-lg-4 col-md-4">
             <select class="form-control">
-                <option>Độc Thân</option>
-                <option>Lập Gia Đình</option>
-                <option>Đã Ly Dị</option>
+                <option ng-repeat="row in vm.marritalStatuss">{{row.name}}</option>
             </select>
         </div>
     </div>
@@ -27,28 +25,18 @@
             </tr>
         </thead>
         <tbody class="txt-center">
-            <tr>
-                <td>Nguyễn Văn Phi</td>
-                <td>1959</td>
-                <td>TPHCM</td>
-                <td>Bố</td>
+            <tr ng-repeat="fm in vm.familyMembers">
+                <td>{{fm.memberName}}</td>
+                <td>{{fm.dob}}</td>
+                <td>{{fm.address}}</td>
+                <td>{{fm.relationship}}</td>
                 <td><i class="fas fa-fw fa-times-circle"></i></td>
                 <td>
                     <button class="btn btn-outline-success"><i class="fas fa-fw fa-pen"></i></button>
                     <button class="btn btn-outline-danger"><i class="fas fa-fw fa-trash"></i></button>
                 </td>
             </tr>
-            <tr>
-                <td>Nguyễn Thị Gái</td>
-                <td>1969</td>
-                <td>TPHCM</td>
-                <td>Mẹ</td>
-                <td><i class="fas fa-fw fa-times-circle"></i></td>
-                <td>
-                    <button class="btn btn-outline-success"><i class="fas fa-fw fa-pen"></i></button>
-                    <button class="btn btn-outline-danger"><i class="fas fa-fw fa-trash"></i></button>
-                </td>
-            </tr>
+            
         </tbody>
     </table>
 </div>
