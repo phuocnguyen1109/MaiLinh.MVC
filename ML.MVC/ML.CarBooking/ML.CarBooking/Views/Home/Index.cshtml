@@ -23,38 +23,46 @@
         }
     </style>
 
-    <title>Mai Linh </title>
+    <title>Mai Linh</title>
+
 </head>
 <body ng-app="mainApp">
     <!-- Page Wrapper -->
     <div ng-controller="mainController as vm" id="wrapper">
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
+        <ul class="navbar-nav ml-bg-dark sidebar sidebar-dark accordion" id="accordionSidebar">
+            <li>
+                <div class="mb-5"></div>
+            </li>
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" ui-sref="dashboard">
-                <div class="sidebar-brand-text mx-3"><img src="~/Content/Images/Logo_MLXCT.jpg" style="height: 50px;" /></div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" ui-sref="dashboard">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
+            <li>
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" ui-sref="dashboard">
+                    <div class="sidebar-brand-text mx-3">
+                        <img src="~/Content/Images/Logo_MLXCT.jpg" class="circle-img img_halfsize">
+                    </div>
                 </a>
             </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider">
+            @*<hr class="sidebar-divider my-0">*@
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link txt-center" ui-sref="dashboard">
+                    @*<i class="fas fa-fw fa-tachometer-alt"></i>*@
+                    <span>CÔNG TY TNHH XE CHO THUÊ MAI LINH</span>
+                </a>
+                <!-- Divider -->
+                <hr class="sidebar-divider">
+            </li>
+
 
             <!-- Heading -->
-            <div class="sidebar-heading" ng-if='isAdmin'>
-                Administration
-            </div>
-
+            <li>
+                <div class="sidebar-heading" ng-if='isAdmin'>
+                    Administration
+                </div>
+            </li>
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link" ng-click="gotoPermission()" ng-if="isAdmin">
@@ -68,8 +76,9 @@
                 <div class="sidebar-heading">
                     Các Phòng Ban
                 </div>
+            </li>
 
-                <!-- Nav Item - Pages Collapse Menu -->
+            <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapsePagesHR" aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-user"></i>
@@ -78,31 +87,26 @@
                 <div id="collapsePagesHR" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" ng-click="vm.gotoEmployees()">Quản Lý Nhân Sự</a>
-                        @*<a class="collapse-item" ng-click="vm.gotoMarriage()">Hôn nhân</a>
-                            <a class="collapse-item" ng-click="gotoPreviousJobs()">Công việc trước</a>
+                    </div>
+                </div>
+            </li>
+
+            @*<li class="nav-item">
+                    <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapsePagesSEO" aria-expanded="true" aria-controls="collapsePages">
+                        <i class="fas fa-fw fa-user"></i>
+                        <span>Điều Hành - Kinh Doanh</span>
+                    </a>
+                    <div id="collapsePagesSEO" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+
+                            <a class="collapse-item">Module Nghiệp vụ 1</a>
+                            <a class="collapse-item">Module Nghiệp Vụ 2</a>
                             <div class="collapse-divider"></div>
-                            <a class="collapse-item" ng-click="gotoEquipment()">Trang thiết bị</a>
-                            <a class="collapse-item">Module Nghiệp vụ 5</a>*@
+                            <a class="collapse-item">Module Nghiệp Vụ 4</a>
+                            <a class="collapse-item">Module Nghiệp vụ 5</a>
+                        </div>
                     </div>
-                </div>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapsePagesSEO" aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-user"></i>
-                    <span>Điều Hành - Kinh Doanh</span>
-                </a>
-                <div id="collapsePagesSEO" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-
-                        <a class="collapse-item">Module Nghiệp vụ 1</a>
-                        <a class="collapse-item">Module Nghiệp Vụ 2</a>
-                        <div class="collapse-divider"></div>
-                        <a class="collapse-item">Module Nghiệp Vụ 4</a>
-                        <a class="collapse-item">Module Nghiệp vụ 5</a>
-                    </div>
-                </div>
-            </li>
+                </li>*@
 
             <li class="nav-item">
                 <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapsePagesTECH" aria-expanded="true" aria-controls="collapsePages">
@@ -111,11 +115,11 @@
                 </a>
                 <div id="collapsePagesTECH" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item">Module Nghiệp vụ 1</a>
-                        <a class="collapse-item">Module Nghiệp Vụ 2</a>
-                        <div class="collapse-divider"></div>
-                        <a class="collapse-item">Module Nghiệp Vụ 4</a>
-                        <a class="collapse-item">Module Nghiệp vụ 5</a>
+                        <a class="collapse-item" ng-click="vm.gotoVehicleManagement()">Quản Lý Phương Tiện</a>
+                        @*<a class="collapse-item">Module Nghiệp Vụ 2</a>
+                            <div class="collapse-divider"></div>
+                            <a class="collapse-item">Module Nghiệp Vụ 4</a>
+                            <a class="collapse-item">Module Nghiệp vụ 5</a>*@
                     </div>
                 </div>
             </li>
@@ -136,10 +140,9 @@
                 </div>
             </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
         </ul>
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
         <!-- End of Sidebar -->
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -154,19 +157,68 @@
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
-
+                    @*<ul class="navbar-nav navbar-expand-lg">
+                            <li class="nav-item txt-center">
+                                <a class="nav-link">
+                                    <img class="img-profile rounded-circle" src="~/Content/Images/no_avatar.png" style="height:50px;">
+                                    <div class="ml-2">
+                                        <span class="mr-2 d-none d-lg-inline small txt-left">
+                                            Chuyên viên hỗ trợ, tư vấn dành cho nhà tuyển dụng
+                                        </span>
+                                        <br />
+                                        <span class="mr-2 d-none d-lg-inline text-black-50 small">
+                                            Ms Hoàng Dung
+                                            <i class="fas fa-fw fa-phone"></i>0902 867 167
+                                            <i class="fas fa-fw fa-envelope"></i>dung.dang@mywork.com.vn
+                                        </span>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>*@
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <div class="topbar-divider d-none d-sm-block"></div>
+                        @*<li class="nav-item txt-center m-3">
+                                <a style="display: grid;">
+                                    <i class="fas fa-fw fa-home"></i>
+                                    <span>Trang chủ</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item txt-center m-3">
+                                <a style="display: grid;">
+                                    <i class="fas fa-fw fa-briefcase"></i>
+                                    <span>Tuyển dụng</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item txt-center m-3">
+                                <a style="display: grid;">
+                                    <i class="fas fa-fw fa-id-card-alt"></i>
+                                    <span>Ứng viên</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item txt-center m-3">
+                                <a style="display: grid;">
+                                    <i class="fas fa-fw fa-envelope-open-text"></i>
+                                    <span>Bảng giá</span>
+                                </a>
+                            </li>*@
+
+                        <li class="nav-item txt-center">
+                            <div class="mt-3 topbar-divider d-none d-sm-block"></div>
+                            @*<i class="fas fa-fw fa-bell ico-only"></i>*@
+                        </li>
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img class="img-profile rounded-circle" src="~/Content/Images/avatar.jpg">
-                                <p>
+                                <div class="ml-2">
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">@Model.UserName</span> <br />
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">Administrator</span>
-                                </p>
+                                </div>
+                                @*<i class="fas fa-sign-out-alt fa-sm fa-fw  ico-only"></i>*@
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -230,12 +282,20 @@
     @Scripts.Render("~/bundles/angularJS")
     @Scripts.Render("~/bundles/CustomScripts")
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
     <script type="text/javascript" src="~/AngularModules/MainApp.js"></script>
     <script type="text/javascript" src="~/AngularModules/mainApp.routes.js"></script>
 
     <script type="text/javascript" src="~/AngularModules/HrModules/employeesController.js"></script>
     <script type="text/javascript" src="~/AngularModules/HrModules/editEmployeeController.js"></script>
     <script type="text/javascript" src="~/AngularModules/HrModules/healthCheckManagementController.js"></script>
+    <script type="text/javascript" src="~/AngularModules/HrModules/workingHistoriesController.js"></script>
+
+    <script type="text/javascript" src="~/AngularModules/Vehicle/vehicleManagementController.js"></script>
+    <script type="text/javascript" src="~/AngularModules/Vehicle/editVehicleController.js"></script>
+
 
 
 </body>

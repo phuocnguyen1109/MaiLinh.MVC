@@ -1,0 +1,126 @@
+﻿<style>
+    table th {
+        font-size: 12px;
+        background-color: cornflowerblue;
+        color: white;
+        text-align: center;
+    }
+
+    table td {
+        font-size: 12px;
+    }
+
+    button {
+        border-radius: 0;
+    }
+
+    .w200 {
+        width: 100px;
+        font-size: 14px;
+    }
+
+    .w100p {
+        width: 100%;
+    }
+
+    .float-mr {
+        float: left;
+        margin-right: 10px;
+    }
+</style>
+<div class="row" style="width:100%; margin-left:10px; margin-right:10px;">
+    <button class="btn btn-primary" data-toggle="modal" data-target="#gpsModal">THÊM MỚI</button>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th colspan="11">GPS</th>
+            </tr>
+            <tr>
+                <th>KÝ HIỆU</th>
+                <th>NHÀ CUNG CẤP</th>
+                <th>SỐ SERI</th>
+                <th>XBX-SIM</th>
+                <th>NGÀY LẮP</th>
+                <th>NGÀY THÁO</th>
+                <th>CHỦ THIẾT BỊ</th>
+                <th>NGÀY TRẢ THIẾT BỊ</th>
+                <th>TÌNH TRẠNG THIẾT BỊ</th>
+                <th>GHI CHÚ</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>A3</td>
+                <td>TELECOM</td>
+                <td>A3</td>
+                <td>812176</td>
+                <td>01208643678 M </td>
+                <td>15/07/2019</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <button class="btn btn-success" style="width:45%; float:left; margin-right:5px;"><i class="fa fa-edit"></i></button>
+                    <button class="btn btn-danger" style="width:45%; float: left;"><i class="fa fa-trash"></i></button>
+                </td>
+
+            </tr>
+        </tbody>
+    </table> 
+</div>
+
+<div id="gpsModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">THÊM MỚI THIẾT BỊ GPS</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label>KÝ HIỆU:</label>
+                        <input type="text" class="form-control" />
+                        <label>NHÀ CUNG CẤP:</label>
+                        <input type="text" class="form-control" />
+                        <label>TÌNH TRẠNG THIẾT BỊ:</label>
+                        <select class="form-control">
+                            <option>HĐ TỐT</option>
+                            <option>BDSC</option>
+                            <option>THANH LÝ</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-4">
+                        <label>SỐ SERI:</label>
+                        <input type="text" class="form-control" />
+                        <label>XBX-SIM:</label>
+                        <input type="text" class="form-control" />
+                        <label>CHỦ THIẾT BỊ:</label>
+                        <input type="text" class="form-control" />
+                    </div>
+                    <div class="col-lg-4">
+                        <label>NGÀY LẮP:</label>
+                        <input type="date" class="form-control" />
+                        <label>NGÀY THÁO:</label>
+                        <input type="date" class="form-control" />
+                        <label>NGÀY TRẢ:</label>
+                        <input type="date" class="form-control" />
+                    </div>
+                    <div class="col-lg-12">
+                        <label>GHI CHÚ:</label>
+                        <textarea class="form-control" style="height100px;"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">LƯU</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">HỦY BỎ</button>
+            </div>
+        </div>
+
+    </div>
+</div>
