@@ -1,4 +1,5 @@
-﻿using ML.CarBooking.Models.Accounts;
+﻿using ML.Business.Interfaces.Hr;
+using ML.CarBooking.Models.Accounts;
 using ML.Common.Data.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,11 @@ namespace ML.CarBooking.Controllers
     public class HomeController : Controller
     {
         private readonly IConnectionFactory m_ConnectionFactory;
-        public HomeController(IConnectionFactory connectionFactory)
+        private readonly IPersonWorkingHistory m_personWorkingHistory;
+        public HomeController(IConnectionFactory connectionFactory, IPersonWorkingHistory personWorkingHistory)
         {
             m_ConnectionFactory = connectionFactory;
+            m_personWorkingHistory = personWorkingHistory;
         }
 
         public ActionResult Index()
@@ -21,7 +24,7 @@ namespace ML.CarBooking.Controllers
             //TODO : CHeck account Login
             var userName = Session["UserName"];
 
-         var b =   m_ConnectionFactory.CreateConnection();
+            var b = m_personWorkingHistory.GetAllByPersonId(1);
             
 
             bool logedIn = userName != null && !string.IsNullOrEmpty(userName.ToString());

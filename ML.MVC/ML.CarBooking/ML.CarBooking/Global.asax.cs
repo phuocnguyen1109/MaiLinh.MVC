@@ -16,9 +16,9 @@ namespace ML.CarBooking
         {
             AreaRegistration.RegisterAllAreas();
 
-            DependencyResolver.SetResolver(new NinjectResolver());
+           
 
-            GlobalConfiguration.Configure(WebApiConfig.Register);
+            //GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);

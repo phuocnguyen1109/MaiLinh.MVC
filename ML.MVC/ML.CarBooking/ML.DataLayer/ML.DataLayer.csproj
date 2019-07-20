@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=1.60.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.60.6\lib\net451\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,11 +43,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Implements\Hr\PersonWorkingHistoryDataLayer.cs" />
+    <Compile Include="Interfaces\Hr\IPersonWorkingHistoryDataLayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Interfaces\" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ML.Common.Data\ML.Common.Data.csproj">
+      <Project>{5411F1DD-8107-4D70-A990-B19979F40BCB}</Project>
+      <Name>ML.Common.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ML.Entities\ML.Entities.csproj">
+      <Project>{D62C60A9-825F-454F-91D1-8A57EEE090E7}</Project>
+      <Name>ML.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

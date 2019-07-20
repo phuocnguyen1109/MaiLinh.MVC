@@ -40,11 +40,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Implements\Hr\PersonWorkingHistory.cs" />
+    <Compile Include="Interfaces\Hr\IPersonWorkingHistory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Interfaces\" />
+    <ProjectReference Include="..\ML.DataLayer\ML.DataLayer.csproj">
+      <Project>{3DF21A15-2ADE-47E7-BD1E-30E9E78B54A7}</Project>
+      <Name>ML.DataLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ML.Entities\ML.Entities.csproj">
+      <Project>{D62C60A9-825F-454F-91D1-8A57EEE090E7}</Project>
+      <Name>ML.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

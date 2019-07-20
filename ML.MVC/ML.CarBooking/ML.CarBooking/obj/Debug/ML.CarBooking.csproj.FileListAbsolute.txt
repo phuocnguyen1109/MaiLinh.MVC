@@ -399,6 +399,8 @@ D:\Out\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\obj\Debug\ML.CarBooking.cs
 D:\Out\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\obj\Debug\ML.CarBooking.csproj.CopyComplete
 D:\Out\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\obj\Debug\ML.CarBooking.dll
 D:\Out\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\obj\Debug\ML.CarBooking.pdb
+D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\obj\Debug\ML.CarBooking.csprojAssemblyReference.cache
+D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\obj\Debug\ML.CarBooking.csproj.CoreCompileInputs.cache
 D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\ApplicationInsights.config
 D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\ML.CarBooking.dll.config
 D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\ML.CarBooking.dll
@@ -446,6 +448,7 @@ D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\rosl
 D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\roslyn\vbc.rsp
 D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\roslyn\VBCSCompiler.exe.config
 D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\Antlr3.Runtime.dll
+D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\Dapper.dll
 D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\Microsoft.AI.Agent.Intercept.dll
 D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\Microsoft.AI.DependencyCollector.dll
 D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\Microsoft.AI.PerfCounterCollector.dll
@@ -456,7 +459,14 @@ D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\Micr
 D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\Microsoft.AspNet.TelemetryCorrelation.dll
 D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\Microsoft.Web.Infrastructure.dll
+D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\ML.Business.dll
+D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\ML.Common.Data.dll
+D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\ML.DataLayer.dll
+D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\ML.Entities.dll
 D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\Newtonsoft.Json.dll
+D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\Ninject.dll
+D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\Ninject.Web.Common.dll
+D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\Ninject.Web.Mvc.dll
 D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\System.Diagnostics.DiagnosticSource.dll
 D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\System.Net.Http.Formatting.dll
 D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\System.Web.Helpers.dll
@@ -468,7 +478,16 @@ D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\Syst
 D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\System.Web.WebPages.Deployment.dll
 D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\System.Web.WebPages.dll
 D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\System.Web.WebPages.Razor.dll
+D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\WebActivatorEx.dll
 D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\WebGrease.dll
+D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\ML.Business.pdb
+D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\ML.Common.Data.pdb
+D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\ML.DataLayer.pdb
+D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\ML.Entities.pdb
+D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\Dapper.xml
+D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\Ninject.xml
+D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\Ninject.Web.Common.xml
+D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\Ninject.Web.Mvc.xml
 D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\System.Web.Helpers.xml
 D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\System.Web.Mvc.xml
 D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\System.Web.Optimization.xml
@@ -487,8 +506,6 @@ D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\Micr
 D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\Microsoft.AI.WindowsServer.xml
 D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\Microsoft.AI.Web.xml
 D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\obj\Debug\ML.CarBooking.csprojAssemblyReference.cache
-D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\obj\Debug\ML.CarBooking.csproj.CoreCompileInputs.cache
 D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\obj\Debug\ML.CarBooking.csproj.CopyComplete
 D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\obj\Debug\ML.CarBooking.dll
 D:\Source\Others\MaiLinh\MaiLinh.MVC\ML.MVC\ML.CarBooking\ML.CarBooking\obj\Debug\ML.CarBooking.pdb

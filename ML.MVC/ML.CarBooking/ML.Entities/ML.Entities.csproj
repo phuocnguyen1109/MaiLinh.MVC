@@ -41,10 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResponseModels\Hr\PersonWorkingHistoryResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="RequestModels\" />
-    <Folder Include="ResponseModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

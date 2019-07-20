@@ -4,28 +4,34 @@
 namespace ML.CarBooking.App_Start
 {
     using System;
+    using System.Configuration;
     using System.Web;
-
+    using System.Web.Http;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
+    using ML.Common.Data;
+    using ML.Common.Data.Interfaces;
     using Ninject;
     using Ninject.Web.Common;
-    using Ninject.Web.Common.WebHost;
 
-    public static class NinjectWebCommon 
+    using ML.Business.Interfaces.Hr;
+    using ML.Business.Implements.Hr;
+    using ML.DataLayer.Interfaces.Hr;
+    using ML.DataLayer.Implements.Hr;
+
+    public static class NinjectWebCommon
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
         /// <summary>
         /// Starts the application
         /// </summary>
-        public static void Start() 
+        public static void Start()
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
             bootstrapper.Initialize(CreateKernel);
         }
-        
+
         /// <summary>
         /// Stops the application.
         /// </summary>
@@ -33,7 +39,7 @@ namespace ML.CarBooking.App_Start
         {
             bootstrapper.ShutDown();
         }
-        
+
         /// <summary>
         /// Creates the kernel that will manage your application.
         /// </summary>
@@ -47,6 +53,7 @@ namespace ML.CarBooking.App_Start
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
                 RegisterServices(kernel);
+                GlobalConfiguration.Configuration.DependencyResolver = new NinjectResolver(kernel);
                 return kernel;
             }
             catch
@@ -62,6 +69,16 @@ namespace ML.CarBooking.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-        }        
+            kernel.Bind<IConnectionFactory>().ToConstructor(contructor => new ConnectionFactory(GetConnectionString()));
+            kernel.Bind<IPersonWorkingHistory>().To<PersonWorkingHistory>().InSingletonScope();
+            kernel.Bind<IPersonWorkingHistoryDataLayer>().To<PersonWorkingHistoryDataLayer>().InSingletonScope();
+
+
+        }
+
+        private static string GetConnectionString()
+        {
+            return ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+        }
     }
 }

@@ -1,43 +1,55 @@
-﻿using ML.Common.Data;
-using ML.Common.Data.Interfaces;
-using Ninject;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Http.Dependencies;
+using Ninject;
+using Ninject.Activation;
+using Ninject.Parameters;
+using Ninject.Syntax;
 
 namespace ML.CarBooking.App_Start
 {
-    public class NinjectResolver : System.Web.Mvc.IDependencyResolver
+    public class NinjectResolver : NinjectScope, IDependencyResolver
     {
-        private readonly IKernel _kernel;
-
-        public NinjectResolver()
+        private IKernel _kernel;
+        public NinjectResolver(IKernel kernel)
+            : base(kernel)
         {
-            _kernel = new StandardKernel();
-            AddBindings();
+            _kernel = kernel;
+        }
+        public IDependencyScope BeginScope()
+        {
+            return new NinjectScope(_kernel.BeginBlock());
+        }
+    }
+
+    public class NinjectScope : IDependencyScope
+    {
+        protected IResolutionRoot resolutionRoot;
+
+        public NinjectScope(IResolutionRoot kernel)
+        {
+            resolutionRoot = kernel;
         }
 
         public object GetService(Type serviceType)
         {
-            return _kernel.TryGet(serviceType);
+            IRequest request = resolutionRoot.CreateRequest(serviceType, null, new Parameter[0], true, true);
+            return resolutionRoot.Resolve(request).SingleOrDefault();
         }
 
         public IEnumerable<object> GetServices(Type serviceType)
         {
-            return _kernel.GetAll(serviceType);
+            IRequest request = resolutionRoot.CreateRequest(serviceType, null, new Parameter[0], true, true);
+            return resolutionRoot.Resolve(request).ToList();
         }
 
-        private string GetConnectionString() {
-            return ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-        }
-
-        private void AddBindings()
+        public void Dispose()
         {
-            //SQL Connection
-            _kernel.Bind<IConnectionFactory>().ToConstructor(contructor => new ConnectionFactory(GetConnectionString()));
+            IDisposable disposable = (IDisposable)resolutionRoot;
+            if (disposable != null) disposable.Dispose();
+            resolutionRoot = null;
         }
     }
 }
