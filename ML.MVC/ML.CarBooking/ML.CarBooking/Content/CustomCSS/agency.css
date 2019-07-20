@@ -124,3 +124,7 @@ select {
     color: white;
     font-size: 22px !important;
 }
+
+select.form-control {
+    padding: 0 !important;
+}
