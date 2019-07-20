@@ -6,10 +6,12 @@
         var vm = this;
         vm.initialize = initialize;
         vm.checkValid = checkValid;
-        vm.add = add;
-        vm.editLanguage = editLanguage;
+        vm.openAdd = openAdd;
+        vm.openEditLanguage = openEditLanguage;
         vm.saveChanges = saveChanges;
         vm.saveLincense = saveLincense;
+        vm.openDelModal = openDelModal;
+        vm.deleted = deleted;
 
         vm.changeLang = changeLang;
         vm.changeQuali = changeQuali;
@@ -38,7 +40,7 @@
                 { id: "2", name: "Tiếng Hàn", qualification: "Khá" },
                 { id: "3", name: "Tiếng Trung", qualification: "Trung bình" },
             ];
-            console.log(vm.languagesCertifications);
+            console.log("languagesCertifications => " + vm.languagesCertifications);
         }
 
         function getLicenses() {
@@ -73,13 +75,13 @@
             ];
         }
 
-        function add() {
+        function openAdd() {
             vm.userLanguage = { id: null, name: null, qualification: null };
             vm.selectedLanguage = null;
             vm.selectedQualification = null;
             vm.modalTitle = "Thêm mới ngoại ngữ";
         }
-        function editLanguage(l) {
+        function openEditLanguage(l) {
             console.log(l);
             vm.modalTitle = "Chỉnh sửa ngoại ngữ";
             vm.message = null;
@@ -157,10 +159,19 @@
         //    vm.isEnable = true;
         //}
 
+        
         function saveLincense(r) {
             var l = vm.lincenses.find(x => x.id == r.id);
             //l = r;
             console.log(vm.lincenses);
+        }
+
+        function openDelModal(r) {
+
+        }
+
+        function deleted() {
+            console.log(row)
         }
     }
 

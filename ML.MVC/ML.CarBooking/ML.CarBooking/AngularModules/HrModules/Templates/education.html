@@ -43,7 +43,7 @@
             <div class="col-lg-6 col-md-6" style="display:block;">
                 <div>
                     <label>NGOẠI NGỮ:</label>
-                    <button class="btn btn-primary mt-2 mb-2 float-right" data-toggle="modal" data-target="#LanguageModal" ng-click="vm.add()">
+                    <button class="btn btn-primary mt-2 mb-2 float-right" data-toggle="modal" data-target="#LanguageModal" ng-click="vm.openAdd()">
                         <i class="fa fa-plus"> </i> THÊM NGOẠI NGỮ
                     </button>
                 </div>
@@ -55,15 +55,15 @@
                             <th style="width:21%;"></th>
                         </tr>
                     </thead>
-                    <tbody ng-repeat="row in vm.languagesCertifications">
-                        <tr>
+                    <tbody>
+                        <tr ng-repeat="row in vm.languagesCertifications">
                             <td>{{row.name}}</td>
                             <td>{{row.qualification}}</td>
                             <td>
-                                <button class="btn btn-outline-success" data-toggle="modal" data-target="#LanguageModal" ng-click="vm.editLanguage(row)">
+                                <button class="btn btn-outline-success" data-toggle="modal" data-target="#LanguageModal" ng-click="vm.openEditLanguage(row)">
                                     <i class="fas fa-fw fa-pen"></i>
                                 </button>
-                                <button class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteLanguageModal">
+                                <button class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteLanguageModal" ng-click="openDelModal(row)">
                                     <i class="fas fa-fw fa-trash"></i>
                                 </button>
                             </td>
@@ -123,7 +123,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
-                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Đồng ý</button>
+                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.deleted()">Đồng ý</button>
                     </div>
                 </div>
             </div>
