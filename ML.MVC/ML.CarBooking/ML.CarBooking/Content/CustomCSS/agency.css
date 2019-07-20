@@ -113,7 +113,7 @@ select.form-control {
     padding: 0.25rem !important;
 }
 
-input[type="radio"] {
+input[type="radio"], input[type="checkbox"] {
     vertical-align: middle;
     margin-right: 10px;
 }

@@ -12,11 +12,7 @@
         vm.saveLincense = saveLincense;
         vm.openDelModal = openDelModal;
         vm.deleted = deleted;
-
-        vm.changeLang = changeLang;
-        vm.changeQuali = changeQuali;
         vm.changeTime = changeTime;
-        //vm.changeLicenseDate = changeLicenseDate;
 
         vm.isValid = false;
         vm.isSelected = false;
@@ -36,9 +32,9 @@
         function getLanguageCertifications() {
             //TODO: get data by api
             vm.languagesCertifications = [
-                { id: "1", name: "Tiếng Anh", qualification: "Khá" },
-                { id: "2", name: "Tiếng Hàn", qualification: "Khá" },
-                { id: "3", name: "Tiếng Trung", qualification: "Trung bình" },
+                { id: 1, langId: 1, name: "Tiếng Anh", qualityId: 2, qualification: "Khá" },
+                { id: 2, langId: 2, name: "Tiếng Hàn", qualityId: 2, qualification: "Khá" },
+                { id: 3, langId: 3, name: "Tiếng Trung", qualityId: 3, qualification: "Trung bình" },
             ];
             console.log("languagesCertifications => " + vm.languagesCertifications);
         }
@@ -58,25 +54,29 @@
         function getListLanguages() {
             //TODO: get data by api
             vm.listLanguages = [
-                { id: "1", name: "Tiếng Anh" }, { id: "2", name: "Tiếng Hàn" },
-                { id: "3", name: "Tiếng Trung" }, { id: "4", name: "Tiếng Đức" },
-                { id: "5", name: "Tiếng Nga" }, { id: "6", name: "Tiếng Tây Ban Nha" },
-                { id: "7", name: "Tiếng Nhật" }, { id: "8", name: "Tiếng Ý" },
+                { id: 1, name: "Tiếng Anh" },
+                { id: 2, name: "Tiếng Hàn" },
+                { id: 3, name: "Tiếng Trung" },
+                { id: 4, name: "Tiếng Đức" },
+                { id: 5, name: "Tiếng Nga" },
+                { id: 6, name: "Tiếng Tây Ban Nha" },
+                { id: 7, name: "Tiếng Nhật" },
+                { id: 8, name: "Tiếng Ý" },
             ];
         }
 
         function getListQualifications() {
             //TODO: get data by api
             vm.listQualifications = [
-                { id: "1", qualification: "Giỏi" },
-                { id: "2", qualification: "Khá" },
-                { id: "3", qualification: "Trung bình" },
-                { id: "4", qualification: "Yếu" },
+                { id: 1, qualification: "Giỏi" },
+                { id: 2, qualification: "Khá" },
+                { id: 3, qualification: "Trung bình" },
+                { id: 4, qualification: "Yếu" },
             ];
         }
 
         function openAdd() {
-            vm.userLanguage = { id: null, name: null, qualification: null };
+            vm.userLanguage = { id: null, langId: null, name: null, qualityId: null, qualification: null };
             vm.selectedLanguage = null;
             vm.selectedQualification = null;
             vm.modalTitle = "Thêm mới ngoại ngữ";
@@ -87,36 +87,67 @@
             vm.message = null;
             vm.isValid = true;
 
-            vm.selectedLanguage = l.id;
-            vm.selectedQualification = l.id;
+            vm.userLanguage = l;
         }
 
         function saveChanges() {
-            vm.languagesCertifications.push(vm.userLanguage);
+            var r = vm.userLanguage;
+            if (r.id) {
+                vm.languagesCertifications.forEach(function (item, index) {
+                    if (r.id == item.id) {
+                        vm.listLanguages.forEach(function (lang, index) {
+                            if (r.langId == lang.id) {
+                                item.langId = lang.id;
+                                item.name = lang.name;
+                            }
+                        });
+                        vm.listQualifications.forEach(function (quality, index) {
+                            if (r.qualityId == quality.id) {
+                                item.qualityId = quality.id;
+                                item.qualification = quality.qualification;
+                            }
+                        });
+                        return r;
+                    };
+                });
+            }
+            else {
+                var found = false;
+                vm.languagesCertifications.forEach(function (item, index) {
+                    if (r.langId == item.langId) {
+                        alert("Không thể nhập ngôn ngữ đã có!");
+                        found = true;
+                        return;
+                    }
+                });
+                if (!found) {
+
+                    vm.message = null;
+                    vm.userLanguage.id = r.langId;
+                    vm.listLanguages.forEach(function (lang, index) {
+                        if (r.langId == lang.id) {
+                            vm.userLanguage.name = lang.name;
+                            return;
+                        }
+                    });
+                    vm.listQualifications.forEach(function (quality, index) {
+                        if (r.qualityId == quality.id) {
+                            vm.userLanguage.qualification = quality.qualification;
+                            return;
+                        }
+                    });
+                    vm.languagesCertifications.push(vm.userLanguage);
+
+                }
+            };
+
             console.log(vm.languagesCertifications);
-
         }
 
-        function changeLang(value) {
-            if (value != null) {
-                vm.userLanguage.name = vm.listLanguages[value - 1].name;
-                vm.userLanguage.id = vm.listLanguages[value - 1].id;
-                return;
-            }
-            vm.userLanguage.name = null;
-            vm.userLanguage.id = null;
-        }
-        function changeQuali(value) {
-            console.log(value);
-            if (value != null) {
-                vm.userLanguage.qualification = vm.listQualifications[value - 1].qualification;
-                return;
-            }
-            vm.userLanguage.qualification = null;
-        }
+
         function checkValid() {
             console.log(vm.userLanguage);
-            if (vm.userLanguage.name == null || vm.userLanguage.qualification == null) {
+            if (vm.userLanguage.langId == null || vm.userLanguage.qualityId == null) {
                 vm.message = "Nhập đầy đủ các mục!";
                 vm.isValid = false;
                 return;
@@ -133,7 +164,7 @@
                 console.log(licenseDate);
                 expiredDate = licenseDate.setMonth(licenseDate.getMonth() + row.usedTime);
                 row.expiredDate = new Date(expiredDate);
-                if (row.isCheck == true &&   row.usedTime != null && row.licenseDate != null && row.expiredDate != null) {
+                if (row.isCheck == true && row.usedTime != null && row.licenseDate != null && row.expiredDate != null) {
                     row.isEnable = true;
                     return;
                 }
@@ -159,7 +190,7 @@
         //    vm.isEnable = true;
         //}
 
-        
+
         function saveLincense(r) {
             var l = vm.lincenses.find(x => x.id == r.id);
             //l = r;
@@ -167,11 +198,18 @@
         }
 
         function openDelModal(r) {
-
+            vm.deletedDataRow = r;
+            console.log(vm.deletedDataRow);
         }
 
-        function deleted() {
-            console.log(row)
+        function deleted(r) {
+            var deletedInndex = null;
+            vm.languagesCertifications.forEach(function (item, index) {
+                if (r.id == item.id) {
+                    deletedInndex = index;
+                }
+            });
+            vm.languagesCertifications.splice(deletedInndex, 1);
         }
     }
 

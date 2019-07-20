@@ -63,7 +63,7 @@
                                 <button class="btn btn-outline-success" data-toggle="modal" data-target="#LanguageModal" ng-click="vm.openEditLanguage(row)">
                                     <i class="fas fa-fw fa-pen"></i>
                                 </button>
-                                <button class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteLanguageModal" ng-click="openDelModal(row)">
+                                <button class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteLanguageModal" ng-click="vm.openDelModal(row)">
                                     <i class="fas fa-fw fa-trash"></i>
                                 </button>
                             </td>
@@ -89,18 +89,18 @@
                             <div class="col-md-6">
                                 <label for="language">Ngoại ngữ</label>
                                 <select id="language" class="form-control"
-                                        ng-model="vm.selectedLanguage"
+                                        ng-model="vm.userLanguage.langId"
                                         ng-options="l.id as l.name for l in vm.listLanguages"
-                                        ng-change="vm.changeLang(l); vm.checkValid()">
+                                        ng-change="vm.checkValid()">
                                     <option value="">--Select Language--</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
                                 <label for="qualification">Đánh giá</label>
                                 <select id="qualification" class="form-control"
-                                        ng-model="vm.selectedQualification"
+                                        ng-model="vm.userLanguage.qualityId"
                                         ng-options="q.id as q.qualification for q in vm.listQualifications"
-                                        ng-change="vm.changeQuali(vm.selectedQualification); vm.checkValid()">
+                                        ng-change="vm.checkValid()">
                                     <option value="">--Select Qualification--</option>
                                 </select>
                             </div>
@@ -119,11 +119,11 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-body">
-                        Bạn muốn xóa ngoại ngữ này?
+                        Bạn muốn xóa đánh giá {{vm.deletedDataRow.name}} này?
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
-                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.deleted()">Đồng ý</button>
+                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.deleted(vm.deletedDataRow)">Đồng ý</button>
                     </div>
                 </div>
             </div>
