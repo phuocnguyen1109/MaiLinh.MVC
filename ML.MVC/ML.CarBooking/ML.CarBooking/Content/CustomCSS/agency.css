@@ -9,6 +9,11 @@
 .bg-nav-active {
     background-color: rgba(255, 255, 255, 0.1);
 }
+
+.bg-mldark {
+    background-color: #2f3a4c;
+    color: #fff !important;
+}
 /*Text*/
 .txt-center {
     text-align: center !important;
