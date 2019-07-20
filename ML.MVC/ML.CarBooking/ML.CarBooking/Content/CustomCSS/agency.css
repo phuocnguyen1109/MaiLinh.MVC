@@ -139,3 +139,7 @@ select.form-control {
     color: white;
     font-size: 22px !important;
 }
+
+.d-gr {
+    display: inline-grid;
+}

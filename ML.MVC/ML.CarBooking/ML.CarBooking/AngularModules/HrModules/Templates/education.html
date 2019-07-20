@@ -91,7 +91,7 @@
                                 <select id="language" class="form-control"
                                         ng-model="vm.selectedLanguage"
                                         ng-options="l.id as l.name for l in vm.listLanguages"
-                                        ng-change="vm.changeLang(vm.selectedLanguage); vm.checkValid()">
+                                        ng-change="vm.changeLang(l); vm.checkValid()">
                                     <option value="">--Select Language--</option>
                                 </select>
                             </div>
