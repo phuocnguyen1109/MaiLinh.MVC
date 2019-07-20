@@ -139,18 +139,24 @@
                     <tr>
                         <th class="txt-center" style="width:10%;">ĐÃ CÓ</th>
                         <th style="width:55%;">TÊN GIẤY PHÉP HÀNH NGHỀ</th>
-                        <th style="width:15%;">THỜI HẠN SD</th>
+                        <th style="width:15%;">THỜI HẠN SD (tháng)</th>
                         <th style="width:10%;">NGÀY CẤP</th>
                         <th style="width:10%;">CÓ GIÁ TRỊ ĐẾN</th>
+                        <th></th>
                     </tr>
                 </thead>
-                <tbody ng-repeat="row in vm.lincenses">
-                    <tr>
-                        <td class="center-block txt-center"><input type="checkbox" ng-model="isUnchecked" /></td>
+                <tbody>
+                    <tr  ng-repeat="row in vm.lincenses">
+                        <td class="center-block txt-center"><input type="checkbox" ng-model="row.isCheck" ng-change="vm.changeTime(row)" /></td>
                         <td class="text-uppercase">{{row.name}}</td>
-                        <td><input type="text" class="form-control" ng-disabled="!isUnchecked" /></td>
-                        <td><input type="date" class="form-control" ng-disabled="!isUnchecked" /></td>
-                        <td><input type="date" class="form-control" ng-disabled="!isUnchecked" /></td>
+                        <td><input type="number" class="form-control" ng-model="row.usedTime" ng-change="vm.changeTime(row)" ng-disabled="!row.isCheck" /></td>
+                        <td><input type="date" class="form-control" ng-model="row.licenseDate" ng-change="vm.changeTime(row)" ng-disabled="!row.isCheck" /></td>
+                        <td><input type="date" class="form-control" ng-model="row.expiredDate" ng-disabled="!row.isCheck" /></td>
+                        <td>
+                            <button class="btn btn-outline-primary" ng-click="vm.saveLincense(row)" ng-disabled="!row.isEnable">
+                                <i class="fas fa-fw fa-save"></i>
+                            </button>
+                        </td>
                     </tr>
                 </tbody>
             </table>

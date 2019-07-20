@@ -7,11 +7,21 @@
         vm.initialize = initialize;
         vm.checkValid = checkValid;
         vm.add = add;
+        vm.editLanguage = editLanguage;
+        vm.saveChanges = saveChanges;
+        vm.saveLincense = saveLincense;
 
+        vm.changeLang = changeLang;
+        vm.changeQuali = changeQuali;
+        vm.changeTime = changeTime;
+        //vm.changeLicenseDate = changeLicenseDate;
 
         vm.isValid = false;
         vm.isSelected = false;
-
+        vm.isEnable = false;
+        vm.usedTime = null;
+        vm.startDate = null;
+        vm.expiredDate = null;
 
         function initialize() {
             vm.userLanguage = { id: null, name: null, qualification: null };
@@ -24,7 +34,7 @@
         function getLanguageCertifications() {
             //TODO: get data by api
             vm.languagesCertifications = [
-                { id: "1", name: "Tiếng Anh", qualification : "Khá" },
+                { id: "1", name: "Tiếng Anh", qualification: "Khá" },
                 { id: "2", name: "Tiếng Hàn", qualification: "Khá" },
                 { id: "3", name: "Tiếng Trung", qualification: "Trung bình" },
             ];
@@ -34,12 +44,12 @@
         function getLicenses() {
             //TODO: get data by api
             vm.lincenses = [
-                { id: "1", name: "An toàn vệ sinh lao động", usedTime: null, licenseDate: null, expiredDate: null },
-                { id: "2", name: "Sơ cấp cứu", usedTime: null, licenseDate: null, expiredDate: null },
-                { id: "3", name: "Giấy chứng nhận tập huấn nghiệp vụ", usedTime: null, licenseDate: null, expiredDate: null },
-                { id: "4", name: "Giấy chứng nhận nhân viên phục vụ hành khác", usedTime: null, licenseDate: null, expiredDate: null },
-                { id: "5", name: "Giấy chứng nhận lái xe phòng thủ", usedTime: null, licenseDate: null, expiredDate: null },
-                { id: "6", name: "Giấy xác nhận huấn luyện an toàn nội bộ", usedTime: null, licenseDate: null, expiredDate: null },
+                { id: "1", isCheck: false, isEnable: false, name: "An toàn vệ sinh lao động", usedTime: 0, licenseDate: null, expiredDate: null },
+                { id: "2", isCheck: false, isEnable: false, name: "Sơ cấp cứu", usedTime: 0, licenseDate: null, expiredDate: null },
+                { id: "3", isCheck: false, isEnable: false, name: "Giấy chứng nhận tập huấn nghiệp vụ", usedTime: 0, licenseDate: null, expiredDate: null },
+                { id: "4", isCheck: false, isEnable: false, name: "Giấy chứng nhận nhân viên phục vụ hành khác", usedTime: 0, licenseDate: null, expiredDate: null },
+                { id: "5", isCheck: false, isEnable: false, name: "Giấy chứng nhận lái xe phòng thủ", usedTime: 0, licenseDate: null, expiredDate: null },
+                { id: "6", isCheck: false, isEnable: false, name: "Giấy xác nhận huấn luyện an toàn nội bộ", usedTime: 0, licenseDate: null, expiredDate: null },
             ];
         }
 
@@ -69,17 +79,23 @@
             vm.selectedQualification = null;
             vm.modalTitle = "Thêm mới ngoại ngữ";
         }
+        function editLanguage(l) {
+            console.log(l);
+            vm.modalTitle = "Chỉnh sửa ngoại ngữ";
+            vm.message = null;
+            vm.isValid = true;
 
-        vm.saveChanges = function saveChanges() {
-            //var nId = new Date();
-            //nId = nId.getMilliseconds().toString();
-            //vm.userLanguage.id = nId;
+            vm.selectedLanguage = l.id;
+            vm.selectedQualification = l.id;
+        }
+
+        function saveChanges() {
             vm.languagesCertifications.push(vm.userLanguage);
             console.log(vm.languagesCertifications);
 
         }
 
-        vm.changeLang = function (value) {
+        function changeLang(value) {
             if (value != null) {
                 vm.userLanguage.name = vm.listLanguages[value - 1].name;
                 vm.userLanguage.id = vm.listLanguages[value - 1].id;
@@ -88,7 +104,7 @@
             vm.userLanguage.name = null;
             vm.userLanguage.id = null;
         }
-        vm.changeQuali = function (value) {
+        function changeQuali(value) {
             console.log(value);
             if (value != null) {
                 vm.userLanguage.qualification = vm.listQualifications[value - 1].qualification;
@@ -96,7 +112,6 @@
             }
             vm.userLanguage.qualification = null;
         }
-
         function checkValid() {
             console.log(vm.userLanguage);
             if (vm.userLanguage.name == null || vm.userLanguage.qualification == null) {
@@ -108,14 +123,44 @@
             vm.isValid = true;
         }
 
-        vm.editLanguage = function editLanguage(l) {
-            console.log(l);
-            vm.modalTitle = "Chỉnh sửa ngoại ngữ";
-            vm.message = null;
-            vm.isValid = true;
+        function changeTime(row) {
+            //debugger;
+            var expiredDate = null;
+            if (row.licenseDate != null && row.usedTime != null) {
+                var licenseDate = new Date(row.licenseDate);
+                console.log(licenseDate);
+                expiredDate = licenseDate.setMonth(licenseDate.getMonth() + row.usedTime);
+                row.expiredDate = new Date(expiredDate);
+                if (row.isCheck == true &&   row.usedTime != null && row.licenseDate != null && row.expiredDate != null) {
+                    row.isEnable = true;
+                    return;
+                }
+            }
+            row.isEnable = false;
+        }
+        //function changeLicenseDate(row) {
+        //    //debugger;
+        //    var expiredDate = null;
+        //    if (row.usedTime != null) {
+        //        var licenseDate = new Date(row.licenseDate);
+        //        expiredDate = licenseDate.setMonth(licenseDate.getMonth() + row.usedTime);
+        //        row.expiredDate = new Date(expiredDate); 
+        //        return;
+        //    }
+        //    alert("Không để trống thời gian sử dụng!");
+        //}
+        //function btnSaveCheckNotNull(row) {
+        //    if (row.usedTime == null || row.licenseDate == null || row.expiredDate == null) {
+        //        vm.isEnable = false;
+        //        return;
+        //    }
+        //    vm.isEnable = true;
+        //}
 
-            vm.selectedLanguage = l.id;
-            vm.selectedQualification = l.id;
+        function saveLincense(r) {
+            var l = vm.lincenses.find(x => x.id == r.id);
+            //l = r;
+            console.log(vm.lincenses);
         }
     }
 
