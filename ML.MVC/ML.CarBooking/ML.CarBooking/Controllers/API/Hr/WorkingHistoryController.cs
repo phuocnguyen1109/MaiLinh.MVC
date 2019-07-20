@@ -27,6 +27,7 @@ namespace ML.CarBooking.Controllers.API.Hr
 
         public int Create(PWH_GetAllByPerson request)
         {
+            m_personWorkingHistory.Create(request);
             return 1;
         }
 

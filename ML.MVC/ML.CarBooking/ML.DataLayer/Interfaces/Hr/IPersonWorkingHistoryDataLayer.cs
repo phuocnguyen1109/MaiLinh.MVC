@@ -10,5 +10,8 @@ namespace ML.DataLayer.Interfaces.Hr
    public interface IPersonWorkingHistoryDataLayer
     {
         IEnumerable<PWH_GetAllByPerson> GetAllByPersonId(int personId);
+        void Create(PWH_GetAllByPerson request);
+        void Update(PWH_GetAllByPerson request);
+        void Delete(PWH_GetAllByPerson request);
     }
 }
