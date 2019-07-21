@@ -145,6 +145,11 @@ input[type="radio"], input[type="checkbox"] {
     font-size: 22px !important;
 }
 
+select.form-control {
+    padding: 0 !important;
+}
+}
+
 .d-gr {
     display: inline-grid;
 }

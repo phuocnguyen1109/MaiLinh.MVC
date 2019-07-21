@@ -1,24 +1,24 @@
-﻿<div style="margin:10px;">
+﻿<div ng-controller="marriageController as vm" ng-init="vm.initialize()" style="margin:10px;">
     <div class="row mt-2">
         <div class="col-lg-4 col-md-4">
-            <select class="form-control">
-                <option>Độc Thân</option>
-                <option>Lập Gia Đình</option>
-                <option>Đã Ly Dị</option>
-            </select>
+            <select ng-model="vm.marriageStatusObject.marritalStatusId" class="form-control"
+                    ng-options="ms.marritalStatusId as ms.marritalStatusName for ms in vm.marritalStatuss"></select>
         </div>
     </div>
 
     <div class="row txt-right">
         <div class="col-lg-12 col-md-12">
-            <button class="btn btn-primary mt-2 mb-2 mr-1"><i class="fas fa-fw fa-plus"></i> THÊM NGƯỜI THÂN</button>
+            <button class="btn btn-primary mt-2 mb-2 mr-1" data-toggle="modal" data-target="#relativeModal" ng-click="vm.addNewRelative()">
+                <i class="fas fa-fw fa-plus"></i> THÊM NGƯỜI THÂN
+            </button>
         </div>
     </div>
 
     <table class="table table-hover">
         <thead class="thead-light shadow_tb txt-center">
             <tr>
-                <th style="width:25%;">HỌ VÀ TÊN</th>
+                <th style="width: 1%;"></th>
+                <th style="width:24%;">HỌ VÀ TÊN</th>
                 <th style="width:15%;">NGÀY SINH</th>
                 <th style="width:25%;">NƠI Ở</th>
                 <th style="width:10%;">QUAN HỆ</th>
@@ -27,28 +27,93 @@
             </tr>
         </thead>
         <tbody class="txt-center">
-            <tr>
-                <td>Nguyễn Văn Phi</td>
-                <td>1959</td>
-                <td>TPHCM</td>
-                <td>Bố</td>
+            <tr ng-repeat="r in vm.relatives">
+                <td><input type="checkbox" class="mt-2" ng-model="r.selected" /></td>
+                <td>{{r.relativeName}}</td>
+                <td>{{r.dob}}</td>
+                <td>{{r.address}}</td>
+                <td>{{r.relationshipName}}</td>
                 <td><i class="fas fa-fw fa-times-circle"></i></td>
                 <td>
-                    <button class="btn btn-outline-success"><i class="fas fa-fw fa-pen"></i></button>
-                    <button class="btn btn-outline-danger"><i class="fas fa-fw fa-trash"></i></button>
+                    <button class="btn btn-outline-success" data-toggle="modal" data-target="#relativeModal" ng-click="vm.editRelative(r)"><i class="fas fa-fw fa-pen"></i></button>
+                    <button class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteRModal" ng-click="vm.openDelModel(r)"><i class="fas fa-fw fa-trash"></i></button>
                 </td>
             </tr>
-            <tr>
-                <td>Nguyễn Thị Gái</td>
-                <td>1969</td>
-                <td>TPHCM</td>
-                <td>Mẹ</td>
-                <td><i class="fas fa-fw fa-times-circle"></i></td>
-                <td>
-                    <button class="btn btn-outline-success"><i class="fas fa-fw fa-pen"></i></button>
-                    <button class="btn btn-outline-danger"><i class="fas fa-fw fa-trash"></i></button>
-                </td>
-            </tr>
+
         </tbody>
     </table>
+
+    <!--Relative Modal -->
+    <div class="modal fade" id="relativeModal" tabindex="-1" role="dialog" aria-labelledby="ModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-uppercase" id="ModalTitle">Người Thân</h5>
+                    <button type="button" class="modal-btnClose close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="err-message" ng-if="vm.message">{{vm.message}}</p>
+                    <form class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Mối quan hệ: <span class="required_ico">*</span></label>
+                                <select ng-model="vm.relative.relationshipId" class="form-control"
+                                        ng-change="vm.checkValid();change(vm.relative)"
+                                        ng-options="r.relationshipId as r.relationshipName for r in vm.relationships"></select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="relativeName">Họ và tên: <span class="required_ico">*</span></label>
+                                <input name="relativeName" class="form-control" type="text" placeholder="..." ng-model="vm.relative.relativeName" ng-change="vm.checkValid()" />
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="dob">Ngày sinh: <span class="required_ico">*</span></label>
+                                <input name="dob" class="form-control" type="date" ng-model="vm.relative.dob" ng-change="vm.checkValid()" />
+
+                            </div>
+                            <div class="col-md-6">
+                                <label style="display: inline-flex;vertical-align: -webkit-baseline-middle;">
+                                    <input type="checkbox" ng-model="vm.relative.isGone" />&nbsp;&nbsp;Đã mất
+                                </label>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="address">Địa chỉ: <span class="required_ico">*</span></label>
+                                <input name="address" class="form-control" type="text" placeholder="..." ng-model="vm.relative.address" ng-change="vm.checkValid()" />
+                            </div>
+                        </div>
+
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.saveRelative(vm.relative);" ng-disabled="!vm.isValid"
+                            >Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Relative Modal -->
+    <div class="modal fade" id="DeleteRModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Bạn có muốn xóa người này?</p>
+                    <p>{{vm.relativeDel.relativeName}}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.deleterelative(vm.relativeDel)">Đồng ý</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
