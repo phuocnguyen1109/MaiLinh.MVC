@@ -11939,6 +11939,7 @@ a:focus {
 
     .sidebar .nav-item {
         position: relative;
+        cursor: pointer;
     }
 
         .sidebar .nav-item:last-child {
