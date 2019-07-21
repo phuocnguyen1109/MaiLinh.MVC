@@ -8,9 +8,11 @@
         var vm = this;
         vm.initialize = initialize;
         vm.checkValid = checkValid;
-        vm.add = add;
-
-
+        vm.openAddModal = openAddModal
+        vm.openEditWokingHistory = openEditWokingHistory;
+        vm.openDeleteMModal = openDeleteMModal;
+        vm.saveChanges = saveChanges;
+        vm.deleted = deleted;
 
         vm.isValid = false;
 
@@ -39,17 +41,34 @@
         }
 
 
-        vm.addWorkingHistory = function addWorkingHistory(newWh) {
-            var newId = new Date();
-            newId = newId.getMilliseconds();
-            newWh.id = newId;
+        function saveChanges() {
+            var r = vm.userWorkingHistory;
+            var s = r.startDate.getMonth() + "/" + r.startDate.getDate() + "/" + r.startDate.getFullYear();
+            var e = r.endDate.getMonth() + "/" + r.endDate.getDate() + "/" + r.endDate.getFullYear();
+            if (r.id) {
+                vm.workingHistories.forEach(function (item, index) {
+                    if (r.id == item.id) {
+                        item.startDate = s;
+                        item.endDate = e;
+                        item.companyName = r.companyName;
+                    }
+                    return;
+                });
+            } else {
+                var newId = new Date();
+                newId = newId.getMilliseconds().toString();
+                vm.userWorkingHistory = {
+                    id: newId, startDate: s, endDate: e, companyName: r.companyName
+                };
 
-            vm.workingHistories.push(newWh);
+                vm.workingHistories.push(vm.userWorkingHistory);
+            };
+
             console.log(vm.workingHistories);
             $scope.newWh = null;
         }
 
-        function add() {
+        function openAddModal() {
             vm.userWorkingHistory = {
                 startDate: null, endDate: null, companyName: null
             };
@@ -72,15 +91,31 @@
             }
         }
 
-        vm.editWokingHistory = function editWokingHistory(workingHistory) {
+        function openEditWokingHistory(r) {
+            vm.modalTitle = "Chỉnh sửa lịch sử công tác";
             vm.isValid = true;
-            var sDate = new Date(workingHistory.startDate);
-            var eDate = new Date(workingHistory.endDate);
+            var sDate = new Date(r.startDate);
+            var eDate = new Date(r.endDate);
             console.log(sDate);
             vm.userWorkingHistory = {
-                startDate: sDate, endDate: eDate, companyName: workingHistory.companyName
+                id: r.id, startDate: sDate, endDate: eDate, companyName: r.companyName
             };
 
+        }
+
+        function openDeleteMModal(row) {
+            vm.deletedDataRow = row;
+            console.log(vm.deletedDataRow);
+        }
+
+        function deleted(r) {
+            var deletedInndex = null;
+            vm.workingHistories.forEach(function (item, index) {
+                if (r.id == item.id) {
+                    deletedInndex = index;
+                }
+            });
+            vm.workingHistories.splice(deletedInndex, 1);
         }
     }
 

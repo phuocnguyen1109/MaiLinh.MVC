@@ -112,6 +112,11 @@ select {
 select.form-control {
     padding: 0.25rem !important;
 }
+
+input[type="radio"], input[type="checkbox"] {
+    vertical-align: middle;
+    margin-right: 10px;
+}
 /*Navbar*/
 .nav-tabs.nav-justified > li {
     font-size: 12px !important;
