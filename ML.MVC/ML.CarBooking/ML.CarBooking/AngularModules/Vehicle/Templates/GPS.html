@@ -1,37 +1,10 @@
-﻿<style>
-    table th {
-        font-size: 12px;
-        background-color: cornflowerblue;
-        color: white;
-        text-align: center;
-    }
+﻿<div class="row" style="margin:10px;">
+    <button class="btn btn-primary mt-4 mb-2 mr-1 float-right" data-toggle="modal" data-target="#gpsModal">
+        <i class="fas fa-fw fa-plus"></i> THÊM MỚI
+    </button>
 
-    table td {
-        font-size: 12px;
-    }
-
-    button {
-        border-radius: 0;
-    }
-
-    .w200 {
-        width: 100px;
-        font-size: 14px;
-    }
-
-    .w100p {
-        width: 100%;
-    }
-
-    .float-mr {
-        float: left;
-        margin-right: 10px;
-    }
-</style>
-<div class="row" style="width:100%; margin-left:10px; margin-right:10px;">
-    <button class="btn btn-primary" data-toggle="modal" data-target="#gpsModal">THÊM MỚI</button>
-    <table class="table table-bordered table-striped">
-        <thead>
+    <table class="table table-hover" >
+        <thead class="thead-light shadow_tb">
             <tr>
                 <th colspan="11">GPS</th>
             </tr>
@@ -50,7 +23,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr class="txt-center">
                 <td>A3</td>
                 <td>TELECOM</td>
                 <td>A3</td>
@@ -62,15 +35,16 @@
                 <td></td>
                 <td></td>
                 <td>
-                    <button class="btn btn-success" style="width:45%; float:left; margin-right:5px;"><i class="fa fa-edit"></i></button>
-                    <button class="btn btn-danger" style="width:45%; float: left;"><i class="fa fa-trash"></i></button>
+                    <button class="btn btn-outline-success" style="width:45%; float:left; margin-right:5px;"><i class="fa fa-pen"></i></button>
+                    <button class="btn btn-outline-danger" style="width:45%; float: left;"><i class="fa fa-trash"></i></button>
                 </td>
-
             </tr>
+            <tr></tr>
         </tbody>
-    </table> 
+    </table>
 </div>
 
+<!-- Modal -->
 <div id="gpsModal" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">
 

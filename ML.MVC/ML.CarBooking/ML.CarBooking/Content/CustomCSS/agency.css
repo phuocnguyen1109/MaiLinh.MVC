@@ -9,6 +9,11 @@
 .bg-nav-active {
     background-color: rgba(255, 255, 255, 0.1);
 }
+
+.bg-mldark {
+    background-color: #2f3a4c;
+    color: #fff !important;
+}
 /*Text*/
 .txt-center {
     text-align: center !important;
@@ -76,12 +81,18 @@ button {
 }
 
 .err-message {
-    color:red;
+    color: red;
     font-style: italic;
 }
 /*Input-Label-Textarea-...*/
 input {
     height: 1.9em !important;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="date"]::-webkit-inner-spin-button{
+    display: none;
+    -webkit-appearance: none;
 }
 
 label {
@@ -96,6 +107,10 @@ textarea {
 
 select {
     font-size: 12px !important;
+}
+
+select.form-control {
+    padding: 0.25rem !important;
 }
 /*Navbar*/
 .nav-tabs.nav-justified > li {
@@ -123,4 +138,8 @@ select {
 .modal-btnClose {
     color: white;
     font-size: 22px !important;
+}
+
+.d-gr {
+    display: inline-grid;
 }

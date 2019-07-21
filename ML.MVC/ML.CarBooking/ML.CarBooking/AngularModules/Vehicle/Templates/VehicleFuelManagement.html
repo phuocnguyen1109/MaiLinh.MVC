@@ -1,38 +1,9 @@
-﻿<style>
-    table th {
-        font-size: 12px;
-        background-color: cornflowerblue;
-        color: white;
-        text-align: center;
-    }
-
-    table td {
-        font-size: 12px;
-    }
-
-    button {
-        border-radius: 0;
-    }
-
-    .w200 {
-        width: 100px;
-        font-size: 14px;
-    }
-
-    .w100p {
-        width: 100%;
-    }
-
-    .float-mr {
-        float: left;
-        margin-right: 10px;
-    }
-</style>
-
-<div class="row" style="width:100%; margin-left:10px; margin-right:10px;">
-    <button class="btn btn-primary" data-toggle="modal" data-target="#addModal" style="margin-top:10px; margin-bottom:10px;">THÊM MỚI</button>
-    <table class="table table-bordered table-striped">
-        <thead>
+﻿<div class="row" style="margin:10px;">
+    <button class="btn btn-primary mt-4 mb-2 mr-1 float-right" data-toggle="modal" data-target="#addModal" style="margin-top:10px; margin-bottom:10px;">
+        <i class="fas fa-fw fa-plus"></i> THÊM MỚI
+    </button>
+    <table class="table table-bordered table-hover">
+        <thead class="thead-light shadow_tb">
             <tr>
                 <th colspan="2">ĐỊNH MỨC</th>
                 <th colspan="9">CẬP NHẬT NHIÊN LIỆU</th>
@@ -66,8 +37,8 @@
                 <td>NGUYỄN HỮU PHƯỚC</td>
                 <td></td>
                 <td>
-                    <button class="btn btn-success" style="width:45%; float:left; margin-right:5px;"><i class="fa fa-edit"></i></button>
-                    <button class="btn btn-danger" style="width:45%; float: left;"><i class="fa fa-trash"></i></button>
+                    <button class="btn btn-outline-success" style="width:45%; float:left; margin-right:5px;"><i class="fa fa-pen"></i></button>
+                    <button class="btn btn-outline-danger" style="width:45%; float: left;"><i class="fa fa-trash"></i></button>
                 </td>
             </tr>
         </tbody>

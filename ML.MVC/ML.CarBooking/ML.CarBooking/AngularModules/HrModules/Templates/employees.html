@@ -2,14 +2,15 @@
     <h3>QUẢN LÝ DANH SÁCH NHÂN VIÊN</h3>
     <div class="w-100" style="float:right; margin-top:30px; margin-bottom:10px;">
         <div class="input-group" style="width:50%;">
-            <input type="text" class="form-control bg-light small" placeholder="Tìm kiếm ..." aria-label="Search" aria-describedby="basic-addon2">
-            <div class="input-group-append">
+            <input type="text" class="form-control bg-light small" placeholder="Tìm kiếm ..." aria-label="Search" aria-describedby="basic-addon2" ng-model="lookup">
+            <!--<div class="input-group-append">
                 <button class="btn btn-primary" type="button">
                     <i class="fas fa-search fa-sm"></i>
                 </button>
-            </div>
+            </div>-->
         </div>
     </div>
+
     <div>
         <table class="table table-hover">
             <thead class="thead-light shadow_tb txt-center">
@@ -29,7 +30,7 @@
                 </tr>
             </thead>
             <tbody class="txt-center">
-                <tr ng-repeat="row in vm.employees">
+                <tr ng-repeat="row in vm.employees | filter:lookup">
                     <td><input type="checkbox" class="mt-2" ng-model="row.selected" /></td>
                     <td>{{row.id}}</td>
                     <td><img class="circle-img" style="height:45px;" src="../../../Content/Images/{{row.picture}}" /></td>
