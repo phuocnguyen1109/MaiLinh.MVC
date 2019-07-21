@@ -26,11 +26,13 @@ namespace ML.DataLayer.Implements.Hr
 
         public void Create(PWH_GetAllByPerson request)
         {
-            SqlMapper.AddTypeMap(typeof(DateTime), System.Data.DbType.DateTime2);
-            DateTime a = new DateTime();
-            a = DateTime.Now;
-             Execute(connection => 
-             connection.Insert<PersonWorkHistory>(new PersonWorkHistory { PersonId=1, CompanyName="ANC DER", Fromdate=a, ToDate= a }));
+
+             Execute(connection => connection
+                    .Query<PWH_GetAllByPerson>("[Hr].[GetWorkingHistoryByUser]",
+                    new
+                    {
+                        request
+                    }, commandType: CommandType.StoredProcedure));
         }
 
         public void Delete(PWH_GetAllByPerson request)

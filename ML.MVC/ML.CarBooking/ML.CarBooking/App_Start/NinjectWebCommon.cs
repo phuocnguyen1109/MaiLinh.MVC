@@ -73,6 +73,9 @@ namespace ML.CarBooking.App_Start
             kernel.Bind<IPersonWorkingHistory>().To<PersonWorkingHistory>().InSingletonScope();
             kernel.Bind<IPersonWorkingHistoryDataLayer>().To<PersonWorkingHistoryDataLayer>().InSingletonScope();
 
+            kernel.Bind<IPersonDataLayer>().To<PersonDataLayer>().InSingletonScope();
+            kernel.Bind<IPersonBusiness>().To<PersonBusiness>().InSingletonScope();
+
 
         }
 

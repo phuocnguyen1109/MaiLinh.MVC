@@ -24,7 +24,7 @@ namespace ML.CarBooking.Controllers
             //TODO : CHeck account Login
             var userName = Session["UserName"];
 
-             m_personWorkingHistory.Create(new Entities.ResponseModels.Hr.PWH_GetAllByPerson());
+             //m_personWorkingHistory.Create(new Entities.ResponseModels.Hr.PWH_GetAllByPerson());
             
 
             bool logedIn = userName != null && !string.IsNullOrEmpty(userName.ToString());
