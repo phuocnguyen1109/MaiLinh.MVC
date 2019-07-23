@@ -1857,6 +1857,7 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\ui-bootstrap-tpls-2.5.0.min.js" />
+    <Content Include="SQL_Scripts\MaiLinh_Hr_Init_SP.sql" />
     <Content Include="SQL_Scripts\MaiLinh_InitScripts.sql" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
