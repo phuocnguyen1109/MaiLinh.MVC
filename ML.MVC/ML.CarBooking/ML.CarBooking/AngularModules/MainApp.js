@@ -15,6 +15,9 @@
 
         vm.gotoEmployees = gotoEmployees;
         vm.gotoVehicleManagement = gotoVehicleManagement;
+        vm.gotoMasterDataManagement = gotoMasterDataManagement;
+        vm.gotoAccountManagement = gotoAccountManagement;
+
 
         function gotoEmployees() {
             $state.go('employees');
@@ -22,6 +25,14 @@
 
         function gotoVehicleManagement() {
             $state.go('vehicle');
+        }
+
+        function gotoMasterDataManagement() {
+            $state.go('masterData');
+        }
+
+        function gotoAccountManagement() {
+            $state.go('account');
         }
     }
 })();
