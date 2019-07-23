@@ -81,7 +81,7 @@ BEGIN
 END
 
 GO
-ALTER PROC [Hr].[GetAllPerson]
+CREATE PROC [Hr].[GetAllPerson]
  @pageSize int = 0,
  @pageIndex int = 0
  AS
@@ -110,7 +110,7 @@ ALTER PROC [Hr].[GetAllPerson]
  
 GO
 
- ALTER PROC [Hr].[CreateSimplePerson]
+ CREATE PROC [Hr].[CreateSimplePerson]
  @firstName nvarchar(50),
  @lastName nvarchar(150),
  @userName varchar(30),
@@ -146,7 +146,7 @@ GO
 
  GO
 
-ALTER PROC [Hr].[GetPersonInformation]
+CREATE PROC [Hr].[GetPersonInformation]
  @id INT
 AS
 BEGIN
