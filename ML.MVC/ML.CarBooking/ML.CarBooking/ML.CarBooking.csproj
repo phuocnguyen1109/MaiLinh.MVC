@@ -190,6 +190,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AngularModules\Administration\accountManagementController.js" />
+    <Content Include="AngularModules\Administration\masterDataManagementController.js" />
+    <Content Include="AngularModules\Administration\Templates\AccountManagements.html" />
+    <Content Include="AngularModules\Administration\Templates\MasterDataManagements.html" />
     <Content Include="AngularModules\HrModules\editEmployeeController.js" />
     <Content Include="AngularModules\HrModules\educationController.js" />
     <Content Include="AngularModules\HrModules\employeesController.js" />

@@ -16,7 +16,6 @@
     <meta name="author" content="">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <link type="text/css" rel="stylesheet" href="~/Content/CustomCSS/agency.css" />
     <style>
         .department :hover {
             background-color: lightgrey;
@@ -49,7 +48,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link txt-center" ui-sref="dashboard" style="cursor:auto">
+                <a class="nav-link txt-center" ui-sref="dashboard">
                     @*<i class="fas fa-fw fa-tachometer-alt"></i>*@
                     <span>CÔNG TY TNHH XE CHO THUÊ MAI LINH</span>
                 </a>
@@ -57,6 +56,25 @@
                 <hr class="sidebar-divider">
             </li>
 
+            <!-- Heading -->
+            <li class="nav-item">
+                <div class="sidebar-heading">
+
+                </div>
+            </li>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseAdmin" aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>System Administration</span>
+                </a>
+                <div id="collapseAdmin" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" ng-click="vm.gotoMasterDataManagement()">Quản lý Master Data</a>
+                        <a class="collapse-item" ng-click="vm.gotoAccountManagement()">Quản lý Account</a>
+                    </div>
+                </div>
+            </li>
 
             <!-- Heading -->
             <li>
@@ -284,8 +302,7 @@
     @Scripts.Render("~/bundles/CustomScripts")
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
     <script type="text/javascript" src="~/AngularModules/MainApp.js"></script>
     <script type="text/javascript" src="~/AngularModules/mainApp.routes.js"></script>
@@ -293,15 +310,12 @@
     <script type="text/javascript" src="~/AngularModules/HrModules/employeesController.js"></script>
     <script type="text/javascript" src="~/AngularModules/HrModules/editEmployeeController.js"></script>
     <script type="text/javascript" src="~/AngularModules/HrModules/healthCheckManagementController.js"></script>
-    <script type="text/javascript" src="~/AngularModules/HrModules/equipmentController.js"></script>
     <script type="text/javascript" src="~/AngularModules/HrModules/workingHistoriesController.js"></script>
-    <script type="text/javascript" src="~/AngularModules/HrModules/educationController.js"></script>
-    <script type="text/javascript" src="~/AngularModules/HrModules/marriageController.js"></script>
-
 
     <script type="text/javascript" src="~/AngularModules/Vehicle/vehicleManagementController.js"></script>
     <script type="text/javascript" src="~/AngularModules/Vehicle/editVehicleController.js"></script>
-
+    <script type="text/javascript" src="~/AngularModules/Administration/masterDataManagementController.js"></script>
+    <script type="text/javascript" src="~/AngularModules/Administration/accountManagementController.js"></script>
 
 </body>
 </html>

@@ -28,6 +28,22 @@
                     templateUrl: 'AngularModules/Vehicle/Templates/EditVehicle.html',
                     controller: 'editVehicleController',
                     controllerAs: 'vm'
-                });
+                })
+
+                //Master Data
+                .state('masterData', {
+                    url: '/masterData',
+                    templateUrl: 'AngularModules/Administration/Templates/MasterDataManagements.html',
+                    controller: 'masterDataManagementController',
+                    controllerAs: 'vm'
+                })
+
+                //Account
+                .state('account', {
+                    url: '/account',
+                    templateUrl: 'AngularModules/Administration/Templates/AccountManagements.html',
+                    controller: 'accountManagementController',
+                    controllerAs: 'vm'
+                })
         });
 })();
