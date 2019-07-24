@@ -75,6 +75,12 @@ button {
     margin-top: 7px;
     font-size: x-large;
 }
+
+.img-ico {
+    height: 24px;
+    width: 24px;
+    vertical-align: top;
+}
 /*Error*/
 .required_ico {
     color: red;
@@ -89,11 +95,11 @@ input {
     height: 1.9em !important;
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator,
-input[type="date"]::-webkit-inner-spin-button{
-    display: none;
-    -webkit-appearance: none;
-}
+    input[type="date"]::-webkit-calendar-picker-indicator,
+    input[type="date"]::-webkit-inner-spin-button {
+        display: none;
+        -webkit-appearance: none;
+    }
 
 label {
     font-size: 12px !important;
@@ -109,9 +115,9 @@ select {
     font-size: 12px !important;
 }
 
-select.form-control {
-    padding: 0.25rem !important;
-}
+    select.form-control {
+        padding: 0.25rem !important;
+    }
 
 input[type="radio"], input[type="checkbox"] {
     vertical-align: middle;
@@ -148,8 +154,20 @@ input[type="radio"], input[type="checkbox"] {
 select.form-control {
     padding: 0 !important;
 }
+
 }
 
-.d-gr {
-    display: inline-grid;
+.display-igr {
+    display: inline-grid !important;
+}
+/*TABS*/
+.nav-tabs > li.active > a, 
+.nav-tabs > li.active > a:hover, 
+.nav-tabs > li.active > a:focus {
+    background-color: #2f3a4c !important;
+    color: #fff;
+}
+/*Table*/
+#phoneNumber > td.name {
+    vertical-align: bottom;
 }
