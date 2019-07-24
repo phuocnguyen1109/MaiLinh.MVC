@@ -13,8 +13,8 @@
 
         function getAccounts() {
             var accounts = [
-                { id: "1", startDate: "01/01/2016", endDate: "12/12/2018", companyName: "Công Ty TNHH MTV ABC" },
-                { id: "2", startDate: "01/01/2019", endDate: "30/05/2019", companyName: "Công Ty TNHH MTV DEF" },
+                { id: "1", lastName: "Nguyễn", firstName: "Ngọc", userName: "s1" },
+                { id: "2", lastName: "Nguyễn", firstName: "Ngọc Ngọc", userName: "s2" },
             ];
             vm.accounts = accounts;
             console.log(vm.accounts);
