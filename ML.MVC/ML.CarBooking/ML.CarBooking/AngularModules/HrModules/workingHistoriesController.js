@@ -29,7 +29,7 @@
 
             $http.get('/api/WorkingHistory/GetAllByPerson', { params: { personId: 1 } })
                 .then(function (result) {
-                    debugger;
+                    //debugger;
                 });
 
             var workingHistories = [

@@ -19,6 +19,7 @@ namespace ML.Entities.ResponseModels.Hr
         public int HomeTownId { get; set; }
         public int ReligionId { get; set; }
         public int NationId { get; set; }
+        public int PlaceOfBirth { get; set; }
         public int CountryId { get; set; }
         public DateTime MLCDate { get; set; }
         public DateTime StartDate { get; set; }
