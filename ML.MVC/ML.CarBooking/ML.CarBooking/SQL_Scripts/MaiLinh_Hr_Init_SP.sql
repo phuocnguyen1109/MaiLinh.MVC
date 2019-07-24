@@ -198,4 +198,4 @@ BEGIN
 
 END
 
-exec [Hr].[GetPersonInformation] 7
+GO
