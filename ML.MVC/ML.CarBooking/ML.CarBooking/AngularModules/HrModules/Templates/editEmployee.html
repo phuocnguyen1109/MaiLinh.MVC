@@ -1,57 +1,70 @@
-﻿<h3>CHỈNH SỬA THÔNG TIN NHÂN VIÊN</h3>
-<div class="panel panel-default form-control" style="height:95px; margin-bottom: 10px;">
-    <div class="panel-body row">
-        <div class="col-lg-1">
-            <img src="../../../Content/Images/anh.jpg" style="width:100%;" class="img-thumbnail" />
-        </div>
-        <div class="col-lg-2">
-            <label for="id">MÃ SỐ NHÂN VIÊN:</label>
-            <input id="id" class="form-control" type="text" disabled value="0001" />
-        </div>
-        <div class="col-lg-5">
-            <label for="fName">HỌ VÀ TÊN:</label>
-            <div style="display:inline-flex;">
-                <input id="fName" class="form-control mr-2" style="width:50% !important" placeholder="Họ và tên lót..." type="text" value="Nguyễn Hữu " />
-                <input id="lName" class="form-control" style="width:45% !important" placeholder="Tên..." type="text" value="Phước" />
+﻿
+    <div ng-init="vm.initialize()">
+        <div class="panel panel-default bg-mldark p-3" style="margin-bottom: 10px;">
+            <h5>CHỈNH SỬA THÔNG TIN NHÂN VIÊN</h5>
+            <br />
+            <div class="panel-body row">
+                <!--<div class="col-lg-1 col-md-1">
+                <img src="../../../Content/Images/anh.jpg" class="img-thumbnail" />
+            </div>-->
+                <div class="col-lg-2 col-md-2 form-group d-gr">
+                    <label for="id">MÃ SỐ NHÂN VIÊN:</label>
+                    <input id="id" class="form-control" type="text" disabled ng-model="vm.person.EmpCode" />
+                </div>
+                <div class="col-lg-5 col-md-5 form-group d-gr">
+                    <label for="fName" style="margin-left:0.1rem">HỌ VÀ TÊN:</label>
+                    <div style="display:inline-flex;">
+                        <input id="fName" class="form-control mr-2" style="width:50% !important" placeholder="Họ và tên lót..." type="text" ng-model="vm.person.FirstName" />
+                        <input id="lName" class="form-control" style="width:45% !important" placeholder="Tên..." type="text" ng-model="vm.person.LastName" />
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 form-group d-gr txt-center">
+                    <label>GIỚI TÍNH:</label>
+                    <div class="w-100">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" ng-model="vm.person.IsMale" name="optradio">Nam
+                        </label>
+                        <label class="form-check-label ml-4">
+                            <input type="radio" class="form-check-input" ng-model="!vm.person.IsMale" name="optradio">Nữ
+                        </label>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 txt-right">
+                    <label>TÊN ĐĂNG NHẬP:</label>
+                    <input type="text" class="form-control" disabled ng-model="vm.person.UserName" />
+                </div>
+
             </div>
         </div>
-        <div class="col-lg-2">
-            <label>GIỚI TÍNH:</label>
-            <div class="w-100">
-                <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="optradio">Nam
-                </label>
-                <label class="form-check-label ml-4">
-                    <input type="radio" class="form-check-input" name="optradio">Nữ
-                </label>
+
+        <div class="panel panel-default " style="display: block; overflow-x: hidden;">
+            <div class="panel-body row">
+                <uib-tabset justified="true" style="margin-left:10px; width:100%;">
+                    <uib-tab index="0" heading="LÝ LỊCH">
+                        <div ng-include="'/AngularModules/HrModules/Templates/employeeInfo.html'"></div>
+                    </uib-tab>
+                    <uib-tab index="1" heading="TRÌNH ĐỘ HỌC VẤN">
+                        <div ng-include="'/AngularModules/HrModules/Templates/education.html'"></div>
+                    </uib-tab>
+                    <uib-tab index="2" heading="KHÁM SỨC KHỎE">
+                        <div ng-include="'/AngularModules/HrModules/Templates/healthCheckManagement.html'"></div>
+                    </uib-tab>
+                    <uib-tab index="3" heading="HÔN NHÂN">
+                        <div ng-include="'/AngularModules/HrModules/Templates/marriage.html'"></div>
+                    </uib-tab>
+                    <uib-tab index="4" heading="LỊCH SỬ CÔNG TÁC">
+                        <div ng-include="'/AngularModules/HrModules/Templates/workingHistories.html'"></div>
+                    </uib-tab>
+                    <uib-tab index="5" heading="THIẾT BỊ">
+                        <div ng-include="'/AngularModules/HrModules/Templates/equiments.html'"></div>
+                    </uib-tab>
+                </uib-tabset>
+
             </div>
         </div>
-        <div class="col-lg-2">
-            <button class="btn btn-outline-primary" style="height:100%;">LỊCH SỬ NGHỈ VIỆC</button>
+
+        <div class="row" style="float:right; margin: 20px 10px 20px 0">
+            <button class="btn btn-outline-success" style="height: 50px; width:200px; margin-right: 20px;">LƯU THAY ĐỔI</button>
+            <button class="btn btn-outline-danger" style="height: 50px; width:200px;">HỦY BỎ</button>
         </div>
-
     </div>
-</div>
-
-<div class="panel panel-default " style="display: block; overflow-x: hidden;">
-    <div class="panel-body row">
-        <uib-tabset justified="true" style="margin-left:10px; width:100%;">
-            <uib-tab index="0" heading="LÝ LỊCH">
-            <div ng-include="'/AngularModules/HrModules/Templates/employeeInfo.html'"></div>
-            </uib-tab>
-            <uib-tab index="1" heading="TRÌNH ĐỘ HỌC VẤN"><div ng-include="'/AngularModules/HrModules/Templates/education.html'"></div></uib-tab>
-            <uib-tab index="2" heading="KHÁM SỨC KHỎE">
-                <div ng-include="'/AngularModules/HrModules/Templates/healthCheckManagement.html'"></div>
-            </uib-tab>
-            <uib-tab index="3" heading="HÔN NHÂN"><div ng-include="'/AngularModules/HrModules/Templates/marriage.html'"></div></uib-tab>
-            <uib-tab index="4" heading="LỊCH SỬ CÔNG TÁC"><div ng-include="'/AngularModules/HrModules/Templates/workingHistories.html'"></div></uib-tab>
-            <uib-tab index="5" heading="THIẾT BỊ"><div ng-include="'/AngularModules/HrModules/Templates/equiments.html'"></div></uib-tab>
-        </uib-tabset>
-
-    </div>
-</div>
-
-<div class="row" style="float:right; margin: 20px 10px 20px 0">
-    <button class="btn btn-outline-success" style="height: 50px; width:200px; margin-right: 20px;">LƯU THAY ĐỔI</button>
-    <button class="btn btn-outline-danger" style="height: 50px; width:200px;">HỦY BỎ</button>
-</div>
