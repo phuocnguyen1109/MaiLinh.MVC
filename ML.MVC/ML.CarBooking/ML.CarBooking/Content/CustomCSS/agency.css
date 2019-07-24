@@ -171,3 +171,10 @@ select.form-control {
 #phoneNumber > td.name {
     vertical-align: bottom;
 }
+
+.custom-card {
+    box-shadow: 0 5px 5px -1px grey;
+    margin-right: 0px;
+    padding: 20px 0;
+    background-color: #fff;
+}
