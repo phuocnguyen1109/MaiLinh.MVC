@@ -1,37 +1,91 @@
-﻿<div style="margin:15px;">
-    <button class="btn btn-primary mt-4 mb-2 float-right"><i class="fas fa-fw fa-plus"></i> THÊM MỚI</button>
+﻿<div ng-controller="healthCheckManagementController as vm" style="margin:15px;">
+    <div ng-init="vm.initialize()">
+        <button class="btn btn-primary mt-4 mb-2 float-right" data-toggle="modal" data-target="#HealthCheckModal" ng-click="vm.openAddModal()">
+            <i class="fas fa-fw fa-plus"></i> THÊM MỚI
+        </button>
 
-    <table class="table table-hover">
-        <thead class="thead-light shadow_tb txt-center">
-            <tr>
-                <th style="width:10%;">NĂM</th>
-                <th style="width:35%;">TIÊU CHUẨN KHÁM</th>
-                <th style="width:40%;">GHI CHÚ</th>
-                <th style="width:10%;"></th>
-            </tr>
-        </thead>
-        <tbody class="txt-center">
-            <tr>
-                <td class="center-block">2016</td>
-                <td>Thông Tư 24<br />Thông Tư 14</td>
-                <td>Bình Thường</td>
-                <td>
-                    <button class="btn btn-outline-success"><i class="fas fa-fw fa-pen"></i></button>
-                    <button class="btn btn-outline-danger"><i class="fas fa-fw fa-trash"></i></button>
-                </td>
-            </tr>
-            <tr>
-                <td>2017</td>
-                <td>Đặc Thù Theo KH</td>
-                <td>
-                    Khám Tổng Quát <br />Mắt Cận : T0,5/P1
-                </td>
-                <td>
-                    <button class="btn btn-outline-success"><i class="fas fa-fw fa-pen"></i></button>
-                    <button class="btn btn-outline-danger"><i class="fas fa-fw fa-trash"></i></button>
-                </td>
-            </tr>
-            <tr></tr>
-        </tbody>
-    </table>
+        <table class="table table-hover">
+            <thead class="thead-light shadow_tb txt-center">
+                <tr>
+                    <th style="width:10%;">NĂM</th>
+                    <th style="width:35%;">TIÊU CHUẨN KHÁM</th>
+                    <th style="width:40%;">GHI CHÚ</th>
+                    <th style="width:10%;"></th>
+                </tr>
+            </thead>
+            <tbody class="txt-center">
+                <tr ng-repeat="row in vm.healthChecks">
+                    <td class="center-block">{{row.yearOfhealthStandar}}</td>
+                    <td>
+                        <div class="mb-1" ng-repeat="h in row.healthStandards">
+                            {{h.healthStandardName}}
+                        </div>
+                    </td>
+                    <td>{{row.note}}</td>
+                    <td>
+                        <button class="btn btn-outline-success" data-toggle="modal" data-target="#HealthCheckModal" ng-click="vm.openEditModal(row)">
+                            <i class="fas fa-fw fa-pen"></i>
+                        </button>
+                        <button class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteHealthCheckModal" ng-click="vm.openDeleteModal(row)">
+                            <i class="fas fa-fw fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr></tr>
+            </tbody>
+        </table>
+
+        <!-- HealthCheck Modal -->
+        <div class="modal fade" id="HealthCheckModal" tabindex="-1" role="dialog" aria-labelledby="ModalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-uppercase" id="ModalTitle">{{vm.modalTitle}}</h5>
+                        <button type="button" class="modal-btnClose close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="err-message" ng-if="vm.message">{{vm.message}}</p>
+                        <div>
+                            <label>Tiêu chuẩn khám</label>
+                            <div class="row">
+                                <div class="col-md-3 form-check-label" ng-repeat="row in vm.healthStandards">
+                                    <input type="checkbox" ng-model="vm.userHealthCheck.isCheck" />{{row.healthStandardName}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="display: inline-grid;">
+                            <label for="year">Năm</label>
+                            <input type="text" name="year" ng-model="vm.userHealthCheck.yearOfhealthStandar" />
+                        </div>
+                        <div class="form-group w-100" style="display: inline-grid;">
+                            <label for="note">Ghi chú</label>
+                            <textarea name="note" style="height: 75px; width: 100%" ng-model="vm.userHealthCheck.note"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
+                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.saveChanges()" ng-disabled="!vm.isValid">Lưu</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delete HealthCheck Modal -->
+        <div class="modal fade" id="DeleteHealthCheckModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        Bạn muốn xóa mục này?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
+                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.deleted()">Đồng ý</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>

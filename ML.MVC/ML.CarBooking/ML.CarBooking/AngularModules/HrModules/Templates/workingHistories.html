@@ -1,6 +1,6 @@
 ﻿<div ng-controller="workingHistoriesController as vm" style="margin:10px;">
     <div ng-init="vm.initialize()">
-        <button class="btn btn-primary mt-4 mb-2 mr-1 float-right" data-toggle="modal" data-target="#WorkingHistoryModal" ng-click="vm.add()">
+        <button class="btn btn-primary mt-4 mb-2 mr-1 float-right" data-toggle="modal" data-target="#WorkingHistoryModal" ng-click="vm.openAddModal()">
             <i class="fas fa-fw fa-plus"></i> THÊM MỚI
         </button>
 
@@ -19,10 +19,10 @@
                     <td>{{row.endDate}}</td>
                     <td>{{row.companyName}}</td>
                     <td>
-                        <button class="btn btn-outline-success" data-toggle="modal" data-target="#WorkingHistoryModal" ng-click="vm.editWokingHistory(row)">
+                        <button class="btn btn-outline-success" data-toggle="modal" data-target="#WorkingHistoryModal" ng-click="vm.openEditWokingHistory(row)">
                             <i class="fas fa-fw fa-pen"></i>
                         </button>
-                        <button class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteModal">
+                        <button class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteModal" ng-click="vm.openDeleteMModal(row)">
                             <i class="fas fa-fw fa-trash"></i>
                         </button>
                     </td>
@@ -36,7 +36,7 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title text-uppercase" id="ModalTitle">Lịch sử công tác</h5>
+                        <h5 class="modal-title text-uppercase" id="ModalTitle">{{vm.modalTitle}}</h5>
                         <button type="button" class="modal-btnClose close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -64,7 +64,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
-                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.addWorkingHistory(vm.userWorkingHistory)" ng-disabled="!vm.isValid">Lưu</button>
+                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.saveChanges()" ng-disabled="!vm.isValid">Lưu</button>
                     </div>
                 </div>
             </div>
@@ -75,11 +75,11 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-body">
-                        <p>Bạn có muốn xóa lịch sử công tác này?</p>
+                        Bạn muốn xóa lịch sử công tác tại {{vm.deletedDataRow.companyName}} này?
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
-                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" >Đồng ý</button>
+                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.deleted(vm.deletedDataRow)">Đồng ý</button>
                     </div>
                 </div>
             </div>

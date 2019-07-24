@@ -2,23 +2,24 @@
     <h3>QUẢN LÝ DANH SÁCH NHÂN VIÊN</h3>
     <div class="w-100" style="float:right; margin-top:30px; margin-bottom:10px;">
         <div class="input-group" style="width:50%;">
-            <input type="text" class="form-control bg-light small" placeholder="Tìm kiếm ..." aria-label="Search" aria-describedby="basic-addon2">
-            <div class="input-group-append">
+            <input type="text" class="form-control bg-light small" ng-change="vm.filter()" ng-model="vm.filterText" placeholder="Tìm kiếm ..." aria-label="Search" aria-describedby="basic-addon2" ng-model="lookup">
+            <!--<div class="input-group-append">
                 <button class="btn btn-primary" type="button">
                     <i class="fas fa-search fa-sm"></i>
                 </button>
-            </div>
+            </div>-->
         </div>
     </div>
+
     <div>
         <table class="table table-hover">
             <thead class="thead-light shadow_tb txt-center">
                 <tr>
                     <th style="width: 1%;"></th>
                     <th style="width: 6%">Mã NV</th>
-                    <th style="width: 3%;">Ảnh</th>
+                    <!--<th style="width: 3%;">Ảnh</th>-->
                     <th style="width: 10%;">Họ</th>
-                    <th style="width: 5%;">Tên</th>
+                    <th style="width: 8%;">Tên</th>
                     <th style="width: 5%;">Ngày Sinh</th>
                     <th style="width: 5%;">Điện Thoại</th>
                     <th style="width: 10%;">Ngày Vào Cty</th>
@@ -29,24 +30,76 @@
                 </tr>
             </thead>
             <tbody class="txt-center">
-                <tr ng-repeat="row in vm.employees">
-                    <td><input type="checkbox" class="mt-2" ng-model="row.selected" /></td>
-                    <td>{{row.id}}</td>
-                    <td><img class="circle-img" style="height:45px;" src="../../../Content/Images/{{row.picture}}" /></td>
-                    <td>{{row.firstName}}</td>
-                    <td>{{row.lastName}}</td>
-                    <td>{{row.doB}}</td>
-                    <td>{{row.phone}}</td>
-                    <td>{{row.dateIn}}</td>
-                    <td>{{row.role}}</td>
-                    <td>{{row.typeContract}}</td>
-                    <td>{{row.duration}}</td>
+                <tr ng-repeat="row in vm.employees | filter:lookup" ng-click="vm.rowClick(row)">
+                    <td><input type="checkbox" class="mt-2" ng-change="vm.checkSelected()" ng-model="row.IsSelected" /></td>
+                    <td>{{row.Id}}</td>
+                    <!--<td><img class="circle-img" style="height:45px;" src="../../../Content/Images/{{row.picture}}" /></td>-->
+                    <td>{{row.FirstName}}</td>
+                    <td>{{row.LastName}}</td>
+                    <td>{{row.DoB}}</td>
+                    <td>{{row.PhoneNumber}}</td>
+                    <td>{{row.StartDate}}</td>
+                    <td>{{row.Role}}</td>
+                    <td>{{row.ContractNumber}}</td>
+                    <td>{{row.ContractDuration}}</td>
                     <td>{{row.expired}}</td>
                 </tr>
             </tbody>
         </table>
-        <button class="btn btn-outline-primary mr-1 w200 " ng-click="vm.add()">THÊM MỚI</button>
-        <button class="btn btn-outline-success mr-1 w200" ng-click="vm.gotoEdit(1)">CHỈNH SỬA</button>
-        <button class="btn btn-outline-danger w200" ng-click="vm.remove()">XÓA</button>
+        <button class="btn btn-outline-primary mr-1 w200 " data-toggle="modal" data-target="#CreatePerson">THÊM MỚI</button>
+        <button class="btn btn-outline-success mr-1 w200" ng-disabled="!vm.CanEdit" ng-click="vm.gotoEdit()">CHỈNH SỬA</button>
+        <!--<button class="btn btn-outline-danger w200" ng-click="vm.remove()">XÓA</button>-->
+    </div>
+    <!--Modal Create Employee  -->
+    <div class="modal fade" id="CreatePerson" tabindex="-1" role="dialog" aria-labelledby="ModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-uppercase" id="ModalTitle">Thêm Nhân Viên Mới</h5>
+                    <button type="button" class="modal-btnClose close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="err-message" ng-if="vm.message">{{vm.message}}</p>
+                    <form class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="firstName">HỌ: <span class="required_ico">*</span> </label>
+                                <input name="firstName" class="form-control" type="text" ng-model="vm.createModel.firstName" ng-change="vm.checkValidCreate()" />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="lastName">TÊN ĐỆM VÀ TÊN: <span class="required_ico">*</span></label>
+                                <input name="lastName" class="form-control" type="text" ng-model="vm.createModel.lastName" ng-change="vm.checkValidCreate()" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="userName">TÊN ĐĂNG NHẬP: <span class="required_ico">*</span> </label>
+                                <input name="userName" class="form-control" type="text" ng-model="vm.createModel.userName" ng-change="vm.checkValidCreate()" />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="lastName">GIỚI TÍNH: <span class="required_ico">*</span></label>
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" name="gender" class="form-check-input" ng-model="vm.createModel.isMale" ng-change="vm.createGenderChange(1)" checked/> Nam
+                                    </label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" name="gender" ng-model="vm.createModel.isMale" ng-change="vm.createGenderChange(2)" class="form-check-input" /> Nữ
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">HỦY BỎ</button>
+                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.createSimplePerson()" ng-disabled="!vm.createValid">LƯU</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+

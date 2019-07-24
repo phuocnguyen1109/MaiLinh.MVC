@@ -46,7 +46,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=1.60.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.60.6\lib\net451\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper.FastCrud, Version=2.5.0.39, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.FastCrud.2.5.0.39\lib\net46\Dapper.FastCrud.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.3.2.0.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -102,6 +117,9 @@
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -159,8 +177,11 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\NinjectResolver.cs" />
+    <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\API\Hr\PersonController.cs" />
+    <Compile Include="Controllers\API\Hr\WorkingHistoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -170,8 +191,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AngularModules\HrModules\editEmployeeController.js" />
+    <Content Include="AngularModules\HrModules\educationController.js" />
     <Content Include="AngularModules\HrModules\employeesController.js" />
+    <Content Include="AngularModules\HrModules\equipmentController.js" />
     <Content Include="AngularModules\HrModules\healthCheckManagementController.js" />
+    <Content Include="AngularModules\HrModules\marriageController.js" />
     <Content Include="AngularModules\HrModules\Templates\editEmployee.html" />
     <Content Include="AngularModules\HrModules\Templates\education.html" />
     <Content Include="AngularModules\HrModules\Templates\employeeInfo.html" />
@@ -195,6 +219,7 @@
     <Content Include="AngularModules\Vehicle\Templates\VehicleMaintainManagement.html" />
     <Content Include="AngularModules\Vehicle\Templates\VehicleManagements.html" />
     <Content Include="AngularModules\Vehicle\vehicleManagementController.js" />
+    <Content Include="App_Readme\readme.txt" />
     <Content Include="Content\CustomCSS\agency.css" />
     <Content Include="Content\fontawesome-free\css\all.css" />
     <Content Include="Content\fontawesome-free\css\all.min.css" />
@@ -1830,7 +1855,10 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\ui-bootstrap-tpls-2.5.0.min.js" />
+    <Content Include="SQL_Scripts\MaiLinh_Hr_Init_SP.sql" />
+    <Content Include="SQL_Scripts\MaiLinh_InitScripts.sql" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1849,7 +1877,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\API\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -1863,6 +1890,24 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ML.Business\ML.Business.csproj">
+      <Project>{7ae11cee-fa59-4795-81b0-2b5b5d9ea01e}</Project>
+      <Name>ML.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ML.Common.Data\ML.Common.Data.csproj">
+      <Project>{5411f1dd-8107-4d70-a990-b19979f40bcb}</Project>
+      <Name>ML.Common.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ML.DataLayer\ML.DataLayer.csproj">
+      <Project>{3df21a15-2ade-47e7-bd1e-30e9e78b54a7}</Project>
+      <Name>ML.DataLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ML.Entities\ML.Entities.csproj">
+      <Project>{d62c60a9-825f-454f-91d1-8a57eee090e7}</Project>
+      <Name>ML.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

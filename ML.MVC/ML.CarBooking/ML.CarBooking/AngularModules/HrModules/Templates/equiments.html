@@ -1,37 +1,28 @@
-﻿<div style="margin:10px;">
+﻿<div ng-controller="equipmentController as vm" ng-init="vm.initialize()" style="margin:10px;">
     <table class="table table-hover mt-5">
         <thead class="thead-light shadow_tb txt-center">
             <tr>
                 <th style="width:10%;"> MÃ THIẾT BỊ</th>
                 <th style="width:50%;"> TÊN THIẾT BỊ</th>
                 <th style="width:10%;"> ĐÃ CẤP</th>
-                <th style="width:30%;"> NGÀY CẤP</th>
+                <th style="width:25%;"> NGÀY CẤP</th>
+                <th style="width:5%"></th>
             </tr>
         </thead>
         <tbody class="txt-center">
-            <tr>
-                <td>1</td>
-                <td>DÙ</td>
-                <td><input type="checkbox" /></td>
-                <td><input type="date" class="form-control" /></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>TÚI XÁCH</td>
-                <td><input type="checkbox" /></td>
-                <td><input type="date" class="form-control" /></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>BÌA TRÌNH KÝ</td>
-                <td><input type="checkbox" /></td>
-                <td><input type="date" class="form-control" /></td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>SIM ĐIỆN THOẠI</td>
-                <td><input type="checkbox" /></td>
-                <td><input type="date" class="form-control" /></td>
+            <tr ng-repeat="row in vm.equipments">
+                <td>{{row.equipmentId}}</td>
+                <td>{{row.name}}</td>
+                <td><input type="checkbox" ng-model="row.isReceive" /></td>
+                <td>
+                    <input type="date" class="form-control" ng-disabled="!row.isReceive" ng-model="row.receivedDate" />
+                </td>
+                <td>
+                    <button class="btn btn-outline-primary" ng-disabled="!(row.isReceive && row.receivedDate)" ng-click="vm.save(row)">
+                    <i class="fas fa-fw fa-save"></i>
+                    </button>
+                </td>
+                <!--(row.isReceive && row.receivedDate == null) || (!row.isReceive && row.receivedDate) || (!row.isReceive && row.receivedDate == null)-->
             </tr>
         </tbody>
     </table>
