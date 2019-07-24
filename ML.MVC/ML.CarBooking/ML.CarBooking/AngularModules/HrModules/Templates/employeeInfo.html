@@ -1,209 +1,242 @@
-﻿<style>
+﻿<div style="margin: 15px; height: 400px" ng-if="vm.person">
+    <div class="panel panel-default m-2">
+        <div class="panel-body row">
+            <uib-tabset justified="true" style="margin:10px; width:100%;">
+                <uib-tab index="0" heading="LÝ LỊCH">
+                    <div class="row mt-4">
+                        <div class="col-lg-4 col-md-4">
+                            <label for="dob">NGÀY SINH:</label>
+                            <input type="date" ng-model="vm.person.DoB" class="form-control" />
+                        </div>
 
-</style>
+                        <div class="col-lg-4 col-md-4">
+                            <label for="placeOfBorn">NƠI SINH:</label>
+                            <select class="form-control" ng-model="vm.test"
+                                    ng-options="l.id as l.name for l in vm.placeOfBirth">
+                                <option value="">-Chọn Thành Phố-</option>
 
-<div style="margin: 15px;" ng-if="vm.person">
-    <div class="row mb-2">
-        <div class="col-lg-2">
-            <label for="dob">NGÀY SINH:</label>
-            <input type="date" ng-model="vm.person.DoB" class="form-control" />
-        </div>
+                            </select>
+                        </div>
 
-        <div class="col-lg-2">
-            <label for="placeOfBorn">NƠI SINH:</label>
-            <select class="form-control" ng-model="vm.test"
-                    ng-options="l.id as l.name for l in vm.placeOfBirth">
-                <option  value="">-Chọn Thành Phố-</option>
-               
-            </select>
-        </div>
+                        <div class="col-lg-4 col-md-4">
+                            <label for="placeOfBorn">QUỐC TỊCH:</label>
+                            <select class="form-control" ng-model="vm.person.HomeTownId">
+                                <option value="0">-Chọn Quốc Tịch-</option>
+                                <option value="1">Việt Nam</option>
+                                <option value="2">Thái Lan</option>
+                                <option value="3">USA</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
 
-        <div class="col-lg-2">
-            <label for="placeOfBorn">TÔN GIÁO:</label>
-            <select class="form-control" ng-model="vm.person.ReligionId">
-                <option value="0">-Chọn Tôn Giáo-</option>
-                <option value="1">Không</option>
-                <option value="2">Phật Giáo</option>
-                <option value="3">Thiên Chúa Giáo</option>
-            </select>
-        </div>
+                        <div class="col-lg-4 col-md-4">
+                            <label for="placeOfBorn">TÔN GIÁO:</label>
+                            <select class="form-control" ng-model="vm.person.ReligionId">
+                                <option value="0">-Chọn Tôn Giáo-</option>
+                                <option value="1">Không</option>
+                                <option value="2">Phật Giáo</option>
+                                <option value="3">Thiên Chúa Giáo</option>
+                            </select>
+                        </div>
 
-        <div class="col-lg-2">
-            <label for="placeOfBorn">DÂN TỘC:</label>
-            <select class="form-control" ng-model="vm.person.NationId">
-                <option value="0">-Chọn Dân Tộc-</option>
-                <option value="1">Kinh</option>
-                <option value="2">Ê-Đê</option>
-                <option value="3">Hơ-Mông</option>
-            </select>
-        </div>
+                        <div class="col-lg-4 col-md-4">
+                            <label for="placeOfBorn">DÂN TỘC:</label>
+                            <select class="form-control" ng-model="vm.person.NationId">
+                                <option value="0">-Chọn Dân Tộc-</option>
+                                <option value="1">Kinh</option>
+                                <option value="2">Ê-Đê</option>
+                                <option value="3">Hơ-Mông</option>
+                            </select>
+                        </div>
 
-        <div class="col-lg-2">
-            <label for="placeOfBorn">QUỐC TỊCH:</label>
-            <select class="form-control" ng-model="vm.person.HomeTownId">
-                <option value="0">-Chọn Quốc Tịch-</option>
-                <option value="1">Việt Nam</option>
-                <option value="2">Thái Lan</option>
-                <option value="3">USA</option>
-            </select>
-        </div>
 
-        <div class="col-lg-2">
-            <label for="dob">NGÀY VÀO HỆ THỐNG MLC:</label>
-            <input type="date" class="form-control" ng-model="vm.person.MLCDate" />
+                        <div class="col-lg-4 col-md-4">
+                            <label for="dob">NGÀY VÀO HỆ THỐNG MLC:</label>
+                            <input type="date" class="form-control" ng-model="vm.person.MLCDate" />
+                        </div>
+                    </div>
+                </uib-tab>
+
+                <uib-tab index="1" heading="ĐỊA CHỈ">
+                    <div class="row mt-4">
+                        <div class="col-lg-12 col-md-12 ml-3">
+                            <label for="placeOfBorn">ĐỊA CHỈ THƯỜNG TRÚ:</label>
+                            <div class="row" style="margin-left: 0;">
+                                <input type="text" class="form-control col-md-7" placeholder="Địa Chỉ, Tên Đường..." ng-model="vm.person.Address" />
+                                <select class="form-control col-md-2 ml-1" ng-model="vm.person.AddressCityId">
+                                    <option value="0">-Chọn Thành Phố-</option>
+                                    <option value="1">Hồ Chí Minh</option>
+                                    <option value="2">Hà Nội</option>
+                                </select>
+                                <select class="form-control col-md-2 ml-1" ng-if="vm.person.AddressCityId ==1" ng-model="vm.person.AddressDistrictId">
+                                    <option value="0">-Chọn Quận/Huyện-</option>
+                                    <option value="1">Quận 1</option>
+                                    <option value="2">Quận 2</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-lg-12 col-md-12 ml-3">
+                            <label for="placeOfBorn">ĐỊA CHỈ LIÊN LẠC:</label>
+                            <div class="row" style="margin-left: 0;">
+                                <input type="text" class="form-control col-md-7" placeholder="Địa Chỉ, Tên Đường..." ng-model="vm.person.ContractAddress" />
+                                <select class="form-control col-md-2 ml-1" ng-model="vm.person.ContractAddressCityId">
+                                    <option value="0">-Chọn Thành Phố-</option>
+                                    <option value="1">Hồ Chí Minh</option>
+                                    <option value="2">Hà Nội</option>
+                                </select>
+                                <select class="form-control col-md-2 ml-1" ng-if="vm.person.ContractAddressCityId == 1" ng-model="vm.person.ContractAddressDistrictId">
+                                    <option value="0">-Chọn Quận/Huyện-</option>
+                                    <option value="1">Quận 1</option>
+                                    <option value="2">Quận 2</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </uib-tab>
+
+                <uib-tab index="2" heading="SỐ ĐIỆN THOẠI">
+                    <div class="mt-4 display-igr">
+                        <table class="mb-4">
+                            <tr id="phoneNumber">
+                                <td class="name"><label for="phone">Di dộng:</label></td>
+                                <td>
+                                    <input name="phone" type="text" class="form-control ml-2" placeholder="Số Điện Thoại" ng-model="vm.person.phoneNumber" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                            </tr>
+                        </table>
+                        <div>
+                            <img src="../../../Content/Images/circle-fill-add.png" class="img-ico" />
+                            Thêm số điện thoại
+                        </div>
+                    </div>
+                </uib-tab>
+
+                <uib-tab index="3" heading="HỢP ĐỒNG">
+                    <div class="row mt-4">
+                        <div class="col-lg-4 col-md-4">
+                            <label>SỐ HỢP ĐỒNG:</label>
+                            <input class="form-control" ng-model="vm.person.ContractNumber" placeholder="Số Hợp Đồng" />
+                        </div>
+
+                        <div class="col-lg-4 col-md-4">
+                            <label for="placeOfBorn">LOẠI HỢP ĐỒNG:</label>
+                            <select class="form-control" ng-model="vm.person.ContractTypeId">
+                                <option value="0">-Chọn Loại Hợp Đồng-</option>
+                                <option value="1">Có Thời Hạn</option>
+                                <option value="2">Vô Thời Hạn</option>
+                                <option value="3">Thời Vụ</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-lg-4 col-md-4">
+                            <label for="placeOfBorn">THỜI HẠN HỢP ĐỒNG:</label>
+                            <select class="form-control" ng-model="vm.person.Duration">
+                                <option value="0">-Chọn Thời Hạn-</option>
+                                <option value="1">1 Tháng</option>
+                                <option value="2">6 Tháng</option>
+                                <option value="3">1 Năm</option>
+                                <option value="3">Vô Thời Hạn</option>
+                            </select>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4">
+                            <label for="dob">NGÀY KÝ HỢP ĐỒNG:</label>
+                            <input type="date" class="form-control" ng-model="vm.person.SignedIn" />
+                        </div>
+
+                        <div class="col-lg-4 col-md-4">
+                            <label for="dob">NGÀY HẾT HẠN HỢP ĐỒNG:</label>
+                            <input type="text" class="form-control" ng-model="vm.person.SignedOut" disabled />
+                        </div>
+                    </div>
+                </uib-tab>
+
+                <uib-tab tabindex="4" heading="BHXH - BHTN">
+                    <div class="row mt-4">
+                        <div class="col-lg-4 col-md-4">
+                            <label for="dob">NGÀY VÀO CÔNG TY:</label>
+                            <input type="date" class="form-control" placeholder="..." ng-model="vm.person.StartDate" />
+                        </div>
+
+                        <div class="col-lg-4 col-md-4">
+                            <label for="dob">BỘ PHẬN:</label>
+                            <select class="form-control" ng-model="vm.person.DepartmentId">
+                                <option value="0">-Chọn Bộ Phận-</option>
+                                <option value="1">Nhân Sự</option>
+                                <option value="2">Điều Hành - Kinh Doanh</option>
+                                <option value="3">Kế Toán</option>
+                                <option value="4">Kỹ Thuật An Toàn</option>
+                            </select>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4">
+                            <label for="dob">CHỨC VỤ:</label>
+                            <select class="form-control" ng-model="vm.person.RoleId">
+                                <option value="0">-Chọn Chức Vụ-</option>
+                                <option value="1">Giám Đốc</option>
+                                <option value="2">Trưởng Phòng</option>
+                                <option value="3">Nhân Viên</option>
+                                <option value="4">Thư Ký</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-lg-4 col-md-4">
+                            <label for="dob">SỐ SỔ BHXH:</label>
+                            <input type="text" class="form-control" placeholder="" ng-model="vm.person.SINumber" />
+                        </div>
+
+                        <div class="col-lg-4 col-md-4">
+                            <label for="dob">SỐ HĐ BHTN:</label>
+                            <input type="text" class="form-control" placeholder="" ng-model="vm.person.SIContractNumber" />
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-lg-12">
+                            <label for="note">GHI NHẬN BÀN GIAO SỔ BHXH, BHTN:</label>
+                            <textarea class="form-control" ng-model="vm.person.SINote"></textarea>
+                        </div>
+                    </div>
+                </uib-tab>
+
+                <uib-tab index="5" heading="LỊCH SỬ NGHỈ VIỆC">
+                    <div class="row mt-4">
+                        <div class="col-lg-6 col-md-6">
+                            <label>LƯƠNG HƯU TRÍ:</label>
+                            <div class="w-100" style="margin-left: 20px;">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="luonghuu">Có
+                                </label>
+                                <label class="form-check-label ml-4">
+                                    <input type="radio" class="form-check-input" name="luonghuu">Không
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6">
+                            <label>ĐÃ NGHỈ VIỆC:</label>
+                            <div class="w-100" style="margin-left: 20px;">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="nghiviec">Đã Nghỉ
+                                </label>
+                                <label class="form-check-label ml-4">
+                                    <input type="radio" class="form-check-input" name="nghiviec">Không
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </uib-tab>
+            </uib-tabset>
         </div>
     </div>
-
-    <div class="row mb-2">
-
-        <div class="col-lg-6">
-            <label for="placeOfBorn">ĐỊA CHỈ THƯỜNG TRÚ:</label>
-            <div class="w-100" style="display:inline-flex;">
-                <input type="text" class="form-control" style="width:50%" placeholder="Địa Chỉ, Tên Đường..." ng-model="vm.person.Address"/>
-                <select style="width:20%" class="form-control ml-1" ng-model="vm.person.AddressCityId">
-                    <option value="0">-Chọn Thành Phố-</option>
-                    <option value="1">Hồ Chí Minh</option>
-                    <option value="2">Hà Nội</option>
-                </select>
-                <select style="width:20%" class="form-control ml-1" ng-if="vm.person.AddressCityId ==1" ng-model="vm.person.AddressDistrictId">
-                    <option value="0">-Chọn Quận/Huyện-</option>
-                    <option value="1">Quận 1</option>
-                    <option value="2">Quận 2</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="col-lg-6">
-            <label for="placeOfBorn">ĐỊA CHỈ LIÊN LẠC:</label>
-            <div class="w-100" style="display:inline-flex;">
-                <input type="text" class="form-control" style="width:50%" placeholder="Địa Chỉ, Tên Đường..."  ng-model="vm.person.ContractAddress"/>
-                <select style="width:20%" class="form-control ml-1" ng-model="vm.person.ContractAddressCityId">
-                    <option value="0">-Chọn Thành Phố-</option>
-                    <option value="1">Hồ Chí Minh</option>
-                    <option value="2">Hà Nội</option>
-                </select>
-                <select style="width:20%" class="form-control ml-1" ng-if="vm.person.ContractAddressCityId == 1" ng-model="vm.person.ContractAddressDistrictId">
-                    <option value="0">-Chọn Quận/Huyện-</option>
-                    <option value="1">Quận 1</option>
-                    <option value="2">Quận 2</option>
-                </select>
-            </div>
-        </div>
-
-
-    </div>
-
-    <div class="row mb-2">
-        <div class="col-lg-2">
-            <label for="dob">ĐIỆN THOẠI:</label>
-            <input type="text" class="form-control" placeholder="Số Điện Thoại" ng-model="vm.person.phoneNumber" />
-        </div>
-
-        <div class="col-lg-2">
-            <label for="dob">NGÀY VÀO CÔNG TY:</label>
-            <input type="date" class="form-control" placeholder="..." ng-model="vm.person.StartDate" />
-        </div>
-
-        <div class="col-lg-2">
-            <label for="dob">BỘ PHẬN:</label>
-            <select class="form-control" ng-model="vm.person.DepartmentId">
-                <option value="0">-Chọn Bộ Phận-</option>
-                <option value="1">Nhân Sự</option>
-                <option value="2">Điều Hành - Kinh Doanh</option>
-                <option value="3">Kế Toán</option>
-                <option value="4">Kỹ Thuật An Toàn</option>
-            </select>
-        </div>
-
-        <div class="col-lg-2">
-            <label for="dob">CHỨC VỤ:</label>
-            <select class="form-control" ng-model="vm.person.RoleId">
-                <option value="0">-Chọn Chức Vụ-</option>
-                <option value="1">Giám Đốc</option>
-                <option value="2">Trưởng Phòng</option>
-                <option value="3">Nhân Viên</option>
-                <option value="4">Thư Ký</option>
-            </select>
-        </div>
-
-        <div class="col-lg-2">
-            <label for="dob">SỐ SỔ BHXH:</label>
-            <input type="text" class="form-control" placeholder="" ng-model="vm.person.SINumber"  />
-        </div>
-
-        <div class="col-lg-2">
-            <label for="dob">SỐ HĐ BHTN:</label>
-            <input type="text" class="form-control" placeholder="" ng-model="vm.person.SIContractNumber" />
-        </div>
-    </div>
-
-    <div class="row mb-2">
-        <div class="col-lg-2">
-            <label for="placeOfBorn">LOẠI HỢP ĐỒNG:</label>
-            <select class="form-control" ng-model="vm.person.ContractTypeId">
-                <option value="0">-Chọn Loại Hợp Đồng-</option>
-                <option value="1">Có Thời Hạn</option>
-                <option value="2">Vô Thời Hạn</option>
-                <option value="3">Thời Vụ</option>
-            </select>
-        </div>
-
-        <div class="col-lg-2">
-            <label for="placeOfBorn">THỜI HẠN HỢP ĐỒNG:</label>
-            <select class="form-control" ng-model="vm.person.Duration">
-                <option value="0">-Chọn Thời Hạn-</option>
-                <option value="1">1 Tháng</option>
-                <option value="2">6 Tháng</option>
-                <option value="3">1 Năm</option>
-                <option value="3">Vô Thời Hạn</option>
-            </select>
-            <label>SỐ HỢP ĐỒNG:</label>
-            <input class="form-control" ng-model="vm.person.ContractNumber" placeholder="Số Hợp Đồng" />
-        </div>
-
-        <div class="col-lg-2">
-            <label for="dob">NGÀY KÝ HỢP ĐỒNG:</label>
-            <input type="date" class="form-control"  ng-model="vm.person.SignedIn"/>
-        </div>
-
-        <div class="col-lg-2">
-            <label for="dob">NGÀY HẾT HẠN HỢP ĐỒNG:</label>
-            <input type="text" class="form-control" ng-model="vm.person.SignedOut" disabled />
-        </div>
-
-        <div class="col-lg-2">
-            <label>LƯƠNG HƯU TRÍ:</label>
-            <div class="w-100 ml-4">
-                <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="luonghuu">Có
-                </label>
-                <label class="form-check-label ml-4">
-                    <input type="radio" class="form-check-input" name="luonghuu">Không
-                </label>
-            </div>
-        </div>
-
-        <div class="col-lg-2">
-            <label>ĐÃ NGHỈ VIỆC:</label>
-            <div class="w-100 ml-4">
-                <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="nghiviec">Đã Nghỉ
-                </label>
-                <label class="form-check-label ml-4">
-                    <input type="radio" class="form-check-input" name="nghiviec">Không
-                </label>
-            </div>
-        </div>
-    </div>
-
-    <div class="row mb-2">
-        <div class="col-lg-12">
-            <label for="note">GHI NHẬN BÀN GIAO SỔ BHXH, BHTN:</label>
-            <textarea class="form-control" ng-model="vm.person.SINote"></textarea>
-        </div>
-    </div>
-
-      
-
 
 </div>

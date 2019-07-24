@@ -20,15 +20,16 @@
                 .then(function (result) {
                     if (result.data) {
                         vm.person = result.data;
-                        }
+                        console.log(vm.person);
+                    }
                 });
         }
 
         function getMasterData() {
             vm.placeOfBirth = [
                 { id: 1, name: 'Hồ Chí Minh' },
-                { id:2, name: 'Hà Nội'}
-                ];
+                { id: 2, name: 'Hà Nội' }
+            ];
         }
 
 
