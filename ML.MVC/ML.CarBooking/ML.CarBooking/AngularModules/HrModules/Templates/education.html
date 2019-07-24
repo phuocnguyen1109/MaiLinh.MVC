@@ -1,46 +1,49 @@
-﻿<div ng-controller="educationController as vm" id="education" style="margin:15px;">
+﻿<div ng-controller="educationController as vm" id="education">
     <div ng-init="vm.initialize()">
-        <div class="row">
-            <div class="col-lg-2">
-                <label for="grade">TRÌNH ĐỘ:</label>
-                <select class="form-control">
-                    <option>Tốt Nghiệp Tiểu Học</option>
-                    <option>Tốt Nghiệp THCS</option>
-                    <option>Tốt Nghiệp THPT</option>
-                    <option>Tốt Nghiệp Cao Đẳng</option>
-                    <option>Tốt Nghiệp Đại Học</option>
-                </select>
+        <div class="row mt-5" style="margin-right: 15px; margin-left: 5px;">
+            <div class="col-lg-6 col-md-6">
+                <div class="row custom-card">
+                    <div class="col-lg-6 col-md-6">
+                        <label for="grade">TRÌNH ĐỘ:</label>
+                        <select class="form-control">
+                            <option>Tốt Nghiệp Tiểu Học</option>
+                            <option>Tốt Nghiệp THCS</option>
+                            <option>Tốt Nghiệp THPT</option>
+                            <option>Tốt Nghiệp Cao Đẳng</option>
+                            <option>Tốt Nghiệp Đại Học</option>
+                        </select>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                        <label for="major">CHUYÊN MÔN:</label>
+                        <input type="text" class="form-control" />
+                    </div>
+                </div>
+                <!-- GPLX -->
+                <div class="row custom-card" style="margin-top: 31px;">
+                    <div class="col-lg-6 col-md-6">
+                        <label for="grade">GPLX:</label>
+                        <select class="form-control">
+                            <option>Dấu B2</option>
+                            <option>Dấu C</option>
+                            <option>Dấu D</option>
+                            <option>Dấu E</option>
+                        </select>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                        <label for="major">CÓ GIÁ TRỊ ĐẾN:</label>
+                        <input type="date" class="form-control" />
+                    </div>
+                    <div class="col-lg-6 col-md-6 mt-2">
+                        <label for="major">NƠI CẤP:</label>
+                        <input type="text" class="form-control" />
+                    </div>
+                </div>
             </div>
 
-            <div class="col-lg-2 col-md-2">
-                <label for="major">CHUYÊN MÔN:</label>
-                <input type="text" class="form-control" />
-            </div>
-
-            <div class="col-lg-2 col-md-2">
-                <label for="grade">GPLX:</label>
-                <select class="form-control">
-                    <option>Dấu B2</option>
-                    <option>Dấu C</option>
-                    <option>Dấu D</option>
-                    <option>Dấu E</option>
-                </select>
-            </div>
-
-            <div class="col-lg-2 col-md-2">
-                <label for="major">CÓ GIÁ TRỊ ĐẾN:</label>
-                <input type="date" class="form-control" />
-            </div>
-
-            <div class="col-lg-4 col-md-4">
-                <label for="major">NƠI CẤP:</label>
-                <input type="text" class="form-control" />
-            </div>
-        </div>
-        <br />
-        <!-- Languages -->
-        <div class="row">
-            <div class="col-lg-6 col-md-6" style="display:block;">
+            <!-- Languages -->
+            <div class="col-lg-6 col-md-6 p-3 custom-card " style="height: 100%;">
                 <div>
                     <label>NGOẠI NGỮ:</label>
                     <button class="btn btn-primary mt-2 mb-2 float-right" data-toggle="modal" data-target="#LanguageModal" ng-click="vm.openAdd()">
@@ -72,6 +75,8 @@
                 </table>
             </div>
         </div>
+        <br />
+        <hr />
 
         <!-- Language Modal -->
         <div class="modal fade" id="LanguageModal" tabindex="-1" role="dialog" aria-labelledby="ModalTitle" aria-hidden="true">
@@ -92,7 +97,7 @@
                                         ng-model="vm.userLanguage.langId"
                                         ng-options="l.id as l.name for l in vm.listLanguages"
                                         ng-change="vm.checkValid()">
-                                    <option value="">--Select Language--</option>
+                                    <option value="">--Chọn ngôn ngữ--</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
@@ -101,14 +106,14 @@
                                         ng-model="vm.userLanguage.qualityId"
                                         ng-options="q.id as q.qualification for q in vm.listQualifications"
                                         ng-change="vm.checkValid()">
-                                    <option value="">--Select Qualification--</option>
+                                    <option value="">--Chọn đánh giá--</option>
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
-                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.saveChanges()" ng-disabled="!vm.isValid" >Lưu</button>
+                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.saveChanges()" ng-disabled="!vm.isValid">Lưu</button>
                     </div>
                 </div>
             </div>
@@ -130,7 +135,7 @@
         </div>
 
         <!-- Lincenses -->
-        <div class="row" style="display:block;">
+        <div class="row" style="display:block; margin:15px;">
             <div>
                 <label>GIẤY PHÉP HÀNH NGHỀ:</label>
             </div>
@@ -146,7 +151,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr  ng-repeat="row in vm.lincenses">
+                    <tr ng-repeat="row in vm.lincenses">
                         <td class="center-block txt-center"><input type="checkbox" ng-model="row.isCheck" ng-change="vm.changeTime(row)" /></td>
                         <td class="text-uppercase">{{row.name}}</td>
                         <td><input type="number" class="form-control" ng-model="row.usedTime" ng-change="vm.changeTime(row)" ng-disabled="!row.isCheck" /></td>
