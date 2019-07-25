@@ -63,12 +63,10 @@
 
                 vm.workingHistories.push(vm.userWorkingHistory);
             };
-
-            console.log(vm.workingHistories);
-            $scope.newWh = null;
         }
 
         function openAddModal() {
+            vm.modalTitle = "Thêm lịch sử công tác";
             vm.userWorkingHistory = {
                 startDate: null, endDate: null, companyName: null
             };

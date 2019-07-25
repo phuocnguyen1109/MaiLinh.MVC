@@ -98,23 +98,7 @@
                 </uib-tab>
 
                 <uib-tab index="2" heading="SỐ ĐIỆN THOẠI">
-                    <div class="mt-4 display-igr">
-                        <table class="mb-4">
-                            <tr id="phoneNumber">
-                                <td class="name"><label for="phone">Di dộng:</label></td>
-                                <td>
-                                    <input name="phone" type="text" class="form-control ml-2" placeholder="Số Điện Thoại" ng-model="vm.person.phoneNumber" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="2"></td>
-                            </tr>
-                        </table>
-                        <div>
-                            <img src="../../../Content/Images/circle-fill-add.png" class="img-ico" />
-                            Thêm số điện thoại
-                        </div>
-                    </div>
+                    <div ng-include="'/AngularModules/HrModules/Templates/Sub-Tab-employeeInfo/PhoneNumberSubTab.html'"></div>
                 </uib-tab>
 
                 <uib-tab index="3" heading="HỢP ĐỒNG">
