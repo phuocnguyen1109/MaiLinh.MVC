@@ -2,7 +2,7 @@
     <h3>Danh sách nhân viên lái xe</h3>
     <div class="w-100" style="float:right; margin-top:30px; margin-bottom:10px;">
         <div class="input-group" style="width:50%;">
-            <input type="text" class="form-control bg-light small" ng-change="vm.filter()" ng-model="vm.filterText" placeholder="Tìm kiếm ..." aria-label="Search" aria-describedby="basic-addon2" ng-model="lookup">
+            <input type="text" class="form-control bg-light small" ng-change="vm.filter()" ng-model="vm.filterText" placeholder="Tìm kiếm ..." aria-label="Search" aria-describedby="basic-addon2">
             <!--<div class="input-group-append">
                 <button class="btn btn-primary" type="button">
                     <i class="fas fa-search fa-sm"></i>
@@ -30,7 +30,7 @@
                 </tr>
             </thead>
             <tbody class="txt-center">
-                <tr ng-repeat="row in vm.employees | filter:lookup" ng-click="vm.rowClick(row)">
+                <tr ng-repeat="row in vm.employees" ng-click="vm.rowClick(row)">
                     <td><input type="checkbox" class="mt-2" ng-change="vm.checkSelected()" ng-model="row.IsSelected" /></td>
                     <td>{{row.Id}}</td>
                     <!--<td><img class="circle-img" style="height:45px;" src="../../../Content/Images/{{row.picture}}" /></td>-->
