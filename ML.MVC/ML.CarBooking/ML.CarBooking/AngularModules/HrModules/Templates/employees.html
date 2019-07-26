@@ -1,5 +1,5 @@
 ﻿<div ng-init="vm.initialize()">
-    <h3>Danh sách nhân viên lái xe</h3>
+    <h3>DANH SÁCH NHÂN VIÊN LÁI XE</h3>
     <div class="w-100" style="float:right; margin-top:30px; margin-bottom:10px;">
         <div class="input-group" style="width:50%;">
             <input type="text" class="form-control bg-light small" ng-change="vm.filter()" ng-model="vm.filterText" placeholder="Tìm kiếm ..." aria-label="Search" aria-describedby="basic-addon2" ng-model="lookup">
@@ -12,37 +12,37 @@
     </div>
 
     <div>
-        <table class="table table-hover">
+        <table class="table table-bordered table-hover">
             <thead class="thead-light shadow_tb txt-center">
                 <tr>
-                    <th style="width: 1%;"></th>
-                    <th style="width: 6%">Mã NV</th>
+                    <th style="width: 5%;"></th>
+                    <th style="width: 5%">Mã NV</th>
                     <!--<th style="width: 3%;">Ảnh</th>-->
                     <th style="width: 10%;">Họ</th>
-                    <th style="width: 8%;">Tên</th>
-                    <th style="width: 5%;">Ngày Sinh</th>
-                    <th style="width: 5%;">Điện Thoại</th>
+                    <th style="width: 10%;">Tên</th>
+                    <th style="width: 10%;">Ngày Sinh</th>
+                    <th style="width: 10%;">Điện Thoại</th>
                     <th style="width: 10%;">Ngày Vào Cty</th>
                     <th style="width: 10%;">Chức Vụ</th>
-                    <th style="width: 5%;">HDLD/HDHT</th>
+                    <th style="width: 10%;">HDLD/HDHT</th>
                     <th style="width: 10%;">Thời Hạn HĐ</th>
-                    <th style="width: 5%;">Ngày Hết Hạn HĐ</th>
+                    <th style="width: 10%;">Ngày Hết Hạn HĐ</th>
                 </tr>
             </thead>
             <tbody class="txt-center">
                 <tr ng-repeat="row in vm.employees | filter:lookup" ng-click="vm.rowClick(row)">
-                    <td><input type="checkbox" class="mt-2" ng-change="vm.checkSelected()" ng-model="row.IsSelected" /></td>
-                    <td>{{row.Id}}</td>
+                    <td style="width: 5%;"><input type="checkbox" class="mt-2" ng-change="vm.checkSelected()" ng-model="row.IsSelected" /></td>
+                    <td style="width: 5%;">{{row.Id}}</td>
                     <!--<td><img class="circle-img" style="height:45px;" src="../../../Content/Images/{{row.picture}}" /></td>-->
-                    <td>{{row.FirstName}}</td>
-                    <td>{{row.LastName}}</td>
-                    <td>{{row.DoB}}</td>
-                    <td>{{row.PhoneNumber}}</td>
-                    <td>{{row.StartDate}}</td>
-                    <td>{{row.Role}}</td>
-                    <td>{{row.ContractNumber}}</td>
-                    <td>{{row.ContractDuration}}</td>
-                    <td>{{row.expired}}</td>
+                    <td style="width: 10%;">{{row.FirstName}}</td>
+                    <td style="width: 10%;">{{row.LastName}}</td>
+                    <td style="width: 10%;">{{row.DoB}}</td>
+                    <td style="width: 10%;">{{row.PhoneNumber}}</td>
+                    <td style="width: 10%;">{{row.StartDate}}</td>
+                    <td style="width: 10%;">{{row.Role}}</tdstyle="width:>
+                    <td style="width: 10%;">{{row.ContractNumber}}</td>
+                    <td style="width: 10%;">{{row.ContractDuration}}</td>
+                    <td style="width: 10%;">{{row.expired}}</td>
                 </tr>
             </tbody>
         </table>
