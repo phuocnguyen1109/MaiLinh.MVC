@@ -1,0 +1,95 @@
+﻿<div ng-controller="phoneNumberSubTabController as vm" class="mt-4 display-igr">
+    <div ng-init="vm.initialize()">
+
+        <button class="btn btn-primary mt-3 mb-2 mr-1 float-right" data-toggle="modal" data-target="#PhoneNumberModal" ng-click="vm.openAddModal()">
+            <i class="fas fa-fw fa-plus"></i> THÊM MỚI
+        </button>
+
+        <table class="table table-hover mb-4">
+            <thead class="thead-light shadow_tb txt-center">
+                <tr>
+                    <th style="width: 5%">ID</th>
+                    <th style="width: 16%">PHÂN LOẠI</th>
+                    <th style="width: 10%">SỐ</th>
+                    <th style="width: 13%">NGƯỜI TẠO</th>
+                    <th style="width: 13%">NGÀY TẠO</th>
+                    <th style="width: 15%">NGƯỜI CẬP NHẬT</th>
+                    <th style="width: 15%">NGÀY CẬP NHẬT</th>
+                    <th style="width: 13%"></th>
+                </tr>
+            </thead>
+            <tbody class="txt-center">
+                <tr ng-repeat="row in vm.phoneNumbers">
+                    <td>{{row.id}}</td>
+                    <td>{{row.typeName}}</td>
+                    <td>{{row.phoneNumber}}</td>
+                    <td>{{row.createBy}}</td>
+                    <td>{{row.createDate}}</td>
+                    <td>{{row.updateBy}}</td>
+                    <td>{{row.updateDate}}</td>
+                    <td>
+                        <button class="btn btn-outline-success" data-toggle="modal" data-target="#PhoneNumberModal" ng-click="vm.openEditModal(row)">
+                            <i class="fas fa-fw fa-pen"></i>
+                        </button>
+                        <button class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteModal" ng-click="vm.openDeleteModal(row)">
+                            <i class="fas fa-fw fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!--PhoneNumber Modal -->
+        <div class="modal fade" id="PhoneNumberModal" tabindex="-1" role="dialog" aria-labelledby="ModalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-uppercase" id="ModalTitle">{{vm.modalTitle}}</h5>
+                        <button type="button" class="modal-btnClose close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="err-message" ng-if="vm.message">{{vm.message}}</p>
+                        <form class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="phoneType">Phân loại <span class="required_ico">*</span> </label>
+                                    <select id="phoneType" class="form-control"
+                                            ng-model="vm.userPhoneNumber.typeId"
+                                            ng-options="p.typeId as p.typeName for p in vm.typesOfPhoneNumber"
+                                            ng-change="vm.checkValid()">
+                                        <option value="">--Chọn loại số--</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="phoneNumber">Số <span class="required_ico">*</span></label>
+                                    <input name="phoneNumber" class="form-control" type="text" placeholder="Nhập số..." ng-model="vm.userPhoneNumber.phoneNumber" ng-change="vm.checkValid()" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
+                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.saveChanges()" ng-disabled="!vm.isValid">Lưu</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delete Modal -->
+        <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        Bạn muốn xóa số {{vm.deletedDataRow.typeName}} này?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
+                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.deleted(vm.deletedDataRow)">Đồng ý</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
