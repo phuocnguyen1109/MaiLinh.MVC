@@ -1,17 +1,21 @@
 ﻿<div ng-controller="phoneNumberSubTabController as vm" class="mt-4 display-igr">
     <div ng-init="vm.initialize()">
 
-        <button class="btn btn-primary mt-4 mb-2 mr-1 float-right" data-toggle="modal" data-target="#PhoneNumberModal" ng-click="vm.openAddModal()">
+        <button class="btn btn-primary mt-3 mb-2 mr-1 float-right" data-toggle="modal" data-target="#PhoneNumberModal" ng-click="vm.openAddModal()">
             <i class="fas fa-fw fa-plus"></i> THÊM MỚI
         </button>
 
         <table class="table table-hover mb-4">
             <thead class="thead-light shadow_tb txt-center">
                 <tr>
-                    <th style="width: 15%">ID</th>
-                    <th style="width: 35%">PHÂN LOẠI</th>
-                    <th style="width: 35%">SỐ</th>
-                    <th style="width: 15%"></th>
+                    <th style="width: 5%">ID</th>
+                    <th style="width: 16%">PHÂN LOẠI</th>
+                    <th style="width: 10%">SỐ</th>
+                    <th style="width: 13%">NGƯỜI TẠO</th>
+                    <th style="width: 13%">NGÀY TẠO</th>
+                    <th style="width: 15%">NGƯỜI CẬP NHẬT</th>
+                    <th style="width: 15%">NGÀY CẬP NHẬT</th>
+                    <th style="width: 13%"></th>
                 </tr>
             </thead>
             <tbody class="txt-center">
@@ -19,6 +23,10 @@
                     <td>{{row.id}}</td>
                     <td>{{row.typeName}}</td>
                     <td>{{row.phoneNumber}}</td>
+                    <td>{{row.createBy}}</td>
+                    <td>{{row.createDate}}</td>
+                    <td>{{row.updateBy}}</td>
+                    <td>{{row.updateDate}}</td>
                     <td>
                         <button class="btn btn-outline-success" data-toggle="modal" data-target="#PhoneNumberModal" ng-click="vm.openEditModal(row)">
                             <i class="fas fa-fw fa-pen"></i>

@@ -17,15 +17,21 @@
         vm.isValid = false;
 
         function initialize() {
-            vm.userPhoneNumber = { id: null, typeId: null, typeName: null, phoneNumber: null };
             getPhoneNumbers();
             getTypesOfPhoneNumber();
+
+            //Example
+            var date = new Date();
+            vm.getDate = date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear();
+
+            vm.userPhoneNumber = { id: null, typeId: null, typeName: null, phoneNumber: null, createBy: "admin", createDate: vm.getDate, updateBy: "admin", updateDate: vm.getDate };
+
         };
 
         function getPhoneNumbers() {
             //TODO: get data by api
             vm.phoneNumbers = [
-                { id: 1, typeId: 1, typeName: "Di Động", phoneNumber: "0707xxxxxx7" },
+                { id: 1, createBy: "admin", createDate: "01/26/2019", typeId: 1, typeName: "Điện Thoại Di Động", phoneNumber: "0707xxxxxx7", updateBy: "admin", updateDate: "01/26/2019", },
             ];
         }
 
@@ -52,7 +58,7 @@
 
         function openAddModal() {
             vm.modalTitle = "Thêm mới";
-            vm.userPhoneNumber = { id: null, typeId: null, typeName: null, phoneNumber: null };
+            vm.userPhoneNumber = { id: null, typeId: null, typeName: null, phoneNumber: null, createBy: "admin", createDate: vm.getDate, updateBy: "admin", updateDate: vm.getDate };
             vm.isValid = false;
         }
 
@@ -86,6 +92,7 @@
                     if (r.typeId == i.typeId) {
                         vm.userPhoneNumber = {
                             id: newId, typeId: i.typeId, typeName: i.typeName, phoneNumber: r.phoneNumber
+                            , createBy: "admin", createDate: vm.getDate, updateBy: "admin", updateDate: vm.getDate
                         };
 
                         vm.phoneNumbers.push(vm.userPhoneNumber);
