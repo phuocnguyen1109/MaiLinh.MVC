@@ -127,6 +127,7 @@ input[type="radio"], input[type="checkbox"] {
 .nav-tabs.nav-justified > li {
     font-size: 12px !important;
     font-weight: bolder;
+    display: inline-grid;
 }
 
 /*Float*/
