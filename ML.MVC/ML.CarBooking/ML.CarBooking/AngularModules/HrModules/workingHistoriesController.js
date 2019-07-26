@@ -43,8 +43,8 @@
 
         function saveChanges() {
             var r = vm.userWorkingHistory;
-            var s = r.startDate.getMonth() + "/" + r.startDate.getDate() + "/" + r.startDate.getFullYear();
-            var e = r.endDate.getMonth() + "/" + r.endDate.getDate() + "/" + r.endDate.getFullYear();
+            var s = (r.startDate.getMonth() +1) + "/" + r.startDate.getDate() + "/" + r.startDate.getFullYear();
+            var e = (r.endDate.getMonth() +1) + "/" + r.endDate.getDate() + "/" + r.endDate.getFullYear();
             if (r.id) {
                 vm.workingHistories.forEach(function (item, index) {
                     if (r.id == item.id) {

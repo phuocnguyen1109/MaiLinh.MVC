@@ -196,6 +196,7 @@
     <Content Include="AngularModules\Administration\Templates\MasterDataManagements.html" />
     <Content Include="AngularModules\HrModules\editEmployeeController.js" />
     <Content Include="AngularModules\HrModules\educationController.js" />
+    <Content Include="AngularModules\HrModules\employeeInfoController.js" />
     <Content Include="AngularModules\HrModules\employeesController.js" />
     <Content Include="AngularModules\HrModules\equipmentController.js" />
     <Content Include="AngularModules\HrModules\healthCheckManagementController.js" />
