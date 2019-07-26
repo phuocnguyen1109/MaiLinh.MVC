@@ -173,7 +173,7 @@ select.form-control {
 }
 
 .custom-card {
-    box-shadow: 0 5px 5px -1px grey;
+    box-shadow: 0 4px 5px -2px black;
     margin-right: 0px;
     padding: 20px 0;
     background-color: #fff;
