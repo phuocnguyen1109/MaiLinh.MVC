@@ -208,6 +208,10 @@
     <Content Include="AngularModules\HrModules\Templates\equiments.html" />
     <Content Include="AngularModules\HrModules\Templates\healthCheckManagement.html" />
     <Content Include="AngularModules\HrModules\Templates\marriage.html" />
+    <Content Include="AngularModules\HrModules\Templates\Sub-Tab-employeeInfo\contractSubTab.html" />
+    <Content Include="AngularModules\HrModules\Templates\Sub-Tab-employeeInfo\contractSubTabController.js" />
+    <Content Include="AngularModules\HrModules\Templates\Sub-Tab-employeeInfo\identificationCardSubTab.html" />
+    <Content Include="AngularModules\HrModules\Templates\Sub-Tab-employeeInfo\identificationCardSubTabController.js" />
     <Content Include="AngularModules\HrModules\Templates\Sub-Tab-employeeInfo\PhoneNumberSubTab.html" />
     <Content Include="AngularModules\HrModules\Templates\Sub-Tab-employeeInfo\PhoneNumberSubTabController.js" />
     <Content Include="AngularModules\HrModules\Templates\workingHistories.html" />

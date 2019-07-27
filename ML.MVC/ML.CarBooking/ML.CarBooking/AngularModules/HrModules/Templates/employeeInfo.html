@@ -1,5 +1,4 @@
-
-﻿<div style="margin: 0 15px; height: 400px" ng-if="vm.person">
+﻿<div ng-controller="employeeInfoController as vm" style="margin: 0 15px; height: 400px" ng-if="vm.person">
     <div ng-init="vm.initialize()" class="panel panel-default">
         <div class="panel-body row">
             <uib-tabset justified="true" style="margin:10px; width:100%;">
@@ -57,130 +56,6 @@
                             <input type="date" class="form-control" ng-model="vm.person.MLCDate" />
                         </div>
                     </div>
-                </uib-tab>
-
-                <uib-tab index="1" heading="ĐỊA CHỈ">
-                    <div class="row mt-4">
-                        <div class="col-lg-12 col-md-12 ml-3">
-                            <label for="placeOfBorn">ĐỊA CHỈ THƯỜNG TRÚ:</label>
-                            <div class="row" style="margin-left: 0;">
-                                <input type="text" class="form-control col-md-7" placeholder="Địa Chỉ, Tên Đường..." ng-model="vm.person.Address" />
-                                <select class="form-control col-md-2 ml-1" ng-model="vm.person.AddressCityId">
-                                    <option value="0">-Chọn Thành Phố-</option>
-                                    <option value="1">Hồ Chí Minh</option>
-                                    <option value="2">Hà Nội</option>
-                                </select>
-                                <select class="form-control col-md-2 ml-1" ng-if="vm.person.AddressCityId ==1" ng-model="vm.person.AddressDistrictId">
-                                    <option value="0">-Chọn Quận/Huyện-</option>
-                                    <option value="1">Quận 1</option>
-                                    <option value="2">Quận 2</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col-lg-12 col-md-12 ml-3">
-                            <label for="placeOfBorn">ĐỊA CHỈ LIÊN LẠC:</label>
-                            <div class="row" style="margin-left: 0;">
-                                <input type="text" class="form-control col-md-7" placeholder="Địa Chỉ, Tên Đường..." ng-model="vm.person.ContractAddress" />
-                                <select class="form-control col-md-2 ml-1" ng-model="vm.person.ContractAddressCityId">
-                                    <option value="0">-Chọn Thành Phố-</option>
-                                    <option value="1">Hồ Chí Minh</option>
-                                    <option value="2">Hà Nội</option>
-                                </select>
-                                <select class="form-control col-md-2 ml-1" ng-if="vm.person.ContractAddressCityId == 1" ng-model="vm.person.ContractAddressDistrictId">
-                                    <option value="0">-Chọn Quận/Huyện-</option>
-                                    <option value="1">Quận 1</option>
-                                    <option value="2">Quận 2</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </uib-tab>
-
-                <uib-tab index="2" heading="SỐ ĐIỆN THOẠI">
-                    <div ng-include="'/AngularModules/HrModules/Templates/Sub-Tab-employeeInfo/PhoneNumberSubTab.html'"></div>
-                </uib-tab>
-
-                <uib-tab index="3" heading="CMND/PASSPORT">
-                    <div class="mt-3">
-                        <button class="btn btn-primary mt-4 mb-2 mr-1 float-right" data-toggle="modal" data-target="#IdentificationCardModal" ng-click="vm.openAddModal()">
-                            <i class="fas fa-fw fa-plus"></i> THÊM MỚI
-                        </button>
-                        <table class="table table-hover">
-                            <thead class="thead-light shadow_tb txt-center">
-                                <tr>
-                                    <th style="width:10%;">ID</th>
-                                    <th style="width:20%;">Loại Giấy Tờ</th>
-                                    <th style="width:15%;">Số</th>
-                                    <th style="width:20%;">Ngày Cấp</th>
-                                    <th style="width:20%;">Nơi Cấp</th>
-                                    <th style="width:15%;"></th>
-                                </tr>
-                            </thead>
-                            <tbody class="txt-center">
-                                <tr ng-repeat="row in vm.identificationCards">
-                                    <td>{{row.id}}</td>
-                                    <td>{{row.typeName}}</td>
-                                    <td>{{row.idNumber}}</td>
-                                    <td>{{row.issuanceDate}}</td>
-                                    <td>{{row.issuedBy}}</td>
-                                    <td>
-                                        <button class="btn btn-outline-success" data-toggle="modal" data-target="#IdentificationCardModal" ng-click="vm.openEditModal(row)">
-                                            <i class="fas fa-fw fa-pen"></i>
-                                        </button>
-                                        <button class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteModal" ng-click="vm.openDeleteModal(row)">
-                                            <i class="fas fa-fw fa-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </uib-tab>
-
-                <uib-tab index="4" heading="HỢP ĐỒNG">
-                    <div class="row mt-4">
-                        <div class="col-lg-4 col-md-4">
-                            <label>SỐ HỢP ĐỒNG:</label>
-                            <input class="form-control" ng-model="vm.person.ContractNumber" placeholder="Số Hợp Đồng" />
-                        </div>
-
-                        <div class="col-lg-4 col-md-4">
-                            <label for="placeOfBorn">LOẠI HỢP ĐỒNG:</label>
-                            <select class="form-control" ng-model="vm.person.ContractTypeId">
-                                <option value="0">-Chọn Loại Hợp Đồng-</option>
-                                <option value="1">Có Thời Hạn</option>
-                                <option value="2">Vô Thời Hạn</option>
-                                <option value="3">Thời Vụ</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col-lg-4 col-md-4">
-                            <label for="placeOfBorn">THỜI HẠN HỢP ĐỒNG:</label>
-                            <select class="form-control" ng-model="vm.person.Duration">
-                                <option value="0">-Chọn Thời Hạn-</option>
-                                <option value="1">1 Tháng</option>
-                                <option value="2">6 Tháng</option>
-                                <option value="3">1 Năm</option>
-                                <option value="3">Vô Thời Hạn</option>
-                            </select>
-                        </div>
-
-                        <div class="col-lg-4 col-md-4">
-                            <label for="dob">NGÀY KÝ HỢP ĐỒNG:</label>
-                            <input type="date" class="form-control" ng-model="vm.person.SignedIn" />
-                        </div>
-
-                        <div class="col-lg-4 col-md-4">
-                            <label for="dob">NGÀY HẾT HẠN HỢP ĐỒNG:</label>
-                            <input type="text" class="form-control" ng-model="vm.person.SignedOut" disabled />
-                        </div>
-                    </div>
-                </uib-tab>
-
-                <uib-tab tabindex="5" heading="BHXH - BHTN">
                     <div class="row mt-4">
                         <div class="col-lg-4 col-md-4">
                             <label for="dob">NGÀY VÀO CÔNG TY:</label>
@@ -209,30 +84,8 @@
                             </select>
                         </div>
                     </div>
-
                     <div class="row mt-4">
                         <div class="col-lg-4 col-md-4">
-                            <label for="dob">SỐ SỔ BHXH:</label>
-                            <input type="text" class="form-control" placeholder="" ng-model="vm.person.SINumber" />
-                        </div>
-
-                        <div class="col-lg-4 col-md-4">
-                            <label for="dob">SỐ HĐ BHTN:</label>
-                            <input type="text" class="form-control" placeholder="" ng-model="vm.person.SIContractNumber" />
-                        </div>
-                    </div>
-
-                    <div class="row mt-4">
-                        <div class="col-lg-12">
-                            <label for="note">GHI NHẬN BÀN GIAO SỔ BHXH, BHTN:</label>
-                            <textarea class="form-control" ng-model="vm.person.SINote"></textarea>
-                        </div>
-                    </div>
-                </uib-tab>
-
-                <uib-tab index="6" heading="LỊCH SỬ NGHỈ VIỆC">
-                    <div class="row mt-4">
-                        <div class="col-lg-6 col-md-6">
                             <label>LƯƠNG HƯU TRÍ:</label>
                             <div class="w-100" style="margin-left: 20px;">
                                 <label class="form-check-label">
@@ -244,7 +97,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-6 col-md-6">
+                        <div class="col-lg-4 col-md-4">
                             <label>ĐÃ NGHỈ VIỆC:</label>
                             <div class="w-100" style="margin-left: 20px;">
                                 <label class="form-check-label">
@@ -257,71 +110,88 @@
                         </div>
                     </div>
                 </uib-tab>
+
+                <uib-tab index="1" heading="ĐỊA CHỈ">
+                    <div class="mt-4">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 ml-3">
+                                <label for="placeOfBorn">ĐỊA CHỈ THƯỜNG TRÚ:</label>
+                                <div class="row" style="margin-left: 0;">
+                                    <input type="text" class="form-control col-md-7" placeholder="Địa Chỉ, Tên Đường..." ng-model="vm.person.Address" />
+                                    <select class="form-control col-md-2 ml-1" ng-model="vm.person.AddressCityId">
+                                        <option value="0">-Chọn Thành Phố-</option>
+                                        <option value="1">Hồ Chí Minh</option>
+                                        <option value="2">Hà Nội</option>
+                                    </select>
+                                    <select class="form-control col-md-2 ml-1" ng-if="vm.person.AddressCityId ==1" ng-model="vm.person.AddressDistrictId">
+                                        <option value="0">-Chọn Quận/Huyện-</option>
+                                        <option value="1">Quận 1</option>
+                                        <option value="2">Quận 2</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-lg-12 col-md-12 ml-3">
+                                <label for="placeOfBorn">ĐỊA CHỈ LIÊN LẠC:</label>
+                                <div class="row" style="margin-left: 0;">
+                                    <input type="text" class="form-control col-md-7" placeholder="Địa Chỉ, Tên Đường..." ng-model="vm.person.ContractAddress" />
+                                    <select class="form-control col-md-2 ml-1" ng-model="vm.person.ContractAddressCityId">
+                                        <option value="0">-Chọn Thành Phố-</option>
+                                        <option value="1">Hồ Chí Minh</option>
+                                        <option value="2">Hà Nội</option>
+                                    </select>
+                                    <select class="form-control col-md-2 ml-1" ng-if="vm.person.ContractAddressCityId == 1" ng-model="vm.person.ContractAddressDistrictId">
+                                        <option value="0">-Chọn Quận/Huyện-</option>
+                                        <option value="1">Quận 1</option>
+                                        <option value="2">Quận 2</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </uib-tab>
+
+                <uib-tab index="2" heading="SỐ ĐIỆN THOẠI">
+                    <div ng-include="'/AngularModules/HrModules/Templates/Sub-Tab-employeeInfo/PhoneNumberSubTab.html'"></div>
+                </uib-tab>
+
+                <uib-tab index="3" heading="CMND/PASSPORT">
+                    <div ng-include="'/AngularModules/HrModules/Templates/Sub-Tab-employeeInfo/identificationCardSubTab.html'"></div>
+                </uib-tab>
+
+                <uib-tab index="4" heading="HỢP ĐỒNG">
+                    <div ng-include="'/AngularModules/HrModules/Templates/Sub-Tab-employeeInfo/contractSubTab.html'"></div>
+                </uib-tab>
+
+                <uib-tab tabindex="5" heading="BHXH - BHTN">
+                    <div class="mt-4">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                                <label for="dob">SỐ SỔ BHXH:</label>
+                                <input type="text" class="form-control" placeholder="" ng-model="vm.person.SINumber" />
+                            </div>
+
+                            <div class="col-lg-6 col-md-6">
+                                <label for="dob">SỐ HỢP ĐỒNG BHTN:</label>
+                                <input type="text" class="form-control" placeholder="" ng-model="vm.person.SIContractNumber" />
+                            </div>
+                        </div>
+
+                        <div class="row mt-4">
+                            <div class="col-lg-12 col-md-12">
+                                <label for="note">GHI NHẬN BÀN GIAO SỔ BHXH, BHTN:</label>
+                                <textarea class="form-control" ng-model="vm.person.SINote"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </uib-tab>
+
+                <uib-tab index="6" heading="LỊCH SỬ NGHỈ VIỆC">
+                   
+                </uib-tab>
             </uib-tabset>
         </div>
 
-        <!--Identification Card Modal -->
-        <div class="modal fade" id="IdentificationCardModal" tabindex="-1" role="dialog" aria-labelledby="ModalTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title text-uppercase" id="ModalTitle">{{vm.modalTitle}}</h5>
-                        <button type="button" class="modal-btnClose close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p class="err-message" ng-if="vm.message">{{vm.message}}</p>
-                        <form class="form-group">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="typeId">Loại giấy tờ <span class="required_ico">*</span> </label>
-                                    <select id="typeId" class="form-control"
-                                            ng-model="vm.userIdentificationCard.typeId"
-                                            ng-options="l.typeId as l.typeName for l in vm.typesOfIdentificationCard"
-                                            ng-change="vm.checkValid()">
-                                        <option value="">--Chọn loại giấy tờ--</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="idNumber">Số <span class="required_ico">*</span></label>
-                                    <input name="idNumber" class="form-control" type="text" ng-model="vm.userIdentificationCard.idNumber" ng-change="vm.checkValid()" />
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-md-6">
-                                    <label for="issuanceDate">Cấp ngày <span class="required_ico">*</span></label>
-                                    <input name="issuanceDate" class="form-control" type="date" ng-model="vm.userIdentificationCard.issuanceDate" ng-change="vm.checkValid()" />
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="issuedBy">Nơi cấp <span class="required_ico">*</span></label>
-                                    <input name="issuedBy" class="form-control" type="text" ng-model="vm.userIdentificationCard.issuedBy" ng-change="vm.checkValid()" />
-                                </div>
-                            </div>
-
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
-                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.saveChanges()" ng-disabled="!vm.isValid">Lưu</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Delete Modal -->
-        <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        Bạn muốn xóa {{vm.selectedRow.typeName}} này?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
-                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.deletedIdentificationCard(vm.selectedRow)">Đồng ý</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
