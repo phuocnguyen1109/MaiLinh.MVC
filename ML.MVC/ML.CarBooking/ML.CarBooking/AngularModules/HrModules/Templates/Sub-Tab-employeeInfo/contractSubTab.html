@@ -1,0 +1,116 @@
+﻿<div ng-controller="contractSubTabController as vm" class="mt-4 display-igr">
+    <div ng-init="vm.initialize()">
+
+        <button class="btn btn-primary mt-3 mb-2 mr-1 float-right" data-toggle="modal" data-target="#ContractModal" ng-click="vm.openAddModal()">
+            <i class="fas fa-fw fa-plus"></i> THÊM MỚI
+        </button>
+
+        <table class="table table-hover mb-4">
+            <thead class="thead-light shadow_tb txt-center">
+                <tr>
+                    <th style="width: 15%">LOẠI HỢP ĐỒNG</th>
+                    <th style="width: 10%">SỐ HĐ</th>
+                    <th style="width: 10%">THỜI HẠN</th>
+                    <th style="width: 13%">NGÀY KÝ HĐ</th>
+                    <th style="width: 13%">NGÀY HẾT HẠN</th>
+                    <th style="width: 12%">NGƯỜI TẠO</th>
+                    <th style="width: 12%">NGÀY TẠO</th>
+                    <th style="width: 15%"></th>
+                </tr>
+            </thead>
+            <tbody class="txt-center">
+                <tr ng-repeat="row in vm.contracts">
+                    <td>{{row.typeName}}</td>
+                    <td>{{row.contractNumber}}</td>
+                    <td>{{row.contractPeriod}}</td>
+                    <td>{{row.startDate}}</td>
+                    <td>{{row.expiredDate}}</td>
+                    <td>{{row.createBy}}</td>
+                    <td>{{row.createDate}}</td>
+                    <td>
+                        <button class="btn btn-outline-success" data-toggle="modal" data-target="#ContractModal" ng-click="vm.openEditModal(row)">
+                            <i class="fas fa-fw fa-pen"></i>
+                        </button>
+                        <button class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteContractModal" ng-click="vm.openDeleteModal(row)">
+                            <i class="fas fa-fw fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!--Contract Modal -->
+        <div class="modal fade" id="ContractModal" tabindex="-1" role="dialog" aria-labelledby="ModalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-uppercase" id="ModalTitle">{{vm.modalTitle}}</h5>
+                        <button type="button" class="modal-btnClose close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="err-message" ng-if="vm.message">{{vm.message}}</p>
+                        <form class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="contractType">Loại Hợp Đồng <span class="required_ico">*</span> </label>
+                                    <select id="contractType" class="form-control"
+                                            ng-model="vm.userContract.typeId"
+                                            ng-options="c.typeId as c.typeName for c in vm.typesOfContract"
+                                            ng-change="vm.checkValid()">
+                                        <option value="">---Chọn loại HĐ---</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="contractPeriod">Thời Hạn <span class="required_ico">*</span> </label>
+                                    <select id="contractPeriod" class="form-control"
+                                            ng-model="vm.userContract.contractPeriodId"
+                                            ng-options="c.contractPeriodId as c.contractPeriod for c in vm.contractPeriod"
+                                            ng-change="vm.generExpiredDate();vm.checkValid()">
+                                        <option value="">---Chọn thời hạn---</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="contractNumber">Số Hợp Đồng <span class="required_ico">*</span></label>
+                                    <input name="contractNumber" class="form-control" type="text" placeholder="Nhập số..." ng-model="vm.userContract.contractNumber" ng-change="vm.checkValid()" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="startDate">Ngày Ký HĐ <span class="required_ico">*</span></label>
+                                    <input name="startDate" class="form-control" type="date" ng-model="vm.userContract.startDate" ng-change="vm.generExpiredDate();vm.checkValid()" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="expiredDate">Ngày Hết Hạn HĐ <span class="required_ico">*</span></label>
+                                    <input name="expiredDate" class="form-control" type="date" ng-model="vm.userContract.expiredDate" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
+                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.saveChanges()" ng-disabled="!vm.isValid">Lưu</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delete Modal -->
+        <div class="modal fade" id="DeleteContractModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        Bạn muốn xóa {{vm.deletedDataRow.typeName}} này?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
+                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.deleted(vm.deletedDataRow)">Đồng ý</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
