@@ -15,6 +15,16 @@
             var accounts = [
                 { id: "1", lastName: "Nguyễn", firstName: "Ngọc", userName: "s1" },
                 { id: "2", lastName: "Nguyễn", firstName: "Ngọc Ngọc", userName: "s2" },
+                { id: "1", lastName: "Nguyễn", firstName: "Ngọc", userName: "s1" },
+                { id: "2", lastName: "Nguyễn", firstName: "Ngọc Ngọc", userName: "s2" },
+                { id: "1", lastName: "Nguyễn", firstName: "Ngọc", userName: "s1" },
+                { id: "2", lastName: "Nguyễn", firstName: "Ngọc Ngọc", userName: "s2" },
+                { id: "1", lastName: "Nguyễn", firstName: "Ngọc", userName: "s1" },
+                { id: "2", lastName: "Nguyễn", firstName: "Ngọc Ngọc", userName: "s2" },
+                { id: "1", lastName: "Nguyễn", firstName: "Ngọc", userName: "s1" },
+                { id: "2", lastName: "Nguyễn", firstName: "Ngọc Ngọc", userName: "s2" },
+                { id: "1", lastName: "Nguyễn", firstName: "Ngọc", userName: "s1" },
+                { id: "2", lastName: "Nguyễn", firstName: "Ngọc Ngọc", userName: "s2" },
             ];
             vm.accounts = accounts;
             console.log(vm.accounts);
