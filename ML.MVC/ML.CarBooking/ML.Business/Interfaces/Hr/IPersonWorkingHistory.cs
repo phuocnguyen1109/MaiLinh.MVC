@@ -10,9 +10,10 @@ namespace ML.Business.Interfaces.Hr
    public interface IPersonWorkingHistory
     {
         IEnumerable<PWH_GetAllByPerson> GetAllByPersonId(int personId);
-        void Create(PWH_GetAllByPerson request);
-        void Update(PWH_GetAllByPerson request);
-        void Delete(PWH_GetAllByPerson request);
+        int CreateAndUpdate(PWH_GetAllByPerson request, int userId);
+
+        int Delete(IEnumerable<int> request);
+        PWH_GetAllByPerson GetById(int id);
 
 
     }

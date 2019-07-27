@@ -1872,6 +1872,7 @@
     <Content Include="SQL_Scripts\MaiLinh_Hr_Init_SP.sql" />
     <Content Include="SQL_Scripts\MaiLinh_Hr_MLocation.sql" />
     <Content Include="SQL_Scripts\MaiLinh_InitScripts.sql" />
+    <Content Include="SQL_Scripts\SP_Hr_WorkHistory.sql" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

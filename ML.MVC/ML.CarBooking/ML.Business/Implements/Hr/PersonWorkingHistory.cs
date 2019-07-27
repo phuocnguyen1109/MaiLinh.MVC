@@ -19,14 +19,14 @@ namespace ML.Business.Implements.Hr
             m_personWorkingHistoryDataLayer = personWorkingHistoryDataLayer;
         }
 
-        public void Create(PWH_GetAllByPerson request)
+        public int CreateAndUpdate(PWH_GetAllByPerson request, int userId)
         {
-             m_personWorkingHistoryDataLayer.Create(request);
+            return m_personWorkingHistoryDataLayer.CreateAndUpdate(request, userId);
         }
 
-        public void Delete(PWH_GetAllByPerson request)
+        public int Delete(IEnumerable<int> request)
         {
-            throw new NotImplementedException();
+            return m_personWorkingHistoryDataLayer.Delete(request);
         }
 
         public IEnumerable<PWH_GetAllByPerson> GetAllByPersonId(int personId)
@@ -34,9 +34,9 @@ namespace ML.Business.Implements.Hr
             return m_personWorkingHistoryDataLayer.GetAllByPersonId(personId);
         }
 
-        public void Update(PWH_GetAllByPerson request)
+        public PWH_GetAllByPerson GetById(int id)
         {
-            throw new NotImplementedException();
+            return m_personWorkingHistoryDataLayer.GetById(id);
         }
     }
 }

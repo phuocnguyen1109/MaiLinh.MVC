@@ -2,6 +2,7 @@
 using Dapper.FastCrud;
 using ML.Common.Data;
 using ML.Common.Data.Interfaces;
+using ML.Common.Data.Utilities;
 using ML.DataLayer.DataObject.Hr;
 using ML.DataLayer.Interfaces;
 using ML.DataLayer.Interfaces.Hr;
@@ -24,20 +25,30 @@ namespace ML.DataLayer.Implements.Hr
 
         }
 
-        public void Create(PWH_GetAllByPerson request)
+        public int CreateAndUpdate(PWH_GetAllByPerson request, int userId)
         {
-
-             Execute(connection => connection
-                    .Query<PWH_GetAllByPerson>("[Hr].[GetWorkingHistoryByUser]",
-                    new
-                    {
-                        request
-                    }, commandType: CommandType.StoredProcedure));
+            return Execute(connection => connection
+                  .Execute("[Hr].[CreateOrUpDateWorkHistory]",
+                  new
+                  {
+                      id = request.Id,
+                      pid= request.PersonId,
+                      fromDate = request.Fromdate,
+                      toDate = request.ToDate,
+                      companyName = request.CompanyName,
+                      userId = userId
+                  }, commandType: CommandType.StoredProcedure));
         }
 
-        public void Delete(PWH_GetAllByPerson request)
+        public int Delete(IEnumerable<int> request)
         {
-            throw new NotImplementedException();
+            DataTable idsTbl = request.ConvertToDataTable();
+            return Execute(connection => connection
+                  .Execute("[Hr].[DeleteWorkHistory]",
+                  new
+                  {
+                      ids = idsTbl
+                  }, commandType: CommandType.StoredProcedure));
         }
 
         public IEnumerable<PWH_GetAllByPerson> GetAllByPersonId(int personId)
@@ -49,9 +60,14 @@ namespace ML.DataLayer.Implements.Hr
                     }, commandType: CommandType.StoredProcedure));
         }
 
-        public void Update(PWH_GetAllByPerson request)
+        public PWH_GetAllByPerson GetById(int id)
         {
-            throw new NotImplementedException();
+            return Execute(connection => connection
+                  .Query<PWH_GetAllByPerson>("[Hr].[GetWorkHistoryById]",
+                  new
+                  {
+                      id = id
+                  }, commandType: CommandType.StoredProcedure)).FirstOrDefault();
         }
     }
 }
