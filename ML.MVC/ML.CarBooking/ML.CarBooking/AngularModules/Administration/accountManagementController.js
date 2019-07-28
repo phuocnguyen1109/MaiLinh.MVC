@@ -19,12 +19,13 @@
 
         vm.departmentObject = { departmentId: null, departmentName: null };
         vm.titleObject = { titleId: null, titleName: null, departmentId: null };
+        vm.employeeObject = { id: null, name: null};
 
         function initialize() {
             getAccounts();
             getDepartments();
             getTitles();
-
+            getemployees();
             
         }
 
@@ -44,6 +45,13 @@
                 { id: "2", lastName: "Nguyễn", firstName: "Ngọc Ngọc", userName: "s2" },
             ];
             vm.accounts = accounts;
+        };
+        function getemployees() {
+            var employees = [
+                { id: "1", name: "Nguyễn" },
+                { id: "2", name: "Nguyễn Nguyễn" },
+            ];
+            vm.employees = employees;
         };
 
         function getDepartments () {

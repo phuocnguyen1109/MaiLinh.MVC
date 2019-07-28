@@ -103,13 +103,13 @@
                                             ng-change="vm.checkValid()"
                                             ng-options="t.titleId as t.titleName for t in vm.titles"></select>
                                 </div>
-                                <!--<div class="col-lg-9 col-md-9">
+                                <div class="col-lg-9 col-md-9">
                                     <label>Nhân Viên</label>
-                                    <select ng-model="vm.account.firstName" class="form-control"
+                                    <select ng-model="vm.employeeObject.id" class="form-control"
                                             ng-change="vm.checkValid();"
-                                            ng-options="a.accountId as a.firstName for a in vm.accounts"></select>
+                                            ng-options="e.id as e.name for e in  vm.employees"></select>
                                     <p>{{vm.account.firstName}}</p>
-                                </div>-->
+                                </div>
                                 <div class="col-md-6">
                                     <label>Họ Nhân Viên</label>
                                     <input name="lastName" type="text" class="form-control" ng-model="vm.account.lastName" ng-change="vm.checkValid()">
