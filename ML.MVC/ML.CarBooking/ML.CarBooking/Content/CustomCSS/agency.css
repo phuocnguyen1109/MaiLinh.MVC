@@ -50,6 +50,7 @@ thead.shadow_tb {
 
 tbody td {
     font-size: 0.85rem !important;
+    word-break: break-all;
 }
 
 .table th {
