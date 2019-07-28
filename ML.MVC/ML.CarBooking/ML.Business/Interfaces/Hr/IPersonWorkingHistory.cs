@@ -12,7 +12,7 @@ namespace ML.Business.Interfaces.Hr
         IEnumerable<PWH_GetAllByPerson> GetAllByPersonId(int personId);
         int CreateAndUpdate(PWH_GetAllByPerson request, int userId);
 
-        int Delete(IEnumerable<int> request);
+        int Delete(int id);
         PWH_GetAllByPerson GetById(int id);
 
 

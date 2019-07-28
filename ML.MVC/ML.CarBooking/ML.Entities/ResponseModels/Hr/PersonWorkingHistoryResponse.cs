@@ -10,7 +10,7 @@ namespace ML.Entities.ResponseModels.Hr
     {
         public int Id { get; set; }
         public int PersonId { get; set; }
-        public DateTime Fromdate { get; set; }
+        public DateTime FromDate { get; set; }
         public DateTime ToDate { get; set; }
         public string CompanyName { get; set; }
         public int CreatedBy { get; set; }

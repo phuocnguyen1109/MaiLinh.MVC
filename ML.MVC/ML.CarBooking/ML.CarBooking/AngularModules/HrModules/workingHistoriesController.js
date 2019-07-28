@@ -15,105 +15,81 @@
         vm.deleted = deleted;
 
         vm.isValid = false;
+        var userId = $state.params.id;
 
 
-        function initialize() {
+        function resetModel() {
             vm.userWorkingHistory = {
-                startDate: null, endDate: null, companyName: null
+                Id: 0, PersonId: userId, FromDate: null, ToDate: null, CompanyName: null
             };
+        }
+        function initialize() {
+            resetModel()
             getworkingHistories();
         }
 
         function getworkingHistories() {
-            //TODO: get data by api
 
-            $http.get('/api/WorkingHistory/GetAllByPerson', { params: { personId: 1 } })
+            $http.get('/api/WorkingHistory/GetAllByPerson', { params: { personId: userId } })
                 .then(function (result) {
-                    //debugger;
+                    vm.workingHistories = result.data;
+                    vm.workingHistories.forEach(function (item, index) {
+                        item.DisplayFromDate = new Date(item.FromDate).toLocaleDateString('en-GB');
+                        item.DisplayToDate = new Date(item.ToDate).toLocaleDateString('en-GB');
+                    });
                 });
 
-            var workingHistories = [
-                { id: "1", startDate: "01/01/2016", endDate: "12/12/2018", companyName: "Công Ty TNHH MTV ABC" },
-                { id: "2", startDate: "01/01/2019", endDate: "30/05/2019", companyName: "Công Ty TNHH MTV DEF" },
-            ];
-            vm.workingHistories = workingHistories;
-            console.log(vm.workingHistories);
         }
 
 
         function saveChanges() {
-            var r = vm.userWorkingHistory;
-            var s = (r.startDate.getMonth() +1) + "/" + r.startDate.getDate() + "/" + r.startDate.getFullYear();
-            var e = (r.endDate.getMonth() +1) + "/" + r.endDate.getDate() + "/" + r.endDate.getFullYear();
-            if (r.id) {
-                vm.workingHistories.forEach(function (item, index) {
-                    if (r.id == item.id) {
-                        item.startDate = s;
-                        item.endDate = e;
-                        item.companyName = r.companyName;
-                    }
-                    return;
+            $http.post('/api/WorkingHistory/CreateOrUpdate', vm.userWorkingHistory).
+                then(function (result) {
+                    getworkingHistories();
                 });
-            } else {
-                var newId = new Date();
-                newId = newId.getMilliseconds().toString();
-                vm.userWorkingHistory = {
-                    id: newId, startDate: s, endDate: e, companyName: r.companyName
-                };
-
-                vm.workingHistories.push(vm.userWorkingHistory);
-            };
         }
 
         function openAddModal() {
+            resetModel();
             vm.modalTitle = "Thêm lịch sử công tác";
-            vm.userWorkingHistory = {
-                startDate: null, endDate: null, companyName: null
-            };
+            
         }
 
         function checkValid() {
-            if (vm.userWorkingHistory.startDate != null && vm.userWorkingHistory.endDate != null) {
-                if (vm.userWorkingHistory.startDate > vm.userWorkingHistory.endDate) {
+            if (vm.userWorkingHistory.FromDate != null && vm.userWorkingHistory.ToDate != null) {
+                if (vm.userWorkingHistory.FromDate > vm.userWorkingHistory.ToDate) {
                     vm.message = "Ngày bắt đầu phải nhỏ hơn ngày kết thúc!";
                     vm.isValid = false;
                     return;
                 }
-                if (vm.userWorkingHistory.companyName == "" || !vm.userWorkingHistory.companyName) {
+                if (vm.userWorkingHistory.CompanyName == "" || !vm.userWorkingHistory.CompanyName) {
                     vm.message = "Nhập đầy đủ các mục!";
                     vm.isValid = false;
                     return;
                 }
                 vm.message = null;
                 vm.isValid = true;
+                return;
             }
+            vm.isValid = false;
         }
 
         function openEditWokingHistory(r) {
+            resetModel();
             vm.modalTitle = "Chỉnh sửa lịch sử công tác";
             vm.isValid = true;
-            var sDate = new Date(r.startDate);
-            var eDate = new Date(r.endDate);
-            console.log(sDate);
-            vm.userWorkingHistory = {
-                id: r.id, startDate: sDate, endDate: eDate, companyName: r.companyName
-            };
-
+            vm.userWorkingHistory = r;
         }
 
         function openDeleteMModal(row) {
             vm.deletedDataRow = row;
-            console.log(vm.deletedDataRow);
         }
 
         function deleted(r) {
-            var deletedInndex = null;
-            vm.workingHistories.forEach(function (item, index) {
-                if (r.id == item.id) {
-                    deletedInndex = index;
-                }
-            });
-            vm.workingHistories.splice(deletedInndex, 1);
+            $http.post('/api/WorkingHistory/Delete', vm.userWorkingHistory)
+                .then(function (result) {
+                    getworkingHistories();
+                });
         }
     }
 

@@ -36,10 +36,10 @@
                     <!--<td><img class="circle-img" style="height:45px;" src="../../../Content/Images/{{row.picture}}" /></td>-->
                     <td style="width: 10%;">{{row.FirstName}}</td>
                     <td style="width: 10%;">{{row.LastName}}</td>
-                    <td style="width: 10%;">{{row.DoB}}</td>
+                    <td style="width: 10%;">{{row.dobDisplay}}</td>
                     <td style="width: 10%;">{{row.PhoneNumber}}</td>
-                    <td style="width: 10%;">{{row.StartDate}}</td>
-                    <td style="width: 10%;">{{row.Role}}</tdstyle="width:>
+                    <td style="width: 10%;">{{row.StartDateDisplay}}</td>
+                    <td style="width: 10%;">{{row.Role}}</td>
                     <td style="width: 10%;">{{row.ContractNumber}}</td>
                     <td style="width: 10%;">{{row.ContractDuration}}</td>
                     <td style="width: 10%;">{{row.expired}}</td>
@@ -91,7 +91,7 @@
                                 </div>
                                 <div class="form-check-inline">
                                     <label class="form-check-label">
-                                        <input type="radio" name="gender" ng-model="vm.createModel.isMale" ng-change="vm.createGenderChange(2)" class="form-check-input" /> Nữ
+                                        <input type="radio" name="gender" ng-model="!vm.createModel.isMale" ng-change="vm.createGenderChange(2)" class="form-check-input" /> Nữ
                                     </label>
                                 </div>
                             </div>

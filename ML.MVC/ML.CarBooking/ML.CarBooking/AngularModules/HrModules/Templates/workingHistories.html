@@ -15,14 +15,14 @@
             </thead>
             <tbody class="txt-center">
                 <tr ng-repeat="row in vm.workingHistories">
-                    <td>{{row.startDate}}</td>
-                    <td>{{row.endDate}}</td>
-                    <td>{{row.companyName}}</td>
+                    <td>{{row.DisplayFromDate}}</td>
+                    <td>{{row.DisplayToDate}}</td>
+                    <td>{{row.CompanyName}}</td>
                     <td>
                         <button class="btn btn-outline-success" data-toggle="modal" data-target="#WorkingHistoryModal" ng-click="vm.openEditWokingHistory(row)">
                             <i class="fas fa-fw fa-pen"></i>
                         </button>
-                        <button class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteModal" ng-click="vm.openDeleteMModal(row)">
+                        <button class="btn btn-outline-danger"  ng-click="vm.deleted(row)">
                             <i class="fas fa-fw fa-trash"></i>
                         </button>
                     </td>
@@ -47,17 +47,17 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="startDate">Từ ngày: <span class="required_ico">*</span> </label>
-                                    <input name="startDate" class="form-control" type="date" ng-model="vm.userWorkingHistory.startDate" ng-change="vm.checkValid()" />
+                                    <input name="startDate" class="form-control" type="date" ng-model="vm.userWorkingHistory.FromDate" ng-change="vm.checkValid()" />
                                 </div>
                                 <div class="col-md-6">
                                     <label for="endDate">Đến ngày: <span class="required_ico">*</span></label>
-                                    <input name="endDate" class="form-control" type="date" ng-model="vm.userWorkingHistory.endDate" ng-change="vm.checkValid()" />
+                                    <input name="endDate" class="form-control" type="date" ng-model="vm.userWorkingHistory.ToDate" ng-change="vm.checkValid()" />
                                 </div>
                             </div>
                             <br />
                             <div>
                                 <label for="companyName">Đơn vị công tác: <span class="required_ico">*</span></label>
-                                <textarea name="companyName" class="form-control" type="text" placeholder="Tên đơn vị công tác..." ng-model="vm.userWorkingHistory.companyName" ng-change="vm.checkValid()" />
+                                <textarea name="companyName" class="form-control" type="text" placeholder="Tên đơn vị công tác..." ng-model="vm.userWorkingHistory.CompanyName" ng-change="vm.checkValid()" />
                             </div>
 
                         </form>
@@ -75,7 +75,7 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-body">
-                        Bạn muốn xóa lịch sử công tác tại {{vm.deletedDataRow.companyName}} này?
+                        Bạn muốn xóa lịch sử công tác tại {{vm.deletedDataRow.CompanyName}} này?
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>

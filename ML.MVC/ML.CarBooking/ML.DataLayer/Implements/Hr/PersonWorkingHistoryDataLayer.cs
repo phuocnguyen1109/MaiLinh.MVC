@@ -33,21 +33,21 @@ namespace ML.DataLayer.Implements.Hr
                   {
                       id = request.Id,
                       pid= request.PersonId,
-                      fromDate = request.Fromdate,
+                      fromDate = request.FromDate,
                       toDate = request.ToDate,
                       companyName = request.CompanyName,
                       userId = userId
                   }, commandType: CommandType.StoredProcedure));
         }
 
-        public int Delete(IEnumerable<int> request)
+        public int Delete(int id)
         {
-            DataTable idsTbl = request.ConvertToDataTable();
+            
             return Execute(connection => connection
                   .Execute("[Hr].[DeleteWorkHistory]",
                   new
                   {
-                      ids = idsTbl
+                      id=id
                   }, commandType: CommandType.StoredProcedure));
         }
 

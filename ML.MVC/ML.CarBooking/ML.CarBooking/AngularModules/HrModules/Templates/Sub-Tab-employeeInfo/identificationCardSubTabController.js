@@ -16,19 +16,35 @@
 
 
         vm.isValid = false;
+        var userId = $state.params.id;
+
+        function resetModel() {
+            vm.userIdentificationCard = {
+                Id: 0, Number: null, IdentityTypeId: null, TypeDisplay: null, DateReleased: null, PlaceReleased: null, PersonId :userId
+            };
+
+        }
 
         function initialize() {
-            vm.userIdentificationCard = {
-                id: null, idNumber: null, typeId: null, type: null, issuanceDate: null, issuedBy: null
-            };
-            getIdentificationCards();
             getTypesOfIdentificationCard();
+            getIdentificationCards();
+            
         }
 
         function getIdentificationCards() {
-            vm.identificationCards = [
-                { id: 1, idNumber: "0255xxxxx", typeId: 1, typeName: "Chứng minh nhân dân", issuanceDate: "12/12/2011", issuedBy: "TPHCM" },
-            ];
+            $http.get('/api/Person/GetPersonIdentities', { params: { pid: userId } })
+                .then(function (result) {
+                    vm.identificationCards = result.data;
+                    vm.identificationCards.forEach(function (item, index) {
+                        switch (item.IdentityTypeId) {
+                            case 1: item.TypeDisplay = "Chứng Minh Nhân Dân"; break;
+                            case 2: item.TypeDisplay = "Passport"; break;
+                            case 3: item.TypeDisplay = "Thẻ Căn Cước Công Dân"; break;
+                        }
+
+                        item.DateDisplay = new Date(item.DateReleased).toLocaleDateString('en-GB');
+                    });
+                });       
         }
 
         function getTypesOfIdentificationCard() {
@@ -40,83 +56,52 @@
         }
 
         function checkValid() {
-            //debugger;
-            if (vm.userIdentificationCard.typeId != null) {
-                if (vm.userIdentificationCard.idNumber == "" || !vm.userIdentificationCard.idNumber) {
+            if (vm.userIdentificationCard.IdentityTypeId != null) {
+                if (vm.userIdentificationCard.Number == "" || !vm.userIdentificationCard.Number) {
                     vm.message = "Không để trống mục này!";
                     vm.isValid = false;
                     return;
                 }
-                if (vm.userIdentificationCard.issuanceDate == null || vm.userIdentificationCard.issuedBy == "" || !vm.userIdentificationCard.issuedBy) {
+                if (vm.userIdentificationCard.DateReleased == null || vm.userIdentificationCard.PlaceReleased == "" || !vm.userIdentificationCard.PlaceReleased) {
                     vm.message = "Không để trống mục này!";
                     vm.isValid = false;
                     return;
                 }
                 vm.message = null;
                 vm.isValid = true;
+                return;
             };
+            vm.isValid = false;
         }
 
         function openAddModal() {
-            vm.userIdentificationCard = {
-                id: null, idNumber: null, typeId: null, type: null, issuanceDate: null, issuedBy: null
-            };
+            resetModel();
             vm.modalTitle = "Thêm mới giấy tờ tùy thân";
             vm.isValid = false;
 
         }
 
         function openEditModal(row) {
+            resetModel();
             vm.modalTitle = "Chỉnh sửa giấy tờ tùy thân";
             vm.userIdentificationCard = row;
-            console.log(row);
-            var iDate = new Date(row.issuanceDate);
-            vm.userIdentificationCard.issuanceDate = iDate;
+            var iDate = new Date(row.DateReleased);
+            vm.userIdentificationCard.DateReleased = iDate;
             vm.isValid = true;
         }
 
         function saveChanges() {
-            var r = vm.userIdentificationCard;
-            var iDate = (r.issuanceDate.getMonth() + 1) + "/" + r.issuanceDate.getDate() + "/" + r.issuanceDate.getFullYear();
-            if (r.id) {
-                vm.identificationCards.forEach(function (item, index) {
-                    if (r.id == item.id) {
-                        item.idNumber = r.idNumber;
-                        vm.typesOfIdentificationCard.forEach(function (i, inndex) {
-                            if (i.typeId == r.typeId) {
-                                item.typeId = i.typeId;
-                                item.typeName = i.typeName;
-                            }
-                        });
-                        item.issuanceDate = iDate;
-                        item.issuedBy = r.issuedBy;
-                    }
-                    return;
-                });
-            } else {
-                vm.message = null;
-                var isExist = false;
-                vm.identificationCards.forEach(function (item, index) {
-                    if (r.typeId == item.typeId) {
-                        alert(item.typeName + " đã được cung cấp!");
-                        isExist = true;
-                        return;
-                    }
-                })
-                if (!isExist) {
-                    vm.typesOfIdentificationCard.forEach(function (i, inndex) {
-                        if (i.typeId == r.typeId) {
-                            vm.userIdentificationCard = {
-                                id: i.typeId, idNumber: r.idNumber, typeId: i.typeName, typeName: i.typeName, issuanceDate: iDate, issuedBy: r.issuedBy
-                            };
-
-                            vm.identificationCards.push(vm.userIdentificationCard);
-                            return;
-                        }
+            if (vm.userIdentificationCard.Id == 0) {
+                $http.post('/api/Person/AddPersonIdentity', vm.userIdentificationCard)
+                    .then(function (result) {
+                        getIdentificationCards();
                     });
-                    return;
-                }
-            };
+            } else {
+                $http.post('/api/Person/UpdatePersonIdentity', vm.userIdentificationCard)
+                    .then(function (result) {
+                        getIdentificationCards();
+                    });
+            }
         }
 
         function openDeleteModal(row) {
@@ -124,15 +109,11 @@
         }
 
         function deletedIdentificationCard(r) {
-            //debugger;
-            var deletedIndex = null;
-            vm.identificationCards.forEach(function (item, index) {
-                if (item.id == r.id) {
-                    deletedIndex = index;
-                    vm.identificationCards.splice(deletedIndex, 1);
-                    return;
-                }
-            });
+            $http.post('/api/Person/DeletePersonIdentity', r)
+                .then(function (result) {
+                    getIdentificationCards();
+                });
+
         }
 
     };

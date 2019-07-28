@@ -20,13 +20,13 @@
             </thead>
             <tbody class="txt-center">
                 <tr ng-repeat="row in vm.phoneNumbers">
-                    <td>{{row.id}}</td>
-                    <td>{{row.typeName}}</td>
-                    <td>{{row.phoneNumber}}</td>
-                    <td>{{row.createBy}}</td>
-                    <td>{{row.createDate}}</td>
-                    <td>{{row.updateBy}}</td>
-                    <td>{{row.updateDate}}</td>
+                    <td>{{row.Id}}</td>
+                    <td>{{row.TypeDisplay}}</td>
+                    <td>{{row.PhoneNumber}}</td>
+                    <td>{{row.CreateBy}}</td>
+                    <td>{{row.CreateOn}}</td>
+                    <td>{{row.UpdateBy}}</td>
+                    <td>{{row.UpdateOn}}</td>
                     <td>
                         <button class="btn btn-outline-success" data-toggle="modal" data-target="#PhoneNumberModal" ng-click="vm.openEditModal(row)">
                             <i class="fas fa-fw fa-pen"></i>
@@ -56,7 +56,7 @@
                                 <div class="col-md-6">
                                     <label for="phoneType">Phân loại <span class="required_ico">*</span> </label>
                                     <select id="phoneType" class="form-control"
-                                            ng-model="vm.userPhoneNumber.typeId"
+                                            ng-model="vm.personPhoneModel.phoneType"
                                             ng-options="p.typeId as p.typeName for p in vm.typesOfPhoneNumber"
                                             ng-change="vm.checkValid()">
                                         <option value="">--Chọn loại số--</option>
@@ -64,7 +64,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="phoneNumber">Số <span class="required_ico">*</span></label>
-                                    <input name="phoneNumber" class="form-control" type="text" placeholder="Nhập số..." ng-model="vm.userPhoneNumber.phoneNumber" ng-change="vm.checkValid()" />
+                                    <input name="phoneNumber" class="form-control" type="text" placeholder="Nhập số..." ng-model="vm.personPhoneModel.phoneNumber" ng-change="vm.checkValid()" />
                                 </div>
                             </div>
                         </form>

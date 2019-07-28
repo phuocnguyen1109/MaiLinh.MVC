@@ -6,7 +6,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Web.Mvc;
 
 namespace ML.CarBooking.Controllers.API.Hr
 {
@@ -25,20 +24,17 @@ namespace ML.CarBooking.Controllers.API.Hr
             return m_personWorkingHistory.GetAllByPersonId(personId);
         }
 
-        public int Create(PWH_GetAllByPerson request)
+        [HttpPost]
+        public int CreateOrUpdate(PWH_GetAllByPerson request, int userId =1)
         {
-            m_personWorkingHistory.Create(request);
-            return 1;
+
+            return m_personWorkingHistory.CreateAndUpdate(request, userId);
         }
 
-        public int Update(PWH_GetAllByPerson request)
-        {
-            return 1;
-        }
-
+        [HttpPost]
         public int Delete(PWH_GetAllByPerson request)
         {
-            return 1;
+            return m_personWorkingHistory.Delete(request.Id);
         }
     }
 }

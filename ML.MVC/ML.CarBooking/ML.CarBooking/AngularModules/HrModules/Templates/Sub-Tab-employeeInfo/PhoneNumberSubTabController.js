@@ -2,10 +2,11 @@
     'use strict'
     angular.module('mainApp').controller('phoneNumberSubTabController', phoneNumberSubTabController);
 
-    phoneNumberSubTabController.$inject = ['$http', '$rootScope', '$scope', '$state'];
+    phoneNumberSubTabController.$inject = ['$http', '$state'];
 
-    function phoneNumberSubTabController($http, $rootScope, $scope, $state) {
+    function phoneNumberSubTabController( $http, $state) {
         var vm = this;
+        
         vm.initialize = initialize;
         vm.checkValid = checkValid;
         vm.openAddModal = openAddModal
@@ -15,8 +16,12 @@
         vm.deleted = deleted;
 
         vm.isValid = false;
+        var userId = $state.params.id;
+
+         vm.personPhoneModel = {};
 
         function initialize() {
+            resetModel(); 
             getPhoneNumbers();
             getTypesOfPhoneNumber();
 
@@ -24,20 +29,34 @@
             var date = new Date();
             vm.getDate = date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear();
 
-            vm.userPhoneNumber = { id: null, typeId: null, typeName: null, phoneNumber: null, createBy: "admin", createDate: vm.getDate, updateBy: "admin", updateDate: vm.getDate };
+           
 
         };
 
         function getPhoneNumbers() {
-            //TODO: get data by api
-            vm.phoneNumbers = [
-                { id: 1, createBy: "admin", createDate: "01/26/2019", typeId: 1, typeName: "Điện Thoại Di Động", phoneNumber: "0707xxxxxx7", updateBy: "admin", updateDate: "01/26/2019", },
-            ];
+            if (!userId) {
+                return;
+            }
+            $http.get('/api/Person/GetPersonPhones', { params: { pid: userId } })
+                .then(function (result) {
+                    vm.phoneNumbers = result.data;
+                    vm.phoneNumbers.forEach(function (item, index) {
+                        switch (item.PhoneType) {
+                            case 1: item.TypeDisplay = 'Điện Thoại Di Động'; break;
+                            case 2: item.TypeDisplay = 'Điện Thoại Bàn'; break;
+                            case 3: item.TypeDisplay = 'Số Fax'; break;
+                        }
+                    });
+                    
+                });
+
+           
         }
 
         function getTypesOfPhoneNumber() {
             //TODO: get data by api
             vm.typesOfPhoneNumber = [
+                
                 { typeId: 1, typeName: "Điện Thoại Di Động" },
                 { typeId: 2, typeName: "Điện Thoại Bàn" },
                 { typeId: 3, typeName: "Fax" },
@@ -45,80 +64,76 @@
         }
 
         function checkValid() {
-            if (vm.userPhoneNumber.typeId != null) {
-                if (vm.userPhoneNumber.phoneNumber == "" || !vm.userPhoneNumber.phoneNumber) {
+            if (vm.personPhoneModel.phoneType != null) {
+                if (vm.personPhoneModel.phoneNumber == "" || !vm.personPhoneModel.phoneNumber) {
                     vm.message = "Không để trống các mục!";
                     vm.isValid = false;
                     return;
                 }
                 vm.message = null;
                 vm.isValid = true;
+                return;
             }
+            vm.isValid = false;
+        }
+
+        function resetModel() {
+            vm.personPhoneModel = {
+                id : 0,
+                phoneNumber:'',
+                phoneType :0,
+                personId:userId
+            };
         }
 
         function openAddModal() {
             vm.modalTitle = "Thêm mới";
-            vm.userPhoneNumber = { id: null, typeId: null, typeName: null, phoneNumber: null, createBy: "admin", createDate: vm.getDate, updateBy: "admin", updateDate: vm.getDate };
+            resetModel();
             vm.isValid = false;
         }
 
         function openEditModal(row) {
+            resetModel();
             vm.modalTitle = "Chỉnh sửa";
+            vm.personPhoneModel.id = row.Id;
+            vm.personPhoneModel.phoneType = row.PhoneType;
+            vm.personPhoneModel.phoneNumber = row.PhoneNumber;
             vm.isValid = true;
-            vm.userPhoneNumber = row;
+            
         }
 
         function saveChanges() {
-            var r = vm.userPhoneNumber;
-            if (r.id) {
-                vm.phoneNumbers.forEach(function (item, index) {
-                    if (r.id == item.id) {
-                        vm.typesOfPhoneNumber.forEach(function (i, index) {
-                            if (r.typeId == i.typeId) {
-                                item.typeId = i.typeId;
-                                item.typeName = i.typeName;
-                                return;
-                            }
-                        });
-                        item.updateBy = "admin";
-                        item.updateDate = vm.getDate;
-                        item.phoneNumber = r.phoneNumber;
-                        return;
-                    }
-                    return;
-                });
-            } else {
-                var newId = new Date();
-                newId = newId.getMilliseconds().toString();
-                vm.typesOfPhoneNumber.forEach(function (i, index) {
-                    if (r.typeId == i.typeId) {
-                        vm.userPhoneNumber = {
-                            id: newId, typeId: i.typeId, typeName: i.typeName, phoneNumber: r.phoneNumber
-                            , createBy: "admin", createDate: vm.getDate, updateBy: "admin", updateDate: vm.getDate
-                        };
+            if (!vm.isValid) {
+                return;
+            }
 
-                        vm.phoneNumbers.push(vm.userPhoneNumber);
-                        return;
-                    }
-                });
-            };
-        }
+            if (vm.personPhoneModel.id == 0) {
+                $http.post('/api/Person/AddPersonPhone', vm.personPhoneModel)
+                    .then(function (result) {
+                        getPhoneNumbers();
+                    });
+            } else {
+                $http.post('/api/Person/UpdatePersonPhone', vm.personPhoneModel)
+                    .then(function (result) {
+                        getPhoneNumbers();
+                    });
+            }
+        }  
 
         function openDeleteModal(row) {
             vm.deletedDataRow = row;
-            console.log(vm.deletedDataRow);
+            
         }
 
         function deleted(row) {
-            var deletedIndex = null;
-            vm.phoneNumbers.forEach(function (item, index) {
-                if (row.id == item.id) {
-                    deletedIndex = index;
-                    vm.phoneNumbers.splice(deletedIndex, 1);
-                    return;
-                }
-            });
+            vm.personPhoneModel.id = row.Id;
+            vm.personPhoneModel.phoneType = row.PhoneType;
+            vm.personPhoneModel.phoneNumber = row.PhoneNumber;
+            $http.post('/api/Person/DeletePersonPhone', vm.personPhoneModel)
+                .then(function (result) {
+                    getPhoneNumbers();
+                });
         }
 
-    };
+    }
 })();

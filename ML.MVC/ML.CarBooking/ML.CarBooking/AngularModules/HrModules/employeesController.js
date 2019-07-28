@@ -15,7 +15,7 @@
             firstName: null,
             lastName: null,
             userName: null,
-            gender: null
+            gender: 1
         };
         vm.createValid = false;
 
@@ -71,6 +71,8 @@
                 .then(function (result) {
                     vm.employees = result.data;
                     vm.employees.forEach(function (person, index) {
+                        person.dobDisplay = person.DoB.toString() != '0001-01-01T00:00:00' ? new Date(person.DoB).toLocaleDateString('en-GB') : '';
+                        person.StartDateDisplay = person.StartDate.toString() != '0001-01-01T00:00:00' ? new Date(person.StartDate).toLocaleDateString('en-GB') : '';
                         person.IsSelected = false;
                     });
                     tempEmployees = angular.copy(vm.employees);

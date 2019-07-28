@@ -24,9 +24,9 @@ namespace ML.Business.Implements.Hr
             return m_personWorkingHistoryDataLayer.CreateAndUpdate(request, userId);
         }
 
-        public int Delete(IEnumerable<int> request)
+        public int Delete(int id)
         {
-            return m_personWorkingHistoryDataLayer.Delete(request);
+            return m_personWorkingHistoryDataLayer.Delete(id);
         }
 
         public IEnumerable<PWH_GetAllByPerson> GetAllByPersonId(int personId)

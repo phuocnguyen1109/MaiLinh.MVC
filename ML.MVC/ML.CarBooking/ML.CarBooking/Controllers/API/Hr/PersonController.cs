@@ -1,4 +1,5 @@
 ﻿using ML.Business.Interfaces.Hr;
+using ML.Entities;
 using ML.Entities.RequestModels.Hr;
 using ML.Entities.ResponseModels.Hr;
 using System;
@@ -35,6 +36,63 @@ namespace ML.CarBooking.Controllers.API.Hr
             return m_PersonBusiness.GetPersonInformation(id);
         }
 
+        [HttpGet]
+        public IEnumerable<PersonPhone> GetPersonPhones(int pid)
+        {
+            return m_PersonBusiness.GetPersonPhones(pid);
+        }
+        [HttpPost]
+        public int AddPersonPhone(PersonPhone request, int userId = 1)
+        {
+            return m_PersonBusiness.AddPersonPhone(request, userId);
+        }
+        [HttpPost]
+        public int UpdatePersonPhone(PersonPhone request, int userId = 1)
+        {
+            return m_PersonBusiness.UpdatePersonPhone(request, userId);
+        }
+
+        [HttpPost]
+        public int DeletePersonPhone(PersonPhone phone)
+        {
+            return m_PersonBusiness.DeletePersonPhone(phone.Id);
+        }
+
+        [HttpGet]
+        public IEnumerable<PersonIdentityCard> GetPersonIdentities(int pid)
+        {
+            return m_PersonBusiness.GetPersonIdentities(pid);
+        }
+
+        [HttpPost]
+        public int AddPersonIdentity(PersonIdentityCard request, int userId = 1)
+        {
+            return m_PersonBusiness.AddPersonIdentity(request, userId);
+        }
+
+        [HttpPost]
+        public int UpdatePersonIdentity(PersonIdentityCard request, int userId = 1)
+        {
+            return m_PersonBusiness.UpdatePersonIdentity(request, userId);
+        }
+
+        [HttpPost]
+        public int DeletePersonIdentity(PersonIdentityCard request)
+        {
+            return m_PersonBusiness.DeletePersonIdentity(request.Id);
+        }
+
+        [HttpGet]
+        public PersonResponse GetPersonSIContracts(int pid)
+        {
+            return m_PersonBusiness.GetPersonSIContracts(pid);
+        }
+
+        [HttpPost]
+        public int UpdatePersonSIContract(PersonResponse request, int userId)
+        {
+            return m_PersonBusiness.UpdatePersonSIContract(request, userId);
+        }
 
     }
 }
