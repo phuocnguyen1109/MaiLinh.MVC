@@ -46,8 +46,12 @@
                 </tr>
             </tbody>
         </table>
-        <button class="btn btn-outline-primary mr-1 w200 " data-toggle="modal" data-target="#CreatePerson">THÊM MỚI</button>
-        <button class="btn btn-outline-success mr-1 w200" ng-disabled="!vm.CanEdit" ng-click="vm.gotoEdit()">CHỈNH SỬA</button>
+        <button class="btn btn-outline-primary mr-1" data-toggle="modal" data-target="#CreatePerson">
+            <i class="fas fa-fw fa fa-plus"></i> THÊM MỚI
+        </button>
+        <button class="btn btn-outline-success mr-1" ng-disabled="!vm.CanEdit" ng-click="vm.gotoEdit()">
+            <i class="fas fa-fw fa-pen"></i> CHỈNH SỬA
+        </button>
         <!--<button class="btn btn-outline-danger w200" ng-click="vm.remove()">XÓA</button>-->
     </div>
     <!--Modal Create Employee  -->

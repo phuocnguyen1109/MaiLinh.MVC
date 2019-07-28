@@ -80,6 +80,8 @@
                                 return;
                             }
                         });
+                        item.updateBy = "admin";
+                        item.updateDate = vm.getDate;
                         item.phoneNumber = r.phoneNumber;
                         return;
                     }
