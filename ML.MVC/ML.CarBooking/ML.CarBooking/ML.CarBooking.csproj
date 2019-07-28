@@ -214,6 +214,8 @@
     <Content Include="AngularModules\HrModules\Templates\Sub-Tab-employeeInfo\identificationCardSubTabController.js" />
     <Content Include="AngularModules\HrModules\Templates\Sub-Tab-employeeInfo\PhoneNumberSubTab.html" />
     <Content Include="AngularModules\HrModules\Templates\Sub-Tab-employeeInfo\PhoneNumberSubTabController.js" />
+    <Content Include="AngularModules\HrModules\Templates\Sub-Tab-employeeInfo\quitJobHistories.html" />
+    <Content Include="AngularModules\HrModules\Templates\Sub-Tab-employeeInfo\quitJobHistoriesController.js" />
     <Content Include="AngularModules\HrModules\Templates\workingHistories.html" />
     <Content Include="AngularModules\HrModules\workingHistoriesController.js" />
     <Content Include="AngularModules\MainApp.js" />

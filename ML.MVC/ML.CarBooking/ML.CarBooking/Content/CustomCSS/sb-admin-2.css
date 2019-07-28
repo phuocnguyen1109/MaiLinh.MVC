@@ -220,18 +220,16 @@ svg {
 
 table {
     border-collapse: collapse;
-    width: 100%;
 }
+
 tbody {
-    display: block;
     max-height: 50vh;
     overflow-y: auto;
 }
 
     thead, tbody tr {
-        display: table;
-        width: 100%;
         table-layout: fixed;
+        width: 100%;
     }
 
 thead {
@@ -519,6 +517,7 @@ mark,
     max-width: 100%;
     height: auto;
 }
+
 @media screen and (max-width: 768px) {
     .img-thumbnail {
         padding: 0.25rem;
@@ -528,12 +527,13 @@ mark,
         max-width: 50%;
         max-height: 50%;
     }
+
     tbody {
         max-height: 40vh;
     }
 }
 
-@media screen and (max-width: 1204px){
+@media screen and (max-width: 1204px) {
     tbody {
         max-height: 43vh;
     }
