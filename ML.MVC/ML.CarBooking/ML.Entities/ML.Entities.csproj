@@ -40,8 +40,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MDriveLicenseType.cs" />
+    <Compile Include="MHealthCheck.cs" />
+    <Compile Include="MLanguage.cs" />
+    <Compile Include="MWorkLicense.cs" />
+    <Compile Include="PersonDriveLicense.cs" />
+    <Compile Include="PersonEducation.cs" />
+    <Compile Include="PersonHealthCheck.cs" />
+    <Compile Include="PersonHealthStd.cs" />
+    <Compile Include="PersonLanguage.cs" />
+    <Compile Include="PersonWorkLicense.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestModels\Hr\CreateAndUpdatePersonEducationRequest.cs" />
+    <Compile Include="RequestModels\Hr\CreateAndUpdatePersonHealthCheckRequest.cs" />
     <Compile Include="RequestModels\Hr\CreateSimpleRequest.cs" />
+    <Compile Include="ResponseModels\Hr\GetPersonHelthCheckByPerson.cs" />
+    <Compile Include="ResponseModels\Hr\PersonEducationResponse.cs" />
     <Compile Include="ResponseModels\Hr\PersonResponse.cs" />
     <Compile Include="ResponseModels\Hr\PersonWorkingHistoryResponse.cs" />
   </ItemGroup>
