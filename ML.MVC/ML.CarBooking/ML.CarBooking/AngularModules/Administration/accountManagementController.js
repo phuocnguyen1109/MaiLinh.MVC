@@ -74,6 +74,8 @@
         };
 
         function addNewAccount() {
+            vm.employeeObject = { id: null, name: null };
+
             vm.pw = null;
             vm.cpw = null;
             vm.message = null;
@@ -137,7 +139,8 @@
             }
             else if (!account.id) {
                 vm.accounts.push(account);
-                $scope.account = null;                            
+                $scope.account = null;
+                $scope.employeeObject = null;
             }
         }
 
