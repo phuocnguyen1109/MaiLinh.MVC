@@ -1,35 +1,68 @@
 ﻿<div ng-controller="accountManagementController as vm" style="margin:10px;">
     <div ng-init="vm.initialize()">
         <h3>DANH SÁCH ACCOUNT</h3>
-        <div class="w-100" style="float:right; margin-top:30px; margin-bottom:10px;">
-            <div class="input-group" style="width:50%;">
-                <input type="text" class="form-control bg-light small" placeholder="Tìm kiếm ..." aria-label="Search" aria-describedby="basic-addon2">
-                <!--<div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                    <i class="fas fa-search fa-sm"></i>
-                </button>
-            </div>-->
+        <br />
+        <div class="row  mt-2">
+            <div class="col-lg-3 col-md-3">
+                <label>Bộ Phận</label>
+                <select ng-model="vm.departmentObject.departmentId" class="form-control"
+                        ng-options="d.departmentId as d.departmentName for d in vm.departments"></select>
+            </div>
+            <div class="col-lg-9 col-md-9" style="display: -webkit-inline-box;">
+                <div class="col-lg-3 col-md-3">
+                    <label>First Name</label>
+                    <input type="text" />
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <label>Last Name</label>
+                    <input type="text" />
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <label>User Name</label>
+                    <input type="text" />
+                </div>
+                <div class="col-lg-2 col-md-2" style="position:absolute; bottom:0">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">
+                            <i class="fas fa-search fa-sm">  Search</i>
+                        </button>
+                    </div>
+
+                </div>
             </div>
         </div>
+        <br />
+
         <table class="table table-bordered table-hover">
             <thead class="thead-light shadow_tb txt-center">
                 <tr>
-                    <th style="width:15%;">Mã</th>
-                    <th style="width:20%;">Họ</th>
-                    <th style="width:20%;">Tên</th>
-                    <th style="width:30%;">UserName</th>
-                    <th style="width:15%;"></th>
-
+                    <th style="width:4%;"></th>
+                    <th style="width:4%;">ID</th>
+                    <th style="width:10%;">Họ Nhân Viên</th>
+                    <th style="width:10%;">Tên Nhân Viên</th>
+                    <th style="width:10%;">Email</th>
+                    <th style="width:10%;">User Name</th>
+                    <th style="width:10%;">Ngày Tạo</th>
+                    <th style="width:10%;">Người Tạo</th>
+                    <th style="width:10%;">Ngày Câp Nhật</th>
+                    <th style="width:10%;">Người Cập Nhật</th>
+                    <th style="width:12%;"></th>
                 </tr>
             </thead>
             <tbody class="txt-center">
                 <tr ng-repeat="row in vm.accounts">
-                    <td>{{row.id}}</td>
-                    <td>{{row.lastName}}</td>
-                    <td>{{row.firstName}}</td>
-                    <td>{{row.userName}}</td>
-                    <td>
-                        <button class="btn btn-outline-success" data-toggle="modal">
+                    <td style="width:4%;"><input type="checkbox" class="mt-2" /></td>
+                    <td style="width:4%;">{{row.id}}</td>
+                    <td style="width:10%;">{{row.lastName}}</td>
+                    <td style="width:10%;">{{row.firstName}}</td>
+                    <td style="width:10%;">{{row.email}}</td>
+                    <td style="width:10%;">{{row.userName}}</td>
+                    <td style="width:10%;">{{row.createdDate}}</td>
+                    <td style="width:10%;">{{row.createdBy}}</td>
+                    <td style="width:10%;">{{row.updatedDate}}</td>
+                    <td style="width:10%;">{{row.updatedBy}}</td>
+                    <td style="width:12%;">
+                        <button class="btn btn-outline-success" data-toggle="modal" data-target="#accountModal" ng-click="vm.editAccount(row)">
                             <i class="fas fa-fw fa-pen"></i>
                         </button>
                         <button class="btn btn-outline-danger" data-toggle="modal">
@@ -37,9 +70,87 @@
                         </button>
                     </td>
                 </tr>
-                <tr></tr>
+
             </tbody>
+
         </table>
-        <button class="btn btn-outline-primary mr-1 w200 ">THÊM MỚI</button>
+        <button class="btn btn-outline-primary " data-toggle="modal" data-target="#accountModal" ng-click="vm.addNewAccount()">THÊM ACCOUNT</button>
+
+
+        <!--Account Modal -->
+        <div class="modal fade" id="accountModal" tabindex="-1" role="dialog" aria-labelledby="ModalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-uppercase" id="ModalTitle">Account</h5>
+                        <button type="button" class="modal-btnClose close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="err-message" ng-if="vm.message">{{vm.message}}</p>
+                        <form class="form-group">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6">
+                                    <label>Bộ Phận</label>
+                                    <select ng-model="vm.account.departmentId" class="form-control"
+                                            ng-change="vm.checkValid();"
+                                            ng-options="d.departmentId as d.departmentName for d in vm.departments"></select>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <label>Chức vụ</label>
+                                    <select ng-model="vm.account.titleId" class="form-control"
+                                            ng-change="vm.checkValid()"
+                                            ng-options="t.titleId as t.titleName for t in vm.titles"></select>
+                                </div>
+                                <!--<div class="col-lg-9 col-md-9">
+                                    <label>Nhân Viên</label>
+                                    <select ng-model="vm.account.firstName" class="form-control"
+                                            ng-change="vm.checkValid();"
+                                            ng-options="a.accountId as a.firstName for a in vm.accounts"></select>
+                                    <p>{{vm.account.firstName}}</p>
+                                </div>-->
+                                <div class="col-md-6">
+                                    <label>Họ Nhân Viên</label>
+                                    <input name="lastName" type="text" class="form-control" ng-model="vm.account.lastName" ng-change="vm.checkValid()">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Tên Nhân Viên</label>
+                                    <input name="firstName" type="text" class="form-control" ng-model="vm.account.firstName" ng-change="vm.checkValid()">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>User Name</label>
+                                    <input name="userName" type="text" class="form-control" ng-model="vm.account.userName" ng-change="vm.checkValid()">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Email</label>
+                                    <input name="email" type="email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" class="form-control" id="email" required ng-model="vm.account.email" ng-change="vm.checkValid()">
+                                    <input type="submit" value="Check Email!" >
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Password</label>
+                                    <input name="pw" type="password" class="form-control" ng-model="vm.pw" ng-change="vm.checkValid()">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Confirm Password</label>
+                                    <input name="cpw" type="password" class="form-control"ng-model="vm.cpw" ng-change="vm.checkValid()">
+                                </div>
+                                <div class="col-md-6">
+                                    <p ng-if="vm.pwMess">{{vm.pwMess}}</p>
+                                    <input type="checkbox" class="mt-2" ng-click="vm.isShow=!vm.isShow" /><span style="vertical-align: -webkit-baseline-middle;">Show Password </span>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
+                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.saveAccount(vm.account);" ng-disabled="!vm.isValid">
+                            Lưu
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
