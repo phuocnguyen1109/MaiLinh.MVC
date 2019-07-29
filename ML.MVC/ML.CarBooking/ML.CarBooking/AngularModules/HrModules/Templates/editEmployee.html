@@ -22,10 +22,10 @@
                 <label>GIỚI TÍNH:</label>
                 <div class="w-100">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" ng-model="vm.person.IsMale" ng-value="true" ng-checked="vm.person.IsMale" name="optradio">Nam
+                        <input type="radio" class="form-check-input" ng-model="vm.person.IsMale" value="true" ng-checked="vm.person.IsMale" name="optradio">Nam
                     </label>
                     <label class="form-check-label ml-4">
-                        <input type="radio" class="form-check-input" ng-model="vm.person.IsMale" ng-value="false" ng-checked="!vm.person.IsMale" name="optradio">Nữ
+                        <input type="radio" class="form-check-input" ng-model="vm.person.IsMale" value="false" ng-checked="!vm.person.IsMale" name="optradio">Nữ
                     </label>
                 </div>
             </div>
@@ -63,7 +63,7 @@
     </div>
 
     <div class="row" style="float:right; margin: 20px 10px 20px 0">
-        <button class="btn btn-outline-success" style="height: 50px; width:200px; margin-right: 20px;">LƯU THAY ĐỔI</button>
+        <button class="btn btn-outline-success" ng-click="vm.saveChanges()" style="height: 50px; width:200px; margin-right: 20px;">LƯU THAY ĐỔI</button>
         <button class="btn btn-outline-danger" style="height: 50px; width:200px;">HỦY BỎ</button>
     </div>
 </div>

@@ -1,4 +1,4 @@
-﻿<div ng-controller="employeeInfoController as vm" style="margin: 0 15px; height: 400px" ng-if="vm.person">
+﻿<div style="margin: 0 15px; height: 400px" ng-if="vm.person">
     <div ng-init="vm.initialize()" class="panel panel-default">
         <div class="panel-body row">
             <uib-tabset justified="true" style="margin:10px; width:100%;">
@@ -11,23 +11,16 @@
 
                         <div class="col-lg-4 col-md-4">
                             <label for="placeOfBorn">NƠI SINH:</label>
-                            <select class="form-control" ng-model="vm.test"
+                            <select class="form-control" ng-model="vm.person.PlaceOfBirth"
                                     ng-options="l.id as l.name for l in vm.placeOfBirth">
-                                <option value="">---Chọn Thành Phố---</option>
-                                <option value="1">Hồ Chí Minh</option>
-                                <option value="2">Hà Tĩnh</option>
-                                <option value="3">Hà Nội</option>
-
+                               
                             </select>
                         </div>
 
                         <div class="col-lg-4 col-md-4">
                             <label for="placeOfBorn">QUỐC TỊCH:</label>
-                            <select class="form-control" ng-model="vm.person.HomeTownId">
-                                <option value="0">---Chọn Quốc Tịch---</option>
-                                <option value="1">Việt Nam</option>
-                                <option value="2">Thái Lan</option>
-                                <option value="3">USA</option>
+                            <select class="form-control" ng-model="vm.person.HomeTownId"
+                                  ng-options="l.id as l.name for l in vm.countries"  >
                             </select>
                         </div>
                     </div>
@@ -35,21 +28,15 @@
 
                         <div class="col-lg-4 col-md-4">
                             <label for="placeOfBorn">TÔN GIÁO:</label>
-                            <select class="form-control" ng-model="vm.person.ReligionId">
-                                <option value="0">---Chọn Tôn Giáo---</option>
-                                <option value="1">Không</option>
-                                <option value="2">Phật Giáo</option>
-                                <option value="3">Thiên Chúa Giáo</option>
+                            <select class="form-control" ng-model="vm.person.ReligionId"
+                                    ng-options="l.id as l.name for l in vm.religion">                          
                             </select>
                         </div>
 
                         <div class="col-lg-4 col-md-4">
                             <label for="placeOfBorn">DÂN TỘC:</label>
-                            <select class="form-control" ng-model="vm.person.NationId">
-                                <option value="0">---Chọn Dân Tộc---</option>
-                                <option value="1">Kinh</option>
-                                <option value="2">Ê-Đê</option>
-                                <option value="3">Hơ-Mông</option>
+                            <select class="form-control" ng-model="vm.person.NationId"
+                                    ng-options="l.id as l.name for l in vm.nations">
                             </select>
                         </div>
 
@@ -67,23 +54,14 @@
 
                         <div class="col-lg-4 col-md-4">
                             <label for="dob">BỘ PHẬN:</label>
-                            <select class="form-control" ng-model="vm.person.DepartmentId">
-                                <option value="0">-Chọn Bộ Phận-</option>
-                                <option value="1">Nhân Sự</option>
-                                <option value="2">Điều Hành - Kinh Doanh</option>
-                                <option value="3">Kế Toán</option>
-                                <option value="4">Kỹ Thuật An Toàn</option>
+                            <select class="form-control" ng-model="vm.person.DepartmentId" ng-options="l.id as l.name for l in vm.departments">
+                               
                             </select>
                         </div>
 
                         <div class="col-lg-4 col-md-4">
                             <label for="dob">CHỨC VỤ:</label>
-                            <select class="form-control" ng-model="vm.person.RoleId">
-                                <option value="0">-Chọn Chức Vụ-</option>
-                                <option value="1">Giám Đốc</option>
-                                <option value="2">Trưởng Phòng</option>
-                                <option value="3">Nhân Viên</option>
-                                <option value="4">Thư Ký</option>
+                            <select class="form-control" ng-model="vm.person.RoleId" ng-options="l.id as l.name for l in vm.roles">
                             </select>
                         </div>
                     </div>
@@ -92,10 +70,10 @@
                             <label>LƯƠNG HƯU TRÍ:</label>
                             <div class="w-100" style="margin-left: 20px;">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="luonghuu">Có
+                                    <input type="radio" class="form-check-input" value="true" ng-model="vm.person.IsPension" name="luonghuu">Có
                                 </label>
                                 <label class="form-check-label ml-4">
-                                    <input type="radio" class="form-check-input" name="luonghuu">Không
+                                    <input type="radio" class="form-check-input" value="false" ng-model="vm.person.IsPension" checked name="luonghuu">Không
                                 </label>
                             </div>
                         </div>
@@ -104,10 +82,10 @@
                             <label>ĐÃ NGHỈ VIỆC:</label>
                             <div class="w-100" style="margin-left: 20px;">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="nghiviec">Đã Nghỉ
+                                    <input type="radio" class="form-check-input" value="false" ng-model="vm.active" name="nghiviec">Đã Nghỉ
                                 </label>
                                 <label class="form-check-label ml-4">
-                                    <input type="radio" class="form-check-input" name="nghiviec">Không
+                                    <input type="radio" class="form-check-input" value="true" ng-model="vm.active" name="nghiviec">Không
                                 </label>
                             </div>
                         </div>

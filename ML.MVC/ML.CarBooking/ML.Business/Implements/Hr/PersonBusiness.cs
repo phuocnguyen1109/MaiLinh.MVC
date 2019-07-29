@@ -75,6 +75,11 @@ namespace ML.Business.Implements.Hr
             return m_PersonDataLayer.UpdatePersonIdentity(request, userId);
         }
 
+        public int UpdatePersonInformation(PersonResponse request, int userId)
+        {
+          return m_PersonDataLayer.UpdatePersonInformation(request, userId);
+        }
+
         public int UpdatePersonPhone(PersonPhone request, int userId = 1)
         {
             return m_PersonDataLayer.UpdatePersonPhone(request, userId);

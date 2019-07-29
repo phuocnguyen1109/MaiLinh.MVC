@@ -14,6 +14,7 @@ namespace ML.DataLayer.Interfaces.Hr
         IEnumerable<PersonGridResponse> GetAllPerson();
         int CreateSimple(CreateSimpleRequest request);
         PersonResponse GetPersonInformation(int id);
+        int UpdatePersonInformation(PersonResponse request, int userId);
 
         //Phone
         IEnumerable<PersonPhone> GetPersonPhones(int pid);

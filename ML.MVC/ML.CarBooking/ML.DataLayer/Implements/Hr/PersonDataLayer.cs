@@ -133,6 +133,34 @@ namespace ML.DataLayer.Implements.Hr
              }, commandType: System.Data.CommandType.StoredProcedure));
         }
 
+        public int UpdatePersonInformation(PersonResponse request, int userId)
+        {
+            return Execute(connection =>
+            connection.Execute("[Hr].[UpdatePersonInformation]",
+            new
+            {
+                pid = request.Id,
+                fName =request.FirstName,
+                lName = request.LastName,
+                isMale = request.IsMale,
+                dob = request.DoB,
+                placeOfBirth = request.PlaceOfBirth,
+                homeTownId = request.HomeTownId,
+                religionId = request.ReligionId,
+                nationId = request.NationId,
+                countryId = request.CountryId,
+                mlcDate = request.MLCDate,
+                startDate = request.StartDate,
+                deptId =request.DepartmentId,
+                roleId = request.RoleId,
+                isPension = request.IsPension,
+                siNote = request.SINote,
+                sINumber = request.SINumber,
+                sIContractNUmber = request.SIContractNumber
+
+            }, commandType: System.Data.CommandType.StoredProcedure));
+        }
+
         public int UpdatePersonPhone(PersonPhone request, int userId = 1)
         {
             return Execute(connection =>

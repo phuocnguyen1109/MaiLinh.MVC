@@ -82,16 +82,10 @@ namespace ML.CarBooking.Controllers.API.Hr
             return m_PersonBusiness.DeletePersonIdentity(request.Id);
         }
 
-        [HttpGet]
-        public PersonResponse GetPersonSIContracts(int pid)
-        {
-            return m_PersonBusiness.GetPersonSIContracts(pid);
-        }
-
         [HttpPost]
-        public int UpdatePersonSIContract(PersonResponse request, int userId)
+        public int UpdatePersonInformation(PersonResponse request, int userId = 1)
         {
-            return m_PersonBusiness.UpdatePersonSIContract(request, userId);
+            return m_PersonBusiness.UpdatePersonInformation(request, userId);
         }
 
     }
