@@ -42,8 +42,8 @@
 
         function getRelatives() {
             vm.relatives = [
-                { relativeId: 1, relativeName: "Nguyễn Văn Phi", dob: "1999", address: "TPHCM", relationshipId: 2, isGone: false },
-                { relativeId: 2, relativeName: "Nguyễn Thị Nghi", dob: "1999", address: "TPHCM", relationshipId: 3, isGone: false },
+                { relativeId: 1, relativeName: "Nguyễn Văn Phi", dob: "1999", address: "TPHCM", relationshipId: 2, isGone: false, deductTime: "", endTime: "" },
+                { relativeId: 2, relativeName: "Nguyễn Thị Nghi", dob: "1999", address: "TPHCM", relationshipId: 3, isGone: false, deductTime: "", endTime: "" },
             ]
         };
 
@@ -83,7 +83,7 @@
                 vm.relatives.forEach(function (item, index) {
                     if (relative.relativeId == item.relativeId) {
                         item.relativeName = relative.relativeName;
-                        item.dob =relative.dob.getDate() + '/' + (relative.dob.getMonth()+1) + '/' + relative.dob.getFullYear();
+                        item.dob = relative.dob.getDate() + '/' + (relative.dob.getMonth() + 1) + '/' + relative.dob.getFullYear();
                         item.relationshipId = relative.relationshipId;
                         item.isGone = relative.isGone;
                         item.address = relative.address;
@@ -139,7 +139,7 @@
                 }
             });
             vm.relatives.splice(vm.relativeDel.index, 1)
-            
+
         };
 
 
