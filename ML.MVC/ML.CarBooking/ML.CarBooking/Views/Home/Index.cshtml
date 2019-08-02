@@ -70,13 +70,18 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" data-toggle="collapse" aria-expanded="true" aria-controls="collapsePages" ng-click="vm.gotoMasterDataManagement()"> 
+                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapsePagesSMD" aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-clipboard-list"></i>
-                    <span >Quản lý Master Data</span>
-                </a>
-                <a class="nav-link" ng-click="vm.gotoAccountManagement()">
-                    <i class="fas fa-fw fa-users-cog""></i>
                     <span>Quản lý Master Data</span>
+                </a>
+                <div id="collapsePagesSMD" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" ng-click="vm.gotoMasterDataManagement()">Quản Lý Dữ Liệu Hệ Thống</a>
+                    </div>
+                </div>
+                <a class="nav-link" ng-click="vm.gotoAccountManagement()">
+                    <i class="fas fa-fw fa-users-cog" "></i>
+                    <span>Quản lý Account</span>
                 </a>
             </li>
 

@@ -1,3 +1,93 @@
 ﻿<div ng-controller="masterDataManagementController as vm" style="margin:10px;">
-    Master Data
+    <div ng-init="vm.initialize()">
+        <h3>QUẢN LÝ DỮ LIỆU HỆ THỐNG</h3>
+    </div>
+    <br />
+    <div>
+        <div>
+            <h6>Loại Dữ Liệu:</h6>
+
+            <select>
+                <optgroup ng-repeat="s in vm.systemDataTypes" label="{{s.name}}">
+                    <option ng-repeat="sg in s.group" value="{{s.name}}">{{sg.name}}</option>
+                </optgroup>
+
+            </select>
+
+        </div>
+
+        <br />
+        <table class="table table-bordered table-hover">
+            <thead class="thead-light shadow_tb txt-center">
+                <tr>
+                    <th style="width: 5%;"></th>
+                    <th style="width: 5%">ID</th>
+                    <th style="width: 15%;">Tên Hiển Thị</th>
+                    <th style="width: 15%;">Ngày Tạo</th>
+                    <th style="width: 15%;">Người Tạo</th>
+                    <th style="width: 15%;">Ngày Cập Nhật</th>
+                    <th style="width: 15%;">Người Cập Nhật</th>
+
+                </tr>
+            </thead>
+            <tbody class="txt-center">
+                <tr ng-repeat="row in vm.systemDataTypes" ng-click="vm.rowClick(row)">
+                    <td><input type="checkbox" class="mt-2" ng-change="vm.checkSelected()" ng-model="row.IsSelected" /></td>
+                    <td>{{row.id}}</td>
+                    <td>{{row.name}}</td>
+                    <td>{{row.createdDate}}</td>
+                    <td>{{row.createdBy}}</td>
+                    <td>{{row.updatedDate}}</td>
+                    <td>{{row.updatedBy}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button class="btn btn-outline-primary mr-1" data-toggle="modal" data-target="#systemDataTypeModal" ng-click="vm.editSystemDataType()">
+            <i class="fas fa-fw fa fa-plus"></i> THÊM MỚI
+        </button>
+        <button class="btn btn-outline-success mr-1" ng-disabled="!vm.CanEdit" data-toggle="modal" data-target="#systemDataTypeModal" ng-click="vm.editSystemDataType()">
+            <i class="fas fa-fw fa-pen"></i> CHỈNH SỬA
+        </button>
+        <button class="btn btn-outline-danger mr-1" ng-disabled="!vm.CanDelete">
+            <i class="fas fa-fw fa fa-times"></i> XÓA
+        </button>
+    </div>
+
+    <!--SystemDataType Modal-->
+    <div class="modal fade" id="systemDataTypeModal" tabindex="-1" role="dialog" aria-labelledby="ModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-uppercase" id="ModalTitle">Account</h5>
+                    <button type="button" class="modal-btnClose close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="err-message" ng-if="vm.message">{{vm.message}}</p>
+                    <form class="form-group">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label>Loại Dữ Liệu : <span ng-if="vm.tempSystemDataType.name">{{vm.tempSystemDataType.name}}</span></label>
+                            </div>
+                            <div class="col-md-12">
+                                <label>Tên Hiển Thị</label>
+                                <input  type="text" class="form-control" ng-model="vm.tempSystemDataType.name" ng-change="vm.checkValid()">
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.saveSystemDataType(vm.tempSystemDataType);" ng-disabled="!vm.isValid">
+                        Lưu
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </div>
