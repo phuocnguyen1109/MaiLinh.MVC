@@ -47,10 +47,9 @@
                             case 3: item.TypeDisplay = 'Số Fax'; break;
                         }
                     });
-                    
+                   
                 });
-
-           
+            console.log(vm.phoneNumbers.length);
         }
 
         function getTypesOfPhoneNumber() {
@@ -65,7 +64,7 @@
 
         function checkValid() {
             if (vm.personPhoneModel.phoneType != null) {
-                if (vm.personPhoneModel.phoneNumber == "" || !vm.personPhoneModel.phoneNumber) {
+                if (vm.personPhoneModel.phoneNumber.length==0 && !vm.personPhoneModel.phoneNumber) {
                     vm.message = "Không để trống các mục!";
                     vm.isValid = false;
                     return;
