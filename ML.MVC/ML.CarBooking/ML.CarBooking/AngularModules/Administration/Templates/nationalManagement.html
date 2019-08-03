@@ -1,0 +1,84 @@
+﻿<div ng-contholler="nationalManagementContholler as vm">
+    <div ng-init="vm.initialize()">
+        <h3>THÔNG TIN ĐỊA LÍ / HÀNH CHÍNH</h3>
+        <br />
+        <!--Header-->
+        <div class="row">
+            <div class="col-md-6">
+                <!--Filter-->
+                <div class="row">
+                    <div class="col-md-6" style="display: grid;">
+                        <label for="types" class="text-uppercase">Phân loại:</label>
+                        <select id="types" class="form-control"
+                                ng-model="vm.selectedItem"
+                                ng-options="t.typeId as t.name for t in vm.types"></select>
+                    </div>
+                    <div class="col-md-6" ng-if="vm.selectedItem != 0">
+                        <label for="national" class="text-uppercase">Quốc Gia:</label>
+                        <select id="national" class="form-control"
+                                ng-model="vm.selectedNational"
+                                ng-options="n.nationId as n.name for n in vm.nationals"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="searching"></label>
+                <div class="input-group" style="margin-top: 4px;">
+                    <input type="text" class="form-control bg-light small" ng-change="vm.filterNational()" ng-model="vm.filterText" placeholder="Thông tin tìm kiếm ..." aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">
+                            <i class="fas fa-search fa-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+
+        <!--Table-->
+        <div>
+            <table class="table table-bordered table-hover">
+                <thead class="thead-light shadow_tb txt-center">
+                    <tr>
+                        <th style="width:5%"></th>
+                        <th style="width:5%">ID</th>
+                        <th style="width:15%">TÊN</th>
+                        <th style="width:15%">NGÀY TẠO</th>
+                        <th style="width:15%">NGƯỜI TẠO</th>
+                        <th style="width:15%">NGÀY CẬP NHẬT</th>
+                        <th style="width:15%">NGƯỜI CẬP NHẬT</th>
+                        <th style="width:15%">ĐƠN VỊ TRỰC THUỘC</th>
+                    </tr>
+                </thead>
+                <tbody class="txt-center">
+                    <tr ng-repeat="row in vm.citys" ng-click="vm.rowClick(row)">
+                        <td>
+                            <input type="checkbox" ng-change="vm.checkSelected()" ng-model="row.IsSelected" />
+                        </td>
+                        <td>{{row.Id}}</td>
+                        <td>{{row.Name}}</td>
+                        <td>07/31/2019</td>
+                        <td>Admin</td>
+                        <td>07/31/2019</td>
+                        <td>Admin</td>
+                        <td>{{row.ParentId}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br />
+
+        <!--Action Btn-->
+        <div class="row">
+            <button class="btn btn-outline-primary mr-1" data-toggle="modal" data-target="#CreatePerson">
+                <i class="fas fa-fw fa fa-plus"></i> THÊM MỚI
+            </button>
+            <button class="btn btn-outline-success mr-1" ng-disabled="!vm.CanEdit" ng-click="vm.gotoEdit()">
+                <i class="fas fa-fw fa-pen"></i> CHỈNH SỬA
+            </button>
+            <button class="btn btn-outline-danger w200" ng-disabled="!vm.CanEdit" ng-click="vm.remove()">
+                <i class="fas fa-fw fa-trash"></i> XÓA
+            </button>
+        </div>
+    </div>
+</div>

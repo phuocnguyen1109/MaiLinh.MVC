@@ -70,12 +70,19 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" data-toggle="collapse" aria-expanded="true" aria-controls="collapsePages" ng-click="vm.gotoMasterDataManagement()"> 
+                <a class="nav-link collapsed" data-toggle="collapse" data-target="#National" aria-expanded="true" aria-controls="collapsePages" ng-click="vm.gotoMasterDataManagement()">
                     <i class="fas fa-fw fa-clipboard-list"></i>
-                    <span >Quản lý Master Data</span>
+                    <span>Quản lý Master Data</span>
                 </a>
+                <div id="National" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" ng-click="vm.gotoNationalManagement()">Quốc Gia / Tỉnh Thành</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" ng-click="vm.gotoAccountManagement()">
-                    <i class="fas fa-fw fa-users-cog""></i>
+                    <i class="fas fa-fw fa-users-cog" "></i>
                     <span>Quản lý Master Data</span>
                 </a>
             </li>
@@ -324,6 +331,8 @@
     <script type="text/javascript" src="~/AngularModules/Vehicle/editVehicleController.js"></script>
     <script type="text/javascript" src="~/AngularModules/Administration/masterDataManagementController.js"></script>
     <script type="text/javascript" src="~/AngularModules/Administration/accountManagementController.js"></script>
+
+    <script type="text/javascript" src="~/AngularModules/Administration/nationalManagementController.js"></script>
 
 </body>
 </html>

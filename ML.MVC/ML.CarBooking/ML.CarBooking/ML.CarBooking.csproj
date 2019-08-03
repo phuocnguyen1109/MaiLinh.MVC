@@ -193,8 +193,12 @@
   <ItemGroup>
     <Content Include="AngularModules\Administration\accountManagementController.js" />
     <Content Include="AngularModules\Administration\masterDataManagementController.js" />
+    <Content Include="AngularModules\Administration\nationalManagementController.js" />
+    <Content Include="AngularModules\Administration\NationalModalController.js" />
     <Content Include="AngularModules\Administration\Templates\AccountManagements.html" />
     <Content Include="AngularModules\Administration\Templates\MasterDataManagements.html" />
+    <Content Include="AngularModules\Administration\Templates\nationalManagement.html" />
+    <Content Include="AngularModules\Administration\Templates\NationalModal.html" />
     <Content Include="AngularModules\HrModules\editEmployeeController.js" />
     <Content Include="AngularModules\HrModules\educationController.js" />
     <Content Include="AngularModules\HrModules\employeeInfoController.js" />

@@ -38,6 +38,13 @@
                     controllerAs: 'vm'
                 })
 
+                .state('nationalManagement', {
+                    url: '/masterData/nationalManagement',
+                    templateUrl: 'AngularModules/Administration/Templates/nationalManagement.html',
+                    controller: 'nationalManagementController',
+                    controllerAs: 'vm'
+                })
+
                 //Account
                 .state('account', {
                     url: '/account',
