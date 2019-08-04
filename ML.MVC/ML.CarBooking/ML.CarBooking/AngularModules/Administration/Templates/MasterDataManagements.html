@@ -5,15 +5,18 @@
     <br />
     <div>
         <div>
-            <h6>Loại Dữ Liệu:</h6>
+            <h6>Loại Dữ Liệu: <span class="required_ico">*</span></h6>
 
-            <select>
-                <optgroup ng-repeat="s in vm.systemDataTypes" label="{{s.name}}">
-                    <option ng-repeat="sg in s.group" value="{{s.name}}">{{sg.name}}</option>
-                </optgroup>
+            <!--<select>
+        <optgroup ng-repeat="s in vm.systemDataTypes" label="{{s.name}}">
+            <option ng-repeat="sg in s.group" value="{{s.name}}">{{sg.name}}</option>
+        </optgroup>
 
-            </select>
+    </select>-->
 
+            <select ng-model="vm.tempSystemDataType.name" class="form-control col-md-2 ml-1" 
+                    ng-options="s.name as s.name for s in vm.systemDataTypes"
+                    ng-change="vm.changeSysTemDataType()"></select>
         </div>
 
         <br />
@@ -31,9 +34,9 @@
                 </tr>
             </thead>
             <tbody class="txt-center">
-                <tr ng-repeat="row in vm.systemDataTypes" ng-click="vm.rowClick(row)">
+                <tr ng-repeat="row in vm.systemDatas" ng-click="vm.rowClick(row)" >
                     <td><input type="checkbox" class="mt-2" ng-change="vm.checkSelected()" ng-model="row.IsSelected" /></td>
-                    <td>{{row.id}}</td>
+                    <td>{{row.systemDataId}}</td>
                     <td>{{row.name}}</td>
                     <td>{{row.createdDate}}</td>
                     <td>{{row.createdBy}}</td>
@@ -43,10 +46,10 @@
             </tbody>
         </table>
 
-        <button class="btn btn-outline-primary mr-1" data-toggle="modal" data-target="#systemDataTypeModal" ng-click="vm.editSystemDataType()">
+        <button class="btn btn-outline-primary mr-1" data-toggle="modal" data-target="#systemDataTypeModal" ng-click="vm.openSystemData(vm.tempSystemDataType.name)">
             <i class="fas fa-fw fa fa-plus"></i> THÊM MỚI
         </button>
-        <button class="btn btn-outline-success mr-1" ng-disabled="!vm.CanEdit" data-toggle="modal" data-target="#systemDataTypeModal" ng-click="vm.editSystemDataType()">
+        <button class="btn btn-outline-success mr-1" ng-disabled="!vm.CanEdit" data-toggle="modal" data-target="#systemDataTypeModal" ng-click="vm.editSystemData(vm.tempSystemDataType.name)">
             <i class="fas fa-fw fa-pen"></i> CHỈNH SỬA
         </button>
         <button class="btn btn-outline-danger mr-1" ng-disabled="!vm.CanDelete">
@@ -73,7 +76,7 @@
                             </div>
                             <div class="col-md-12">
                                 <label>Tên Hiển Thị</label>
-                                <input  type="text" class="form-control" ng-model="vm.tempSystemDataType.name" ng-change="vm.checkValid()">
+                                <input  type="text" class="form-control" ng-model="vm.tempSystemData.name" ng-change="vm.checkValid()">
                             </div>
 
                         </div>
@@ -81,7 +84,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
-                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.saveSystemDataType(vm.tempSystemDataType);" ng-disabled="!vm.isValid">
+                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.saveSystemData(vm.tempSystemData);" ng-disabled="!vm.isValid">
                         Lưu
                     </button>
                 </div>

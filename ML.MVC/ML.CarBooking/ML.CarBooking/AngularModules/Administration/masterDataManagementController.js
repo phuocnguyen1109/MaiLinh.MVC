@@ -8,89 +8,119 @@
         vm.initialize = initialize;
         vm.checkSelected = checkSelected;
         vm.rowClick = rowClick;
-        vm.editSystemDataType = editSystemDataType;
-        vm.saveSystemDataType = saveSystemDataType;
+        vm.editSystemData = editSystemData;
+        vm.saveSystemData = saveSystemData;
         vm.isValid = false;
         vm.checkValid = checkValid;
-        vm.openSystemDataType = openSystemDataType;
+        vm.openSystemData = openSystemData;
+        vm.changeSysTemDataType = changeSysTemDataType;
 
         var selectedId;
 
         function initialize() {
 
-            resetsystemDataType();
-            getsystemDataTypes();
+            resetSystemDataType();
+            getSystemDataTypes();
+            resetSystemData();
+            getData();
         }
 
-        function resetsystemDataType() {
+        function resetSystemDataType() {
             vm.tempSystemDataType = {
                 id: 0,
+                name: null,
+                group: null
+            };
+
+        }
+
+        function resetSystemData(tempSystemDataTypeName) {
+
+            vm.tempSystemData = {
+                tempSystemDataId: 0,
                 name: null,
                 createdDate: null,
                 createdBy: null,
                 updatedDate: null,
                 updatedBy: null,
-                group: []
+                systemDataTypeName: tempSystemDataTypeName
             };
+
         }
 
-        function getsystemDataTypes() {
+        function getSystemDataTypes() {
             vm.systemDataTypes = [
-                {
-                    id: 1,
-                    name: "Lý lịch nhân sự",
-                    createdDate: "1/1/1000",
-                    createdBy: "Sam",
-                    updatedDate: "2/1/1000",
-                    updatedBy: "Sam",
-                    group: [
-                        { id: 1, name: "Tôn Giáo" },
-                        { id: 2, name: "Dân Tộc" },
-                        { id: 3, name: "Điện Thoại" },
-                    ]
-
-
-                },
-                {
-                    id: 2,
-                    name: "GIấy Tờ /Bằng Cấp",
-                    createdDate: "1/1/1000",
-                    createdBy: "Sam",
-                    updatedDate: "2/1/1000",
-                    updatedBy: "Sam",
-                    group: [
-                        { id: 1, name: "Trình Độ Giáo Dục" },
-                        { id: 2, name: "Giấy Phép Lái Xe" },
-                        { id: 3, name: "Giấy Phép Hành Nghề" },
-                        { id: 4, name: "Giấy Tờ Tùy Thân" },
-                    ]
-                },
-                {
-                    id: 3,
-                    name: "Hợp Đồng/Bảo Hiểm",
-                    createdDate: "1/1/1000",
-                    createdBy: "Sam",
-                    updatedDate: "2/1/1000",
-                    updatedBy: "Sam",
-                    group: [
-                        { id: 1, name: "Tiêu Chuẩn Khám" },
-                        { id: 2, name: "Thiết bị Theo Người" },
-                    ]
-                }
+                { id: 1, name: "Tôn Giáo", group: 'Lý Lịch Nhân Sự' },
+                { id: 2, name: "Dân Tộc", group: 'Lý Lịch Nhân Sự' },
+                { id: 3, name: "Điện Thoại", group: 'Lý Lịch Nhân Sự' },
+                { id: 4, name: "Trình Độ Giáo Dục", group: 'GIấy Tờ /Bằng Cấp' },
+                { id: 5, name: "Giấy Phép Lái Xe", group: 'GIấy Tờ /Bằng Cấp' },
+                { id: 6, name: "Giấy Phép Hành Nghề", group: 'GIấy Tờ /Bằng Cấp' },
+                { id: 7, name: "Giấy Tờ Tùy Thân", group: 'GIấy Tờ /Bằng Cấp' },
+                { id: 8, name: "Tiêu Chuẩn Khám", group: 'Hợp Đồng/Bảo Hiểm' },
+                { id: 9, name: "Thiết bị Theo Người", group: 'Hợp Đồng/Bảo Hiểm' },
             ]
+        };
 
+        function getData() {
+            vm.systemDataTypes.forEach(function (item, index) {
+                switch (item.id) {
+                    case 1:
+                        vm.systemDatas = [
+                        {
+                            systemDataId: 1,
+                            name: "Phật Giáo",
+                            createdDate: "1/1/2019",
+                            createdBy: "Sam",
+                            updatedDate: "1/1/2019",
+                            updatedBy: "Sam",
+                            systemDataTypeName: "Tôn Giáo"
+                        },
+                        {
+                            systemDataId: 2,
+                            name: "Thiên Chúa Giáo",
+                            createdDate: "1/1/2019",
+                            createdBy: "Sam",
+                            updatedDate: "1/1/2019",
+                            updatedBy: "Sam",
+                            systemDataTypeName: "Tôn Giáo"
+                        },
+                    ]; break;
+                    case 2: vm.systemDatas = [
+                        {
+                            systemDataId: 1,
+                            name: "Kinh",
+                            createdDate: "1/1/2019",
+                            createdBy: "Sam",
+                            updatedDate: "1/1/2019",
+                            updatedBy: "Sam",
+                            systemDataTypeName: "Dân Tộc"
+                        },
+                        {
+                            systemDataId: 2,
+                            name: "Mông",
+                            createdDate: "1/1/2019",
+                            createdBy: "Sam",
+                            updatedDate: "1/1/2019",
+                            updatedBy: "Sam",
+                            systemDataTypeName: "Dân Tộc"
+                        },
+                    ]; break;
+                }
+
+            });
         }
 
         function rowClick(row) {
             if (row) {
                 row.IsSelected = !row.IsSelected;
                 checkSelected();
-                vm.systemDataTypeSelected = row;
+                vm.systemDataSelected = row;
             }
         }
 
         function checkSelected() {
-            var selectedIds = angular.copy(vm.systemDataTypes).filter(function (item) {
+            var selectedIds = angular.copy(vm.systemDatas).filter(function (item) {
                 return item.IsSelected;
             });
 
@@ -98,61 +128,70 @@
                 selectedId = selectedIds[0].Id;
                 vm.CanEdit = true;
                 vm.CanDelete = true;
+                
                 return;
             }
 
             if (selectedIds.length > 1) {
                 vm.CanDelete = true;
                 vm.CanEdit = false;
+                
                 return;
             }
 
             vm.CanEdit = false;
             vm.CanDelete = false;
+     
+
         }
 
-        function editSystemDataType() {
-            vm.tempSystemDataType = {
-                id: vm.systemDataTypeSelected.id,
-                name: vm.systemDataTypeSelected.name,
-                createdDate: vm.systemDataTypeSelected.createdDate,
-                createdBy: vm.systemDataTypeSelected.createdBy,
-                updatedDate: vm.systemDataTypeSelected.updatedDate,
-                updatedBy: vm.systemDataTypeSelected.updatedBy,
-                group: vm.systemDataTypeSelected.group
+        function editSystemData(tempSystemDataName) {
+            vm.tempSystemData = {
+                //id: vm.systemDataTypeSelected.id,
+                name: tempSystemDataName,
+                //createdDate: vm.systemDataTypeSelected.createdDate,
+                //createdBy: vm.systemDataTypeSelected.createdBy,
+                //updatedDate: vm.systemDataTypeSelected.updatedDate,
+                //updatedBy: vm.systemDataTypeSelected.updatedBy,
+
             };
 
         };
-        function openSystemDataType() {
-            resetsystemDataType();
+
+        function openSystemData(systemDataTypeName) {
+            resetSystemData(systemDataTypeName);
         };
 
-        function saveSystemDataType(data) {
-            if (data.id) {
-                vm.systemDataTypes.forEach(function (item, index) {
-                    if (item.id == data.id) {
-                        item.id = data.id,
+        function saveSystemData(data) {
+            if (data.systemDataId) {
+                vm.systemData.forEach(function (item, index) {
+                    if (item.systemDataId == data.systemDataId) {
+                        item.systemDataId = data.systemDataId,
                         item.name = data.name                              
                     }
                 });
             }
             else if (!data.id) {
                 data.id +=1
-                vm.systemDataTypes.push(data);
+                vm.systemDatas.push(data);
                 $scope.tempSystemDataType = null;
             }
         }
 
         function checkValid() {
-            if (vm.tempSystemDataType.name.length > 0) {
+            if (vm.tempSystemData.name.length > 0) {
                 vm.isValid = true;
                 vm.message = null;
             }
             else {
                 vm.isValid = false;
-                vm.message = "Nhập đầy đủ các mục!";
+                vm.message = "Nhập tên hiển thị!";
                 return;
             }
         };
+
+        function changeSysTemDataType() {
+            getData();
+        }
     }
 })();
