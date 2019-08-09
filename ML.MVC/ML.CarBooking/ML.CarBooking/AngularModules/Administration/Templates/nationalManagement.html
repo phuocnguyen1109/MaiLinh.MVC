@@ -11,13 +11,13 @@
                         <label for="types" class="text-uppercase">Phân loại:</label>
                         <select id="types" class="form-control"
                                 ng-model="vm.selectedItem"
-                                ng-options="t.typeId as t.name for t in vm.types"></select>
+                                ng-options="t.Type as t.TypeName for t in vm.types"></select>
                     </div>
                     <div class="col-md-6" ng-if="vm.selectedItem != 0">
                         <label for="national" class="text-uppercase">Quốc Gia:</label>
                         <select id="national" class="form-control"
                                 ng-model="vm.selectedNational"
-                                ng-options="n.nationId as n.name for n in vm.nationals"></select>
+                                ng-options="n.ParentId as n.ParentName for n in vm.nationals"></select>
                     </div>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                     </tr>
                 </thead>
                 <tbody class="txt-center">
-                    <tr ng-repeat="row in vm.citys" ng-click="vm.rowClick(row)">
+                    <tr ng-repeat="row in vm.citys track by $index" ng-click="vm.rowClick(row)">
                         <td>
                             <input type="checkbox" ng-change="vm.checkSelected()" ng-model="row.IsSelected" />
                         </td>
@@ -82,7 +82,7 @@
             </button>
             <button class="btn btn-outline-danger w200"
                     data-target="#DeleteModal" data-toggle="modal"
-                    ng-disabled="!vm.CanEdit" ng-click="vm.remove()">
+                    ng-disabled="!vm.CanDelete">
                 <i class="fas fa-fw fa-trash"></i> XÓA
             </button>
         </div>
@@ -105,13 +105,14 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label for="name">Tên đơn vị <span class="required_ico">*</span></label>
-                                        <input name="name" class="form-control" type="text" ng-model="vm.nationalModel.Name" />
+                                        <input name="name" class="form-control" type="text" ng-model="vm.nationalModel.Name" ng-change="vm.checkValid()" />
                                     </div>
                                     <div class="col-md-6">
                                         <label for="types">Đơn vị trực thuộc <span class="required_ico">*</span></label>
                                         <select id="types" class="form-control"
                                                 ng-model="vm.nationalModel.Type"
-                                                ng-options="t.typeId as t.name for t in vm.types"></select>
+                                                ng-options="t.Type as t.TypeName for t in vm.types"
+                                                ng-change="vm.checkValid()" ></select>
                                     </div>
                                 </div>
                                 <div class="row mt-3">
@@ -119,23 +120,26 @@
                                         <label for="city">Thành phố <span class="required_ico">*</span></label>
                                         <select id="city" class="form-control"
                                                 ng-model="vm.nationalModel.Id"
-                                                ng-options="n.Id as n.Name for n in vm.citys"></select>
+                                                ng-options="n.Id as n.Name for n in vm.citys" 
+                                                ng-change="vm.checkValid()"></select>
                                     </div>
                                     <div class="col-md-6" ng-if="vm.nationalModel.Type > 0">
                                         <label for="national">Quốc gia <span class="required_ico">*</span></label>
                                         <select id="national" class="form-control"
                                                 ng-model="vm.nationalModel.ParentId"
-                                                ng-options="n.nationId as n.name for n in vm.nationals"></select>
+                                                ng-options="n.ParentId as n.ParentName for n in vm.nationals" 
+                                                ng-change="vm.checkValid()"></select>
                                     </div>
                                 </div>
                                 <div class="row mt-3 mb-3" style="float: right;">
                                     <button class="btn btn-outline-primary mr-1" 
                                             ng-disabled="vm.isBlank"
-                                            ng-click="vm.addNewNational(vm.nationalModel)">
+                                            ng-click="vm.addNewNational(vm.nationalModel)"
+                                            ng-keypress="vm.addNewNational(vm.nationalModel)">
                                         <i class="fas fa-fw fa fa-plus"></i> THÊM
                                     </button>
                                 </div>
-                                <div class="row mt-3" style="display: block;"  ng-if="vm.nationalModel.Id">
+                                <div class="row mt-3" style="display: block;">
                                     <table class="table table-bordered table-hover">
                                         <thead class="thead-light shadow_tb txt-center">
                                             <tr>
@@ -146,7 +150,14 @@
                                         <tbody class="txt-center">
                                             <tr ng-repeat="row in vm.listNewNational">
                                                 <td>{{row.Name}}</td>
-                                                <td></td>
+                                                <td>
+                                                    <button class="btn btn-outline-success" ng-click="vm.nationalModel = row">
+                                                        <i class="fas fa-fw fa-pen"></i>
+                                                    </button>
+                                                    <button class="btn btn-outline-danger" ng-click="vm.deletedRow(row)">
+                                                        <i class="fas fa-fw fa-trash"></i>
+                                                    </button>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -157,7 +168,9 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
-                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.saveChanges()" ng-disabled="!vm.isValid">Lưu</button>
+                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal"
+                                ng-click="vm.saveChanges()" ng-disabled="!vm.isValid">Lưu
+                        </button>
                     </div>
                 </div>
             </div>
@@ -168,7 +181,7 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-body">
-                        Bạn muốn xóa mục này?
+                        Bạn muốn xóa {{vm.deleteRows.length}} mục này?
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
