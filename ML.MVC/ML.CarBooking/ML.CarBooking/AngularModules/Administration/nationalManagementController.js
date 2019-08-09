@@ -2,7 +2,7 @@
     'use strict'
     angular.module('mainApp').controller('nationalManagementController', nationalManagementController);
 
-    function nationalManagementController($scope, $state, $uibModal) {
+    function nationalManagementController($scope, $state, $uibModal, $log, $document) {
         var vm = this;
         var selectedId;
 
@@ -10,13 +10,16 @@
         vm.rowClick = rowClick;
         vm.checkSelected = checkSelected;
         vm.filterNational = filterNational;
+        vm.add = add;
+        vm.addNewNational = addNewNational;
         vm.gotoEdit = gotoEdit;
         vm.remove = remove;
 
         var userId = $state.params.id;
         vm.selectedItem = 1;
         vm.selectedNational = 0;
-        
+        vm.listNewNational = [];
+        vm.isBlank = true;
 
         function initialize() {
             //getNational();
@@ -33,7 +36,7 @@
             ];
 
             vm.citys = [
-                { IsSelected: false, Id: 5, Name: "Hồ Chí Minh", ParentId:1, Type: 1}
+                { IsSelected: false, Id: 5, Name: "Hồ Chí Minh", ParentId: 0, ParentName: "Việt Nam", Type: 1, TypeName: "Thanh Phố"}
             ]
         }
 
@@ -70,9 +73,35 @@
             vm.CanEdit = false;
         }
 
+        function resetModel() {
+            vm.nationalModel = {
+                Id: 0,
+                Name: '',
+                ParentId: null,
+                Type: null
+            };
+        }
+
+        function add() {
+            vm.modalTitle = "Thêm mới";
+            resetModel();
+            vm.isValid = false;
+        }
+
+        function addNewNational(row) {
+            console.log(row);
+        }
+
         function gotoEdit() {
-           
-            //$state.go('editNational', { id: selectedId });
+            resetModel();
+            vm.modalTitle = "Chỉnh sửa";
+            vm.citys.forEach(function (item) {
+                if (item.IsSelected == true)
+                    return vm.nationalModel = item;
+            });
+
+            console.log(vm.nationalModel);
+            vm.isBlank = false;
         }
 
         function remove() {

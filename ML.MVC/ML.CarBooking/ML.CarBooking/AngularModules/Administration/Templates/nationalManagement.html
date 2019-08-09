@@ -61,7 +61,7 @@
                         <td>Admin</td>
                         <td>07/31/2019</td>
                         <td>Admin</td>
-                        <td>{{row.ParentId}}</td>
+                        <td>{{row.ParentName}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -70,15 +70,112 @@
 
         <!--Action Btn-->
         <div class="row">
-            <button class="btn btn-outline-primary mr-1" data-toggle="modal" data-target="#CreatePerson">
+            <button class="btn btn-outline-primary mr-1"
+                    data-toggle="modal" data-target="#NationalModal"
+                    ng-click="vm.add()">
                 <i class="fas fa-fw fa fa-plus"></i> THÊM MỚI
             </button>
-            <button class="btn btn-outline-success mr-1" ng-disabled="!vm.CanEdit" ng-click="vm.gotoEdit()">
+            <button class="btn btn-outline-success mr-1"
+                    data-target="#NationalModal" data-toggle="modal"
+                    ng-disabled="!vm.CanEdit" ng-click="vm.gotoEdit()">
                 <i class="fas fa-fw fa-pen"></i> CHỈNH SỬA
             </button>
-            <button class="btn btn-outline-danger w200" ng-disabled="!vm.CanEdit" ng-click="vm.remove()">
+            <button class="btn btn-outline-danger w200"
+                    data-target="#DeleteModal" data-toggle="modal"
+                    ng-disabled="!vm.CanEdit" ng-click="vm.remove()">
                 <i class="fas fa-fw fa-trash"></i> XÓA
             </button>
+        </div>
+
+
+        <!-- National Management Modal -->
+        <div class="modal fade" id="NationalModal" tabindex="-1" role="dialog" aria-labelledby="ModalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-uppercase" id="ModalTitle">{{vm.modalTitle}}</h5>
+                        <button type="button" class="modal-btnClose close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="err-message" ng-if="vm.message">{{vm.message}}</p>
+                        <div>
+                            <form class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="name">Tên đơn vị <span class="required_ico">*</span></label>
+                                        <input name="name" class="form-control" type="text" ng-model="vm.nationalModel.Name" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="types">Đơn vị trực thuộc <span class="required_ico">*</span></label>
+                                        <select id="types" class="form-control"
+                                                ng-model="vm.nationalModel.Type"
+                                                ng-options="t.typeId as t.name for t in vm.types"></select>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-6" ng-if="vm.nationalModel.Type == 2">
+                                        <label for="city">Thành phố <span class="required_ico">*</span></label>
+                                        <select id="city" class="form-control"
+                                                ng-model="vm.nationalModel.Id"
+                                                ng-options="n.Id as n.Name for n in vm.citys"></select>
+                                    </div>
+                                    <div class="col-md-6" ng-if="vm.nationalModel.Type > 0">
+                                        <label for="national">Quốc gia <span class="required_ico">*</span></label>
+                                        <select id="national" class="form-control"
+                                                ng-model="vm.nationalModel.ParentId"
+                                                ng-options="n.nationId as n.name for n in vm.nationals"></select>
+                                    </div>
+                                </div>
+                                <div class="row mt-3 mb-3" style="float: right;">
+                                    <button class="btn btn-outline-primary mr-1" 
+                                            ng-disabled="vm.isBlank"
+                                            ng-click="vm.addNewNational(vm.nationalModel)">
+                                        <i class="fas fa-fw fa fa-plus"></i> THÊM
+                                    </button>
+                                </div>
+                                <div class="row mt-3" style="display: block;"  ng-if="vm.nationalModel.Id">
+                                    <table class="table table-bordered table-hover">
+                                        <thead class="thead-light shadow_tb txt-center">
+                                            <tr>
+                                                <th style="width: 80%">Tên</th>
+                                                <th style="width: 20%"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="txt-center">
+                                            <tr ng-repeat="row in vm.listNewNational">
+                                                <td>{{row.Name}}</td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
+                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.saveChanges()" ng-disabled="!vm.isValid">Lưu</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delete HealthCheck Modal -->
+        <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        Bạn muốn xóa mục này?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
+                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.deleted()">Đồng ý</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

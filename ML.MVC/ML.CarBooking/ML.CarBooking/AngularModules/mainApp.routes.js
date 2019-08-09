@@ -31,12 +31,12 @@
                 })
 
                 //Master Data
-                .state('masterData', {
-                    url: '/masterData',
-                    templateUrl: 'AngularModules/Administration/Templates/MasterDataManagements.html',
-                    controller: 'masterDataManagementController',
-                    controllerAs: 'vm'
-                })
+                //.state('masterData', {
+                //    url: '/masterData',
+                //    templateUrl: 'AngularModules/Administration/Templates/MasterDataManagements.html',
+                //    controller: 'masterDataManagementController',
+                //    controllerAs: 'vm'
+                //})
 
                 .state('nationalManagement', {
                     url: '/masterData/nationalManagement',
