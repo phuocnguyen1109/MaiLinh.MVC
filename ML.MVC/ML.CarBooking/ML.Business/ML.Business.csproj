@@ -40,10 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Implements\Hr\LocationBusiness.cs" />
     <Compile Include="Implements\Hr\PersonBusiness.cs" />
     <Compile Include="Implements\Hr\PersonEducationBusiness.cs" />
     <Compile Include="Implements\Hr\PersonHealthCheckBusiness.cs" />
     <Compile Include="Implements\Hr\PersonWorkingHistory.cs" />
+    <Compile Include="Interfaces\Hr\ILocation.cs" />
     <Compile Include="Interfaces\Hr\IPersonBusiness.cs" />
     <Compile Include="Interfaces\Hr\IPersonEducationBusiness.cs" />
     <Compile Include="Interfaces\Hr\IPersonHealthCheckBusiness.cs" />
