@@ -62,6 +62,7 @@
     <Reference Include="Ninject.Web.Mvc, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -193,8 +194,12 @@
   <ItemGroup>
     <Content Include="AngularModules\Administration\accountManagementController.js" />
     <Content Include="AngularModules\Administration\masterDataManagementController.js" />
+    <Content Include="AngularModules\Administration\nationalManagementController.js" />
+    <Content Include="AngularModules\Administration\NationalModalController.js" />
     <Content Include="AngularModules\Administration\Templates\AccountManagements.html" />
     <Content Include="AngularModules\Administration\Templates\MasterDataManagements.html" />
+    <Content Include="AngularModules\Administration\Templates\nationalManagement.html" />
+    <Content Include="AngularModules\Administration\Templates\NationalModal.html" />
     <Content Include="AngularModules\HrModules\editEmployeeController.js" />
     <Content Include="AngularModules\HrModules\educationController.js" />
     <Content Include="AngularModules\HrModules\employeeInfoController.js" />

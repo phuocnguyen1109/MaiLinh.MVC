@@ -1,0 +1,194 @@
+﻿<div ng-contholler="nationalManagementContholler as vm">
+    <div ng-init="vm.initialize()">
+        <h3>THÔNG TIN ĐỊA LÍ / HÀNH CHÍNH</h3>
+        <br />
+        <!--Header-->
+        <div class="row">
+            <div class="col-md-6">
+                <!--Filter-->
+                <div class="row">
+                    <div class="col-md-6" style="display: grid;">
+                        <label for="types" class="text-uppercase">Phân loại:</label>
+                        <select id="types" class="form-control"
+                                ng-model="vm.selectedItem"
+                                ng-options="t.Type as t.TypeName for t in vm.types"></select>
+                    </div>
+                    <div class="col-md-6" ng-if="vm.selectedItem != 0">
+                        <label for="national" class="text-uppercase">Quốc Gia:</label>
+                        <select id="national" class="form-control"
+                                ng-model="vm.selectedNational"
+                                ng-options="n.ParentId as n.ParentName for n in vm.nationals"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="searching"></label>
+                <div class="input-group" style="margin-top: 4px;">
+                    <input type="text" class="form-control bg-light small" ng-change="vm.filterNational()" ng-model="vm.filterText" placeholder="Thông tin tìm kiếm ..." aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">
+                            <i class="fas fa-search fa-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+
+        <!--Table-->
+        <div>
+            <table class="table table-bordered table-hover">
+                <thead class="thead-light shadow_tb txt-center">
+                    <tr>
+                        <th style="width:5%"></th>
+                        <th style="width:5%">ID</th>
+                        <th style="width:15%">TÊN</th>
+                        <th style="width:15%">NGÀY TẠO</th>
+                        <th style="width:15%">NGƯỜI TẠO</th>
+                        <th style="width:15%">NGÀY CẬP NHẬT</th>
+                        <th style="width:15%">NGƯỜI CẬP NHẬT</th>
+                        <th style="width:15%">ĐƠN VỊ TRỰC THUỘC</th>
+                    </tr>
+                </thead>
+                <tbody class="txt-center">
+                    <tr ng-repeat="row in vm.citys track by $index" ng-click="vm.rowClick(row)">
+                        <td>
+                            <input type="checkbox" ng-change="vm.checkSelected()" ng-model="row.IsSelected" />
+                        </td>
+                        <td>{{row.Id}}</td>
+                        <td>{{row.Name}}</td>
+                        <td>07/31/2019</td>
+                        <td>Admin</td>
+                        <td>07/31/2019</td>
+                        <td>Admin</td>
+                        <td>{{row.ParentName}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br />
+
+        <!--Action Btn-->
+        <div class="row">
+            <button class="btn btn-outline-primary mr-1"
+                    data-toggle="modal" data-target="#NationalModal"
+                    ng-click="vm.add()">
+                <i class="fas fa-fw fa fa-plus"></i> THÊM MỚI
+            </button>
+            <button class="btn btn-outline-success mr-1"
+                    data-target="#NationalModal" data-toggle="modal"
+                    ng-disabled="!vm.CanEdit" ng-click="vm.gotoEdit()">
+                <i class="fas fa-fw fa-pen"></i> CHỈNH SỬA
+            </button>
+            <button class="btn btn-outline-danger w200"
+                    data-target="#DeleteModal" data-toggle="modal"
+                    ng-disabled="!vm.CanDelete">
+                <i class="fas fa-fw fa-trash"></i> XÓA
+            </button>
+        </div>
+
+
+        <!-- National Management Modal -->
+        <div class="modal fade" id="NationalModal" tabindex="-1" role="dialog" aria-labelledby="ModalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-uppercase" id="ModalTitle">{{vm.modalTitle}}</h5>
+                        <button type="button" class="modal-btnClose close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="err-message" ng-if="vm.message">{{vm.message}}</p>
+                        <div>
+                            <form class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="name">Tên đơn vị <span class="required_ico">*</span></label>
+                                        <input name="name" class="form-control" type="text" ng-model="vm.nationalModel.Name" ng-change="vm.checkValid()" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="types">Đơn vị trực thuộc <span class="required_ico">*</span></label>
+                                        <select id="types" class="form-control"
+                                                ng-model="vm.nationalModel.Type"
+                                                ng-options="t.Type as t.TypeName for t in vm.types"
+                                                ng-change="vm.checkValid()" ></select>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-6" ng-if="vm.nationalModel.Type == 2">
+                                        <label for="city">Thành phố <span class="required_ico">*</span></label>
+                                        <select id="city" class="form-control"
+                                                ng-model="vm.nationalModel.Id"
+                                                ng-options="n.Id as n.Name for n in vm.citys" 
+                                                ng-change="vm.checkValid()"></select>
+                                    </div>
+                                    <div class="col-md-6" ng-if="vm.nationalModel.Type > 0">
+                                        <label for="national">Quốc gia <span class="required_ico">*</span></label>
+                                        <select id="national" class="form-control"
+                                                ng-model="vm.nationalModel.ParentId"
+                                                ng-options="n.ParentId as n.ParentName for n in vm.nationals" 
+                                                ng-change="vm.checkValid()"></select>
+                                    </div>
+                                </div>
+                                <div class="row mt-3 mb-3" style="float: right;">
+                                    <button class="btn btn-outline-primary mr-1" 
+                                            ng-disabled="vm.isBlank"
+                                            ng-click="vm.addNewNational(vm.nationalModel)"
+                                            ng-keypress="vm.addNewNational(vm.nationalModel)">
+                                        <i class="fas fa-fw fa fa-plus"></i> THÊM
+                                    </button>
+                                </div>
+                                <div class="row mt-3" style="display: block;">
+                                    <table class="table table-bordered table-hover">
+                                        <thead class="thead-light shadow_tb txt-center">
+                                            <tr>
+                                                <th style="width: 80%">Tên</th>
+                                                <th style="width: 20%"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="txt-center">
+                                            <tr ng-repeat="row in vm.listNewNational">
+                                                <td>{{row.Name}}</td>
+                                                <td>
+                                                    <button class="btn btn-outline-success" ng-click="vm.nationalModel = row">
+                                                        <i class="fas fa-fw fa-pen"></i>
+                                                    </button>
+                                                    <button class="btn btn-outline-danger" ng-click="vm.deletedRow(row)">
+                                                        <i class="fas fa-fw fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
+                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal"
+                                ng-click="vm.saveChanges()" ng-disabled="!vm.isValid">Lưu
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delete HealthCheck Modal -->
+        <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        Bạn muốn xóa {{vm.deleteRows.length}} mục này?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
+                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.deleted()">Đồng ý</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

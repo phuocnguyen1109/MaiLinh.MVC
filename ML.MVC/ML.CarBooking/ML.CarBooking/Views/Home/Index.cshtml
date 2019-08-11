@@ -70,12 +70,19 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" data-toggle="collapse" aria-expanded="true" aria-controls="collapsePages" ng-click="vm.gotoMasterDataManagement()"> 
+                <a class="nav-link collapsed" data-toggle="collapse" data-target="#National" aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-clipboard-list"></i>
-                    <span >Quản lý Master Data</span>
+                    <span>Quản lý Master Data</span>
                 </a>
+                <div id="National" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" ng-click="vm.gotoNationalManagement()">Quốc Gia / Tỉnh Thành</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" ng-click="vm.gotoAccountManagement()">
-                    <i class="fas fa-fw fa-users-cog""></i>
+                    <i class="fas fa-fw fa-users-cog" "></i>
                     <span>Quản lý Master Data</span>
                 </a>
             </li>
@@ -230,7 +237,7 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img class="img-profile rounded-circle" src="~/Content/Images/avatar.jpg">
+                                <img class="img-profile rounded-circle" src="Content/Images/avatar.jpg">
                                 <div class="ml-2">
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">@Model.UserName</span> <br />
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">Administrator</span>
@@ -324,6 +331,10 @@
     <script type="text/javascript" src="~/AngularModules/Vehicle/editVehicleController.js"></script>
     <script type="text/javascript" src="~/AngularModules/Administration/masterDataManagementController.js"></script>
     <script type="text/javascript" src="~/AngularModules/Administration/accountManagementController.js"></script>
+
+    <script type="text/javascript" src="~/AngularModules/Administration/nationalManagementController.js"></script>
+    <script type="text/javascript" src="~/AngularModules/Administration/NationalModalController.js"></script>
+    
 
 </body>
 </html>

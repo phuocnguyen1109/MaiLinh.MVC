@@ -17,6 +17,7 @@
         vm.gotoVehicleManagement = gotoVehicleManagement;
         vm.gotoMasterDataManagement = gotoMasterDataManagement;
         vm.gotoAccountManagement = gotoAccountManagement;
+        vm.gotoNationalManagement = gotoNationalManagement;
 
 
         function gotoEmployees() {
@@ -33,6 +34,10 @@
 
         function gotoAccountManagement() {
             $state.go('account');
+        }
+
+        function gotoNationalManagement() {
+            $state.go('nationalManagement');
         }
     }
 })();

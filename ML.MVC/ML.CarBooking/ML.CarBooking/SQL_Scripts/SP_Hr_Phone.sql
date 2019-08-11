@@ -51,6 +51,8 @@ BEGIN
 
 END
 
+GO
+
 CREATE PROC [Hr].[DeletePersonPhone]
 @id INT
 AS
