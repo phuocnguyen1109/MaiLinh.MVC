@@ -28,6 +28,16 @@ namespace ML.Business.Implements.Hr
             return m_LocationDataLayer.DeleteLocation(ids);
         }
 
+        public IEnumerable<MLocation> GetAllCity()
+        {
+            return m_LocationDataLayer.GetAllCity();
+        }
+
+        public IEnumerable<MLocation> GetAllDisctrictByCityId(int cityId)
+        {
+            return m_LocationDataLayer.GetAllDisctrictByCityId(cityId);
+        }
+
         public LocationObject GetAllLocation(int type, int parentId)
         {
             return m_LocationDataLayer.GetAllLocation(type, parentId);

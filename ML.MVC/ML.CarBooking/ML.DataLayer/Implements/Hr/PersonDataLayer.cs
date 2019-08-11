@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using ML.Entities.RequestModels.Hr;
 using ML.Entities;
+using ML.Common.Data.Utilities;
+using System.Data;
 
 namespace ML.DataLayer.Implements.Hr
 {
@@ -87,6 +89,12 @@ namespace ML.DataLayer.Implements.Hr
             connection.Query<PersonGridResponse>("[Hr].[GetAllPerson]", commandType: System.Data.CommandType.StoredProcedure));
         }
 
+        public IEnumerable<PersonAddress> GetPersonAddresses(int pid)
+        {
+            return Execute(connection => connection.Query<PersonAddress>("[Hr].[GetPersonAddress]",
+              new { pid = pid }, commandType: System.Data.CommandType.StoredProcedure));
+        }
+
         public IEnumerable<PersonIdentityCard> GetPersonIdentities(int pid)
         {
             return Execute(connection => connection.Query<PersonIdentityCard>("[Hr].[GetPersonIdentities]",
@@ -116,6 +124,19 @@ namespace ML.DataLayer.Implements.Hr
                     pid = pid
                 },
                 commandType: System.Data.CommandType.StoredProcedure).FirstOrDefault());
+        }
+
+        public int UpdatePersonAddress(IEnumerable<PersonAddress> request, int userId)
+        {
+            DataTable tblAddress = request.ConvertToDataTable();
+            return Execute(connection =>
+            connection.Execute("[Hr].[UpdatePersonAddress]",
+            new
+            {
+                addresstbl = tblAddress,
+                userId = userId
+
+            }, commandType: System.Data.CommandType.StoredProcedure));
         }
 
         public int UpdatePersonIdentity(PersonIdentityCard request, int userId = 1)

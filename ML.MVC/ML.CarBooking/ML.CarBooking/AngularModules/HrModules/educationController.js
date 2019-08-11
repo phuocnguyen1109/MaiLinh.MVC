@@ -161,7 +161,6 @@
             var expiredDate = null;
             if (row.licenseDate != null && row.usedTime != null) {
                 var licenseDate = new Date(row.licenseDate);
-                console.log(licenseDate);
                 expiredDate = licenseDate.setMonth(licenseDate.getMonth() + row.usedTime);
                 row.expiredDate = new Date(expiredDate);
                 if (row.isCheck == true && row.usedTime != null && row.licenseDate != null && row.expiredDate != null) {

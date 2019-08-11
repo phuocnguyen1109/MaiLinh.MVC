@@ -31,5 +31,10 @@ namespace ML.DataLayer.Interfaces.Hr
         //SI
         PersonResponse GetPersonSIContracts(int pid);
         int UpdatePersonSIContract(PersonResponse request, int userId = 1);
+
+        //Address
+        IEnumerable<PersonAddress> GetPersonAddresses(int pid);
+        int UpdatePersonAddress(IEnumerable<PersonAddress> request, int userId);
+
     }
 }

@@ -38,7 +38,7 @@
             <li>
                 <a class="sidebar-brand d-flex align-items-center justify-content-center" ui-sref="dashboard">
                     <div class="sidebar-brand-text mx-3">
-                        <img src="~/Content/Images/Logo_MLXCT.jpg" class="circle-img img_halfsize">
+                        <img src="~/Content/Images/xe_16_2.jpg" style="width:100%">
                     </div>
                 </a>
             </li>
@@ -56,49 +56,50 @@
                 <hr class="sidebar-divider">
             </li>
 
-            <!-- Heading -->
-            <li>
-                <div class="sidebar-heading" ng-if='isAdmin'>
-                    Administration
-                </div>
-            </li>
-
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <div class="sidebar-heading">
-                    System Administration
+                    HỆ THỐNG
                 </div>
             </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" data-toggle="collapse" data-target="#National" aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-clipboard-list"></i>
-                    <span>Quản lý Master Data</span>
+                    <span>Quản lý Danh Mục</span>
                 </a>
                 <div id="National" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" ng-click="vm.gotoNationalManagement()">Quốc Gia / Tỉnh Thành</a>
+                    </div>
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" ng-click="">Quản Lý Master Data</a>
                     </div>
                 </div>
             </li>
             <li class="nav-item">
                 <a class="nav-link" ng-click="vm.gotoAccountManagement()">
                     <i class="fas fa-fw fa-users-cog" "></i>
-                    <span>Quản lý Master Data</span>
+                    <span>Quản lý Accounts</span>
                 </a>
             </li>
-
-            <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" ng-click="gotoPermission()" ng-if="isAdmin">
+                <a class="nav-link" ng-click="gotoPermission()">
                     <i class="fas fa-fw fa-cog"></i>
-                    Phân Quyền Hệ Thống
+                    Quản Lý Phân Quyền
                 </a>
-                <a class="nav-link" ng-click="gotoRoles()" ng-if="isAdmin">
-                    <i class="fas fa-fw fa-user"></i>
-                    Quản Lý Roles
-                </a>
+
+                <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                @*<a class="nav-link" ng-click="gotoPermission()" ng-if="isAdmin">
+                <i class="fas fa-fw fa-cog"></i>
+                Phân Quyền Hệ Thống
+            </a>
+            <a class="nav-link" ng-click="gotoRoles()" ng-if="isAdmin">
+                <i class="fas fa-fw fa-user"></i>
+                Quản Lý Roles
+            </a>*@
                 <div class="sidebar-heading">
-                    Các Phòng Ban
+                    CHỨC NĂNG
                 </div>
             </li>
 
@@ -106,63 +107,79 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapsePagesHR" aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-user-tie"></i>
-                    <span>Phòng Nhân Sự</span>
+                    <span>NHÂN SỰ</span>
                 </a>
                 <div id="collapsePagesHR" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" ng-click="vm.gotoEmployees()">Quản Lý Nhân Sự</a>
+                        <a class="collapse-item" ng-click="vm.gotoEmployees()">Hồ Sơ Lái Xe</a>
+                    </div>
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" ng-click="vm.gotoEmployees()">Tính Lương Lái Xe</a>
                     </div>
                 </div>
             </li>
 
-            @*<li class="nav-item">
-            <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapsePagesSEO" aria-expanded="true" aria-controls="collapsePages">
-                <i class="fas fa-fw fa-user"></i>
-                <span>Điều Hành - Kinh Doanh</span>
-            </a>
-            <div id="collapsePagesSEO" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
 
-                    <a class="collapse-item">Module Nghiệp vụ 1</a>
-                    <a class="collapse-item">Module Nghiệp Vụ 2</a>
-                    <div class="collapse-divider"></div>
-                    <a class="collapse-item">Module Nghiệp Vụ 4</a>
-                    <a class="collapse-item">Module Nghiệp vụ 5</a>
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseExecute" aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-user-tie"></i>
+                    <span>ĐIỀU HÀNH - KINH DOANH</span>
+                </a>
+                <div id="collapseExecute" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item">Hồ Sơ Khách Hàng</a>
+                    </div>
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item">Book Lệnh</a>
+                    </div>
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item">Chấm Công Lái Xe</a>
+                    </div>
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item">Đánh Giá Lái Xe</a>
+                    </div>
                 </div>
-            </div>
-        </li>*@
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseAccountance" aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-user-tie"></i>
+                    <span>KẾ TOÁN</span>
+                </a>
+                <div id="collapseAccountance" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item">Cập Nhật Lịch Trình</a>
+                    </div>
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item">Nhập Giá Nhiên Liệu</a>
+                    </div>
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item">Tổng Hợp Doanh Thu</a>
+                    </div>
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item">Công Nợ Khách Hàng</a>
+                    </div>
+                </div>
+            </li>
 
             <li class="nav-item">
                 <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapsePagesTECH" aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-tools"></i>
-                    <span>Kỹ Thuật - An Toàn</span>
+                    <span>KỸ THUẬT - AN TOÀN</span>
                 </a>
                 <div id="collapsePagesTECH" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" ng-click="vm.gotoVehicleManagement()">Quản Lý Phương Tiện</a>
-                        @*<a class="collapse-item">Module Nghiệp Vụ 2</a>
-                    <div class="collapse-divider"></div>
-                    <a class="collapse-item">Module Nghiệp Vụ 4</a>
-                    <a class="collapse-item">Module Nghiệp vụ 5</a>*@
+                        <a class="collapse-item" ng-click="vm.gotoVehicleManagement()">Hồ Sơ Phương Tiện</a>
+
+                    </div>
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" >Cập Nhật Nhiên Liệu</a>
+
                     </div>
                 </div>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapsePagesACC" aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-chart-bar"></i>
-                    <span>Kế Toán</span>
-                </a>
-                <div id="collapsePagesACC" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item">Module Nghiệp vụ 1</a>
-                        <a class="collapse-item">Module Nghiệp Vụ 2</a>
-                        <div class="collapse-divider"></div>
-                        <a class="collapse-item">Module Nghiệp Vụ 4</a>
-                        <a class="collapse-item">Module Nghiệp vụ 5</a>
-                    </div>
-                </div>
-            </li>
+          
 
         </ul>
         <!-- Divider -->
@@ -181,53 +198,10 @@
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
-                    @*<ul class="navbar-nav navbar-expand-lg">
-                            <li class="nav-item txt-center">
-                                <a class="nav-link">
-                                    <img class="img-profile rounded-circle" src="~/Content/Images/no_avatar.png" style="height:50px;">
-                                    <div class="ml-2">
-                                        <span class="mr-2 d-none d-lg-inline small txt-left">
-                                            Chuyên viên hỗ trợ, tư vấn dành cho nhà tuyển dụng
-                                        </span>
-                                        <br />
-                                        <span class="mr-2 d-none d-lg-inline text-black-50 small">
-                                            Ms Hoàng Dung
-                                            <i class="fas fa-fw fa-phone"></i>0902 867 167
-                                            <i class="fas fa-fw fa-envelope"></i>dung.dang@mywork.com.vn
-                                        </span>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>*@
+                   
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        @*<li class="nav-item txt-center m-3">
-                                <a style="display: grid;">
-                                    <i class="fas fa-fw fa-home"></i>
-                                    <span>Trang chủ</span>
-                                </a>
-                            </li>
-
-                            <li class="nav-item txt-center m-3">
-                                <a style="display: grid;">
-                                    <i class="fas fa-fw fa-briefcase"></i>
-                                    <span>Tuyển dụng</span>
-                                </a>
-                            </li>
-
-                            <li class="nav-item txt-center m-3">
-                                <a style="display: grid;">
-                                    <i class="fas fa-fw fa-id-card-alt"></i>
-                                    <span>Ứng viên</span>
-                                </a>
-                            </li>
-
-                            <li class="nav-item txt-center m-3">
-                                <a style="display: grid;">
-                                    <i class="fas fa-fw fa-envelope-open-text"></i>
-                                    <span>Bảng giá</span>
-                                </a>
-                            </li>*@
+                     
 
                         <li class="nav-item txt-center">
                             <div class="mt-3 topbar-divider d-none d-sm-block"></div>
@@ -291,11 +265,11 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Nhấn vào Logout để thoát</div>
+                <div class="modal-body">Nhấn vào <b>Đăng Xuất</b> để thoát</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <input type="button" class="btn btn-primary" value="Đăng Xuất" onclick="window.location.href='<%= Url.Action(" Login", "Home" ) %>';" />
-                    <button class="btn btn-primary" data-dismiss="modal" ng-click="logout()">Logout</button>
+                    <button class="btn btn-outline-danger" type="button" data-dismiss="modal">Hủy Bỏ</button>
+                    <button type="button" class="btn btn-outline-info" value="Đăng Xuất" onclick="location.href='@Url.Action("Logout", "Home")'">Đăng Xuất</button>
+                    
                 </div>
             </div>
         </div>

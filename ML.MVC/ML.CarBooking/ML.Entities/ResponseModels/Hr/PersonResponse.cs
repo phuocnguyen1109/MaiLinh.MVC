@@ -15,14 +15,14 @@ namespace ML.Entities.ResponseModels.Hr
         public string LastName { get; set; }
         public string FullName { get; set; }
         public bool IsMale { get; set; }
-        public DateTime DoB { get; set; }
+        public DateTime? DoB { get; set; }
         public int HomeTownId { get; set; }
         public int ReligionId { get; set; }
         public int NationId { get; set; }
         public int PlaceOfBirth { get; set; }
         public int CountryId { get; set; }
-        public DateTime MLCDate { get; set; }
-        public DateTime StartDate { get; set; }
+        public DateTime? MLCDate { get; set; }
+        public DateTime? StartDate { get; set; }
         public int DepartmentId { get; set; }
         public int RoleId { get; set; }
         public int ContractTypeId { get; set; }
@@ -31,11 +31,12 @@ namespace ML.Entities.ResponseModels.Hr
         public bool IsPension { get; set; }
         public string SINote { get; set; }
         public int CreatedBy { get; set; }
-        public DateTime CreatedOn {get; set;}
+        public DateTime? CreatedOn {get; set;}
         public int UpdatedBy { get; set; }
         public int UpdatedOn { get; set; }
         public bool Actived { get; set; }
         public bool IsDeleted { get; set; }
+        public IEnumerable<PersonAddress> Addresses { get; set; }
     }
 
     public class PersonGridResponse

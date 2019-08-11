@@ -50,6 +50,11 @@ namespace ML.Business.Implements.Hr
             return m_PersonDataLayer.GetAllPerson();
         }
 
+        public IEnumerable<PersonAddress> GetPersonAddresses(int pid)
+        {
+            return m_PersonDataLayer.GetPersonAddresses(pid);
+        }
+
         public IEnumerable<PersonIdentityCard> GetPersonIdentities(int pid)
         {
             return m_PersonDataLayer.GetPersonIdentities(pid);
@@ -68,6 +73,11 @@ namespace ML.Business.Implements.Hr
         public PersonResponse GetPersonSIContracts(int pid)
         {
             return m_PersonDataLayer.GetPersonSIContracts(pid);
+        }
+
+        public int UpdatePersonAddress(IEnumerable<PersonAddress> request, int userId)
+        {
+            return m_PersonDataLayer.UpdatePersonAddress(request, userId);
         }
 
         public int UpdatePersonIdentity(PersonIdentityCard request, int userId = 1)

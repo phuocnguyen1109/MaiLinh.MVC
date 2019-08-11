@@ -13,5 +13,8 @@ namespace ML.Business.Interfaces.Hr
         LocationObject GetAllLocation(int type, int parentId);
         int AddOrUpdateLocation(MLocation request);
         int DeleteLocation(IEnumerable<int> ids);
+
+        IEnumerable<MLocation> GetAllCity();
+        IEnumerable<MLocation> GetAllDisctrictByCityId(int cityId);
     }
 }

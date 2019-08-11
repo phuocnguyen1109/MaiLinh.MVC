@@ -21,12 +21,13 @@
                     <th style="width: 10%;">Họ</th>
                     <th style="width: 10%;">Tên</th>
                     <th style="width: 10%;">Ngày Sinh</th>
-                    <th style="width: 10%;">Điện Thoại</th>
+                    <th style="width: 5%;">Điện Thoại</th>
                     <th style="width: 10%;">Ngày Vào Cty</th>
                     <th style="width: 10%;">Chức Vụ</th>
                     <th style="width: 10%;">HDLD/HDHT</th>
-                    <th style="width: 10%;">Thời Hạn HĐ</th>
+                    <th style="width: 5%;">Thời Hạn HĐ</th>
                     <th style="width: 10%;">Ngày Hết Hạn HĐ</th>
+                    <th style="width: 10%;">Ngày Nghỉ Việc</th>
                 </tr>
             </thead>
             <tbody class="txt-center">
@@ -37,12 +38,13 @@
                     <td style="width: 10%;">{{row.FirstName}}</td>
                     <td style="width: 10%;">{{row.LastName}}</td>
                     <td style="width: 10%;">{{row.dobDisplay}}</td>
-                    <td style="width: 10%;">{{row.PhoneNumber}}</td>
+                    <td style="width: 5%;">{{row.PhoneNumber}}</td>
                     <td style="width: 10%;">{{row.StartDateDisplay}}</td>
                     <td style="width: 10%;">{{row.Role}}</td>
                     <td style="width: 10%;">{{row.ContractNumber}}</td>
-                    <td style="width: 10%;">{{row.ContractDuration}}</td>
+                    <td style="width: 5%;">{{row.ContractDuration}}</td>
                     <td style="width: 10%;">{{row.expired}}</td>
+                    <td style="width: 10%;"></td>
                 </tr>
             </tbody>
         </table>
@@ -51,6 +53,9 @@
         </button>
         <button class="btn btn-outline-success mr-1" ng-disabled="!vm.CanEdit" ng-click="vm.gotoEdit()">
             <i class="fas fa-fw fa-pen"></i> CHỈNH SỬA
+        </button>
+        <button class="btn btn-outline-info mr-1" ng-disabled="!vm.CanEdit" ng-click="vm.gotoView()">
+            <i class="fas fa-fw fa-street-view"></i> XEM
         </button>
         <!--<button class="btn btn-outline-danger w200" ng-click="vm.remove()">XÓA</button>-->
     </div>

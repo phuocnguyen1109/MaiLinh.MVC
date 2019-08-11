@@ -33,6 +33,19 @@ namespace ML.CarBooking.Controllers.API.Hr
             return m_locationBusiness.DeleteLocation(ids);
         }
 
+        public IEnumerable<MLocation> GetAllCity()
+        {
+            return m_locationBusiness.GetAllCity();
+        }
+
+        [HttpGet]
+        public IEnumerable<MLocation> GetAllDistrictByCityId(int cityId)
+        {
+            return m_locationBusiness.GetAllDisctrictByCityId(cityId);
+        }
+
+          
+
          
     }
 }

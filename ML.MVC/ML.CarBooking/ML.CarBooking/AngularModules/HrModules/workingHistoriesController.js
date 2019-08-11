@@ -79,6 +79,8 @@
             vm.modalTitle = "Chỉnh sửa lịch sử công tác";
             vm.isValid = true;
             vm.userWorkingHistory = r;
+            vm.userWorkingHistory.FromDate = new Date(r.FromDate);
+            vm.userWorkingHistory.ToDate = new Date(r.ToDate);
         }
 
         function openDeleteMModal(row) {

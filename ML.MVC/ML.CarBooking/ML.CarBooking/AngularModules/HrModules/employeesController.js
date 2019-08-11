@@ -22,6 +22,7 @@
 
         //biding functions
         vm.gotoEdit = gotoEdit;
+        vm.gotoView = gotoView;
         vm.initialize = initialize;
         vm.checkSelected = checkSelected;
         vm.rowClick = rowClick;
@@ -33,6 +34,10 @@
         function initialize() {
             getPersons();
 
+        }
+
+        function gotoView() {
+            alert('Chức Năng Đang Được Cập Nhật');
         }
 
         function filter() {

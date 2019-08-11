@@ -12,7 +12,7 @@
                         <div class="col-lg-4 col-md-4">
                             <label for="placeOfBorn">NƠI SINH:</label>
                             <select class="form-control" ng-model="vm.person.PlaceOfBirth"
-                                    ng-options="l.id as l.name for l in vm.placeOfBirth">
+                                    ng-options="l.Id as l.Name for l in vm.cities">
                                
                             </select>
                         </div>
@@ -82,10 +82,10 @@
                             <label>ĐÃ NGHỈ VIỆC:</label>
                             <div class="w-100" style="margin-left: 20px;">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" value="false" ng-model="vm.active" name="nghiviec">Đã Nghỉ
+                                    <input type="radio" class="form-check-input" value="false" ng-model="vm.person.Actived" name="nghiviec">Đã Nghỉ
                                 </label>
                                 <label class="form-check-label ml-4">
-                                    <input type="radio" class="form-check-input" value="true" ng-model="vm.active" name="nghiviec">Không
+                                    <input type="radio" class="form-check-input" value="true" ng-model="vm.person.Actived" name="nghiviec">Không
                                 </label>
                             </div>
                         </div>
@@ -96,37 +96,25 @@
                     <div class="mt-4">
                         <div class="row">
                             <div class="col-lg-12 col-md-12 ml-3">
-                                <label for="placeOfBorn">ĐỊA CHỈ THƯỜNG TRÚ:</label>
+                                <label class="col-md-7" for="">ĐỊA CHỈ THƯỜNG TRÚ:</label>
+                                <label class="col-md-2 ml-1" for="">THÀNH PHỐ:</label>
+                                <label class="col-md-2 ml-1" ng-if="vm.personAddresses.address.CityId ==5" for="">QUẬN / HUYỆN:</label>
                                 <div class="row" style="margin-left: 0;">
-                                    <input type="text" class="form-control col-md-7" placeholder="Địa Chỉ, Tên Đường..." ng-model="vm.person.Address" />
-                                    <select class="form-control col-md-2 ml-1" ng-model="vm.person.AddressCityId">
-                                        <option value="0">-Chọn Thành Phố-</option>
-                                        <option value="1">Hồ Chí Minh</option>
-                                        <option value="2">Hà Nội</option>
-                                    </select>
-                                    <select class="form-control col-md-2 ml-1" ng-if="vm.person.AddressCityId ==1" ng-model="vm.person.AddressDistrictId">
-                                        <option value="0">-Chọn Quận/Huyện-</option>
-                                        <option value="1">Quận 1</option>
-                                        <option value="2">Quận 2</option>
-                                    </select>
+                                    <input type="text" class="form-control col-md-7" placeholder="Địa Chỉ, Tên Đường..." ng-model="vm.personAddresses.address.Address" />
+                                    <select class="form-control col-md-2 ml-1" ng-change="vm.getDistricts()" ng-options="l.Id as l.Name for l in vm.cities" ng-model="vm.personAddresses.address.CityId"></select>
+                                    <select class="form-control col-md-2 ml-1" ng-if="vm.personAddresses.address.CityId ==5 && vm.districts.length>1" ng-options="l.Id as l.Name for l in vm.districts" ng-model="vm.personAddresses.address.DistrictId"></select>
                                 </div>
                             </div>
                         </div>
                         <div class="row mt-4">
                             <div class="col-lg-12 col-md-12 ml-3">
-                                <label for="placeOfBorn">ĐỊA CHỈ LIÊN LẠC:</label>
+                                <label class="col-md-7" for="">ĐỊA CHỈ LIÊN LẠC:</label>
+                                <label class="col-md-2 ml-1" for="">THÀNH PHỐ:</label>
+                                <label class="col-md-2 ml-1" ng-if="vm.personAddresses.contactAddress.CityId == 5" for="">QUẬN / HUYỆN:</label>
                                 <div class="row" style="margin-left: 0;">
-                                    <input type="text" class="form-control col-md-7" placeholder="Địa Chỉ, Tên Đường..." ng-model="vm.person.ContractAddress" />
-                                    <select class="form-control col-md-2 ml-1" ng-model="vm.person.ContractAddressCityId">
-                                        <option value="0">-Chọn Thành Phố-</option>
-                                        <option value="1">Hồ Chí Minh</option>
-                                        <option value="2">Hà Nội</option>
-                                    </select>
-                                    <select class="form-control col-md-2 ml-1" ng-if="vm.person.ContractAddressCityId == 1" ng-model="vm.person.ContractAddressDistrictId">
-                                        <option value="0">-Chọn Quận/Huyện-</option>
-                                        <option value="1">Quận 1</option>
-                                        <option value="2">Quận 2</option>
-                                    </select>
+                                    <input type="text" class="form-control col-md-7" placeholder="Địa Chỉ, Tên Đường..." ng-model="vm.personAddresses.contactAddress.Address" />
+                                    <select class="form-control col-md-2 ml-1" ng-change="vm.getContactDistricts()" ng-options="l.Id as l.Name for l in vm.cities" ng-model="vm.personAddresses.contactAddress.CityId"></select>
+                                    <select class="form-control col-md-2 ml-1" ng-options="l.Id as l.Name for l in vm.contactDistricts" ng-if="vm.personAddresses.contactAddress.CityId == 5 && vm.contactDistricts.length > 1" ng-model="vm.personAddresses.contactAddress.DistrictId"></select>
                                 </div>
                             </div>
                         </div>

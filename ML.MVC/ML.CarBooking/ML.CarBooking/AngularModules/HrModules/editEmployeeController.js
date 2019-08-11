@@ -8,17 +8,78 @@
         var vm = this;
         var personId = $stateParams.id;
 
+        vm.personAddresses = [];
+
         vm.saveChanges = saveChanges;
+        vm.cancel = cancel;
+        vm.getDistricts = getDistricts;
+        vm.getContactDistricts = getContactDistricts;
+
 
         vm.initialize = initialize;
 
         function initialize() {
             getMasterData();
+            getCities();
             getPerson();
         }
 
+        function getCities() {
+            vm.cities = [{ Id: 0, Name: '-- Chọn Thành Phố --' }];
+            $http.get('/api/Location/GetAllCity')
+                .then(function (result) {
+                    if (result) {
+                        result.data.forEach(function (item, index) {
+                            vm.cities.push({ Id: item.Id, Name: item.Name });
+                        });
+                    }
+                });
+        }
+
+
+        function getDistricts() {
+            vm.districts = [{ Id: 0, Name: '-- Chọn Quận / Huyện --' }];
+            if (vm.personAddresses.address.CityId == 0) {
+                return;
+            }
+            $http.get('/api/Location/GetAllDistrictByCityId', { params: { cityId: vm.personAddresses.address.CityId } })
+                .then(function (result) {
+                    if (!result) return;
+                    result.data.forEach(function (item, index) {
+                        vm.districts.push({ Id: item.Id, Name: item.Name });
+                    });
+                });
+        }
+
+        function getContactDistricts() {
+            vm.contactDistricts = [{ Id: 0, Name: '-- Chọn Quận / Huyện --' }];
+            if (vm.personAddresses.contactAddress.CityId == 0) {
+                return;
+            }
+            $http.get('/api/Location/GetAllDistrictByCityId', { params: { cityId: vm.personAddresses.contactAddress.CityId } })
+                .then(function (result) {
+                    if (!result) return;
+                    result.data.forEach(function (item, index) {
+                        vm.contactDistricts.push({ Id: item.Id, Name: item.Name });
+                    });
+                });
+        }
+
+        function cancel() {
+            angular.element(document).find('.modal-backdrop').remove();
+            $state.go('employees');
+        }
+
         function saveChanges() {
+            debugger;
+            vm.person.addresses = [vm.personAddresses.address, vm.personAddresses.contactAddress];
             vm.person.IsPension = vm.person.IsPension == 'true' ? true : false;
+            vm.person.IsMale = vm.person.IsMale == 'true' ? true : false;
+            vm.person.Actived = vm.person.Actived ? 'true' : 'false';
+            vm.person.DoB = vm.person.DoB.getFullYear() == 1 ? null : vm.person.DoB;
+            vm.person.MLCDate = vm.person.MLCDate.getFullYear() == 1 ? null : vm.person.MLCDate;
+            vm.person.StartDate = vm.person.StartDate.getFullYear() == 1 ? null : vm.person.StartDate;
+
             $http.post('/api/Person/UpdatePersonInformation', vm.person)
                 .then(function (result) {
                     alert('Lưu Thông Tin Thành Công');
@@ -31,9 +92,25 @@
                     if (result.data) {
                         vm.person = result.data;
                         vm.person.IsPension = vm.person.IsPension ? 'true' : 'false';
+                        vm.person.IsMale = vm.person.IsMale ? 'true' : 'false';
+                        vm.person.Actived = vm.person.Actived ? 'true' : 'false';
                         vm.person.DoB = new Date(vm.person.DoB);
                         vm.person.MLCDate = new Date(vm.person.MLCDate);
                         vm.person.StartDate = new Date(vm.person.StartDate);
+                        vm.personAddresses.address = angular.copy(vm.person.Addresses).find(x => x.Type == 1);
+                        if (!vm.personAddresses.address) {
+                            vm.personAddresses.address = { Id: 0, PersonId: personId, Address: null, CityId: 0, DistrictId: 0, Type: 1 };
+                        } else {
+                            getDistricts();
+                        }
+                        vm.personAddresses.contactAddress = angular.copy(vm.person.Addresses).find(x => x.Type == 2);
+                        if (!vm.personAddresses.contactAddress) {
+                            vm.personAddresses.contactAddress = { Id: 0, PersonId: personId, Address: null, CityId: 0, DistrictId: 0, Type: 2 };
+                        } else {
+                            getContactDistricts();
+                        }
+                        
+                        
                     }
                 });
         }

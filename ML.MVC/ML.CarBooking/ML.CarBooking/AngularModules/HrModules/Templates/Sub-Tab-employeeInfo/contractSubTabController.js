@@ -2,9 +2,9 @@
     'use strict'
     angular.module('mainApp').controller('contractSubTabController', contractSubTabController);
 
-    contractSubTabController.$inject = ['$http', '$rootScope', '$scope', '$state'];
+    contractSubTabController.$inject = ['$http', '$rootScope', '$scope', '$state', '$stateParams'];
 
-    function contractSubTabController($http, $rootScope, $scope, $state) {
+    function contractSubTabController($http, $rootScope, $scope, $state, $stateParams) {
         var vm = this;
         vm.initialize = initialize;
         vm.checkValid = checkValid;
@@ -16,6 +16,7 @@
         vm.generExpiredDate = generExpiredDate;
 
         vm.isValid = false;
+        var personId = $stateParams.id;
 
         function initialize() {
             getContracts();
@@ -42,20 +43,10 @@
 
         function getContracts() {
             //TODO: get data by api
-            vm.contracts = [
-                {
-                    id: 1,
-                    createBy: "admin",
-                    createDate: "01/26/2019",
-                    typeId: 1,
-                    typeName: "Hợp Đồng Lao Động",
-                    contractNumber: "ML0621",
-                    startDate: "01/27/2019",
-                    contractPeriodId: 3,
-                    contractPeriod: "3 tháng",
-                    expiredDate: "04/27/2019",
-                },
-            ];
+            //$http.get('/api/Person/GetPersonContracts', { params: { pid: personId } })
+            //    .then(function (response) {
+            //        debugger;
+            //    });
         }
 
         function getTypesOfContract() {

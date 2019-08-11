@@ -33,7 +33,10 @@ namespace ML.CarBooking.Controllers.API.Hr
 
         public PersonResponse GetPersonInformation(int id)
         {
-            return m_PersonBusiness.GetPersonInformation(id);
+            var personResponse = new PersonResponse();
+            personResponse = m_PersonBusiness.GetPersonInformation(id);
+            personResponse.Addresses = GetPersonAddress(id);
+            return personResponse;
         }
 
         [HttpGet]
@@ -85,8 +88,26 @@ namespace ML.CarBooking.Controllers.API.Hr
         [HttpPost]
         public int UpdatePersonInformation(PersonResponse request, int userId = 1)
         {
-            return m_PersonBusiness.UpdatePersonInformation(request, userId);
+            var result = m_PersonBusiness.UpdatePersonInformation(request, userId);
+            if (result > 0)
+            {
+                result = UpdatePersonAddress(request.Addresses, userId);
+            }
+            return result;
         }
+
+        private int UpdatePersonAddress(IEnumerable<PersonAddress> request, int userId)
+        {
+            return m_PersonBusiness.UpdatePersonAddress(request, userId);
+        }
+
+        [HttpGet]
+        public IEnumerable<PersonAddress> GetPersonAddress(int pid)
+        {
+            return m_PersonBusiness.GetPersonAddresses(pid);
+        }
+
+        
 
     }
 }

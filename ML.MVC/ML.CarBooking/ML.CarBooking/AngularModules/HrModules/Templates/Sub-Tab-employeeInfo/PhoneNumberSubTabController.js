@@ -49,7 +49,6 @@
                     });
                    
                 });
-            console.log(vm.phoneNumbers.length);
         }
 
         function getTypesOfPhoneNumber() {

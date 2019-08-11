@@ -47,6 +47,16 @@ namespace ML.DataLayer.Implements.Hr
              commandType: System.Data.CommandType.StoredProcedure));
         }
 
+        public IEnumerable<MLocation> GetAllCity()
+        {
+            return Execute(connection => connection.Query<MLocation>("[Hr].[GetAllCity]", commandType: CommandType.StoredProcedure));
+        }
+
+        public IEnumerable<MLocation> GetAllDisctrictByCityId(int cityId)
+        {
+            return Execute(connection => connection.Query<MLocation>("[Hr].[GetAllDisctrictByCityId]",new { cityId = cityId }, commandType: CommandType.StoredProcedure));
+        }
+
         public LocationObject GetAllLocation(int type, int parentId)
         {
             var locationObject = new LocationObject();

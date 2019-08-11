@@ -45,6 +45,7 @@
     <Compile Include="MLanguage.cs" />
     <Compile Include="MLocation.cs" />
     <Compile Include="MWorkLicense.cs" />
+    <Compile Include="PersonAddress.cs" />
     <Compile Include="PersonDriveLicense.cs" />
     <Compile Include="PersonEducation.cs" />
     <Compile Include="PersonHealthCheck.cs" />

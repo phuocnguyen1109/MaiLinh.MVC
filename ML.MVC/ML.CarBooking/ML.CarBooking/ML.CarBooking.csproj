@@ -1802,6 +1802,7 @@
     <Content Include="Content\CustomCSS\sb-admin-2.css" />
     <Content Include="Content\CustomCSS\sb-admin-2.min.css" />
     <Content Include="Content\Images\no_avatar.png" />
+    <Content Include="Content\Images\xe_16_2.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -1888,6 +1889,7 @@
     <Content Include="SQL_Scripts\SP_Hr_Location.sql" />
     <Content Include="SQL_Scripts\SP_Hr_Phone.sql" />
     <Content Include="SQL_Scripts\SP_Hr_WorkHistory.sql" />
+    <Content Include="SQL_Scripts\update1208.sql" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

@@ -64,6 +64,20 @@
 
     <div class="row" style="float:right; margin: 20px 10px 20px 0">
         <button class="btn btn-outline-success" ng-click="vm.saveChanges()" style="height: 50px; width:200px; margin-right: 20px;">LƯU THAY ĐỔI</button>
-        <button class="btn btn-outline-danger" style="height: 50px; width:200px;">HỦY BỎ</button>
+        <button class="btn btn-outline-danger"  data-toggle="modal" data-target="#Cancel" style="height: 50px; width:200px;">HỦY BỎ</button>
+    </div>
+</div>
+<div class="modal fade" id="Cancel" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>Bạn có chắc muốn hủy bỏ thao tác , mọi dữ liệu chưa được lưu sẽ mất?</p>
+               
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.cancel()">Đồng ý</button>
+            </div>
+        </div>
     </div>
 </div>
