@@ -166,6 +166,27 @@
 
         }
 
+        vm.openCalendar = openCalendar;
 
+        vm.dateOptions = {
+            dateDisabled: disabled,
+            formatYear: 'yy',
+            maxDate: (new Date().getFullYear() + 2),
+            minDate: vm.person.DoB,
+            startingDay: 1
+        };
+        vm.isOpen = false;
+        vm.altInputFormats = ['M!/d!/yyyy'];
+
+        // Disable weekend selection
+        function disabled(data) {
+            var date = data.date,
+                mode = data.mode;
+            return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
+        }
+
+        function openCalendar() {
+            vm.isOpen = !vm.isOpen;
+        };
     }
 })();

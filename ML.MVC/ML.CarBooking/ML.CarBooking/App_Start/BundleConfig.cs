@@ -32,9 +32,7 @@ namespace ML.CarBooking
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                                       "~/Content/fontawesome-free/css/all.min.css",
-                  "~/Content/CustomCSS/sb-admin-2.css", "~/Content/CustomCSS/agency.css"
-
-));
+                  "~/Content/CustomCSS/sb-admin-2.css", "~/Content/CustomCSS/agency.css"));
         }
     }
 }
