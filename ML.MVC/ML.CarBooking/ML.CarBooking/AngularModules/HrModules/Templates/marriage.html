@@ -22,7 +22,7 @@
                 <th style="width:15%;">NGÀY SINH</th>
                 <th style="width:25%;">NƠI Ở</th>
                 <th style="width:10%;">QUAN HỆ</th>
-                <th style="width:10%;">ĐÃ MẤT</th>
+                <th style="width:10%;">TÌNH TRẠNG</th>
                 <th style="width:12%;"></th>
             </tr>
         </thead>
@@ -33,7 +33,7 @@
                 <td>{{r.dob}}</td>
                 <td>{{r.address}}</td>
                 <td>{{r.relationshipName}}</td>
-                <td><i class="fas fa-fw fa-times-circle"></i></td>
+                <td><i class="fas fa-fw fa-times-circle" ng-if="r.isGone"></i></td>
                 <td>
                     <button class="btn btn-outline-success" data-toggle="modal" data-target="#relativeModal" ng-click="vm.editRelative(r)"><i class="fas fa-fw fa-pen"></i></button>
                     <button class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteRModal" ng-click="vm.openDelModel(r)"><i class="fas fa-fw fa-trash"></i></button>
@@ -76,9 +76,8 @@
 
                             </div>
                             <div class="col-md-6">
-                                <label style="display: inline-flex;vertical-align: -webkit-baseline-middle;">
-                                    <input type="checkbox" ng-model="vm.relative.isGone" />&nbsp;&nbsp;Đã mất
-                                </label>
+                                <label>Tình Trạng:</label><br />
+                                <input type="checkbox" ng-model="vm.relative.isGone" />&nbsp;Đã mất
                             </div>
                         </div>
                         <br />
