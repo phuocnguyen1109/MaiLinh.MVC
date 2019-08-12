@@ -116,11 +116,17 @@
                             if (vm.person.DepartmentId == i.id) {
                                 DepartmentName = i.name;
                             }
+                            if (vm.person.RoleId == 0) {
+                                DepartmentName = "Trống";
+                            }
                         })
                         var RoleName = null;
                         vm.roles.forEach(function (i) {
                             if (vm.person.RoleId == i.id) {
                                 RoleName = i.name;
+                            }
+                            if (vm.person.RoleId == 0) {
+                                RoleName = "Trống";
                             }
                         })
                         vm.person.DepartmentName = DepartmentName;
