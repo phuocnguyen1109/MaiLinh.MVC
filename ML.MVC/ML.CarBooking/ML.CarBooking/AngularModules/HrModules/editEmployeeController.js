@@ -22,6 +22,8 @@
             getMasterData();
             getCities();
             getPerson();
+
+            console.log(vm.person)
         }
 
         function getCities() {
@@ -109,8 +111,20 @@
                         } else {
                             getContactDistricts();
                         }
-                        
-                        
+                        var DepartmentName = null;
+                        vm.departments.forEach(function (i) {
+                            if (vm.person.DepartmentId == i.id) {
+                                DepartmentName = i.name;
+                            }
+                        })
+                        var RoleName = null;
+                        vm.roles.forEach(function (i) {
+                            if (vm.person.RoleId == i.id) {
+                                RoleName = i.name;
+                            }
+                        })
+                        vm.person.DepartmentName = DepartmentName;
+                        vm.person.RoleName = RoleName;
                     }
                 });
         }
@@ -161,10 +175,12 @@
 
 
 
-        
+
 
 
         }
+
+
 
 
     }
