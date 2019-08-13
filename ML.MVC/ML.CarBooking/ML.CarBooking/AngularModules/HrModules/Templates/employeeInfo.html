@@ -1,4 +1,4 @@
-﻿<div style="margin: 0 15px; height: 400px" ng-if="vm.person">
+﻿<div style="margin: 0 15px; height: 500px" ng-if="vm.person">
     <div ng-init="vm.initialize()" class="panel panel-default">
         <div class="panel-body row">
             <uib-tabset justified="true" style="margin:10px; width:100%;">
@@ -12,8 +12,8 @@
                                        datepicker-options="vm.dateOptions" ng-required="true"
                                        close-text="Close" alt-input-formats="vm.altInputFormats" />
                                 <span class="input-group-btn">
-                                    <button type="button" class="btn btn-default" ng-click="vm.openCalendar()">
-                                    <i class="fas fa-fw fa-calendar"></i>
+                                    <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dob')">
+                                        <i class="fas fa-fw fa-calendar"></i>
                                     </button>
                                 </span>
                             </p>
@@ -48,13 +48,33 @@
 
                         <div class="col-lg-4 col-md-4">
                             <label for="dob">NGÀY VÀO HỆ THỐNG MLC:</label>
-                            <input type="date" class="form-control" ng-model="vm.person.MLCDate" />
+                            <p class="input-group">
+                                <input type="text" ng-model="vm.person.MLCDate" class="form-control"
+                                       uib-datepicker-popup="dd/MM/yyyy" is-open="vm.isOpenMLC"
+                                       datepicker-options="vm.dateOptions" ng-required="true"
+                                       close-text="Close" alt-input-formats="vm.altInputFormats" />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="vm.openCalendar('MLC')">
+                                        <i class="fas fa-fw fa-calendar"></i>
+                                    </button>
+                                </span>
+                            </p>
                         </div>
                     </div>
                     <div class="row mt-4">
                         <div class="col-lg-4 col-md-4">
                             <label for="dob">NGÀY VÀO CÔNG TY:</label>
-                            <input type="date" class="form-control" placeholder="..." ng-model="vm.person.StartDate" />
+                            <p class="input-group">
+                                <input type="text" class="form-control" placeholder="..." ng-model="vm.person.StartDate"
+                                       uib-datepicker-popup="dd/MM/yyyy" is-open="vm.isOpenStart"
+                                       datepicker-options="vm.dateOptions" ng-required="true"
+                                       close-text="Close" alt-input-formats="vm.altInputFormats" />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="vm.openCalendar('sd')">
+                                        <i class="fas fa-fw fa-calendar"></i>
+                                    </button>
+                                </span>
+                            </p>
                         </div>
 
                         <div class="col-lg-4 col-md-4">
