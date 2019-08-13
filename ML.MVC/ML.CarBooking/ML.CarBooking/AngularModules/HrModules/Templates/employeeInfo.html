@@ -1,4 +1,4 @@
-﻿<div style="margin: 0 15px; height: 400px" ng-if="vm.person">
+﻿<div style="margin: 0 15px; height: 500px" ng-if="vm.person">
     <div ng-init="vm.initialize()" class="panel panel-default">
         <div class="panel-body row">
             <uib-tabset justified="true" style="margin:10px; width:100%;">
@@ -6,22 +6,29 @@
                     <div class="row mt-4">
                         <div class="col-lg-4 col-md-4">
                             <label for="dob">NGÀY SINH:</label>
-                            <input type="date" ng-model="vm.person.DoB" class="form-control" />
+                            <p class="input-group">
+                                <input type="text" ng-model="vm.person.DoB" class="form-control"
+                                       uib-datepicker-popup="dd/MM/yyyy" is-open="vm.isOpen"
+                                       datepicker-options="vm.dateOptions" ng-required="true"
+                                       close-text="Close" alt-input-formats="vm.altInputFormats" />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dob')">
+                                        <i class="fas fa-fw fa-calendar"></i>
+                                    </button>
+                                </span>
+                            </p>
                         </div>
 
                         <div class="col-lg-4 col-md-4">
                             <label for="placeOfBorn">NƠI SINH:</label>
                             <select class="form-control" ng-model="vm.person.PlaceOfBirth"
-                                    ng-options="l.Id as l.Name for l in vm.cities">
-                               
-                            </select>
+                                    ng-options="l.Id as l.Name for l in vm.cities"></select>
                         </div>
 
                         <div class="col-lg-4 col-md-4">
                             <label for="placeOfBorn">QUỐC TỊCH:</label>
                             <select class="form-control" ng-model="vm.person.HomeTownId"
-                                  ng-options="l.id as l.name for l in vm.countries"  >
-                            </select>
+                                    ng-options="l.id as l.name for l in vm.countries"></select>
                         </div>
                     </div>
                     <div class="row mt-4">
@@ -29,40 +36,55 @@
                         <div class="col-lg-4 col-md-4">
                             <label for="placeOfBorn">TÔN GIÁO:</label>
                             <select class="form-control" ng-model="vm.person.ReligionId"
-                                    ng-options="l.id as l.name for l in vm.religion">                          
-                            </select>
+                                    ng-options="l.id as l.name for l in vm.religion"></select>
                         </div>
 
                         <div class="col-lg-4 col-md-4">
                             <label for="placeOfBorn">DÂN TỘC:</label>
                             <select class="form-control" ng-model="vm.person.NationId"
-                                    ng-options="l.id as l.name for l in vm.nations">
-                            </select>
+                                    ng-options="l.id as l.name for l in vm.nations"></select>
                         </div>
 
 
                         <div class="col-lg-4 col-md-4">
                             <label for="dob">NGÀY VÀO HỆ THỐNG MLC:</label>
-                            <input type="date" class="form-control" ng-model="vm.person.MLCDate" />
+                            <p class="input-group">
+                                <input type="text" ng-model="vm.person.MLCDate" class="form-control"
+                                       uib-datepicker-popup="dd/MM/yyyy" is-open="vm.isOpenMLC"
+                                       datepicker-options="vm.dateOptions" ng-required="true"
+                                       close-text="Close" alt-input-formats="vm.altInputFormats" />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="vm.openCalendar('MLC')">
+                                        <i class="fas fa-fw fa-calendar"></i>
+                                    </button>
+                                </span>
+                            </p>
                         </div>
                     </div>
                     <div class="row mt-4">
                         <div class="col-lg-4 col-md-4">
                             <label for="dob">NGÀY VÀO CÔNG TY:</label>
-                            <input type="date" class="form-control" placeholder="..." ng-model="vm.person.StartDate" />
+                            <p class="input-group">
+                                <input type="text" class="form-control" placeholder="..." ng-model="vm.person.StartDate"
+                                       uib-datepicker-popup="dd/MM/yyyy" is-open="vm.isOpenStart"
+                                       datepicker-options="vm.dateOptions" ng-required="true"
+                                       close-text="Close" alt-input-formats="vm.altInputFormats" />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="vm.openCalendar('sd')">
+                                        <i class="fas fa-fw fa-calendar"></i>
+                                    </button>
+                                </span>
+                            </p>
                         </div>
 
                         <div class="col-lg-4 col-md-4">
                             <label for="dob">BỘ PHẬN:</label>
-                            <select class="form-control" ng-model="vm.person.DepartmentId" ng-options="l.id as l.name for l in vm.departments">
-                               
-                            </select>
+                            <select class="form-control" ng-model="vm.person.DepartmentId" ng-options="l.id as l.name for l in vm.departments"></select>
                         </div>
 
                         <div class="col-lg-4 col-md-4">
                             <label for="dob">CHỨC VỤ:</label>
-                            <select class="form-control" ng-model="vm.person.RoleId" ng-options="l.id as l.name for l in vm.roles">
-                            </select>
+                            <select class="form-control" ng-model="vm.person.RoleId" ng-options="l.id as l.name for l in vm.roles"></select>
                         </div>
                     </div>
                     <div class="row mt-4">

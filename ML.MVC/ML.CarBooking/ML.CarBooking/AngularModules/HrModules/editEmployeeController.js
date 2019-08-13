@@ -15,8 +15,20 @@
         vm.getDistricts = getDistricts;
         vm.getContactDistricts = getContactDistricts;
 
-
         vm.initialize = initialize;
+        vm.openCalendar = openCalendar;
+
+        vm.isOpen = false;
+        vm.isOpenMLC = false;
+        vm.altInputFormats = ['M!/d!/yyyy'];
+
+        vm.dateOptions = {
+            formatYear: 'yy',
+            maxDate: null,
+            minDate: null,
+            startingDay: 1,
+            showWeeks: false
+        };
 
         function initialize() {
             getMasterData();
@@ -109,8 +121,8 @@
                         } else {
                             getContactDistricts();
                         }
-                        
-                        
+
+
                     }
                 });
         }
@@ -159,13 +171,13 @@
                 { id: 4, name: 'Nhân Viên' }
             ];
 
-
-
-        
-
-
         }
 
-
+        function openCalendar(name) {
+            //debugger;
+            vm.isOpen = name == 'dob' ? true : false;
+            vm.isOpenMLC = name == 'MLC' ? true : false;
+            vm.isOpenStart = name == 'sd' ? true : false;
+        };
     }
 })();

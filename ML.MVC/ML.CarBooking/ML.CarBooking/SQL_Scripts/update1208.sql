@@ -1,4 +1,5 @@
 ﻿select * from Hr.PersonAddress
+GO
 
 CREATE PROC [Hr].[GetPersonAddress]
 @pid INT
@@ -44,6 +45,7 @@ AS
 BEGIN
 	SELECT * FROM [Hr].[MLocation] WHERE [Type] = 2 AND  ParentId = @cityId
 END
+GO
 
 ALTER PROC [Hr].[GetAllPerson]
 
@@ -90,4 +92,4 @@ ALTER PROC [Hr].[GetAllPerson]
 	WHERE p.IsDeleted = 0
 
  END
-
+ GO

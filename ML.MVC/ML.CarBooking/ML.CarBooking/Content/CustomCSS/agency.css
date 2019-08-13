@@ -62,6 +62,15 @@ button {
     font-size: 12px !important;
 }
 
+.btn-default {
+    color: #333 !important;
+    background-color: #fff;
+    border-color: #ccc;
+    z-index: 2;
+    margin-left: -1px;
+    line-height: 20px;
+}
+
 /*Width*/
 .w200 {
     width: 100px;
