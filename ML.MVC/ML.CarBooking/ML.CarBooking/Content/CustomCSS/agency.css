@@ -180,3 +180,7 @@ select.form-control {
     padding: 20px 0;
     background-color: #fff;
 }
+
+.sidebar-dark .nav-item .nav-link[data-toggle="collapse"]::after {
+    vertical-align: middle;
+}
