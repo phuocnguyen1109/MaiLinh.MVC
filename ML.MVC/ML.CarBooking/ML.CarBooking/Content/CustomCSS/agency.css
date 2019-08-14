@@ -106,6 +106,7 @@ label {
     font-size: 12px !important;
     font-weight: bold;
     text-transform: uppercase;
+    color: black;
 }
 
 textarea {
@@ -163,8 +164,8 @@ select.form-control {
     display: inline-grid !important;
 }
 /*TABS*/
-.nav-tabs > li.active > a, 
-.nav-tabs > li.active > a:hover, 
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
     background-color: #2f3a4c !important;
     color: #fff;
@@ -179,4 +180,17 @@ select.form-control {
     margin-right: 0px;
     padding: 20px 0;
     background-color: #fff;
+}
+
+.form-control{
+    color:black !important;
+}
+.table .thead-light th{
+    color:black;
+}
+.table td{
+    color:black;
+}
+.d-gr label{
+    color:#fff;
 }

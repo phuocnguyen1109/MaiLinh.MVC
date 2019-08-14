@@ -122,6 +122,7 @@
             ];
 
             vm.religion = [
+                { id: 0, name: '-- Chọn Tôn Giáo --' },
                 { id: 1, name: 'Không' },
                 { id: 2, name: 'Phật Giáo' },
                 { id: 3, name: 'Thiên Chúa Giáo' },
