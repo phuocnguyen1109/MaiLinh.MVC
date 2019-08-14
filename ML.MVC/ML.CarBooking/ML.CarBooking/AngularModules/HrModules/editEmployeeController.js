@@ -122,10 +122,10 @@
             ];
 
             vm.religion = [
-                { id: 1, name: 'Không' },
-                { id: 2, name: 'Phật Giáo' },
-                { id: 3, name: 'Thiên Chúa Giáo' },
-                { id: 4, name: 'Hồi Giáo' }
+                { id: 0, name: 'Không' },
+                { id: 1, name: 'Phật Giáo' },
+                { id: 2, name: 'Thiên Chúa Giáo' },
+                { id: 3, name: 'Hồi Giáo' }
             ];
 
             vm.countries = [

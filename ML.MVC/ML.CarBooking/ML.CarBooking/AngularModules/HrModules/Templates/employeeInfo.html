@@ -4,69 +4,60 @@
             <uib-tabset justified="true" style="margin:10px; width:100%;">
                 <uib-tab index="0" heading="LÝ LỊCH">
                     <div class="row mt-4">
-                        <div class="col-lg-4 col-md-4">
+                        <div class="col-lg-3 col-md-3">
                             <label for="dob">NGÀY SINH:</label>
                             <input type="date" ng-model="vm.person.DoB" class="form-control" />
                         </div>
 
-                        <div class="col-lg-4 col-md-4">
+                        <div class="col-lg-3 col-md-3">
                             <label for="placeOfBorn">NƠI SINH:</label>
                             <select class="form-control" ng-model="vm.person.PlaceOfBirth"
-                                    ng-options="l.Id as l.Name for l in vm.cities">
-                               
-                            </select>
+                                    ng-options="l.Id as l.Name for l in vm.cities"></select>
                         </div>
 
-                        <div class="col-lg-4 col-md-4">
+                        <div class="col-lg-2 col-md-2">
                             <label for="placeOfBorn">QUỐC TỊCH:</label>
                             <select class="form-control" ng-model="vm.person.HomeTownId"
-                                  ng-options="l.id as l.name for l in vm.countries"  >
-                            </select>
+                                    ng-options="l.id as l.name for l in vm.countries"></select>
+                        </div>
+                        <div class="col-lg-2 col-md-2">
+                            <label for="placeOfBorn">TÔN GIÁO:</label>
+                            <select class="form-control" ng-model="vm.person.ReligionId"
+                                    ng-options="l.id as l.name for l in vm.religion"></select>
+                        </div>
+
+                        <div class="col-lg-2 col-md-2">
+                            <label for="placeOfBorn">DÂN TỘC:</label>
+                            <select class="form-control" ng-model="vm.person.NationId"
+                                    ng-options="l.id as l.name for l in vm.nations"></select>
                         </div>
                     </div>
                     <div class="row mt-4">
-
-                        <div class="col-lg-4 col-md-4">
-                            <label for="placeOfBorn">TÔN GIÁO:</label>
-                            <select class="form-control" ng-model="vm.person.ReligionId"
-                                    ng-options="l.id as l.name for l in vm.religion">                          
-                            </select>
-                        </div>
-
-                        <div class="col-lg-4 col-md-4">
-                            <label for="placeOfBorn">DÂN TỘC:</label>
-                            <select class="form-control" ng-model="vm.person.NationId"
-                                    ng-options="l.id as l.name for l in vm.nations">
-                            </select>
-                        </div>
-
-
-                        <div class="col-lg-4 col-md-4">
+                        <div class="col-lg-3 col-md-3">
                             <label for="dob">NGÀY VÀO HỆ THỐNG MLC:</label>
                             <input type="date" class="form-control" ng-model="vm.person.MLCDate" />
                         </div>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col-lg-4 col-md-4">
+
+                        <div class="col-lg-3 col-md-3">
                             <label for="dob">NGÀY VÀO CÔNG TY:</label>
                             <input type="date" class="form-control" placeholder="..." ng-model="vm.person.StartDate" />
                         </div>
 
-                        <div class="col-lg-4 col-md-4">
+                        <div class="col-lg-3 col-md-3">
                             <label for="dob">BỘ PHẬN:</label>
-                            <select class="form-control" ng-model="vm.person.DepartmentId" ng-options="l.id as l.name for l in vm.departments">
-                               
-                            </select>
+                            <select class="form-control" ng-model="vm.person.DepartmentId" ng-options="l.id as l.name for l in vm.departments"></select>
                         </div>
 
-                        <div class="col-lg-4 col-md-4">
+                        <div class="col-lg-3 col-md-3">
                             <label for="dob">CHỨC VỤ:</label>
-                            <select class="form-control" ng-model="vm.person.RoleId" ng-options="l.id as l.name for l in vm.roles">
-                            </select>
+                            <select class="form-control" ng-model="vm.person.RoleId" ng-options="l.id as l.name for l in vm.roles"></select>
                         </div>
                     </div>
                     <div class="row mt-4">
-                        <div class="col-lg-4 col-md-4">
+
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-lg-3 col-md-3">
                             <label>LƯƠNG HƯU TRÍ:</label>
                             <div class="w-100" style="margin-left: 20px;">
                                 <label class="form-check-label">
@@ -78,7 +69,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-4 col-md-4">
+                        <div class="col-lg-3 col-md-3">
                             <label>ĐÃ NGHỈ VIỆC:</label>
                             <div class="w-100" style="margin-left: 20px;">
                                 <label class="form-check-label">
@@ -93,28 +84,41 @@
                 </uib-tab>
 
                 <uib-tab index="1" heading="ĐỊA CHỈ">
-                    <div class="mt-4">
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 ml-3">
-                                <label class="col-md-7" for="">ĐỊA CHỈ THƯỜNG TRÚ:</label>
-                                <label class="col-md-2 ml-1" for="">THÀNH PHỐ:</label>
-                                <label class="col-md-2 ml-1" ng-if="vm.personAddresses.address.CityId ==5" for="">QUẬN / HUYỆN:</label>
-                                <div class="row" style="margin-left: 0;">
-                                    <input type="text" class="form-control col-md-7" placeholder="Địa Chỉ, Tên Đường..." ng-model="vm.personAddresses.address.Address" />
-                                    <select class="form-control col-md-2 ml-1" ng-change="vm.getDistricts()" ng-options="l.Id as l.Name for l in vm.cities" ng-model="vm.personAddresses.address.CityId"></select>
-                                    <select class="form-control col-md-2 ml-1" ng-if="vm.personAddresses.address.CityId ==5 && vm.districts.length>1" ng-options="l.Id as l.Name for l in vm.districts" ng-model="vm.personAddresses.address.DistrictId"></select>
+                    <div class="container row mt-4">
+                        <div class="col-md-5">
+                            <div style="display: block">
+                                <div class="row">
+                                    <label for="">ĐỊA CHỈ THƯỜNG TRÚ:</label>
+                                    <input type="text" class="form-control" placeholder="Địa Chỉ, Tên Đường..." ng-model="vm.personAddresses.address.Address" />
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6" style="padding: 10px 5px 0 0;">
+                                        <label for="">THÀNH PHỐ:</label>
+                                        <select class="form-control" ng-change="vm.getDistricts()" ng-options="l.Id as l.Name for l in vm.cities" ng-model="vm.personAddresses.address.CityId"></select>
+                                    </div>
+                                    <div class="col-md-6" style="padding: 10px 0 0 5px;">
+                                        <label ng-if="vm.personAddresses.address.CityId ==5" for="">QUẬN / HUYỆN:</label>
+                                        <select class="form-control" ng-if="vm.personAddresses.address.CityId ==5 && vm.districts.length>1" ng-options="l.Id as l.Name for l in vm.districts" ng-model="vm.personAddresses.address.DistrictId"></select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row mt-4">
-                            <div class="col-lg-12 col-md-12 ml-3">
-                                <label class="col-md-7" for="">ĐỊA CHỈ LIÊN LẠC:</label>
-                                <label class="col-md-2 ml-1" for="">THÀNH PHỐ:</label>
-                                <label class="col-md-2 ml-1" ng-if="vm.personAddresses.contactAddress.CityId == 5" for="">QUẬN / HUYỆN:</label>
-                                <div class="row" style="margin-left: 0;">
-                                    <input type="text" class="form-control col-md-7" placeholder="Địa Chỉ, Tên Đường..." ng-model="vm.personAddresses.contactAddress.Address" />
-                                    <select class="form-control col-md-2 ml-1" ng-change="vm.getContactDistricts()" ng-options="l.Id as l.Name for l in vm.cities" ng-model="vm.personAddresses.contactAddress.CityId"></select>
-                                    <select class="form-control col-md-2 ml-1" ng-options="l.Id as l.Name for l in vm.contactDistricts" ng-if="vm.personAddresses.contactAddress.CityId == 5 && vm.contactDistricts.length > 1" ng-model="vm.personAddresses.contactAddress.DistrictId"></select>
+                        <div class="col-md-2"></div>
+                        <div class="col-md-5">
+                            <div style="display: block">
+                                <div class="row">
+                                    <label for="">ĐỊA CHỈ LIÊN LẠC:</label>
+                                    <input type="text" class="form-control" placeholder="Địa Chỉ, Tên Đường..." ng-model="vm.personAddresses.contactAddress.Address" />
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6" style="padding: 10px 5px 0 0;">
+                                        <label for="">THÀNH PHỐ:</label>
+                                        <select class="form-control" ng-change="vm.getContactDistricts()" ng-options="l.Id as l.Name for l in vm.cities" ng-model="vm.personAddresses.contactAddress.CityId"></select>
+                                    </div>
+                                    <div class="col-md-6" style="padding: 10px 0 0 5px;">
+                                        <label ng-if="vm.personAddresses.contactAddress.CityId == 5" for="">QUẬN / HUYỆN:</label>
+                                        <select class="form-control" ng-options="l.Id as l.Name for l in vm.contactDistricts" ng-if="vm.personAddresses.contactAddress.CityId == 5 && vm.contactDistricts.length > 1" ng-model="vm.personAddresses.contactAddress.DistrictId"></select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -136,19 +140,19 @@
                 <uib-tab tabindex="5" heading="BHXH - BHTN">
                     <div class="mt-4">
                         <div class="row">
-                            <div class="col-lg-6 col-md-6">
+                            <div class="col-lg-3 col-md-3">
                                 <label for="dob">SỐ SỔ BHXH:</label>
                                 <input type="text" class="form-control" placeholder="" ng-model="vm.person.SINumber" />
                             </div>
 
-                            <div class="col-lg-6 col-md-6">
+                            <div class="col-lg-3 col-md-3">
                                 <label for="dob">SỐ HỢP ĐỒNG BHTN:</label>
                                 <input type="text" class="form-control" placeholder="" ng-model="vm.person.SIContractNumber" />
                             </div>
                         </div>
 
                         <div class="row mt-4">
-                            <div class="col-lg-12 col-md-12">
+                            <div class="col-lg-6 col-md-6">
                                 <label for="note">GHI NHẬN BÀN GIAO SỔ BHXH, BHTN:</label>
                                 <textarea class="form-control" ng-model="vm.person.SINote"></textarea>
                             </div>
