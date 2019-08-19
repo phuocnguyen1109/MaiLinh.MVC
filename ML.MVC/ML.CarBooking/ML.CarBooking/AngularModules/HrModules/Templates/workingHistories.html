@@ -1,6 +1,6 @@
 ﻿<div ng-controller="workingHistoriesController as vm" style="margin:10px;">
     <div ng-init="vm.initialize()">
-        <button class="btn btn-outline-primary mt-4 mb-2 mr-1 float-right" data-toggle="modal" data-target="#WorkingHistoryModal" ng-click="vm.openAddModal()">
+        <button class="btn btn-outline-primary mt-4 mb-2 mr-1 float-right" data-toggle="modal" data-target="#WorkingHistoryModal" ng-click="vm.openAddModal()" ng-disabled="vm.IsViewing">
             <i class="fas fa-fw fa-plus"></i> THÊM MỚI
         </button>
 
@@ -19,10 +19,10 @@
                     <td>{{row.DisplayToDate}}</td>
                     <td>{{row.CompanyName}}</td>
                     <td>
-                        <button class="btn btn-outline-success" data-toggle="modal" data-target="#WorkingHistoryModal" ng-click="vm.openEditWokingHistory(row)">
+                        <button class="btn btn-outline-success" data-toggle="modal" data-target="#WorkingHistoryModal" ng-click="vm.openEditWokingHistory(row)" ng-disabled="vm.IsViewing">
                             <i class="fas fa-fw fa-pen"></i>
                         </button>
-                        <button class="btn btn-outline-danger"  ng-click="vm.deleted(row)">
+                        <button class="btn btn-outline-danger"  ng-click="vm.deleted(row)" ng-disabled="vm.IsViewing">
                             <i class="fas fa-fw fa-trash"></i>
                         </button>
                     </td>

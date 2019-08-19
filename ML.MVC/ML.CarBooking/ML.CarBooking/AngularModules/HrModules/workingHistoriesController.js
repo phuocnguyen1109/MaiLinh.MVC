@@ -2,9 +2,8 @@
     'use strict'
     angular.module('mainApp').controller('workingHistoriesController', workingHistoriesController);
 
-    workingHistoriesController.$inject = ['$http', '$rootScope', '$scope', '$state'];
-
-    function workingHistoriesController( $http, $rootScope, $scope, $state) {
+    workingHistoriesController.$inject = ['$http', '$rootScope', '$scope', '$state', '$stateParams'];
+    function workingHistoriesController($http, $rootScope, $scope, $state, $stateParams) {
         var vm = this;
         vm.initialize = initialize;
         vm.checkValid = checkValid;
@@ -16,6 +15,7 @@
 
         vm.isValid = false;
         var userId = $state.params.id;
+        vm.IsViewing = $state.params.IsViewing;
 
 
         function resetModel() {
@@ -24,6 +24,7 @@
             };
         }
         function initialize() {
+
             resetModel()
             getworkingHistories();
         }

@@ -2,9 +2,9 @@
     'use strict'
     angular.module('mainApp').controller('quitJobHistoriesController', quitJobHistoriesController);
 
-    quitJobHistoriesController.$inject = ['$http', '$rootScope', '$scope', '$state'];
+    quitJobHistoriesController.$inject = ['$http', '$rootScope', '$scope', '$state','$stateParams'];
 
-    function quitJobHistoriesController($http, $rootScope, $scope, $state) {
+    function quitJobHistoriesController($http, $rootScope, $scope, $state, $stateParams) {
         var vm = this;
         vm.initialize = initialize;
         vm.checkValid = checkValid;
@@ -17,6 +17,7 @@
         vm.isAdding = false;
         vm.isDeleting = false;
         vm.isValid = false;
+        vm.IsViewing = $stateParams.IsViewing;
 
         function initialize() {
             getQuitJobHistories();

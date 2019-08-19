@@ -13,12 +13,12 @@
             <tr ng-repeat="row in vm.equipments">
                 <td>{{row.equipmentId}}</td>
                 <td>{{row.name}}</td>
-                <td><input type="checkbox" ng-model="row.isReceive" /></td>
+                <td><input type="checkbox" ng-model="row.isReceive" ng-disabled="vm.IsViewing" /></td>
                 <td>
-                    <input type="date" class="form-control" ng-disabled="!row.isReceive" ng-model="row.receivedDate" />
+                    <input type="date" class="form-control" ng-disabled="!row.isReceive || vm.IsViewing"  ng-model="row.receivedDate" />
                 </td>
                 <td>
-                    <button class="btn btn-outline-primary" ng-disabled="!(row.isReceive && row.receivedDate)" ng-click="vm.save(row)">
+                    <button class="btn btn-outline-primary" ng-disabled="!(row.isReceive && row.receivedDate) || vm.IsViewing" ng-click="vm.save(row)">
                     <i class="fas fa-fw fa-save"></i>
                     </button>
                 </td>

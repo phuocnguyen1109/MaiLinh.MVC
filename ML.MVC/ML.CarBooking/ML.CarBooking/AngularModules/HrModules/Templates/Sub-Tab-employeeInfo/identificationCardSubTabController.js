@@ -2,9 +2,9 @@
     'use strict'
     angular.module('mainApp').controller('identificationCardSubTabController', identificationCardSubTabController);
 
-    identificationCardSubTabController.$inject = ['$http', '$rootScope', '$scope', '$state'];
+    identificationCardSubTabController.$inject = ['$http', '$rootScope', '$scope', '$state','$stateParams'];
 
-    function identificationCardSubTabController($http, $rootScope, $scope, $state) {
+    function identificationCardSubTabController($http, $rootScope, $scope, $state, $stateParams) {
         var vm = this;
         vm.initialize = initialize;
         vm.checkValid = checkValid;
@@ -17,6 +17,7 @@
 
         vm.isValid = false;
         var userId = $state.params.id;
+        vm.IsViewing = $stateParams.IsViewing;
 
         function resetModel() {
             vm.userIdentificationCard = {

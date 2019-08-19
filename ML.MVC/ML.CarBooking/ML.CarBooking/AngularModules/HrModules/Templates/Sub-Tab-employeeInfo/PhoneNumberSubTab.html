@@ -1,7 +1,7 @@
 ﻿<div ng-controller="phoneNumberSubTabController as vm" class="mt-4 display-igr">
     <div ng-init="vm.initialize()">
 
-        <button class="btn btn-outline-primary mt-3 mb-2 mr-1 float-right" data-toggle="modal" data-target="#PhoneNumberModal" ng-click="vm.openAddModal()">
+        <button class="btn btn-outline-primary mt-3 mb-2 mr-1 float-right" data-toggle="modal" data-target="#PhoneNumberModal" ng-click="vm.openAddModal()" ng-disabled="vm.IsViewing">
             <i class="fas fa-fw fa-plus"></i> THÊM MỚI
         </button>
 
@@ -28,10 +28,10 @@
                     <td>{{row.UpdateBy}}</td>
                     <td>{{row.UpdateOn}}</td>
                     <td>
-                        <button class="btn btn-outline-success" data-toggle="modal" data-target="#PhoneNumberModal" ng-click="vm.openEditModal(row)">
+                        <button class="btn btn-outline-success" data-toggle="modal" data-target="#PhoneNumberModal" ng-click="vm.openEditModal(row)" ng-disabled="vm.IsViewing">
                             <i class="fas fa-fw fa-pen"></i>
                         </button>
-                        <button class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteModal" ng-click="vm.openDeleteModal(row)">
+                        <button class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteModal" ng-click="vm.openDeleteModal(row)" ng-disabled="vm.IsViewing">
                             <i class="fas fa-fw fa-trash"></i>
                         </button>
                     </td>

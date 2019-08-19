@@ -2,13 +2,13 @@
     <div class="row mt-2">
         <div class="col-lg-4 col-md-4">
             <select ng-model="vm.marriageStatusObject.marritalStatusId" class="form-control"
-                    ng-options="ms.marritalStatusId as ms.marritalStatusName for ms in vm.marritalStatuss"></select>
+                    ng-options="ms.marritalStatusId as ms.marritalStatusName for ms in vm.marritalStatuss" ng-disabled="vm.IsViewing"></select>
         </div>
     </div>
 
     <div class="row txt-right">
         <div class="col-lg-12 col-md-12">
-            <button class="btn btn-outline-primary mt-2 mb-2 mr-1" data-toggle="modal" data-target="#relativeModal" ng-click="vm.addNewRelative()">
+            <button class="btn btn-outline-primary mt-2 mb-2 mr-1" data-toggle="modal" data-target="#relativeModal" ng-click="vm.addNewRelative()" ng-disabled="vm.IsViewing">
                 <i class="fas fa-fw fa-plus"></i> THÊM NGƯỜI THÂN
             </button>
         </div>
@@ -35,8 +35,8 @@
                 <td>{{r.relationshipName}}</td>
                 <td><i class="fas fa-fw fa-times-circle"></i></td>
                 <td>
-                    <button class="btn btn-outline-success" data-toggle="modal" data-target="#relativeModal" ng-click="vm.editRelative(r)"><i class="fas fa-fw fa-pen"></i></button>
-                    <button class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteRModal" ng-click="vm.openDelModel(r)"><i class="fas fa-fw fa-trash"></i></button>
+                    <button class="btn btn-outline-success" data-toggle="modal" data-target="#relativeModal" ng-click="vm.editRelative(r)" ng-disabled="vm.IsViewing"><i class="fas fa-fw fa-pen"></i></button>
+                    <button class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteRModal" ng-click="vm.openDelModel(r)" ng-disabled="vm.IsViewing"><i class="fas fa-fw fa-trash"></i></button>
                 </td>
             </tr>
 

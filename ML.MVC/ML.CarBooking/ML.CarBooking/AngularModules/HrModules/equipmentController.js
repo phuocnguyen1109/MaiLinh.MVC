@@ -3,13 +3,16 @@
     angular.module('mainApp')
         .controller('equipmentController', equipmentController);
 
-    function equipmentController($scope, $state) {
+    equipmentController.$inject = ['$http', '$rootScope', '$scope', '$state', '$stateParams'];
+    function equipmentController($rootScope, $scope, $state, $stateParams) {
         var vm = this;
         vm.initialize = initialize;
         vm.save = save;
+        vm.IsViewing = $stateParams.params.IsViewing;
 
         function initialize() {
             var userId = "0001";
+
             getEquipments();
             getEquipmentsByUserId(userId);
 

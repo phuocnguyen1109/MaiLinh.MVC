@@ -7,6 +7,8 @@
     function editEmployeeController($http, $scope, $state, $stateParams) {
         var vm = this;
         var personId = $stateParams.id;
+        vm.IsViewing = $stateParams.IsViewing;
+        
 
         vm.personAddresses = [];
 
@@ -22,6 +24,8 @@
             getMasterData();
             getCities();
             getPerson();
+
+
         }
 
         function getCities() {

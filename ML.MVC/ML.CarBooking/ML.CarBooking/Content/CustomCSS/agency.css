@@ -180,3 +180,13 @@ select.form-control {
     padding: 20px 0;
     background-color: #fff;
 }
+
+.disableEl {
+    pointer-events: none !important;
+    background-color: #eaecf4 !important;
+}
+
+.disableRB {
+    opacity: 1 !important;
+
+}

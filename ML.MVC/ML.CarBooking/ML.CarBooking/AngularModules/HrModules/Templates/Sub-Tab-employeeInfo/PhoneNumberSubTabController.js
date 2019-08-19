@@ -2,9 +2,9 @@
     'use strict'
     angular.module('mainApp').controller('phoneNumberSubTabController', phoneNumberSubTabController);
 
-    phoneNumberSubTabController.$inject = ['$http', '$state'];
+    phoneNumberSubTabController.$inject = ['$http', '$state','$stateParams'];
 
-    function phoneNumberSubTabController( $http, $state) {
+    function phoneNumberSubTabController($http, $state, $stateParams) {
         var vm = this;
         
         vm.initialize = initialize;
@@ -17,6 +17,7 @@
 
         vm.isValid = false;
         var userId = $state.params.id;
+        vm.IsViewing = $stateParams.IsViewing;
 
          vm.personPhoneModel = {};
 

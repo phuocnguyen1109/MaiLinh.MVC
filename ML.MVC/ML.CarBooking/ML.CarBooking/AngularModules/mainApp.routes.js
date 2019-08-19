@@ -14,7 +14,10 @@
                     url: '/employee/edit/:id',
                     templateUrl: 'AngularModules/HrModules/Templates/editEmployee.html',
                     controller: 'editEmployeeController',
-                    controllerAs: 'vm'
+                    controllerAs: 'vm',
+                    params: {
+                        IsViewing: false
+                    }
                 })
                 //Vehicle 
                 .state('vehicle', {
