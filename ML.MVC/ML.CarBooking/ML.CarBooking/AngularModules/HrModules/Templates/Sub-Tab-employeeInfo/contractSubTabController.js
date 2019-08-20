@@ -19,12 +19,13 @@
         var personId = $stateParams.id;
 
         function initialize() {
+            //Example
+            var date = new Date();
+            vm.getDate = (date.getMonth()+1) + "/" + date.getDate() + "/" + date.getFullYear();
+
             getContracts();
             getTypesOfContract();
             getContractPeriod();
-            //Example
-            var date = new Date();
-            vm.getDate = date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear();
 
             vm.userContract = {
                 id: null,
@@ -47,6 +48,20 @@
             //    .then(function (response) {
             //        debugger;
             //    });
+            vm.contracts = [
+                {
+                    id: 1,
+                    createBy: "admin",
+                    createDate: vm.getDate,
+                    typeId: 1,
+                    typeName: "Hợp Đồng Lao Động",
+                    contractNumber: "01837634SDF",
+                    startDate: "12/01/2019",
+                    contractPeriodId: 6,
+                    contractPeriod: "6 tháng",
+                    expiredDate: "12/07/2019",
+                }
+            ];
         }
 
         function getTypesOfContract() {
