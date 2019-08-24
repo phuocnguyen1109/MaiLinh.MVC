@@ -35,11 +35,9 @@
                     <input type="text" class="form-control" ng-model="row.receive.receivedKM" />
                 </td>
                 <td>
-                    <select class="form-control">
-                        <option>0</option>
-                        <option>1/4</option>
-                        <option>1/2</option>
-                        <option>1</option>
+                    <select class="form-control" 
+                            ng-model="row.receive.receivedFuelId"
+                            ng-options="f.lvId as f.lvName for f in vm.fuelLevels">
                     </select>
                 </td>
                 <td class="txt-left">
@@ -53,11 +51,9 @@
                     <input type="text" class="form-control" ng-model="row.giveback.givebackKM" />
                 </td>
                 <td>
-                    <select class="form-control">
-                        <option>0</option>
-                        <option>1/4</option>
-                        <option>1/2</option>
-                        <option>1</option>
+                    <select class="form-control"
+                            ng-model="row.giveback.givebackFuelId"
+                            ng-options="f.lvId as f.lvName for f in vm.fuelLevels">
                     </select>
                 </td>
                 <td style="padding:0;">
