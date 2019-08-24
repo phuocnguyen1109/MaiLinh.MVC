@@ -1,19 +1,19 @@
 ﻿<div ng-init="vm.initialize()">
-    <h3>DANH SÁCH PHƯƠNG TIỆN</h3>
+    <h5>DANH SÁCH PHƯƠNG TIỆN</h5>
     <div class="w-100" style="float:right; margin-top:30px; margin-bottom:10px;">
         <div class="input-group" style="width:50%;">
-            <input type="text" class="form-control bg-light small" placeholder="Tìm kiếm ..." aria-label="Search" aria-describedby="basic-addon2">
-            <div class="input-group-append">
+            <input type="text" class="form-control bg-light small" ng-change="vm.filter()" ng-model="vm.filterText" placeholder="Tìm kiếm ..." aria-label="Search" aria-describedby="basic-addon2">
+            <!--<div class="input-group-append">
+            <!--<div class="input-group-append">
                 <button class="btn btn-primary" type="button">
                     <i class="fas fa-search fa-sm"></i>
                 </button>
-            </div>
+            </div>-->
         </div>
     </div>
-    <div>
-
+    <div class="mt-4">
         <table class="table table-bordered table-hover">
-            <thead class="thead-light shadow_tb">
+            <thead class="thead-light shadow_tb txt-center">
                 <tr>
                     <th rowspan="2" style="width: 2%;"></th>
                     <th rowspan="2" style="width:2%">STT</th>
@@ -35,9 +35,9 @@
                 </tr>
 
             </thead>
-            <tbody>
-                <tr ng-repeat="row in vm.vehicles">
-                    <td><input type="checkbox" ng-model="row.selected" /></td>
+            <tbody class="txt-center">
+                <tr ng-repeat="row in vm.vehicles" ng-click="vm.rowClick(row)">
+                    <td><input type="checkbox" ng-change="vm.checkSelected()" ng-model="row.IsSelected" /></td>
                     <td>{{row.id}}</td>
                     <td>{{row.brandName}}</td>
                     <td>{{row.seats}}</td>
@@ -53,14 +53,91 @@
                 </tr>
             </tbody>
         </table>
-        <button class="btn btn-outline-primary mr-1" ng-click="vm.add()">
+
+        <button class="btn btn-outline-primary mr-1"data-target="#CreateVehicleModal" data-toggle="modal" ng-click="vm.openCreateModal()">
             <i class="fas fa-fw fa fa-plus"></i> THÊM MỚI
         </button>
-        <button class="btn btn-outline-success mr-1" ng-click="vm.gotoEdit(1)">
+        <button class="btn btn-outline-success mr-1" ng-disabled="!vm.CanEdit" ng-click="vm.gotoEdit(1)">
             <i class="fas fa-fw fa-pen"></i> CHỈNH SỬA
         </button>
-        <button class="btn btn-outline-danger" ng-click="vm.remove()">
+        <button class="btn btn-outline-danger" ng-disabled="!vm.CanDelete" ng-click="vm.remove()">
             <i class="fas fa-fw fa-trash"></i> XÓA
         </button>
+    </div>
+
+    <!--Modal Create Vehicle-->
+    <div id="CreateVehicleModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-uppercase" id="ModalTitle">Thêm Phương Tiện Mới</h5>
+                    <button type="button" class="modal-btnClose close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="err-message" ng-if="vm.message">{{vm.message}}</p>
+                    <form class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="brandName">Hiệu xe: <span class="required_ico">*</span> </label>
+                                <input name="brandName" class="form-control" type="text" ng-model="vm.createModel.brandName" ng-change="vm.checkValidCreate()" />
+                            </div>
+                            <div class="col-md-3">
+                                <label for="seats">Số Chỗ: <span class="required_ico">*</span></label>
+                                <input name="seats" class="form-control" type="text" ng-model="vm.createModel.seats" ng-change="vm.checkValidCreate()" />
+                            </div>
+                            <div class="col-md-3">
+                                <label for="productYear">Năm Sản Xuất: <span class="required_ico">*</span></label>
+                                <input name="productYear" class="form-control" type="text" ng-model="vm.createModel.productYear" ng-change="vm.checkValidCreate()" />
+                            </div>
+                            <div class="col-md-3">
+                                <label for="color">Màu Xe: <span class="required_ico">*</span> </label>
+                                <input name="color" class="form-control" type="text" ng-model="vm.createModel.color" ng-change="vm.checkValidCreate()" />
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-md-4">
+                                <label for="type">Loại Hình Kinh Doanh: <span class="required_ico">*</span> </label>
+                                <input name="type" class="form-control" type="text" ng-model="vm.createModel.type" ng-change="vm.checkValidCreate()" />
+                            </div>
+                            <div class="col-md-4">
+                                <label for="zone">Vùng Hoạt Động: <span class="required_ico">*</span> </label>
+                                <input name="zone" class="form-control" type="text" ng-model="vm.createModel.workingZone" ng-change="vm.checkValidCreate()" />
+                            </div>
+                            <div class="col-md-4">
+                                <label for="maintainKM">Số KM Bão Dưỡng: </label>
+                                <input name="maintainKM" class="form-control" type="text" ng-model="vm.createModel.maintainKM" />
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                                <label for="incomeDate">Ngày Nhập:</label>
+                                <input name="incomeDate" class="form-control" type="text" ng-model="vm.createModel.income.incomeDate" />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="incomeNote">Ghi Chú:</label>
+                                <textarea name="incomeDate" class="form-control" type="text" ng-model="vm.createModel.outcone.incomeNote" />
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                                <label for="incomeDate">Ngày Thanh Lý:</label>
+                                <input name="incomeDate" class="form-control" type="text" ng-model="vm.createModel.income.outcomeDate" />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="outcomeNote">Ghi Chú:</label>
+                                <textarea name="outcomeNote" class="form-control" type="text" ng-model="vm.createModel.outcone.outcomeNote" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">HỦY BỎ</button>
+                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.createSimpleVehicle()" ng-disabled="!vm.checkCreateValid">LƯU</button>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>

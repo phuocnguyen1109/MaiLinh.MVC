@@ -1,5 +1,7 @@
-﻿<h3>CHỈNH SỬA THÔNG TIN PHƯƠNG TIỆN</h3>
-<div class="bg-mldark p-3" style="margin-bottom: 10px;">
+﻿
+<div class="panel panel-default bg-mldark p-3" style="margin-bottom: 10px;">
+    <h5>CHỈNH SỬA THÔNG TIN PHƯƠNG TIỆN</h5>
+    <br />
     <div class="row">
         <div class="col-lg-3 col-md-3">
             <div class="row">
@@ -9,12 +11,12 @@
                 </div>
                 <div class="col-md-4 form-group float-mr">
                     <label for="seat">NXS</label>
-                    <input type="text" class="form-control" value="7" />
+                    <input type="text" class="form-control" value="2017" />
                 </div>
             </div>
-            
+
             <div class="row">
-                <div class="col-md-7 float-mr">
+                <div class="col-md-7 form-group float-mr">
                     <label for="brandName">HIỆU XE:</label>
                     <select class="form-control" id="brandName">
                         <option>VIOS S</option>
@@ -22,25 +24,25 @@
                         <option>EVEREST</option>
                     </select>
                 </div>
-                <div class="col-md-4 float-mr">
+                <div class="col-md-4 form-group float-mr">
                     <label for="seat"> SỐ CHỔ:</label>
                     <input type="number" class="form-control" value="7" />
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-md-7 float-mr">
+                <div class="col-md-7 form-group float-mr">
                     <label for="color">SỐ ĐĂNG KÝ:</label>
                     <input id="color" type="text" class="form-control" value="51F-303.16" />
                 </div>
-                <div class="col-md-4 float-mr">
+                <div class="col-md-4 form-group float-mr">
                     <label for="color">MÀU XE:</label>
                     <input id="color" type="text" class="form-control" value="Bạc" />
                 </div>
             </div>
         </div>
 
-        <div class="col-lg-2 col-md-2">
+        <div class="col-lg-3 col-md-3">
             <div class="form-group">
                 <label for="sk">SỐ KHUNG:</label>
                 <input id="sk" type="text" class="form-control" value="RL4BT9F38F-4014866" />
@@ -48,6 +50,11 @@
             <div class="form-group">
                 <label for="sm">SỐ MÁY:</label>
                 <input id="sm" type="text" class="form-control" value="1NZZ-289060" />
+            </div>
+
+            <div class="form-group">
+                <label>GHI CHÚ:</label>
+                <input type="text" class="form-control" />
             </div>
         </div>
 
@@ -62,57 +69,48 @@
             </div>
         </div>
 
-        <div class="col-lg-4 col-md-4">
-            <div style="width:40%" class="form-group float-mr">
+        <div class="col-lg-3 col-md-3">
+            <div class="form-group float-mr">
                 <label>NGÀY NHẬP:</label>
                 <input type="date" class="form-control" />
             </div>
-            <div style="width:50%" class="form-group float-mr">
-                <label>GHI CHÚ:</label>
-                <input type="text" class="form-control" />
-            </div>
-            <div style="width:40%" class="form-group float-mr">
+            <div class="form-group float-mr">
                 <label>NGÀY THANH LÝ:</label>
                 <input type="date" class="form-control" />
-            </div>
-            <div style="width:50%" class="form-group float-mr">
-                <label>GHI CHÚ:</label>
-                <input type="text" class="form-control" />
             </div>
         </div>
 
     </div>
 </div>
 
-<div class="panel panel-default ">
+<div class="panel panel-default " style="display: block; overflow-x: hidden;">
     <div class="panel-body row">
         <uib-tabset justified="true" style="margin-left:10px; width:100%;">
             <!--<uib-tab index="0" heading="LÝ LỊCH PHƯƠNG TIỆN">
                 <div ng-include="'/AngularModules/Vehicle/Templates/VehicleInfo.html'"></div>
             </uib-tab>-->
-            <uib-tab index="1" heading="GIẤY TỜ XE">
+            <uib-tab index="0" heading="GIẤY TỜ XE">
                 <div ng-include="'/AngularModules/Vehicle/Templates/VehicleDocuments.html'"></div>
             </uib-tab>
-            <uib-tab index="2" heading="BÀN GIAO XE">
+            <uib-tab index="1" heading="BÀN GIAO XE">
                 <div ng-include="'/AngularModules/Vehicle/Templates/VehicleLoanManagement.html'"></div>
             </uib-tab>
-            <uib-tab index="3" heading="TRANG THIẾT BỊ">
+            <uib-tab index="2" heading="TRANG THIẾT BỊ">
                 <div ng-include="'/AngularModules/Vehicle/Templates/VehicleEquipments.html'"></div>
             </uib-tab>
-            <uib-tab index="4" heading="NHIÊN LIỆU">
+            <uib-tab index="3" heading="NHIÊN LIỆU">
                 <div ng-include="'/AngularModules/Vehicle/Templates/VehicleFuelManagement.html'"></div>
             </uib-tab>
-            <uib-tab index="5" heading="GPS">
+            <uib-tab index="4" heading="GPS">
                 <div ng-include="'/AngularModules/Vehicle/Templates/GPS.html'"></div>
             </uib-tab>
-            <uib-tab index="6" heading="BẢO TRÌ - SỬA CHỬA">
+            <uib-tab index="5" heading="BẢO TRÌ - SỬA CHỬA">
                 <div ng-include="'/AngularModules/Vehicle/Templates/VehicleMaintainManagement.html'"></div>
             </uib-tab>
-            <uib-tab index="7" heading="VA CHẠM - TAI NẠN">
+            <uib-tab index="6" heading="VA CHẠM - TAI NẠN">
                 <div ng-include="'/AngularModules/Vehicle/Templates/VehicleAcidentsManagement.html'"></div>
             </uib-tab>
         </uib-tabset>
-
     </div>
 </div>
 
