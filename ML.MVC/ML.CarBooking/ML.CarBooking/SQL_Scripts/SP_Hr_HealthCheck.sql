@@ -7,6 +7,7 @@ DROP COLUMN PersonId
 ALTER TABLE [Hr].[PersonHealthStd]
 ADD PersonHealthCheckId INT
 
+GO
 CREATE PROC [Hr].[GetHealthCheckByPerson]
 @pid INT
 AS
