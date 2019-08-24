@@ -90,8 +90,6 @@
             $state.go('editEmployee', { id: selectedId });
         }
 
-       
-
         function checkValidCreate() {
             var userNameValid = false;
             if (vm.createModel.userName && vm.createModel.userName != '') {
