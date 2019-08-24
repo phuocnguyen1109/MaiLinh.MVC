@@ -237,6 +237,7 @@
     <Content Include="AngularModules\Vehicle\Templates\VehicleLoanManagement.html" />
     <Content Include="AngularModules\Vehicle\Templates\VehicleMaintainManagement.html" />
     <Content Include="AngularModules\Vehicle\Templates\VehicleManagements.html" />
+    <Content Include="AngularModules\Vehicle\vehicleLoanController.js" />
     <Content Include="AngularModules\Vehicle\vehicleManagementController.js" />
     <Content Include="App_Readme\readme.txt" />
     <Content Include="Content\CustomCSS\agency.css" />
