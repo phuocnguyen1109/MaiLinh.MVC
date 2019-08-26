@@ -30,9 +30,19 @@ namespace ML.Business.Implements.Hr
             return m_PersonDataLayer.AddPersonPhone(request, userId);
         }
 
+        public int CreatePersonContract(PersonContract request, int userId)
+        {
+            return m_PersonDataLayer.CreatePersonContract(request, userId);
+        }
+
         public int CreateSimple(CreateSimpleRequest request)
         {
           return m_PersonDataLayer.CreateSimple(request);
+        }
+
+        public int DeletePersonContract(int id, int userId)
+        {
+            return m_PersonDataLayer.DeletePersonContract(id, userId);
         }
 
         public int DeletePersonIdentity(int id)
@@ -53,6 +63,11 @@ namespace ML.Business.Implements.Hr
         public IEnumerable<PersonAddress> GetPersonAddresses(int pid)
         {
             return m_PersonDataLayer.GetPersonAddresses(pid);
+        }
+
+        public IEnumerable<PersonContract> GetPersonContracts(int pid)
+        {
+            return m_PersonDataLayer.GetPersonContracts(pid);
         }
 
         public IEnumerable<PersonIdentityCard> GetPersonIdentities(int pid)
@@ -78,6 +93,11 @@ namespace ML.Business.Implements.Hr
         public int UpdatePersonAddress(IEnumerable<PersonAddress> request, int userId)
         {
             return m_PersonDataLayer.UpdatePersonAddress(request, userId);
+        }
+
+        public int UpdatePersonContract(PersonContract request, int userId)
+        {
+            return m_PersonDataLayer.UpdatePersonContract(request, userId);
         }
 
         public int UpdatePersonIdentity(PersonIdentityCard request, int userId = 1)

@@ -19,14 +19,14 @@
                 </tr>
             </thead>
             <tbody class="txt-center">
-                <tr ng-repeat="row in vm.contracts">
-                    <td>{{row.typeName}}</td>
-                    <td>{{row.contractNumber}}</td>
-                    <td>{{row.contractPeriod}}</td>
-                    <td>{{row.startDate}}</td>
-                    <td>{{row.expiredDate}}</td>
-                    <td>{{row.createBy}}</td>
-                    <td>{{row.createDate}}</td>
+                <tr ng-repeat="row in vm.userContracts">
+                    <td>{{row.ContractTypeDisplay}}</td>
+                    <td>{{row.ContractNumber}}</td>
+                    <td>{{row.Duration}}</td>
+                    <td>{{row.SignedInDisplay}}</td>
+                    <td>{{row.SignedOutDisplay}}</td>
+                    <td>{{row.CreateByName}}</td>
+                    <td>{{row.CreateOnDisplay}}</td>
                     <td>
                         <button class="btn btn-outline-success" data-toggle="modal" data-target="#ContractModal" ng-click="vm.openEditModal(row)">
                             <i class="fas fa-fw fa-pen"></i>
@@ -56,36 +56,35 @@
                                 <div class="col-md-6">
                                     <label for="contractType">Loại Hợp Đồng <span class="required_ico">*</span> </label>
                                     <select id="contractType" class="form-control"
-                                            ng-model="vm.userContract.typeId"
-                                            ng-options="c.typeId as c.typeName for c in vm.typesOfContract"
+                                            ng-model="vm.userContract.ContractTypeId"
+                                            ng-options="c.typeId as c.typeName for c in vm.typesOfContracts"
                                             ng-change="vm.checkValid()">
-                                        <option value="">---Chọn loại HĐ---</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="contractPeriod">Thời Hạn <span class="required_ico">*</span> </label>
                                     <select id="contractPeriod" class="form-control"
-                                            ng-model="vm.userContract.contractPeriodId"
-                                            ng-options="c.contractPeriodId as c.contractPeriod for c in vm.contractPeriod"
+                                            ng-model="vm.userContract.Duration"
+                                            ng-options="c.contractPeriodId as c.contractPeriod for c in vm.contractPeriods"
                                             ng-change="vm.generExpiredDate();vm.checkValid()">
-                                        <option value="">---Chọn thời hạn---</option>
+                                        
                                     </select>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="contractNumber">Số Hợp Đồng <span class="required_ico">*</span></label>
-                                    <input name="contractNumber" class="form-control" type="text" placeholder="Nhập số..." ng-model="vm.userContract.contractNumber" ng-change="vm.checkValid()" />
+                                    <input name="contractNumber" class="form-control" type="text" placeholder="Nhập số..." ng-model="vm.userContract.ContractNumber" ng-change="vm.checkValid()" />
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="startDate">Ngày Ký HĐ <span class="required_ico">*</span></label>
-                                    <input name="startDate" class="form-control" type="date" ng-model="vm.userContract.startDate" ng-change="vm.generExpiredDate();vm.checkValid()" />
+                                    <input name="startDate" class="form-control" type="date" ng-model="vm.userContract.SignedIn" ng-change="vm.generExpiredDate();vm.checkValid()" />
                                 </div>
                                 <div class="col-md-6">
                                     <label for="expiredDate">Ngày Hết Hạn HĐ <span class="required_ico">*</span></label>
-                                    <input name="expiredDate" class="form-control" type="date" ng-model="vm.userContract.expiredDate" />
+                                    <input name="expiredDate" class="form-control" type="date" ng-model="vm.userContract.SignOut" />
                                 </div>
                             </div>
                         </form>

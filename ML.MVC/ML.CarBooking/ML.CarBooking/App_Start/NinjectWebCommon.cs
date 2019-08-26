@@ -85,6 +85,9 @@ namespace ML.CarBooking.App_Start
             kernel.Bind<ILocationDataLayer>().To<LocationDataLayer>().InSingletonScope();
             kernel.Bind<ILocation>().To<LocationBusiness>().InSingletonScope();
 
+            kernel.Bind<IPersonMariage>().To<PersonMariageDataLayer>().InSingletonScope();
+            kernel.Bind<IPersonMariageBusiness>().To<PersonMariageBusiness>().InSingletonScope();
+
 
         }
 

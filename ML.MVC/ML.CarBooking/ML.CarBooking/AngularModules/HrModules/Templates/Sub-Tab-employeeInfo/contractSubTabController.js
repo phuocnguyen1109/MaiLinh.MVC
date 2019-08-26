@@ -22,36 +22,45 @@
             getContracts();
             getTypesOfContract();
             getContractPeriod();
-            //Example
-            var date = new Date();
-            vm.getDate = date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear();
+           
 
-            vm.userContract = {
-                id: null,
-                createBy: "admin",
-                createDate: vm.getDate,
-                typeId: null,
-                typeName: null,
-                contractNumber: null,
-                startDate: null,
-                contractPeriodId: null,
-                contractPeriod: null,
-                expiredDate: null,
-            };
+
 
         };
 
+        function resetModel() {
+            vm.userContract = {
+                Id: 0,
+                CreateBy: "admin",
+                CreateOn: null,
+                ContractTypeId: 0,
+                ContractNumber: 0,
+                Duration: 0,
+                SignedIn: null,
+                SignOut: null,
+                PersonId: personId
+            };
+        }
+
         function getContracts() {
-            //TODO: get data by api
-            //$http.get('/api/Person/GetPersonContracts', { params: { pid: personId } })
-            //    .then(function (response) {
-            //        debugger;
-            //    });
+            $http.get('/api/Person/GetPersonContracts', { params: { pid: personId } })
+                .then(function (response) {
+                    vm.userContracts = [];
+                    if (!response) return;
+                    response.data.forEach(function (item, index) {
+                        item.SignedInDisplay = new Date(item.SignedIn);
+                        item.SignedOutDisplay = new Date(item.SignOut);
+                        item.DurationDisplay = angular.copy(vm.contractPeriods).find(x => x.contractPeriodId == item.Duration).contractPeriod;
+                        item.ContractTypeDisplay = angular.copy(vm.typesOfContracts).find(x => x.typeId == item.ContractTypeId).typeName;
+                        vm.userContracts.push(item);
+                    });
+                });
         }
 
         function getTypesOfContract() {
             //TODO: get data by api
-            vm.typesOfContract = [
+            vm.typesOfContracts = [
+                { typeId: 0, typeName: "--Chọn Loại Hợp Đồng--" },
                 { typeId: 1, typeName: "Hợp Đồng Lao Động" },
                 { typeId: 2, typeName: "Hợp Đồng Hợp Tác" },
                 { typeId: 3, typeName: "Khác" },
@@ -59,7 +68,7 @@
         }
 
         function getContractPeriod() {
-            vm.contractPeriod = [
+            vm.contractPeriods = [
                 { contractPeriodId: 3, contractPeriod: "3 tháng" },
                 { contractPeriodId: 6, contractPeriod: "6 tháng" },
                 { contractPeriodId: 12, contractPeriod: "12 tháng" },
@@ -70,18 +79,18 @@
         }
 
         function checkValid() {
-            if (vm.userContract.typeId != null) {
-                if (vm.userContract.contractPeriodId == null) {
+            if (vm.userContract.ContractTypeId != null) {
+                if (vm.userContract.Duration == null) {
                     vm.message = "Nhập thời hạn của hợp đồng!";
                     vm.isValid = false;
                     return;
                 }
-                if (vm.userContract.contractNumber == "" || !vm.userContract.contractNumber) {
+                if (vm.userContract.ContractNumber == 0 || !vm.userContract.ContractNumber) {
                     vm.message = "Nhập số hợp đồng!";
                     vm.isValid = false;
                     return;
                 }
-                if (vm.userContract.startDate == null) {
+                if (vm.userContract.SignedIn == null) {
                     vm.message = "Nhập ngày ký hợp đồng!";
                     vm.isValid = false;
                     return;
@@ -92,105 +101,58 @@
         }
 
         function generExpiredDate(row) {
-            var expiredDate = null;
-            if (vm.userContract.startDate != null && vm.userContract.contractPeriodId != null) {
-                var startDate = new Date(vm.userContract.startDate);
-                console.log(startDate);
-                expiredDate = startDate.setMonth(startDate.getMonth() + vm.userContract.contractPeriodId);
-                vm.userContract.expiredDate = new Date(expiredDate);
+            var signedOutDate = null;
+            if (vm.userContract.SignedIn != null && vm.userContract.Duration != null) {
+                var signedInDate = new Date(vm.userContract.SignedIn);
+                signedOutDate = signedInDate.setMonth(signedInDate.getMonth() + vm.userContract.Duration);
+                vm.userContract.SignOut = new Date(signedOutDate);
             }
         }
 
         function openAddModal() {
             vm.modalTitle = "Thêm mới";
             vm.isValid = false;
-            vm.userContract = {
-                id: null,
-                createBy: "admin",
-                createDate: vm.getDate,
-                typeId: null,
-                typeName: null,
-                contractNumber: null,
-                startDate: null,
-                contractPeriodId: null,
-                contractPeriod: null,
-                expiredDate: null,
-            };
+            resetModel();
         }
 
         function openEditModal(row) {
             vm.modalTitle = "Chỉnh sửa";
             vm.isValid = true;
-            var sDate = new Date(row.startDate);
-            var eDate = new Date(row.expiredDate);
             vm.userContract = row;
-            vm.userContract.startDate = sDate;
-            vm.userContract.expiredDate = eDate;
+            vm.userContract.SignedIn = new Date(vm.userContract.SignedIn);
+            vm.userContract.SignOut = new Date(vm.userContract.SignOut);
         }
 
         function saveChanges() {
-            vm.userContract.startDate = (vm.userContract.startDate.getMonth() + 1) + "/" + vm.userContract.startDate.getDate() + "/" + vm.userContract.startDate.getFullYear();
-            vm.userContract.expiredDate = (vm.userContract.expiredDate.getMonth() + 1) + "/" + vm.userContract.expiredDate.getDate() + "/" + vm.userContract.expiredDate.getFullYear();
-            var r = vm.userContract;
-            if (r.id) {
-                vm.contracts.forEach(function (item, index) {
-                    if (r.id == item.id) {
-                        vm.typesOfContract.forEach(function (i, index) {
-                            if (r.typeId == i.typeId) {
-                                item.typeId = i.typeId;
-                                item.typeName = i.typeName;
-                                return;
-                            }
-                        });
-                        vm.contractPeriod.forEach(function (p, index) {
-                            if (r.contractPeriodId == p.contractPeriodId) {
-                                item.contractPeriodId = p.contractPeriodId;
-                                item.contractPeriod = p.contractPeriod;
-                                return;
-                            }
-                        });
-                        item.contractNumber = r.contractNumber;
-                        return;
-                    }
-                    return;
-                });
-            } else {
-                var newId = new Date();
-                newId = newId.getMilliseconds().toString();
-                vm.typesOfContract.forEach(function (i, index) {
-                    if (r.typeId == i.typeId) {
-                        vm.contractPeriod.forEach(function (p, index) {
-                            if (r.contractPeriodId == p.contractPeriodId) {
-                                r.contractPeriod = p.contractPeriod;
-                                return;
-                            }
-                        });
-                        r.id = newId;
-                        r.typeName = i.typeName;
-                        vm.userContract = r;
-
-                        vm.contracts.push(vm.userContract);
-                        console.log(vm.contracts);
-                        return;
-                    };
-                });
-        };
-    }
-
-    function openDeleteModal(row) {
-        vm.deletedDataRow = row;
-    }
-
-    function deleted(row) {
-        var deletedIndex = null;
-        vm.contracts.forEach(function (item, index) {
-            if (row.id == item.id) {
-                deletedIndex = index;
-                vm.contracts.splice(deletedIndex, 1);
-                return;
+            debugger;
+            if (vm.userContract.Id == 0) {
+                $http.post('/api/Person/CreatePersonContract', vm.userContract)
+                    .then(function (result) {
+                        debugger;
+                    });
             }
-        });
-    }
+            else {
+                $http.post('/api/Person/UpdatePersonContract', vm.userContract)
+                    .then(function (result) {
+                        debugger;
+                    });
+            }
+        }
 
-};
-}) ();
+        function openDeleteModal(row) {
+            vm.deletedDataRow = row;
+        }
+
+        function deleted(row) {
+            var deletedIndex = null;
+            vm.contracts.forEach(function (item, index) {
+                if (row.id == item.id) {
+                    deletedIndex = index;
+                    vm.contracts.splice(deletedIndex, 1);
+                    return;
+                }
+            });
+        }
+
+    };
+})();

@@ -50,6 +50,20 @@ namespace ML.DataLayer.Implements.Hr
                 }, commandType: System.Data.CommandType.StoredProcedure));
         }
 
+        public int CreatePersonContract(PersonContract request, int userId)
+        {
+            return Execute(connection => connection.Execute("[Hr].[CreatePersonContract]", 
+                new {
+                    pid = request.PersonId,
+                    contractTypeId = request.ContractTypeId,
+                    contractNumber = request.ContractNumber,
+                    duration = request.Duration,
+                    signedIn = request.SignedIn,
+                    signedOut = request.SignOut,
+                    userId = userId
+                }, commandType:CommandType.StoredProcedure));
+        }
+
         public int CreateSimple(CreateSimpleRequest request)
         {
             return Execute(connection =>
@@ -61,6 +75,16 @@ namespace ML.DataLayer.Implements.Hr
                     userName = request.UserName,
                     gender = request.Gender
                 }, commandType: System.Data.CommandType.StoredProcedure)); 
+        }
+
+        public int DeletePersonContract(int id, int userId)
+        {
+            return Execute(connection => connection.Execute("[Hr].[DeletePersonContract]",
+                new
+                {
+                    id = id,
+                    userId = userId
+                }, commandType: CommandType.StoredProcedure));
         }
 
         public int DeletePersonIdentity(int id)
@@ -93,6 +117,15 @@ namespace ML.DataLayer.Implements.Hr
         {
             return Execute(connection => connection.Query<PersonAddress>("[Hr].[GetPersonAddress]",
               new { pid = pid }, commandType: System.Data.CommandType.StoredProcedure));
+        }
+
+        public IEnumerable<PersonContract> GetPersonContracts(int pid)
+        {
+            return Execute(connection => connection.Query<PersonContract>("[Hr].[GetPersonContracts]",
+                new
+                {
+                   pid = pid
+                }, commandType: CommandType.StoredProcedure));
         }
 
         public IEnumerable<PersonIdentityCard> GetPersonIdentities(int pid)
@@ -137,6 +170,21 @@ namespace ML.DataLayer.Implements.Hr
                 userId = userId
 
             }, commandType: System.Data.CommandType.StoredProcedure));
+        }
+
+        public int UpdatePersonContract(PersonContract request, int userId)
+        {
+            return Execute(connection => connection.Execute("[Hr].[UpdatePersonContract]",
+               new
+               {
+                   id = request.Id,
+                   contractTypeId = request.ContractTypeId,
+                   contractNumber = request.ContractNumber,
+                   duration = request.Duration,
+                   signedIn = request.SignedIn,
+                   signedOut = request.SignOut,
+                   userId = userId
+               }, commandType: CommandType.StoredProcedure));
         }
 
         public int UpdatePersonIdentity(PersonIdentityCard request, int userId = 1)

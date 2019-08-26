@@ -44,8 +44,10 @@
     <Compile Include="MHealthCheck.cs" />
     <Compile Include="MLanguage.cs" />
     <Compile Include="MLocation.cs" />
+    <Compile Include="MMariageStatus.cs" />
     <Compile Include="MWorkLicense.cs" />
     <Compile Include="PersonAddress.cs" />
+    <Compile Include="PersonContract.cs" />
     <Compile Include="PersonDriveLicense.cs" />
     <Compile Include="PersonEducation.cs" />
     <Compile Include="PersonHealthCheck.cs" />
