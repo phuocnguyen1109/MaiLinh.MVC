@@ -5,8 +5,10 @@
         <div class="row  mt-2">
             <div class="col-lg-3 col-md-3">
                 <label>Bộ Phận</label>
-                <select ng-model="vm.departmentObject.departmentId" class="form-control"
-                        ng-options="d.departmentId as d.departmentName for d in vm.departments"></select>
+                <select class="form-control" ng-model="vm.departmentObject.departmentId"
+                        ng-options="d.departmentId as d.departmentName for d in vm.departments">
+                    <option value="">-- Chọn Bộ Phận --</option>
+                </select>
             </div>
             <div class="col-lg-9 col-md-9" style="display: -webkit-inline-box;">
                 <div class="col-lg-3 col-md-3">
@@ -95,19 +97,25 @@
                                     <label>Bộ Phận</label>
                                     <select ng-model="vm.account.departmentId" class="form-control"
                                             ng-change="vm.checkValid();"
-                                            ng-options="d.departmentId as d.departmentName for d in vm.departments"></select>
+                                            ng-options="d.departmentId as d.departmentName for d in vm.departments">
+                                        <option value="">-- Chọn Bộ Phận --</option>
+                                    </select>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <label>Chức vụ</label>
                                     <select ng-model="vm.account.titleId" class="form-control"
                                             ng-change="vm.checkValid()"
-                                            ng-options="t.titleId as t.titleName for t in vm.titles"></select>
+                                            ng-options="t.titleId as t.titleName for t in vm.titles">
+                                        <option value="">-- Chọn Chức Vụ --</option>
+                                    </select>
                                 </div>
                                 <div class="col-lg-9 col-md-9">
                                     <label>Nhân Viên</label>
                                     <select ng-model="vm.employeeObject.id" class="form-control"
                                             ng-change="vm.checkValid();"
-                                            ng-options="e.id as e.name for e in  vm.employees"></select>
+                                            ng-options="e.id as e.name for e in  vm.employees">
+                                        <option value="">-- Tìm Nhân Viên --</option>
+                                    </select>
                                     <!--<p>{{vm.employeeObject.id }}</p>-->
                                 </div>
                                 <div class="col-md-6">

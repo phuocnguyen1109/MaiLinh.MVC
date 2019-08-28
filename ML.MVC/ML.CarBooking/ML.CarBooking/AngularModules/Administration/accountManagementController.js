@@ -33,16 +33,16 @@
             var accounts = [
                 { id: "1", lastName: "Nguyễn", firstName: "Ngọc", userName: "s1" },
                 { id: "2", lastName: "Nguyễn", firstName: "Ngọc Ngọc", userName: "s2" },
-                { id: "1", lastName: "Nguyễn", firstName: "Ngọc", userName: "s1" },
-                { id: "2", lastName: "Nguyễn", firstName: "Ngọc Ngọc", userName: "s2" },
-                { id: "1", lastName: "Nguyễn", firstName: "Ngọc", userName: "s1" },
-                { id: "2", lastName: "Nguyễn", firstName: "Ngọc Ngọc", userName: "s2" },
-                { id: "1", lastName: "Nguyễn", firstName: "Ngọc", userName: "s1" },
-                { id: "2", lastName: "Nguyễn", firstName: "Ngọc Ngọc", userName: "s2" },
-                { id: "1", lastName: "Nguyễn", firstName: "Ngọc", userName: "s1" },
-                { id: "2", lastName: "Nguyễn", firstName: "Ngọc Ngọc", userName: "s2" },
-                { id: "1", lastName: "Nguyễn", firstName: "Ngọc", userName: "s1" },
-                { id: "2", lastName: "Nguyễn", firstName: "Ngọc Ngọc", userName: "s2" },
+                { id: "3", lastName: "Nguyễn", firstName: "Ngọc", userName: "s1" },
+                { id: "4", lastName: "Nguyễn", firstName: "Ngọc Ngọc", userName: "s2" },
+                { id: "5", lastName: "Nguyễn", firstName: "Ngọc", userName: "s1" },
+                { id: "6", lastName: "Nguyễn", firstName: "Ngọc Ngọc", userName: "s2" },
+                { id: "7", lastName: "Nguyễn", firstName: "Ngọc", userName: "s1" },
+                { id: "8", lastName: "Nguyễn", firstName: "Ngọc Ngọc", userName: "s2" },
+                { id: "9", lastName: "Nguyễn", firstName: "Ngọc", userName: "s1" },
+                { id: "10", lastName: "Nguyễn", firstName: "Ngọc Ngọc", userName: "s2" },
+                { id: "11", lastName: "Nguyễn", firstName: "Ngọc", userName: "s1" },
+                { id: "12", lastName: "Nguyễn", firstName: "Ngọc Ngọc", userName: "s2" },
             ];
             vm.accounts = accounts;
         };
@@ -54,7 +54,7 @@
             vm.employees = employees;
         };
 
-        function getDepartments () {
+        function getDepartments() {
             vm.departments = [
                 { departmentId: 1, departmentName: "Kế Toán" },
                 { departmentId: 2, departmentName: "Kiểm Toán" },
