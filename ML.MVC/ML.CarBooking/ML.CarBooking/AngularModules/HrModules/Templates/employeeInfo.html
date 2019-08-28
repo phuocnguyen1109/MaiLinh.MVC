@@ -97,16 +97,16 @@
                             <div style="display: block">
                                 <div class="row">
                                     <label for="">ĐỊA CHỈ THƯỜNG TRÚ:</label>
-                                    <input type="text" class="form-control" placeholder="Địa Chỉ, Tên Đường..." ng-model="vm.personAddresses.address.Address" />
+                                    <input type="text"  ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" placeholder="Địa Chỉ, Tên Đường..." ng-model="vm.personAddresses.address.Address" />
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6" style="padding: 10px 5px 0 0;">
                                         <label for="">THÀNH PHỐ:</label>
-                                        <select class="form-control" ng-change="vm.getDistricts()" ng-options="l.Id as l.Name for l in vm.cities" ng-model="vm.personAddresses.address.CityId"></select>
+                                        <select  ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" ng-change="vm.getDistricts()" ng-options="l.Id as l.Name for l in vm.cities" ng-model="vm.personAddresses.address.CityId"></select>
                                     </div>
                                     <div class="col-md-6" style="padding: 10px 0 0 5px;">
                                         <label ng-if="vm.personAddresses.address.CityId ==5" for="">QUẬN / HUYỆN:</label>
-                                        <select class="form-control" ng-if="vm.personAddresses.address.CityId ==5 && vm.districts.length>1" ng-options="l.Id as l.Name for l in vm.districts" ng-model="vm.personAddresses.address.DistrictId"></select>
+                                        <select  ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" ng-if="vm.personAddresses.address.CityId ==5 && vm.districts.length>1" ng-options="l.Id as l.Name for l in vm.districts" ng-model="vm.personAddresses.address.DistrictId"></select>
                                     </div>
                                 </div>
                             </div>
@@ -116,16 +116,16 @@
                             <div style="display: block">
                                 <div class="row">
                                     <label for="">ĐỊA CHỈ LIÊN LẠC:</label>
-                                    <input type="text" class="form-control" placeholder="Địa Chỉ, Tên Đường..." ng-model="vm.personAddresses.contactAddress.Address" />
+                                    <input type="text"  ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" placeholder="Địa Chỉ, Tên Đường..." ng-model="vm.personAddresses.contactAddress.Address" />
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6" style="padding: 10px 5px 0 0;">
                                         <label for="">THÀNH PHỐ:</label>
-                                        <select class="form-control" ng-change="vm.getContactDistricts()" ng-options="l.Id as l.Name for l in vm.cities" ng-model="vm.personAddresses.contactAddress.CityId"></select>
+                                        <select  ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" ng-change="vm.getContactDistricts()" ng-options="l.Id as l.Name for l in vm.cities" ng-model="vm.personAddresses.contactAddress.CityId"></select>
                                     </div>
                                     <div class="col-md-6" style="padding: 10px 0 0 5px;">
                                         <label ng-if="vm.personAddresses.contactAddress.CityId == 5" for="">QUẬN / HUYỆN:</label>
-                                        <select class="form-control" ng-options="l.Id as l.Name for l in vm.contactDistricts" ng-if="vm.personAddresses.contactAddress.CityId == 5 && vm.contactDistricts.length > 1" ng-model="vm.personAddresses.contactAddress.DistrictId"></select>
+                                        <select  ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" ng-options="l.Id as l.Name for l in vm.contactDistricts" ng-if="vm.personAddresses.contactAddress.CityId == 5 && vm.contactDistricts.length > 1" ng-model="vm.personAddresses.contactAddress.DistrictId"></select>
                                     </div>
                                 </div>
                             </div>
