@@ -45,7 +45,7 @@
 
         function getRelatives() {
             vm.relatives = [
-                { relativeId: 1, relativeName: "Nguyễn Văn Phi", dob: "1999", address: "TPHCM", relationshipId: 2, isGone: false },
+                { relativeId: 1, relativeName: "Nguyễn Văn Phi", dob: "1999", address: "TPHCM", relationshipId: 2, isGone: true },
                 { relativeId: 2, relativeName: "Nguyễn Thị Nghi", dob: "1999", address: "TPHCM", relationshipId: 3, isGone: false },
             ]
         };
