@@ -1881,6 +1881,7 @@
     <Content Include="SQL_Scripts\MaiLinh_Hr_Init_SP.sql" />
     <Content Include="SQL_Scripts\MaiLinh_Hr_MLocation.sql" />
     <Content Include="SQL_Scripts\MaiLinh_InitScripts.sql" />
+    <Content Include="SQL_Scripts\script.sql" />
     <Content Include="SQL_Scripts\SP_Hr_Contract.sql" />
     <Content Include="SQL_Scripts\SP_Hr_Education.sql" />
     <Content Include="SQL_Scripts\SP_Hr_HealthCheck.sql" />
