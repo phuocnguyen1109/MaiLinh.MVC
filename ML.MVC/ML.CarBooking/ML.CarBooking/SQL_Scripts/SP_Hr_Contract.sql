@@ -1,3 +1,4 @@
+GO
 CREATE PROC [Hr].[UpdatePersonInformation]
 @pid INT,
 @fName NVARCHAR(50),

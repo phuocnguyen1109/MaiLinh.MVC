@@ -1,5 +1,6 @@
 ﻿select * from Hr.PersonAddress
 
+go
 CREATE PROC [Hr].[GetPersonAddress]
 @pid INT
 AS
@@ -44,6 +45,8 @@ AS
 BEGIN
 	SELECT * FROM [Hr].[MLocation] WHERE [Type] = 2 AND  ParentId = @cityId
 END
+
+GO
 
 ALTER PROC [Hr].[GetAllPerson]
 

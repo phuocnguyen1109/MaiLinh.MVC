@@ -194,3 +194,8 @@ select.form-control {
 .d-gr label{
     color:#fff;
 }
+}
+
+.sidebar-dark .nav-item .nav-link[data-toggle="collapse"]::after {
+    vertical-align: middle;
+}

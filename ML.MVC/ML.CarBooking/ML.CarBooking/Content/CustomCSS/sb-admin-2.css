@@ -12118,7 +12118,7 @@ a:focus {
 
 @media (min-width: 768px) {
     .sidebar {
-        width: 14rem !important;
+        width: 15rem !important;
     }
 
         .sidebar .nav-item .collapse {
@@ -12152,7 +12152,7 @@ a:focus {
             width: 100%;
             text-align: left;
             padding: 1rem;
-            width: 14rem;
+            width: 15rem;
         }
 
             .sidebar .nav-item .nav-link i {
@@ -12167,7 +12167,7 @@ a:focus {
 
             .sidebar .nav-item .nav-link[data-toggle="collapse"]::after {
                 width: 1rem;
-                text-align: center;
+                text-align: right;
                 float: right;
                 vertical-align: 0;
                 border: 0;
@@ -12331,21 +12331,21 @@ a:focus {
     color: rgba(255, 255, 255, 0.8);
 }
 
-    .sidebar-dark .nav-item .nav-link i {
-        color: rgba(255, 255, 255, 0.3);
-    }
+.sidebar-dark .nav-item .nav-link i {
+    color: rgba(255, 255, 255, 0.3);
+}
 
-    .sidebar-dark .nav-item .nav-link:active, .sidebar-dark .nav-item .nav-link:focus, .sidebar-dark .nav-item .nav-link:hover {
-        color: #fff;
-    }
+.sidebar-dark .nav-item .nav-link:active, .sidebar-dark .nav-item .nav-link:focus, .sidebar-dark .nav-item .nav-link:hover {
+    color: #fff;
+}
 
-        .sidebar-dark .nav-item .nav-link:active i, .sidebar-dark .nav-item .nav-link:focus i, .sidebar-dark .nav-item .nav-link:hover i {
-            color: #fff;
-        }
+.sidebar-dark .nav-item .nav-link:active i, .sidebar-dark .nav-item .nav-link:focus i, .sidebar-dark .nav-item .nav-link:hover i {
+    color: #fff;
+}
 
-    .sidebar-dark .nav-item .nav-link[data-toggle="collapse"]::after {
-        color: rgba(255, 255, 255, 0.5);
-    }
+.sidebar-dark .nav-item .nav-link[data-toggle="collapse"]::after {
+    color: rgba(255, 255, 255, 0.5);
+}
 
 .sidebar-dark .nav-item.active .nav-link {
     color: #fff;
