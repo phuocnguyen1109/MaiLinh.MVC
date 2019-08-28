@@ -2,7 +2,8 @@
     'use strict'
     angular.module('mainApp').controller('educationController', educationController);
 
-    function educationController($rootScope, $scope, $state) {
+    educationController.$inject = ['$http', '$rootScope', '$scope', '$state', '$stateParams'];
+    function educationController($rootScope, $scope, $state, $stateParams) {
         var vm = this;
         vm.initialize = initialize;
         vm.checkValid = checkValid;
@@ -20,6 +21,7 @@
         vm.usedTime = null;
         vm.startDate = null;
         vm.expiredDate = null;
+        vm.IsViewing = $stateParams.params.IsViewing;
 
         function initialize() {
             vm.userLanguage = { id: null, name: null, qualification: null };

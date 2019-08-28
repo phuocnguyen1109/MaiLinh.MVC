@@ -5,7 +5,7 @@
                 <div class="row custom-card" style="height:45%">
                     <div class="col-lg-6 col-md-6">
                         <label for="grade">TRÌNH ĐỘ:</label>
-                        <select class="form-control">
+                        <select ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'">
                             <option>Tốt Nghiệp Tiểu Học</option>
                             <option>Tốt Nghiệp THCS</option>
                             <option>Tốt Nghiệp THPT</option>
@@ -16,14 +16,14 @@
 
                     <div class="col-lg-6 col-md-6">
                         <label for="major">CHUYÊN MÔN:</label>
-                        <input type="text" class="form-control" />
+                        <input type="text" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'"/>
                     </div>
                 </div>
                 <!-- GPLX -->
                 <div class="row custom-card" style="margin-top: 20px; height: 50%">
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <label for="grade">GPLX:</label>
-                        <select class="form-control">
+                        <select ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'">
                             <option>Dấu B2</option>
                             <option>Dấu C</option>
                             <option>Dấu D</option>
@@ -33,11 +33,11 @@
 
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <label for="major">CÓ GIÁ TRỊ ĐẾN:</label>
-                        <input type="date" class="form-control" />
+                        <input type="date" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'"/>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6 mt-2">
                         <label for="major">NƠI CẤP:</label>
-                        <input type="text" class="form-control" />
+                        <input type="text" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" />
                     </div>
                 </div>
             </div>
@@ -47,7 +47,7 @@
             <div class="col-lg-6 col-md-6 p-3 custom-card " style="height: 100%; overflow: auto;">
                 <div>
                     <label>NGOẠI NGỮ:</label>
-                    <button class="btn btn-outline-primary mt-2 mb-2 float-right" data-toggle="modal" data-target="#LanguageModal" ng-click="vm.openAdd()">
+                    <button class="btn btn-outline-primary mt-2 mb-2 float-right" data-toggle="modal" data-target="#LanguageModal" ng-click="vm.openAdd()" ng-disabled="vm.IsViewing">
                         <i class="fa fa-plus"> </i> THÊM NGOẠI NGỮ
                     </button>
                 </div>
@@ -64,10 +64,10 @@
                             <td>{{row.name}}</td>
                             <td>{{row.qualification}}</td>
                             <td>
-                                <button class="btn btn-outline-success" data-toggle="modal" data-target="#LanguageModal" ng-click="vm.openEditLanguage(row)">
+                                <button class="btn btn-outline-success" data-toggle="modal" data-target="#LanguageModal" ng-click="vm.openEditLanguage(row)" ng-disabled="vm.IsViewing">
                                     <i class="fas fa-fw fa-pen"></i>
                                 </button>
-                                <button class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteLanguageModal" ng-click="vm.openDelModal(row)">
+                                <button class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteLanguageModal" ng-click="vm.openDelModal(row)" ng-disabled="vm.IsViewing">
                                     <i class="fas fa-fw fa-trash"></i>
                                 </button>
                             </td>
@@ -153,7 +153,7 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="row in vm.lincenses">
-                        <td class="center-block txt-center"><input type="checkbox" ng-model="row.isCheck" ng-change="vm.changeTime(row)" /></td>
+                        <td class="center-block txt-center"><input type="checkbox" ng-model="row.isCheck" ng-change="vm.changeTime(row)" ng-disabled="vm.IsViewing"/></td>
                         <td class="text-uppercase">{{row.name}}</td>
                         <td><input type="number" class="form-control" ng-model="row.usedTime" ng-change="vm.changeTime(row)" ng-disabled="!row.isCheck" /></td>
                         <td><input type="date" class="form-control" ng-model="row.licenseDate" ng-change="vm.changeTime(row)" ng-disabled="!row.isCheck" /></td>

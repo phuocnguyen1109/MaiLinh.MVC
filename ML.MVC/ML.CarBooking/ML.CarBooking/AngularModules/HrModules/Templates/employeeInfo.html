@@ -6,51 +6,59 @@
                     <div class="row mt-4">
                         <div class="col-lg-3 col-md-3">
                             <label for="dob">NGÀY SINH:</label>
-                            <input type="date" ng-model="vm.person.DoB" class="form-control" />
+                            <input type="date" ng-model="vm.person.DoB" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" />
                         </div>
 
                         <div class="col-lg-3 col-md-3">
                             <label for="placeOfBorn">NƠI SINH:</label>
-                            <select class="form-control" ng-model="vm.person.PlaceOfBirth"
-                                    ng-options="l.Id as l.Name for l in vm.cities"></select>
+                            <select ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'"  ng-model="vm.person.PlaceOfBirth"
+                                    ng-options="l.Id as l.Name for l in vm.cities">
+                               
+                            </select>
                         </div>
 
                         <div class="col-lg-2 col-md-2">
                             <label for="placeOfBorn">QUỐC TỊCH:</label>
-                            <select class="form-control" ng-model="vm.person.HomeTownId"
-                                    ng-options="l.id as l.name for l in vm.countries"></select>
+                            <select ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'"  ng-model="vm.person.HomeTownId"
+                                  ng-options="l.id as l.name for l in vm.countries"  >
+                            </select>
                         </div>
                         <div class="col-lg-2 col-md-2">
                             <label for="placeOfBorn">TÔN GIÁO:</label>
-                            <select class="form-control" ng-model="vm.person.ReligionId"
-                                    ng-options="l.id as l.name for l in vm.religion"></select>
+                            <select ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'"  ng-model="vm.person.ReligionId"
+                                    ng-options="l.id as l.name for l in vm.religion">                          
+                            </select>
                         </div>
 
                         <div class="col-lg-2 col-md-2">
                             <label for="placeOfBorn">DÂN TỘC:</label>
-                            <select class="form-control" ng-model="vm.person.NationId"
-                                    ng-options="l.id as l.name for l in vm.nations"></select>
+                            <select ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'"  ng-model="vm.person.NationId"
+                                    ng-options="l.id as l.name for l in vm.nations">
+                            </select>
                         </div>
                     </div>
                     <div class="row mt-4">
                         <div class="col-lg-3 col-md-3">
                             <label for="dob">NGÀY VÀO HỆ THỐNG MLC:</label>
-                            <input type="date" class="form-control" ng-model="vm.person.MLCDate" />
+                            <input type="date" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'"  ng-model="vm.person.MLCDate" />
                         </div>
 
                         <div class="col-lg-3 col-md-3">
                             <label for="dob">NGÀY VÀO CÔNG TY:</label>
-                            <input type="date" class="form-control" placeholder="..." ng-model="vm.person.StartDate" />
+                            <input type="date" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'"  placeholder="..." ng-model="vm.person.StartDate" />
                         </div>
 
                         <div class="col-lg-3 col-md-3">
                             <label for="dob">BỘ PHẬN:</label>
-                            <select class="form-control" ng-model="vm.person.DepartmentId" ng-options="l.id as l.name for l in vm.departments"></select>
+                            <select ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'"  ng-model="vm.person.DepartmentId" ng-options="l.id as l.name for l in vm.departments">
+                               
+                            </select>
                         </div>
 
                         <div class="col-lg-3 col-md-3">
                             <label for="dob">CHỨC VỤ:</label>
-                            <select class="form-control" ng-model="vm.person.RoleId" ng-options="l.id as l.name for l in vm.roles"></select>
+                            <select ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'"  ng-model="vm.person.RoleId" ng-options="l.id as l.name for l in vm.roles">
+                            </select>
                         </div>
                     </div>
                     <div class="row mt-4">
@@ -61,10 +69,10 @@
                             <label>LƯƠNG HƯU TRÍ:</label>
                             <div class="w-100" style="margin-left: 20px;">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" value="true" ng-model="vm.person.IsPension" name="luonghuu">Có
+                                    <input type="radio" class="form-check-input" value="true" ng-model="vm.person.IsPension" name="luonghuu" ng-disabled="vm.IsViewing">Có
                                 </label>
                                 <label class="form-check-label ml-4">
-                                    <input type="radio" class="form-check-input" value="false" ng-model="vm.person.IsPension" checked name="luonghuu">Không
+                                    <input type="radio" class="form-check-input" value="false" ng-model="vm.person.IsPension" checked name="luonghuu" ng-disabled="vm.IsViewing">Không
                                 </label>
                             </div>
                         </div>
@@ -73,10 +81,10 @@
                             <label>ĐÃ NGHỈ VIỆC:</label>
                             <div class="w-100" style="margin-left: 20px;">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" value="false" ng-model="vm.person.Actived" name="nghiviec">Đã Nghỉ
+                                    <input type="radio" value="false" ng-model="vm.person.Actived" name="nghiviec" ng-disabled="vm.IsViewing">Đã Nghỉ
                                 </label>
                                 <label class="form-check-label ml-4">
-                                    <input type="radio" class="form-check-input" value="true" ng-model="vm.person.Actived" name="nghiviec">Không
+                                    <input type="radio" value="true" ng-model="vm.person.Actived" name="nghiviec" ng-disabled="vm.IsViewing">Không
                                 </label>
                             </div>
                         </div>
@@ -142,19 +150,19 @@
                         <div class="row">
                             <div class="col-lg-3 col-md-3">
                                 <label for="dob">SỐ SỔ BHXH:</label>
-                                <input type="text" class="form-control" placeholder="" ng-model="vm.person.SINumber" />
+                                <input type="text" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" placeholder="" ng-model="vm.person.SINumber" />
                             </div>
 
                             <div class="col-lg-3 col-md-3">
                                 <label for="dob">SỐ HỢP ĐỒNG BHTN:</label>
-                                <input type="text" class="form-control" placeholder="" ng-model="vm.person.SIContractNumber" />
+                                <input type="text" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" placeholder="" ng-model="vm.person.SIContractNumber" />
                             </div>
                         </div>
 
                         <div class="row mt-4">
                             <div class="col-lg-6 col-md-6">
                                 <label for="note">GHI NHẬN BÀN GIAO SỔ BHXH, BHTN:</label>
-                                <textarea class="form-control" ng-model="vm.person.SINote"></textarea>
+                                <textarea ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" ng-model="vm.person.SINote"></textarea>
                             </div>
                         </div>
                     </div>

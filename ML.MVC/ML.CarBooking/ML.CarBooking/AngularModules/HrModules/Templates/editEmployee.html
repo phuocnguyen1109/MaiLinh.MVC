@@ -14,24 +14,24 @@
             <div class="col-lg-5 col-md-5 form-group d-gr w-100" style="display: grid;">
                 <label for="fName" style="margin-left:0.1rem">HỌ VÀ TÊN:</label>
                 <div style="display:inline-flex;">
-                    <input id="fName" class="form-control mr-2" style="width:50% !important" placeholder="Họ và tên lót..." type="text" ng-model="vm.person.FirstName" />
-                    <input id="lName" class="form-control" style="width:50% !important" placeholder="Tên..." type="text" ng-model="vm.person.LastName" />
+                    <input id="fName" ng-class="vm.IsViewing ? 'disableEl form-control mr-2':'form-control mr-2'" style="width:50% !important" placeholder="Họ và tên lót..." type="text" ng-model="vm.person.FirstName" />
+                    <input id="lName" ng-class="vm.IsViewing ? 'disableEl form-control mr-2':'form-control mr-2'" style="width:50% !important" placeholder="Tên..." type="text" ng-model="vm.person.LastName" />
                 </div>
             </div>
             <div class="col-lg-2 col-md-2 form-group d-gr txt-center">
                 <label>GIỚI TÍNH:</label>
                 <div class="w-100">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" ng-model="vm.person.IsMale" value="true" ng-checked="vm.person.IsMale" name="optradio">Nam
+                        <input type="radio" class="form-check-input" ng-model="vm.person.IsMale" value="true" ng-checked="vm.person.IsMale" name="optradio" ng-disabled="vm.IsViewing">Nam
                     </label>
                     <label class="form-check-label ml-4">
-                        <input type="radio" class="form-check-input" ng-model="vm.person.IsMale" value="false" ng-checked="!vm.person.IsMale" name="optradio">Nữ
+                        <input type="radio" class="form-check-input" ng-model="vm.person.IsMale" value="false" ng-checked="!vm.person.IsMale" name="optradio" ng-disabled="vm.IsViewing">Nữ
                     </label>
                 </div>
             </div>
             <div class="col-lg-2 col-md-2 d-gr">
                 <label>TÊN ĐĂNG NHẬP:</label>
-                <input type="text" class="form-control" disabled ng-model="vm.person.UserName" />
+                <input type="text" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" disabled ng-model="vm.person.UserName" />
             </div>
 
         </div>
@@ -63,8 +63,8 @@
     </div>
 
     <div class="row" style="float:right; margin: 20px 10px 20px 0">
-        <button class="btn btn-outline-success" ng-click="vm.saveChanges()" style="height: 50px; width:200px; margin-right: 20px;">LƯU THAY ĐỔI</button>
-        <button class="btn btn-outline-danger"  data-toggle="modal" data-target="#Cancel" style="height: 50px; width:200px;">HỦY BỎ</button>
+        <button class="btn btn-outline-success" ng-click="vm.saveChanges()" style="height: 50px; width:200px; margin-right: 20px;" ng-disabled="vm.IsViewing">LƯU THAY ĐỔI</button>
+        <button class="btn btn-outline-danger"  data-toggle="modal" data-target="#Cancel" style="height: 50px; width:200px;" ng-disabled="vm.IsViewing">HỦY BỎ</button>
     </div>
 </div>
 <div class="modal fade" id="Cancel" tabindex="-1" role="dialog" aria-hidden="true">

@@ -37,7 +37,9 @@
         }
 
         function gotoView() {
-            alert('Chức Năng Đang Được Cập Nhật');
+            //alert('Chức Năng Đang Được Cập Nhật');
+            $state.go('editEmployee', { id: selectedId, IsViewing: true });
+
         }
 
         function filter() {
@@ -86,8 +88,7 @@
         }
 
         function gotoEdit() {
-            
-            $state.go('editEmployee', { id: selectedId });
+            $state.go('editEmployee', { id: selectedId, IsViewing: false });
         }
 
        

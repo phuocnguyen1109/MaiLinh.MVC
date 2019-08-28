@@ -199,3 +199,14 @@ select.form-control {
 .sidebar-dark .nav-item .nav-link[data-toggle="collapse"]::after {
     vertical-align: middle;
 }
+}
+
+.disableEl {
+    pointer-events: none !important;
+    background-color: #eaecf4 !important;
+}
+
+.disableRB {
+    opacity: 1 !important;
+
+}

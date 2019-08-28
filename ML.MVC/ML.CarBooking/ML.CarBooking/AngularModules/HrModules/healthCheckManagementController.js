@@ -2,15 +2,18 @@
     'use strict'
     angular.module('mainApp').controller('healthCheckManagementController', healthCheckManagementController);
 
-    function healthCheckManagementController() {
+    healthCheckManagementController.$inject = ['$http', '$rootScope', '$scope', '$state', '$stateParams'];
+    function healthCheckManagementController($rootScope, $scope, $state, $stateParams) {
         var vm = this;
         vm.initialize = initialize;
         vm.openAddModal = openAddModal;
         vm.openEditModal = openEditModal;
         vm.openDeleteModal = openDeleteModal;
         vm.deleted = deleted;
+        vm.IsViewing = $stateParams.params.IsViewing;
 
         function initialize() {
+
             getHealthChecks();
             getHealthStandards();
         }

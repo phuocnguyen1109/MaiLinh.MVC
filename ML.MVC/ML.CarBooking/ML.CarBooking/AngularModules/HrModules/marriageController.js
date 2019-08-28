@@ -3,7 +3,8 @@
     angular.module('mainApp')
         .controller('marriageController', marriageController);
 
-    function marriageController($scope, $state) {
+    marriageController.$inject = ['$http', '$rootScope', '$scope', '$state', '$stateParams'];
+    function marriageController($rootScope, $scope, $state, $stateParams) {
         var vm = this;
         vm.initialize = initialize;
         vm.gender = "male";
@@ -14,10 +15,12 @@
         vm.editRelative = editRelative;
         vm.openDelModel = openDelModel;
         vm.deleterelative = deleterelative;
+        vm.IsViewing = $stateParams.params.IsViewing;
 
         vm.marriageStatusObject = { marritalStatusId: null, marritalStatusName: null };
 
         function initialize() {
+
             getMarritalStatuss();
             getRelatives();
             getRelationships();

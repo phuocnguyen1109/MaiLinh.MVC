@@ -17,6 +17,7 @@
 
         vm.isValid = false;
         var personId = $stateParams.id;
+        vm.IsViewing = $stateParams.IsViewing;
 
         function initialize() {
             //Example
@@ -39,6 +40,7 @@
                 contractPeriod: null,
                 expiredDate: null,
             };
+
 
         };
 
@@ -205,7 +207,8 @@
                 return;
             }
         });
-    }
+        }
+
 
 };
 }) ();
