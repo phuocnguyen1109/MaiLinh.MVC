@@ -35,7 +35,7 @@
                 <div class="mb-5"></div>
             </li>
             <!-- Sidebar - Brand -->
-            <li>
+            <li ng-click="vm.goMainPage()">
                 <a class="sidebar-brand d-flex align-items-center justify-content-center" ui-sref="dashboard">
                     <div class="sidebar-brand-text mx-3">
                         <img src="~/Content/Images/Logo_MLXCT.jpg" style="width:80%">
@@ -245,7 +245,8 @@
                 </nav>
                 <!-- End of Topbar -->
                 <!-- Begin Page Content -->
-                <div ui-view class="container-fluid" style="height:100vh;"></div>
+                <div ui-view class="container-fluid" style="height:100vh;" ng-class="vm.isMainPage? 'showBg': 'hiddenBg'">
+                </div>
                 <!-- /.container-fluid -->
 
             </div>

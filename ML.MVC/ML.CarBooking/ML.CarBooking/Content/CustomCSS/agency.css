@@ -14,6 +14,18 @@
     background-color: #2f3a4c;
     color: #fff !important;
 }
+
+.showBg {
+    background-image: url(../Images/29seats.png);
+    background-position: center center;
+    background-attachment: inherit;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.hiddenBg {
+    background: none;
+}
 /*Text*/
 .txt-center {
     text-align: center !important;
