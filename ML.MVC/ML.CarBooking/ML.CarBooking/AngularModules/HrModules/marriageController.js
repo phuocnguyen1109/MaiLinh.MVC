@@ -3,8 +3,9 @@
     angular.module('mainApp')
         .controller('marriageController', marriageController);
 
-    marriageController.$inject = ['$http', '$rootScope', '$scope', '$state', '$stateParams'];
-    function marriageController($rootScope, $scope, $state, $stateParams) {
+    marriageController.$inject = ['$scope', '$http', '$state', '$stateParams'];
+
+    function marriageController($scope, $http, $state, $stateParams) {
         var vm = this;
         vm.initialize = initialize;
         vm.gender = "male";
@@ -17,21 +18,47 @@
         vm.deleterelative = deleterelative;
         vm.IsViewing = $stateParams.params.IsViewing;
 
-        vm.marriageStatusObject = { marritalStatusId: null, marritalStatusName: null };
+        var personIsMale = true;
+        var personId = $stateParams.Id;
+
+        vm.marriageStatusObject = { Id: null, marritalStatusName: null };
+
+        function resetModel() {
+            vm.personRelationship = { Id: 0, RelationshipId: 0, FullName: null, YearOfBirth: 0, Address: null, IsDead: false, PersonId: personId };
+        }
+
+        function loadMariageStatuses() {
+            $http.get('/api/Mariage/GetMMariageStatuses')
+                .then(function (response) {
+                    if (response && response.data.length > 0) {
+                        vm.mariageStatuses = response.data;
+                    }
+                });
+        }
+
+        function loadRelationships() {
+            if (!personIsMale) {
+                vm.RelationShipTypes = angular.copy(E.RelationShipType).filter(x => x.Id != 4 && x.Id != 5); // Excludes 'Bố Chồng', 'Mẹ Chồng' 
+            }
+            vm.RelationShipTypes = angular.copy(E.RelationShipType).filter(x => x.Id != 6 && x.Id != 7); // Excludes 'Bố Vợ', 'Mẹ Vợ' 
+            vm.RelationShipTypes.splice(0, 0, { Id: 0, Name: '--Chọn Mối Quan Hệ--' });
+        }
 
         function initialize() {
+            loadMariageStatuses();
+            loadRelationships();
 
             getMarritalStatuss();
             getRelatives();
-            getRelationships();
+            
 
-            vm.relationships.forEach(function (rs, index) {
-                vm.relatives.forEach(function (r) {
-                    if (r.relationshipId == rs.relationshipId) {
-                        r.relationshipName = rs.relationshipName;
-                    }
-                });
-            });
+            //vm.relationships.forEach(function (rs, index) {
+            //    vm.relatives.forEach(function (r) {
+            //        if (r.relationshipId == rs.relationshipId) {
+            //            r.relationshipName = rs.relationshipName;
+            //        }
+            //    });
+            //});
 
         };
 
@@ -50,21 +77,21 @@
             ]
         };
 
-        function getRelationships() {
-            vm.relationships = [
-                { relationshipId: 1, relationshipName: "Vợ / Chồng" },
-                { relationshipId: 2, relationshipName: "Bố" },
-                { relationshipId: 3, relationshipName: "Mẹ" },
-                { relationshipId: 4, relationshipName: "Bố Vợ" },
-                { relationshipId: 5, relationshipName: "Mẹ Vợ" },
-                { relationshipId: 6, relationshipName: "Bố Chồng" },
-                { relationshipId: 7, relationshipName: "Mẹ Chồng" },
-            ]
-        };
+        //function getRelationships() {
+        //    vm.relationships = [
+        //        { relationshipId: 1, relationshipName: "Vợ / Chồng" },
+        //        { relationshipId: 2, relationshipName: "Bố" },
+        //        { relationshipId: 3, relationshipName: "Mẹ" },
+        //        { relationshipId: 4, relationshipName: "Bố Vợ" },
+        //        { relationshipId: 5, relationshipName: "Mẹ Vợ" },
+        //        { relationshipId: 6, relationshipName: "Bố Chồng" },
+        //        { relationshipId: 7, relationshipName: "Mẹ Chồng" },
+        //    ]
+        //};
 
         function addNewRelative() {
             vm.isValid = false;
-            vm.relative = { relativeId: null, relativeName: null, dob: null, address: null, relationshipId: null, relationshipName: null, isGone: false };
+            resetModel();
         };
 
         function checkValid() {

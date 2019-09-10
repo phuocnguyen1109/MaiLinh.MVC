@@ -1,8 +1,9 @@
 ﻿<div ng-controller="marriageController as vm" ng-init="vm.initialize()" style="margin:10px;">
     <div class="row mt-2">
         <div class="col-lg-4 col-md-4">
+            <label>TÌNH TRẠNG HÔN NHÂN:</label>
             <select ng-model="vm.marriageStatusObject.marritalStatusId" class="form-control"
-                    ng-options="ms.marritalStatusId as ms.marritalStatusName for ms in vm.marritalStatuss" ng-disabled="vm.IsViewing"></select>
+                    ng-options="ms.Id as ms.Name for ms in vm.mariageStatuses"></select>
         </div>
     </div>
 
@@ -59,25 +60,24 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label>Mối quan hệ: <span class="required_ico">*</span></label>
-                                <select ng-model="vm.relative.relationshipId" class="form-control"
-                                        ng-change="vm.checkValid();change(vm.relative)"
-                                        ng-options="r.relationshipId as r.relationshipName for r in vm.relationships"></select>
+                                <select ng-model="vm.personRelationship.RelationshipId" class="form-control"
+                                        ng-options="r.Id as r.Name for r in vm.RelationShipTypes"></select>
                             </div>
                             <div class="col-md-6">
                                 <label for="relativeName">Họ và tên: <span class="required_ico">*</span></label>
-                                <input name="relativeName" class="form-control" type="text" placeholder="..." ng-model="vm.relative.relativeName" ng-change="vm.checkValid()" />
+                                <input name="relativeName" class="form-control" type="text" placeholder="Họ & Tên" ng-model="vm.personRelationship.FullName" ng-change="vm.checkValid()" />
                             </div>
                         </div>
                         <br />
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="dob">Ngày sinh: <span class="required_ico">*</span></label>
-                                <input name="dob" class="form-control" type="date" ng-model="vm.relative.dob" ng-change="vm.checkValid()" />
+                                <input name="yearOfbirth" class="form-control" type="date" ng-model="vm.personRelationship.YearOfBirth" ng-change="vm.checkValid()" />
 
                             </div>
                             <div class="col-md-6">
                                 <label style="display: inline-flex;vertical-align: -webkit-baseline-middle;">
-                                    <input type="checkbox" ng-model="vm.relative.isGone" />&nbsp;&nbsp;Đã mất
+                                    <input type="checkbox" ng-model="vm.personRelationship.IsDead" />&nbsp;&nbsp;Đã mất
                                 </label>
                             </div>
                         </div>
@@ -85,7 +85,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="address">Địa chỉ: <span class="required_ico">*</span></label>
-                                <input name="address" class="form-control" type="text" placeholder="..." ng-model="vm.relative.address" ng-change="vm.checkValid()" />
+                                <input name="address" class="form-control" type="text" placeholder="..." ng-model="vm.personRelationship.Address" ng-change="vm.checkValid()" />
                             </div>
                         </div>
 

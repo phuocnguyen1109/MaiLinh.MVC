@@ -107,6 +107,30 @@ namespace ML.CarBooking.Controllers.API.Hr
             return m_PersonBusiness.GetPersonAddresses(pid);
         }
 
+        [HttpGet]
+        public IEnumerable<PersonContract> GetPersonContracts(int pid)
+        {
+            return m_PersonBusiness.GetPersonContracts(pid);
+        }
+
+        [HttpPost]
+        public int CreatePersonContract(PersonContract request, int userId = 1)
+        {
+            return m_PersonBusiness.CreatePersonContract(request, userId);
+        }
+
+        [HttpPost]
+        public int UpdatePersonContract(PersonContract request, int userId = 1)
+        {
+            return m_PersonBusiness.UpdatePersonContract(request, userId);
+        }
+
+        [HttpPost]
+        public int DeletePersonContract(int id, int userId = 1)
+        {
+            return m_PersonBusiness.DeletePersonContract(id, userId);
+        }
+
         
 
     }

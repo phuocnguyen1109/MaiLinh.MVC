@@ -182,6 +182,7 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\API\Hr\LocationController.cs" />
+    <Compile Include="Controllers\API\Hr\MariageController.cs" />
     <Compile Include="Controllers\API\Hr\PersonController.cs" />
     <Compile Include="Controllers\API\Hr\WorkingHistoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -200,6 +201,7 @@
     <Content Include="AngularModules\Administration\Templates\MasterDataManagements.html" />
     <Content Include="AngularModules\Administration\Templates\nationalManagement.html" />
     <Content Include="AngularModules\Administration\Templates\NationalModal.html" />
+    <Content Include="AngularModules\Enums.js" />
     <Content Include="AngularModules\HrModules\editEmployeeController.js" />
     <Content Include="AngularModules\HrModules\educationController.js" />
     <Content Include="AngularModules\HrModules\employeeInfoController.js" />
