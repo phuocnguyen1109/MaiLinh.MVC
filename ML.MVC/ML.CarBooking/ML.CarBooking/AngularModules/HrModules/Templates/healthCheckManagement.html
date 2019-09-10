@@ -49,11 +49,11 @@
                         <p class="err-message" ng-if="vm.message">{{vm.message}}</p>
                         <div>
                             <label>Tiêu chuẩn khám</label>
-                            <div class="row">
-                                <div class="col-md-3 form-check-label" ng-repeat="row in vm.healthStandards">
-                                    <input type="checkbox" ng-model="vm.userHealthCheck.isCheck" />{{row.healthStandardName}}
-                                </div>
-                            </div>
+                            <ul class="list-group" ng-repeat="row in vm.healthStandards">
+                                <li class="list-group-item list-group-item-action">
+                                    <input type="checkbox" ng-model="vm.userHealthCheck.healthStandards.isCheck" />{{row.healthStandardName}}
+                                </li>
+                            </ul>
                         </div>
                         <div class="form-group" style="display: inline-grid;">
                             <label for="year">Năm</label>
