@@ -11,6 +11,11 @@
         vm.openDeleteModal = openDeleteModal;
         vm.deleted = deleted;
         vm.IsViewing = $stateParams.params.IsViewing;
+        vm.saveChanges = saveChanges;
+        vm.Checked = Checked;
+        vm.checkValid = checkValid;
+
+        vm.isValid = false;
 
         function initialize() {
 
@@ -50,22 +55,64 @@
                 { isCheck: false, healthStandardId: 4, healthStandardName: "Khác" },
             ];
         }
-
-        function openAddModal() {
+        function resetModel() {
             vm.userHealthCheck = {
                 id: null,
                 healthStandards: [],
                 yearOfhealthStandar: null,
-                note: null };
-            vm.modalTitle = "Thêm mới tiêu chuẩn khám";
+                note: null
+            };
         }
+
+        function openAddModal() {
+            vm.modalTitle = "Thêm mới tiêu chuẩn khám";
+            vm.isValid = false;
+            resetModel();
+        }
+
         function openEditModal(r) {
             //debugger;
             vm.userHealthCheck = r;
+            console.log(vm.userHealthCheck);
             var h = vm.healthStandards;
 
             
         }
+
+        function Checked(row) {
+            console.log(row);
+            if (row.isCheck) {
+                var found = false;
+                vm.userHealthCheck.healthStandards.forEach(function (item, index) {
+                    if (row.healthStandardId == item.healthStandardId) {
+                        found = true;
+                        return;
+                    };
+                });
+                if (!found) {
+                    vm.userHealthCheck.healthStandards.push(row);
+                    console.log(vm.userHealthCheck.healthStandards);
+                }
+
+            }
+        }
+        function checkValid() {
+            if (vm.userHealthCheck.healthStandards.length > 0) {
+                if (vm.userHealthCheck.yearOfhealthStandar != "" || vm.userHealthCheck.yearOfhealthStandar != null) {
+                    vm.message = null;
+                    vm.isValid = true; 
+                    return;
+                }
+                vm.message = "Không để trống các mục!";
+                vm.isValid = false;
+            }
+        }
+
+        function saveChanges() {
+            vm.healthChecks.push(vm.userHealthCheck);
+            resetModel();
+        }
+
         function openDeleteModal(r) {
 
         }
