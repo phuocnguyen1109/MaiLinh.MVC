@@ -75,7 +75,6 @@
         }
 
         function saveChanges() {
-            debugger;
             vm.person.addresses = [vm.personAddresses.address, vm.personAddresses.contactAddress];
             vm.person.IsPension = vm.person.IsPension == 'true' ? true : false;
             vm.person.IsMale = vm.person.IsMale == 'true' ? true : false;

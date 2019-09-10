@@ -15,11 +15,12 @@
         vm.saveRelative = saveRelative;
         vm.editRelative = editRelative;
         vm.openDelModel = openDelModel;
-        vm.deleterelative = deleterelative;
-        vm.IsViewing = $stateParams.params.IsViewing;
+        vm.deleteRelationShip = deleteRelationShip;
+        var a = $scope;
+       // vm.IsViewing = $stateParams.params.IsViewing;
 
         var personIsMale = true;
-        var personId = $stateParams.Id;
+        var personId = $stateParams.id;
 
         vm.marriageStatusObject = { Id: null, marritalStatusName: null };
 
@@ -32,6 +33,7 @@
                 .then(function (response) {
                     if (response && response.data.length > 0) {
                         vm.mariageStatuses = response.data;
+                  
                     }
                 });
         }
@@ -47,47 +49,22 @@
         function initialize() {
             loadMariageStatuses();
             loadRelationships();
-
-            getMarritalStatuss();
             getRelatives();
+
             
 
-            //vm.relationships.forEach(function (rs, index) {
-            //    vm.relatives.forEach(function (r) {
-            //        if (r.relationshipId == rs.relationshipId) {
-            //            r.relationshipName = rs.relationshipName;
-            //        }
-            //    });
-            //});
-
-        };
-
-        function getMarritalStatuss() {
-            vm.marritalStatuss = [
-                { marritalStatusId: 1, marritalStatusName: "Độc Thân" },
-                { marritalStatusId: 2, marritalStatusName: "Lập Gia Đình" },
-                { marritalStatusId: 3, marritalStatusName: "Đã Ly Dị" },
-            ]
         };
 
         function getRelatives() {
-            vm.relatives = [
-                { relativeId: 1, relativeName: "Nguyễn Văn Phi", dob: "1999", address: "TPHCM", relationshipId: 2, isGone: false },
-                { relativeId: 2, relativeName: "Nguyễn Thị Nghi", dob: "1999", address: "TPHCM", relationshipId: 3, isGone: false },
-            ]
+            $http.get('/api/Mariage/GetPersonRelationShips', { params: {pid: personId } }).then(function (result) {
+                vm.personRelations = result.data;
+                vm.personRelations.forEach(function (relation, index) {
+                    relation.RelationName = vm.RelationShipTypes.find(x => x.Id == relation.RelationShipId).Name;
+                });
+            });
         };
 
-        //function getRelationships() {
-        //    vm.relationships = [
-        //        { relationshipId: 1, relationshipName: "Vợ / Chồng" },
-        //        { relationshipId: 2, relationshipName: "Bố" },
-        //        { relationshipId: 3, relationshipName: "Mẹ" },
-        //        { relationshipId: 4, relationshipName: "Bố Vợ" },
-        //        { relationshipId: 5, relationshipName: "Mẹ Vợ" },
-        //        { relationshipId: 6, relationshipName: "Bố Chồng" },
-        //        { relationshipId: 7, relationshipName: "Mẹ Chồng" },
-        //    ]
-        //};
+     
 
         function addNewRelative() {
             vm.isValid = false;
@@ -95,7 +72,7 @@
         };
 
         function checkValid() {
-            if (vm.relative.relativeName && vm.relative.dob && vm.relative.address && vm.relative.relationshipId) {
+            if (vm.personRelationship.FullName && vm.personRelationship.YearOfBirth && vm.personRelationship.Address && vm.personRelationship.RelationshipId) {
                 vm.isValid = true;
                 vm.message = null;
             }
@@ -109,51 +86,23 @@
 
         function saveRelative(relative) {
 
-            if (relative.relativeId) {
-                vm.relatives.forEach(function (item, index) {
-                    if (relative.relativeId == item.relativeId) {
-                        item.relativeName = relative.relativeName;
-                        item.dob =relative.dob.getDate() + '/' + (relative.dob.getMonth()+1) + '/' + relative.dob.getFullYear();
-                        item.relationshipId = relative.relationshipId;
-                        item.isGone = relative.isGone;
-                        item.address = relative.address;
-                    }
-                    vm.relationships.forEach(function (i, index) {
-                        if (item.relationshipId == i.relationshipId) {
-                            item.relationshipName = i.relationshipName;
-                        }
-                    });
+            if (relative.Id == 0) {
+                $http.post('/api/Mariage/Add', vm.personRelationship).then(function (result) {
+                    resetModel();
+                    getRelatives();
                 });
             }
-
-            else if (!relative.relativeId) {
-                relative.dob = relative.dob.getDate() + '/' + (relative.dob.getMonth() + 1) + '/' + relative.dob.getFullYear();
-                vm.relatives.push(relative);
-                $scope.relative = null;
-                vm.relationships.forEach(function (i, index) {
-                    if (relative.relationshipId == i.relationshipId) {
-                        relative.relationshipName = i.relationshipName;
-                    }
+            else {
+                $http.post('/api/Mariage/Update', vm.personRelationship).then(function (result) {
+                    resetModel();
+                    getRelatives();
                 });
             }
-
-            console.log(relative)
-            console.log(vm.relatives)
-
         };
 
         function editRelative(relative) {
             vm.isValid = true;
-            var dob = new Date(relative.dob)
-            vm.relative = {
-                relativeId: relative.relativeId,
-                relativeName: relative.relativeName,
-                dob: dob,
-                address: relative.address,
-                relationshipId: relative.relationshipId,
-                relationshipName: relative.relationshipName,
-                isGone: relative.isGone
-            };
+            vm.personRelationship = { Id: relative.Id, RelationshipId: relative.RelationShipId, FullName: relative.FullName, YearOfBirth: relative.YearOfBirth, Address: relative.Address, IsDead: relative.IsDead, PersonId: personId };
 
         };
 
@@ -162,13 +111,11 @@
 
         };
 
-        function deleterelative(r) {
-            vm.relatives.forEach(function (item, index) {
-                if (r.relativeId == item.relativeId) {
-                    vm.relativeDel.index = index;
-                }
+        function deleteRelationShip(relationship) {
+            $http.post('/api/Mariage/Delete', relationship).then(function (result) {
+                vm.relativeDel = null;
+                getRelatives();
             });
-            vm.relatives.splice(vm.relativeDel.index, 1)
             
         };
 

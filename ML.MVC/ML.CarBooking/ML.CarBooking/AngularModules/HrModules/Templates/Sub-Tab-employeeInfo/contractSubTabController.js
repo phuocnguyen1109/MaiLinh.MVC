@@ -129,7 +129,6 @@
         }
 
         function saveChanges() {
-            debugger;
             if (vm.userContract.Id == 0) {
                 $http.post('/api/Person/CreatePersonContract', vm.userContract)
                     .then(function (result) {

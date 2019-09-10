@@ -54,6 +54,7 @@
     <Compile Include="PersonHealthStd.cs" />
     <Compile Include="PersonIdentityCard.cs" />
     <Compile Include="PersonLanguage.cs" />
+    <Compile Include="PersonRelationShip.cs" />
     <Compile Include="PersonWorkLicense.cs" />
     <Compile Include="PersonPhone.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

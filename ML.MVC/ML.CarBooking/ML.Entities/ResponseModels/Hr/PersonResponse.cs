@@ -36,6 +36,7 @@ namespace ML.Entities.ResponseModels.Hr
         public int UpdatedOn { get; set; }
         public bool Actived { get; set; }
         public bool IsDeleted { get; set; }
+        public int MariageStatus { get; set; }  
         public IEnumerable<PersonAddress> Addresses { get; set; }
     }
 

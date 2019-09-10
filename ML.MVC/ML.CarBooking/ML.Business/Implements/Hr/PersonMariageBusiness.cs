@@ -18,9 +18,29 @@ namespace ML.Business.Implements.Hr
             m_PersonMariage = personMariage;
         }
 
+        public int AddPersonRelationShip(PersonRelationShip request, int userId)
+        {
+            return m_PersonMariage.AddPersonRelationShip(request, userId);
+        }
+
+        public int DeletePersonRelationShip(int relationId)
+        {
+            return m_PersonMariage.DeletePersonRelationShip(relationId);
+        }
+
         public IEnumerable<MMariageStatus> GetMMariageStatus()
         {
             return m_PersonMariage.GetMMariageStatus();
+        }
+
+        public IEnumerable<PersonRelationShip> GetPersonRelationShips(int personId)
+        {
+            return m_PersonMariage.GetPersonRelationShips(personId);
+        }
+
+        public int UpdatePersonRelationShip(PersonRelationShip request, int userId)
+        {
+            return m_PersonMariage.UpdatePersonRelationShip(request, userId);
         }
     }
 }

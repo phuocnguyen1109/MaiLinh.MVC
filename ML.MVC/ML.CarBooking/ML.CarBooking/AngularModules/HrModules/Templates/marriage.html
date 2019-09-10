@@ -18,22 +18,20 @@
     <table class="table table-hover">
         <thead class="thead-light shadow_tb txt-center">
             <tr>
-                <th style="width: 1%;"></th>
                 <th style="width:24%;">HỌ VÀ TÊN</th>
-                <th style="width:15%;">NGÀY SINH</th>
+                <th style="width:15%;">NĂM SINH</th>
                 <th style="width:25%;">NƠI Ở</th>
                 <th style="width:10%;">QUAN HỆ</th>
                 <th style="width:10%;">ĐÃ MẤT</th>
-                <th style="width:12%;"></th>
+                <th style="width:13%;"></th>
             </tr>
         </thead>
         <tbody class="txt-center">
-            <tr ng-repeat="r in vm.relatives">
-                <td><input type="checkbox" class="mt-2" ng-model="r.selected" /></td>
-                <td>{{r.relativeName}}</td>
-                <td>{{r.dob}}</td>
-                <td>{{r.address}}</td>
-                <td>{{r.relationshipName}}</td>
+            <tr ng-repeat="r in vm.personRelations">
+                <td>{{r.FullName}}</td>
+                <td>{{r.YearOfBirth}}</td>
+                <td>{{r.Address}}</td>
+                <td>{{r.RelationName}}</td>
                 <td><i class="fas fa-fw fa-times-circle"></i></td>
                 <td>
                     <button class="btn btn-outline-success" data-toggle="modal" data-target="#relativeModal" ng-click="vm.editRelative(r)" ng-disabled="vm.IsViewing"><i class="fas fa-fw fa-pen"></i></button>
@@ -71,8 +69,8 @@
                         <br />
                         <div class="row">
                             <div class="col-md-6">
-                                <label for="dob">Ngày sinh: <span class="required_ico">*</span></label>
-                                <input name="yearOfbirth" class="form-control" type="date" ng-model="vm.personRelationship.YearOfBirth" ng-change="vm.checkValid()" />
+                                <label for="dob">Năm Sinh: <span class="required_ico">*</span></label>
+                                <input name="yearOfbirth" class="form-control" type="number" min="1900" ng-model="vm.personRelationship.YearOfBirth" ng-change="vm.checkValid()" />
 
                             </div>
                             <div class="col-md-6">
@@ -94,7 +92,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
-                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.saveRelative(vm.relative);" ng-disabled="!vm.isValid"
+                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.saveRelative(vm.personRelationship);" ng-disabled="!vm.isValid"
                             >Lưu</button>
                 </div>
             </div>
@@ -107,11 +105,11 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <p>Bạn có muốn xóa người này?</p>
-                    <p>{{vm.relativeDel.relativeName}}</p>
+                    <p>{{vm.relativeDel.FullName}}</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
-                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.deleterelative(vm.relativeDel)">Đồng ý</button>
+                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.deleteRelationShip(vm.relativeDel)">Đồng ý</button>
                 </div>
             </div>
         </div>

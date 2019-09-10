@@ -1884,11 +1884,13 @@
     <Content Include="SQL_Scripts\MaiLinh_Hr_MLocation.sql" />
     <Content Include="SQL_Scripts\MaiLinh_InitScripts.sql" />
     <Content Include="SQL_Scripts\script.sql" />
+    <Content Include="SQL_Scripts\SP_Hr_2601.sql" />
     <Content Include="SQL_Scripts\SP_Hr_Contract.sql" />
     <Content Include="SQL_Scripts\SP_Hr_Education.sql" />
     <Content Include="SQL_Scripts\SP_Hr_HealthCheck.sql" />
     <Content Include="SQL_Scripts\SP_Hr_IdentityCard.sql" />
     <Content Include="SQL_Scripts\SP_Hr_Location.sql" />
+    <Content Include="SQL_Scripts\SP_Hr_Mariage.sql" />
     <Content Include="SQL_Scripts\SP_Hr_Phone.sql" />
     <Content Include="SQL_Scripts\SP_Hr_WorkHistory.sql" />
     <Content Include="SQL_Scripts\update1208.sql" />
