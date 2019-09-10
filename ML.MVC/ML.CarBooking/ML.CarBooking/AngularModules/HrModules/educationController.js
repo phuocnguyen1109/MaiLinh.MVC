@@ -3,8 +3,11 @@
     angular.module('mainApp').controller('educationController', educationController);
 
     educationController.$inject = ['$http', '$rootScope', '$scope', '$state', '$stateParams'];
-    function educationController($rootScope, $scope, $state, $stateParams) {
+    function educationController( $http, $rootScope, $scope, $state, $stateParams) {
         var vm = this;
+
+        vm.isValidPersonlanguage = isValidPersonlanguage;
+        vm.savePersonLanguage = savePersonLanguage;
         vm.initialize = initialize;
         vm.checkValid = checkValid;
         vm.openAdd = openAdd;
@@ -15,30 +18,57 @@
         vm.deleted = deleted;
         vm.changeTime = changeTime;
 
+        vm.isValidPLanguage = false;
         vm.isValid = false;
         vm.isSelected = false;
         vm.isEnable = false;
         vm.usedTime = null;
         vm.startDate = null;
         vm.expiredDate = null;
-        vm.IsViewing = $stateParams.params.IsViewing;
+        var personId = $stateParams.id;
 
+        function resetModel() {
+            vm.personEducation = {
+                languages :[]
+
+            };
+
+            vm.selectedPersonLanguage = { Id: 0, PersonId: personId, LanguageId: 0, Level: '' };
+        }
         function initialize() {
+            resetModel();
+            getMLanguages();
             vm.userLanguage = { id: null, name: null, qualification: null };
-            getLanguageCertifications();
             getLicenses();
-            getListLanguages();
             getListQualifications();
         }
 
-        function getLanguageCertifications() {
-            //TODO: get data by api
-            vm.languagesCertifications = [
-                { id: 1, langId: 1, name: "Tiếng Anh", qualityId: 2, qualification: "Khá" },
-                { id: 2, langId: 2, name: "Tiếng Hàn", qualityId: 2, qualification: "Khá" },
-                { id: 3, langId: 3, name: "Tiếng Trung", qualityId: 3, qualification: "Trung bình" },
-            ];
-            console.log("languagesCertifications => " + vm.languagesCertifications);
+        function getPersonEducations() {
+
+        }
+
+        function savePersonLanguage() {
+            if (!vm.isValidPLanguage) {
+                return;
+            }
+            $http.post('/api/Education/SavePersonLanguage', vm.selectedPersonLanguage)
+                .then(function (result) {
+                    var createdPersonLanguage = angular.copy(vm.selectedPersonLanguage);
+                    createdPersonLanguage.LanguageName = getLanguageName(createdPersonLanguage.LanguageId);
+                    vm.personEducation.languages.push(createdPersonLanguage);
+                });
+        }
+
+        function getMLanguages() {
+            $http.get('/api/Education/GetMLanguages')
+                .then(function (result) {
+                    vm.languages = result.data;
+                    vm.languages.splice(0, 0, { Id: 0, Name: '--Chọn Ngôn Ngữ--' });
+                });
+        }
+
+        function getLanguageName(id) {
+            return vm.languages.find(x => x.Id == id).Name;
         }
 
         function getLicenses() {
@@ -53,28 +83,33 @@
             ];
         }
 
+        //remove
         function getListLanguages() {
-            //TODO: get data by api
-            vm.listLanguages = [
-                { id: 1, name: "Tiếng Anh" },
-                { id: 2, name: "Tiếng Hàn" },
-                { id: 3, name: "Tiếng Trung" },
-                { id: 4, name: "Tiếng Đức" },
-                { id: 5, name: "Tiếng Nga" },
-                { id: 6, name: "Tiếng Tây Ban Nha" },
-                { id: 7, name: "Tiếng Nhật" },
-                { id: 8, name: "Tiếng Ý" },
-            ];
+            ////TODO: get data by api
+            //vm.listLanguages = [
+            //    { id: 1, name: "Tiếng Anh" },
+            //    { id: 2, name: "Tiếng Hàn" },
+            //    { id: 3, name: "Tiếng Trung" },
+            //    { id: 4, name: "Tiếng Đức" },
+            //    { id: 5, name: "Tiếng Nga" },
+            //    { id: 6, name: "Tiếng Tây Ban Nha" },
+            //    { id: 7, name: "Tiếng Nhật" },
+            //    { id: 8, name: "Tiếng Ý" },
+            //];
         }
 
         function getListQualifications() {
-            //TODO: get data by api
             vm.listQualifications = [
-                { id: 1, qualification: "Giỏi" },
-                { id: 2, qualification: "Khá" },
-                { id: 3, qualification: "Trung bình" },
-                { id: 4, qualification: "Yếu" },
+                { id:'', qualification:'--Chọn Trình Độ--'},
+                { id: "Giỏi", qualification: "Giỏi" },
+                { id: "Khá", qualification: "Khá" },
+                { id: "Trung bình", qualification: "Trung bình" },
+                { id: "Yếu", qualification: "Yếu" },
             ];
+        }
+
+        function isValidPersonlanguage() {
+            vm.isValidPLanguage = vm.selectedPersonLanguage.LanguageId != 0 && vm.selectedPersonLanguage.Level != '';
         }
 
         function openAdd() {
@@ -83,6 +118,7 @@
             vm.selectedQualification = null;
             vm.modalTitle = "Thêm mới ngoại ngữ";
         }
+
         function openEditLanguage(l) {
             console.log(l);
             vm.modalTitle = "Chỉnh sửa ngoại ngữ";

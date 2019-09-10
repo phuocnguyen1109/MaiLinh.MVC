@@ -60,9 +60,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="row in vm.languagesCertifications">
-                            <td>{{row.name}}</td>
-                            <td>{{row.qualification}}</td>
+                        <tr ng-repeat="row in vm.personEducation.languages">
+                            <td>{{row.LanguageName}}</td>
+                            <td>{{row.Level}}</td>
                             <td>
                                 <button class="btn btn-outline-success" data-toggle="modal" data-target="#LanguageModal" ng-click="vm.openEditLanguage(row)" ng-disabled="vm.IsViewing">
                                     <i class="fas fa-fw fa-pen"></i>
@@ -95,18 +95,18 @@
                             <div class="col-md-6">
                                 <label for="language">Ngoại ngữ</label>
                                 <select id="language" class="form-control"
-                                        ng-model="vm.userLanguage.langId"
-                                        ng-options="l.id as l.name for l in vm.listLanguages"
-                                        ng-change="vm.checkValid()">
-                                    <option value="">--Chọn ngôn ngữ--</option>
+                                        ng-model="vm.selectedPersonLanguage.LanguageId"
+                                        ng-options="l.Id as l.Name for l in vm.languages"
+                                        ng-change="vm.isValidPersonlanguage()">
+                                    <option value="0">--Chọn ngôn ngữ--</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
                                 <label for="qualification">Đánh giá</label>
                                 <select id="qualification" class="form-control"
-                                        ng-model="vm.userLanguage.qualityId"
+                                        ng-model="vm.selectedPersonLanguage.Level"
                                         ng-options="q.id as q.qualification for q in vm.listQualifications"
-                                        ng-change="vm.checkValid()">
+                                        ng-change="vm.isValidPersonlanguage()">
                                     <option value="">--Chọn đánh giá--</option>
                                 </select>
                             </div>
@@ -114,7 +114,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
-                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.saveChanges()" ng-disabled="!vm.isValid">Lưu</button>
+                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.savePersonLanguage()" ng-disabled="!vm.isValidPLanguage">Lưu</button>
                     </div>
                 </div>
             </div>

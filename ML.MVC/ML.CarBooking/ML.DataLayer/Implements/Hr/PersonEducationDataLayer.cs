@@ -178,7 +178,7 @@ namespace ML.DataLayer.Implements.Hr
         public IEnumerable<MLanguage> GetMLanguages()
         {
             return Execute(connection =>
-                              connection.Query<MLanguage>("[Hr].[GetMLanguage]",
+                              connection.Query<MLanguage>("[Hr].[GetMLanguages]",
                               new
                               {
                               }, commandType: System.Data.CommandType.StoredProcedure));
@@ -206,7 +206,7 @@ namespace ML.DataLayer.Implements.Hr
         public PersonEducation GetPersonEducation(int pid)
         {
             var personEdu = new PersonEducation();
-            var result = Execute(connection => connection.QueryMultiple("[Hr].[GetPersonEducation]", new { id = pid }, commandType: CommandType.StoredProcedure));
+            var result = Execute(connection => connection.QueryMultiple("[Hr].[GetPersonEducations]", new { id = pid }, commandType: CommandType.StoredProcedure));
             personEdu = result.ReadFirstOrDefault();
             personEdu.PersonDriveLicense = result.Read<PersonDriveLicense>().FirstOrDefault();
             personEdu.PersonLanguages = result.Read<PersonLanguage>();

@@ -4,6 +4,11 @@
         .config(function ($stateProvider, $urlRouterProvider) {
             // $urlRouterProvider.otherwise('/employees');
             $stateProvider
+                .state('dashboard', {
+                    url: '/',
+                    controller: 'mainController',
+                    controllerAs: 'vm',
+                })
                 .state('employees', {
                     url: '/employees',
                     templateUrl: 'AngularModules/HrModules/Templates/employees.html',
