@@ -1,0 +1,1 @@
+ALTER TABLE [Hr].[PersonEquipment] ADD PersonId INT NULL;

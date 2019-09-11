@@ -54,6 +54,7 @@
     <Compile Include="Implements\Hr\PersonHealthCheckDataLayer.cs" />
     <Compile Include="Implements\Hr\PersonMariage.cs" />
     <Compile Include="Implements\Hr\PersonWorkingHistoryDataLayer.cs" />
+    <Compile Include="Interfaces\Hr\IEquipmentData.cs" />
     <Compile Include="Interfaces\Hr\ILocationDataLayer.cs" />
     <Compile Include="Interfaces\Hr\IPersonDataLayer.cs" />
     <Compile Include="Interfaces\Hr\IPersonEducationDataLayer.cs" />
