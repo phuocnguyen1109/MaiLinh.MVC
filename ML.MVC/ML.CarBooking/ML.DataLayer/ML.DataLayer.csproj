@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataObject\Hr\PersonWorkHistory.cs" />
+    <Compile Include="Implements\Hr\EquipmentDataLayer.cs" />
     <Compile Include="Implements\Hr\LocationDataLayer.cs" />
     <Compile Include="Implements\Hr\PersonDataLayer.cs" />
     <Compile Include="Implements\Hr\PersonEducationDataLayer.cs" />

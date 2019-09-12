@@ -10,5 +10,6 @@ namespace ML.DataLayer.Interfaces.Hr
 
         int CreateEditEquipment(CreateEditEquipmentRequest request);
 
+        int AssignUnassignPerson(AssignUnassignEquimentRequest request);
     }
 }
