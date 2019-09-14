@@ -1,7 +1,4 @@
-﻿
-GO
-
-INSERT INTO [Hr].[MMariageStatus]
+﻿INSERT INTO [Hr].[MMariageStatus]
            ([Name]
            ,[CreatedIn]
            ,[CreatedBy]

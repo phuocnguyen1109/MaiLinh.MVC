@@ -1,4 +1,5 @@
-﻿D:\Source\Others\MaiLinhINSERT INTO [Hr].[Mlanguage](Name, CreatedBy, CreatedOn, UpdatedBy, UpdatedOn)
+﻿
+INSERT INTO [Hr].[Mlanguage](Name, CreatedBy, CreatedOn, UpdatedBy, UpdatedOn)
 VALUES(N'Tiếng Anh', 1, GETDATE(), 1, GETDATE())
 INSERT INTO [Hr].[Mlanguage](Name, CreatedBy, CreatedOn, UpdatedBy, UpdatedOn)
 VALUES(N'Tiếng Pháp', 1, GETDATE(), 1, GETDATE())
@@ -39,3 +40,5 @@ SELECT * FROM [Hr].[PersonDriveLicense] WHERE PersonId = @Pid
 
 SELECT * FROM [Hr].[PersonWorkLicense] WHERE PersonId = @Pid
 END
+
+GO
