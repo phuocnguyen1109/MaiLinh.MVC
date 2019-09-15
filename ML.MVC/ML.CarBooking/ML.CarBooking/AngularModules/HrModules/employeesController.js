@@ -15,8 +15,10 @@
             firstName: null,
             lastName: null,
             userName: null,
-            gender: 1
+            gender: 1,
+            id:null,
         };
+
         vm.createValid = false;
 
 
@@ -132,10 +134,11 @@
             vm.employees.forEach(function (person, index) {
                 var id = parseInt(vm.createModel.id);
                 if (id == person.Id) {
-                    vm.mess = "Mã nhân viên đã tồn tại!";
-                    return;
+                    return vm.mess = "Mã nhân viên đã tồn tại!";
                 }
-
+                else {
+                    return vm.mess = "Mã nhân viên có thể sử dụng";
+                }
                 vm.mess = null;
             });
  
