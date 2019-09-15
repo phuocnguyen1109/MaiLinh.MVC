@@ -37,7 +37,7 @@
                 <td>{{r.YearOfBirth}}</td>
                 <td>{{r.Address}}</td>
                 <td>{{r.RelationName}}</td>
-                <td></td>
+                <td><i class="fas fa-fw fa-check-circle"></i></td>
                 <td></td>
                 <td></td>
                 <td><i class="fas fa-fw fa-times-circle"></i></td>
@@ -64,27 +64,40 @@
                     <p class="err-message" ng-if="vm.message">{{vm.message}}</p>
                     <form class="form-group">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label>Mối quan hệ: <span class="required_ico">*</span></label>
                                 <select ng-model="vm.personRelationship.RelationshipId" class="form-control"
                                         ng-options="r.Id as r.Name for r in vm.RelationShipTypes"></select>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label for="relativeName">Họ và tên: <span class="required_ico">*</span></label>
                                 <input name="relativeName" class="form-control" type="text" placeholder="Họ & Tên" ng-model="vm.personRelationship.FullName" ng-change="vm.checkValid()" />
+                            </div>
+                            <div class="col-md-4">
+                                <label for="dob">Năm Sinh: <span class="required_ico">*</span></label>
+                                <input name="yearOfbirth" class="form-control" type="number" min="1900" placeholder="1900" ng-model="vm.personRelationship.YearOfBirth" ng-change="vm.checkValid()" />
+
                             </div>
                         </div>
                         <br />
                         <div class="row">
-                            <div class="col-md-6">
-                                <label for="dob">Năm Sinh: <span class="required_ico">*</span></label>
-                                <input name="yearOfbirth" class="form-control" type="number" min="1900" ng-model="vm.personRelationship.YearOfBirth" ng-change="vm.checkValid()" />
+                            <div class="col-md-6" style="display: grid;">
+                                <label style="display: inline-flex;vertical-align: -webkit-baseline-middle;">
+                                    <input type="checkbox" ng-model="vm.personRelationship.IsDependent" />&nbsp;&nbsp;Người phụ thuộc
+                                </label>
 
-                            </div>
-                            <div class="col-md-6">
                                 <label style="display: inline-flex;vertical-align: -webkit-baseline-middle;">
                                     <input type="checkbox" ng-model="vm.personRelationship.IsDead" />&nbsp;&nbsp;Đã mất
                                 </label>
+                            </div>
+                            <div class="col-md-6" style="display: grid;">
+                                <div ng-if="vm.personRelationship.IsDependent">
+                                    <label for="StartDate">Thời gian bắt đầu: <span class="required_ico">*</span></label>
+                                    <input name="StartDate" class="form-control" type="date" min="1900" ng-model="vm.personRelationship.StartDate" ng-change="vm.checkValid()" />
+                                    <br />
+                                    <label for="EndDate">Thời gian kết thúc: <span class="required_ico">*</span></label>
+                                    <input name="EndDate" class="form-control" type="date" min="1900" ng-model="vm.personRelationship.EndDate" ng-change="vm.checkValid()" />
+                                </div>
                             </div>
                         </div>
                         <br />
@@ -100,8 +113,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
-                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.saveRelative(vm.personRelationship);" ng-disabled="!vm.isValid"
-                            >Lưu</button>
+                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.saveRelative(vm.personRelationship);" ng-disabled="!vm.isValid">
+                        Lưu
+                    </button>
                 </div>
             </div>
         </div>

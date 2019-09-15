@@ -33,7 +33,7 @@
                 .then(function (response) {
                     if (response && response.data.length > 0) {
                         vm.mariageStatuses = response.data;
-                        console.log(vm.mariageStatuses);
+                        //console.log(vm.mariageStatuses);
                     }
                 });
         }
@@ -58,6 +58,7 @@
         function getRelatives() {
             $http.get('/api/Mariage/GetPersonRelationShips', { params: { pid: personId } }).then(function (result) {
                 vm.personRelations = result.data;
+                console.log(vm.personRelations);
                 vm.personRelations.forEach(function (relation, index) {
                     relation.RelationName = vm.RelationShipTypes.find(x => x.Id == relation.RelationShipId).Name;
                 });
