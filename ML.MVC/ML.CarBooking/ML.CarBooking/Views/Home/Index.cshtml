@@ -29,6 +29,9 @@
 <body ng-app="mainApp">
     <!-- Page Wrapper -->
     <div ng-controller="mainController as vm" id="wrapper">
+        @*<div ng-init="vm.initialize()">
+
+        </div>*@
 
         <!-- Sidebar -->
         <ul class="navbar-nav ml-bg-dark sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -292,7 +295,7 @@
                         <div class="row">
                             <div class="col-lg-4 col-md-4">
                                 <img src="../../../Content/Images/anh.jpg" class="img-thumbnail" />
-                                <button style="width: 100%;">Upload</button>
+                                <button style="width: 100%;" ng-click="vm.uploadImage()">Upload</button>
                             </div>
                             <div class="col-lg-8 col-md-8 form-group w-100">
                                 <div>

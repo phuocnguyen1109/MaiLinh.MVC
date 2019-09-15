@@ -27,7 +27,7 @@
         vm.gotoNationalManagement = gotoNationalManagement;
         vm.goMainPage = goMainPage;
         vm.checkChangePW = checkChangePW;
-
+        vm.uploadImage = uploadImage;
 
         function initialize() {
 
@@ -96,6 +96,11 @@
         function goMainPage() {
             $state.go('dashboard');
             vm.isMainPage = true;
+        }
+
+        function uploadImage() {
+            ////do sth
+
         }
 
         function getCities() {
