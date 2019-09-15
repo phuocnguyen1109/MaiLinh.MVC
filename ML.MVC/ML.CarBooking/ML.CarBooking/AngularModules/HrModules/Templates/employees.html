@@ -74,6 +74,16 @@
                     <form class="form-group">
                         <div class="row">
                             <div class="col-md-6">
+                                <label for="firstName">MÃ NHÂN VIÊN: <span ng-if="vm.mess" class="required_ico">*</span> </label>
+                                <div style="display:flex">
+                                    <input name="firstName" class="form-control" type="text" ng-model="vm.createModel.id" />
+                                    <button ng-click="vm.checkIdIsVailable()">CHECK</button>
+                                </div>
+                                <p class="err-message" ng-if="vm.mess">{{vm.mess}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
                                 <label for="firstName">HỌ: <span class="required_ico">*</span> </label>
                                 <input name="firstName" class="form-control" type="text" ng-model="vm.createModel.firstName" ng-change="vm.checkValidCreate()" />
                             </div>
@@ -91,7 +101,7 @@
                                 <label for="lastName">GIỚI TÍNH: <span class="required_ico">*</span></label>
                                 <div class="form-check-inline">
                                     <label class="form-check-label">
-                                        <input type="radio" name="gender" class="form-check-input" ng-model="vm.createModel.isMale" ng-change="vm.createGenderChange(1)" checked/> Nam
+                                        <input type="radio" name="gender" class="form-check-input" ng-model="vm.createModel.isMale" ng-change="vm.createGenderChange(1)" checked /> Nam
                                     </label>
                                 </div>
                                 <div class="form-check-inline">
