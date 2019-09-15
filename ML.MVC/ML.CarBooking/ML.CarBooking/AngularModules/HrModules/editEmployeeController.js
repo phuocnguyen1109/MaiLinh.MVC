@@ -3,8 +3,8 @@
     angular.module('mainApp')
         .controller('editEmployeeController', editEmployeeController);
 
-    editEmployeeController.$inject = ['$http', '$scope', '$state', '$stateParams'];
-    function editEmployeeController($http, $scope, $state, $stateParams) {
+    editEmployeeController.$inject = ['$http', '$scope', '$state', '$stateParams', 'Upload'];
+    function editEmployeeController($http, $scope, $state, $stateParams, Upload) {
         var vm = this;
         var personId = $stateParams.id;
         vm.IsViewing = $stateParams.IsViewing;
@@ -16,6 +16,7 @@
         vm.cancel = cancel;
         vm.getDistricts = getDistricts;
         vm.getContactDistricts = getContactDistricts;
+        vm.getFile = getFile    ;
 
 
         vm.initialize = initialize;
@@ -39,7 +40,6 @@
                     }
                 });
         }
-
 
         function getDistricts() {
             vm.districts = [{ Id: 0, Name: '-- Chọn Quận / Huyện --' }];
@@ -93,13 +93,16 @@
             $http.get('/api/Person/GetPersonInformation', { params: { id: personId } })
                 .then(function (result) {
                     if (result.data) {
+                        console.log(result.data); 
                         vm.person = result.data;
+                        vm.person.FullName = vm.person.FirstName + " " + vm.person.LastName;
                         vm.person.IsPension = vm.person.IsPension ? 'true' : 'false';
                         vm.person.IsMale = vm.person.IsMale ? 'true' : 'false';
                         vm.person.Actived = vm.person.Actived ? 'true' : 'false';
                         vm.person.DoB = new Date(vm.person.DoB);
                         vm.person.MLCDate = new Date(vm.person.MLCDate);
                         vm.person.StartDate = new Date(vm.person.StartDate);
+                        vm.person.imageUrl = vm.person.imageUrl == null ? "../../../Content/Images/anh.jpg" : vm.person.imageUrl;
                         vm.personAddresses.address = angular.copy(vm.person.Addresses).find(x => x.Type == 1);
                         if (!vm.personAddresses.address) {
                             vm.personAddresses.address = { Id: 0, PersonId: personId, Address: null, CityId: 0, DistrictId: 0, Type: 1 };
@@ -162,14 +165,26 @@
                 { id: 3, name: 'Thư Ký' },
                 { id: 4, name: 'Nhân Viên' }
             ];
-
-
-
-        
-
-
         }
 
+        function getFile(file) {
+            console.log(file);
+            var myReader = new FileReader();
+            myReader.onloadend = () => {
+                console.log(myReader.result);
+                //TO-DO: api here
+                //$http.put('/api/Person/UploadPersonImage', myReader.result )
+                //    .then(function (result) {
+                //        if (result) {
+                //            alert("Cập nhật ảnh thành công");
 
+                            vm.person.imageUrl = myReader.result;
+                //        }
+                //})
+            };
+
+            myReader.readAsDataURL(file);
+
+        };
     }
 })();

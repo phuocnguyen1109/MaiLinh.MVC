@@ -1,6 +1,6 @@
 ﻿(function () {
     'use strict'
-    var app = angular.module('mainApp', ['ui.router', 'ui.bootstrap']);
+    var app = angular.module('mainApp', ['ui.router', 'ui.bootstrap', 'ngFileUpload']);
 
     app.controller('mainController', mainController);
 
