@@ -3,7 +3,9 @@
         <div class="col-lg-4 col-md-4">
             <label>TÌNH TRẠNG HÔN NHÂN:</label>
             <select ng-model="vm.marriageStatusObject.marritalStatusId" class="form-control"
-                    ng-options="ms.Id as ms.Name for ms in vm.mariageStatuses"></select>
+                    ng-options="ms.Id as ms.Name for ms in vm.mariageStatuses">
+                <option value="">--Tình Trạng Hôn Nhân--</option>
+            </select>
         </div>
     </div>
 
@@ -18,11 +20,14 @@
     <table class="table table-hover">
         <thead class="thead-light shadow_tb txt-center">
             <tr>
-                <th style="width:24%;">HỌ VÀ TÊN</th>
-                <th style="width:15%;">NĂM SINH</th>
-                <th style="width:25%;">NƠI Ở</th>
+                <th style="width:15%;">HỌ VÀ TÊN</th>
+                <th style="width:10%;">NĂM SINH</th>
+                <th style="width:20%;">NƠI Ở</th>
                 <th style="width:10%;">QUAN HỆ</th>
-                <th style="width:10%;">ĐÃ MẤT</th>
+                <th style="width:5%;">PHỤ THUỘC</th>
+                <th style="width:10%;">THỜI GIAN BẮT ĐẦU</th>
+                <th style="width:10%;">THỜI GIAN KẾT THÚC</th>
+                <th style="width:5%;">ĐÃ MẤT</th>
                 <th style="width:13%;"></th>
             </tr>
         </thead>
@@ -32,6 +37,9 @@
                 <td>{{r.YearOfBirth}}</td>
                 <td>{{r.Address}}</td>
                 <td>{{r.RelationName}}</td>
+                <td></td>
+                <td></td>
+                <td></td>
                 <td><i class="fas fa-fw fa-times-circle"></i></td>
                 <td>
                     <button class="btn btn-outline-success" data-toggle="modal" data-target="#relativeModal" ng-click="vm.editRelative(r)" ng-disabled="vm.IsViewing"><i class="fas fa-fw fa-pen"></i></button>

@@ -17,7 +17,7 @@
         vm.openDelModel = openDelModel;
         vm.deleteRelationShip = deleteRelationShip;
         var a = $scope;
-       // vm.IsViewing = $stateParams.params.IsViewing;
+        // vm.IsViewing = $stateParams.params.IsViewing;
 
         var personIsMale = true;
         var personId = $stateParams.id;
@@ -33,7 +33,7 @@
                 .then(function (response) {
                     if (response && response.data.length > 0) {
                         vm.mariageStatuses = response.data;
-                  
+                        console.log(vm.mariageStatuses);
                     }
                 });
         }
@@ -51,12 +51,12 @@
             loadRelationships();
             getRelatives();
 
-            
+
 
         };
 
         function getRelatives() {
-            $http.get('/api/Mariage/GetPersonRelationShips', { params: {pid: personId } }).then(function (result) {
+            $http.get('/api/Mariage/GetPersonRelationShips', { params: { pid: personId } }).then(function (result) {
                 vm.personRelations = result.data;
                 vm.personRelations.forEach(function (relation, index) {
                     relation.RelationName = vm.RelationShipTypes.find(x => x.Id == relation.RelationShipId).Name;
@@ -64,11 +64,17 @@
             });
         };
 
-     
-
         function addNewRelative() {
             vm.isValid = false;
             resetModel();
+            vm.personRelations.forEach(function (relation, index) {
+                vm.RelationShipTypes.forEach(function (i, index) {
+                    if (i.Id == relation.RelationShipId) {
+                        vm.RelationShipTypes.splice(index, 1);
+                        return;
+                    }
+                });
+            });
         };
 
         function checkValid() {
@@ -116,15 +122,8 @@
                 vm.relativeDel = null;
                 getRelatives();
             });
-            
+
         };
 
-
-
-
     }
-
-
-
-
 })();
