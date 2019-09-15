@@ -29,6 +29,10 @@
 <body ng-app="mainApp">
     <!-- Page Wrapper -->
     <div ng-controller="mainController as vm" id="wrapper">
+        @*<div ng-init="vm.initialize()">
+
+        </div>*@
+
         <!-- Sidebar -->
         <ul class="navbar-nav ml-bg-dark sidebar sidebar-dark accordion" id="accordionSidebar">
             <li>
@@ -91,13 +95,13 @@
                 <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 @*<a class="nav-link" ng-click="gotoPermission()" ng-if="isAdmin">
-                <i class="fas fa-fw fa-cog"></i>
-                Phân Quyền Hệ Thống
-            </a>
-            <a class="nav-link" ng-click="gotoRoles()" ng-if="isAdmin">
-                <i class="fas fa-fw fa-user"></i>
-                Quản Lý Roles
-            </a>*@
+                        <i class="fas fa-fw fa-cog"></i>
+                        Phân Quyền Hệ Thống
+                    </a>
+                    <a class="nav-link" ng-click="gotoRoles()" ng-if="isAdmin">
+                        <i class="fas fa-fw fa-user"></i>
+                        Quản Lý Roles
+                    </a>*@
                 <div class="sidebar-heading">
                     Chức Năng
                 </div>
@@ -173,108 +177,279 @@
 
                     </div>
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" >Cập Nhật Nhiên Liệu</a>
+                        <a class="collapse-item">Cập Nhật Nhiên Liệu</a>
 
                     </div>
                 </div>
             </li>
 
-          
+
 
         </ul>
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
         <!-- End of Sidebar -->
         <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
 
-            <!-- Main Content -->
-            <div id="content">
+            <div id="content-wrapper" class="d-flex flex-column">
 
-                <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <!-- Main Content -->
+                <div id="content">
 
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                   
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                     
+                    <!-- Topbar -->
+                    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-                        <li class="nav-item txt-center">
-                            <div class="mt-3 topbar-divider d-none d-sm-block"></div>
-                            @*<i class="fas fa-fw fa-bell ico-only"></i>*@
-                        </li>
+                        <!-- Sidebar Toggle (Topbar) -->
+                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                            <i class="fa fa-bars"></i>
+                        </button>
 
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img class="img-profile rounded-circle" src="Content/Images/avatar.jpg">
-                                <div class="ml-2">
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">@Model.UserName</span> <br />
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Administrator</span>
+                        <!-- Topbar Navbar -->
+                        <ul class="navbar-nav ml-auto">
+
+
+                            <li class="nav-item txt-center">
+                                <div class="mt-3 topbar-divider d-none d-sm-block"></div>
+                                @*<i class="fas fa-fw fa-bell ico-only"></i>*@
+                            </li>
+
+                            <!-- Nav Item - User Information -->
+                            <li class="nav-item dropdown no-arrow">
+                                <a class="nav-link dropdown-toggle" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <img class="img-profile rounded-circle" src="Content/Images/avatar.jpg">
+                                    <div class="ml-2">
+                                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">@Model.UserName</span> <br />
+                                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Administrator</span>
+                                    </div>
+                                    @*<i class="fas fa-sign-out-alt fa-sm fa-fw  ico-only"></i>*@
+                                </a>
+                                <!-- Dropdown - User Information -->
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                    <a class="dropdown-item" data-toggle="modal" data-target="#personInfoModal">
+                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Thông Tin Cá Nhân
+                                    </a>
+                                    <a class="dropdown-item" data-toggle="modal" data-target="#changePasswordModal">
+                                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Đổi Mật Khẩu
+                                    </a>
+                                    <a class="dropdown-item">
+                                        <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Xem Log Cá Nhân
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Đăng Xuất
+                                    </a>
                                 </div>
-                                @*<i class="fas fa-sign-out-alt fa-sm fa-fw  ico-only"></i>*@
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Thông Tin Cá Nhân
-                                </a>
-                                <a class="dropdown-item">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Đổi Mật Khẩu
-                                </a>
-                                <a class="dropdown-item">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Xem Log Cá Nhân
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Đăng Xuất
-                                </a>
+                            </li>
+
+                        </ul>
+
+                    </nav>
+                    <!-- End of Topbar -->
+                    <!-- Begin Page Content -->
+                    <div ui-view class="container-fluid" style="height:100vh;" class="vm.isMainPage? 'showBg': 'hiddenBg'">
+                    </div>
+                    <!-- /.container-fluid -->
+
+                </div>
+                <!-- End of Main Content -->
+            </div>
+            <!-- End of Content Wrapper -->
+
+        </div>
+        <!-- End of Page Wrapper -->
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Bạn muốn thoát khỏi hệ thống ?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Nhấn vào <b>Đăng Xuất</b> để thoát</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-outline-danger" type="button" data-dismiss="modal">Hủy Bỏ</button>
+                        <button type="button" class="btn btn-outline-info" value="Đăng Xuất" onclick="location.href='@Url.Action("Logout", "Home")'">Đăng Xuất</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Person Info Modal-->
+        <div class="modal fade" id="personInfoModal" tabindex="-1" role="dialog" aria-labelledby="ModalTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalTitle">THÔNG TIN CÁ NHÂN</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4">
+                                <img src="../../../Content/Images/anh.jpg" class="img-thumbnail" />
+                                <button style="width: 100%;" ng-click="vm.uploadImage()">Upload</button>
                             </div>
-                        </li>
+                            <div class="col-lg-8 col-md-8 form-group w-100">
+                                <div>
+                                    <label for="fName" style="margin-left:0.1rem">HỌ VÀ TÊN:</label>
+                                    <div style="display:inline-flex;">
+                                        <input id="fName" class="form-control mr-2" style="width:50% !important" placeholder="Họ và tên lót..." type="text" ng-model="vm.person.firstName" />
+                                        <input id="lName" class="form-control mr-2" style="width:50% !important" placeholder="Tên..." type="text" ng-model="vm.person.lastName" />
+                                    </div>
+                                </div>
+                                <div style="width:80%">
+                                    <label>Email:</label>
+                                    <input type="text" class="form-control" ng-model="vm.person.email" />
+                                </div>
+                                <div class="form-group">
+                                    <label>GIỚI TÍNH:</label>
+                                    <label class="form-check-label ml-4">
+                                        <input type="radio" class="form-check-input" ng-model="vm.person.isMale" value="true" ng-checked="vm.person.isMale" name="optradio">Nam
+                                    </label>
+                                    <label class="form-check-label ml-4">
+                                        <input type="radio" class="form-check-input" ng-model="vm.person.isMale" value="false" ng-checked="!vm.person.isMale" name="optradio">Nữ
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
 
-                    </ul>
+                        <div class="row" style="padding:10px">
+                            <div class="col-lg-6 col-md-6">
+                                <label for="placeOfBorn">NƠI SINH:</label>
+                                <select class="form-control" ng-model="vm.person.placeOfBirth"
+                                        ng-options="l.Id as l.Name for l in vm.cities"></select>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <label for="dob">NGÀY SINH:</label>
+                                <input type="date" ng-model="vm.person.doB" class="form-control" />
+                            </div>
+                        </div>
 
-                </nav>
-                <!-- End of Topbar -->
-                <!-- Begin Page Content -->
-                <div ui-view class="container-fluid" style="height:100vh;" ng-class="vm.isMainPage? 'showBg': 'hiddenBg'">
+                        <div class="row" style="padding:10px">
+                            <div class="col-lg-4 col-md-4">
+                                <label for="placeOfBorn">QUỐC TỊCH:</label>
+                                <select class="form-control" ng-model="vm.person.homeTownId"
+                                        ng-options="l.id as l.name for l in vm.countries"></select>
+                            </div>
+                            <div class="col-lg-4 col-md-4">
+                                <label for="placeOfBorn">TÔN GIÁO:</label>
+                                <select class="form-control" ng-model="vm.person.religionId"
+                                        ng-options="l.id as l.name for l in vm.religion"></select>
+                            </div>
+
+                            <div class="col-lg-4 col-md-4">
+                                <label for="placeOfBorn">DÂN TỘC:</label>
+                                <select class="form-control" ng-model="vm.person.nationId"
+                                        ng-options="l.id as l.name for l in vm.nations"></select>
+                            </div>
+                        </div>
+
+                        <div class="row" style="padding:10px">
+
+                            <div class="col-lg-6 col-md-6">
+                                <label for="">THÀNH PHỐ:</label>
+                                <select class="form-control" ng-change="vm.getDistricts()" ng-options="l.Id as l.Name for l in vm.cities" ng-model="vm.person.address.cityId"></select>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <label ng-disabled="vm.person.address.CityId ==5" for="">QUẬN / HUYỆN:</label>
+                                <select class="form-control" ng-disabled="vm.person.address.CityId ==5 && vm.districts.length>1" ng-options="l.Id as l.Name for l in vm.districts" ng-model="vm.person.address.districtId"></select>
+                            </div>
+                        </div>
+
+                        <div class="row" style="padding:10px">
+                            <div class="col-lg-12 col-md-12">
+                                <label for="">ĐỊA CHỈ THƯỜNG TRÚ:</label>
+                                <input type="text" class="form-control" placeholder="Địa Chỉ, Tên Đường..." ng-model="vm.person.address.address" />
+                                <input type="text" class="form-control" placeholder="Địa Chỉ, Tên Đường..." ng-model="vm.person.address.address" />
+                            </div>
+                        </div>
+
+                        <div class="row" style="padding:10px; width:50%">
+                            <div class="col-lg-12 col-md-12">
+                                <label for="">SỐ ĐIỆN THOẠI:</label>
+                                <input type="text" class="form-control" placeholder="..." ng-model="vm.person.phone" />
+                            </div>
+                        </div>
+
+                        <div class="row" style="padding:10px">
+                            <div class="col-lg-4 col-md-4">
+                                <label for="placeOfBorn">CMND:</label>
+                                <input type="text" class="form-control" placeholder="..." ng-model="vm.person.phone" />
+                            </div>
+                            <div class="col-lg-4 col-md-4">
+                                <label for="placeOfBorn">NGÀY CẤP:</label>
+                                <input type="text" class="form-control" placeholder="..." ng-model="vm.person.phone" />
+                            </div>
+
+                            <div class="col-lg-4 col-md-4">
+                                <label for="placeOfBorn">NƠI CẤP:</label>
+                                <input type="text" class="form-control" placeholder="..." ng-model="vm.person.phone" />
+                            </div>
+                        </div>
+
+                        <div class="row" style="padding:10px; width:50%">
+                            <div class="col-lg-12 col-md-12">
+                                <label for="">THẺ CĂN CƯỚC:</label>
+                                <input type="text" class="form-control" placeholder="..." ng-model="vm.person.phone" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-info">Lưu</button>
+                        <button class="btn btn-outline-danger" type="button" data-dismiss="modal">Hủy</button>
+                    </div>
                 </div>
-                <!-- /.container-fluid -->
-
             </div>
-            <!-- End of Main Content -->
         </div>
-        <!-- End of Content Wrapper -->
 
-    </div>
-    <!-- End of Page Wrapper -->
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Bạn muốn thoát khỏi hệ thống ?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Nhấn vào <b>Đăng Xuất</b> để thoát</div>
-                <div class="modal-footer">
-                    <button class="btn btn-outline-danger" type="button" data-dismiss="modal">Hủy Bỏ</button>
-                    <button type="button" class="btn btn-outline-info" value="Đăng Xuất" onclick="location.href='@Url.Action("Logout", "Home")'">Đăng Xuất</button>
-                    
+        <!-- change password Modal-->
+        <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="ModalTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalTitle">ĐỔI MẬT KHẨU</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div>
+                        <div class="row" style="padding:10px; width:50%">
+                            <div class="col-lg-12 col-md-12">
+                                <label for="">NHẬP MẬT KHẢU CŨ:</label>
+                                <input type="text" class="form-control" placeholder="..." ng-model="vm.password.PWOld"ng-change="vm.checkChangePW()" />
+                            </div>
+                        </div>
+                        <div class="row" style="padding:10px; width:50%">
+                            <div class="col-lg-12 col-md-12">
+                                <label for="">NHẬP MẬT KHẢU MỚI:</label>
+                                <input type="text" class="form-control" placeholder="..." ng-model="vm.password.PWNew" ng-change="vm.checkChangePW()" />
+                            </div>
+                        </div>
+                        <div class="row" style="padding:10px; width:50%">
+                            <div class="col-lg-12 col-md-12">
+                                <label for="">XÁC NHẬN MẬT KHẨU MỚI:</label>
+                                <input type="text" class="form-control" placeholder="..." ng-model="vm.password.PWConfirm" ng-change="vm.checkChangePW()" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-info" ng-disabled="!vm.checkPW">Lưu</button>
+                        <button class="btn btn-outline-danger" type="button" data-dismiss="modal">Hủy</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+ 
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
@@ -311,7 +486,7 @@
 
     <script type="text/javascript" src="~/AngularModules/Administration/nationalManagementController.js"></script>
     <script type="text/javascript" src="~/AngularModules/Administration/NationalModalController.js"></script>
-    
+
 
 </body>
 </html>
