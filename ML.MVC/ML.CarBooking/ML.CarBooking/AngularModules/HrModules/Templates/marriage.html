@@ -37,9 +37,9 @@
                 <td>{{r.YearOfBirth}}</td>
                 <td>{{r.Address}}</td>
                 <td>{{r.RelationName}}</td>
-                <td><i class="fas fa-fw fa-check-circle"></i></td>
-                <td></td>
-                <td></td>
+                <td><i class="fas fa-fw fa-check-circle" ng-style="vm.checkIsDependent(r.Dependance)"></i></td>
+                <td>{{r.Dependance.StartDate}}</td>
+                <td>{{r.Dependance.EndDate}}</td>
                 <td><i class="fas fa-fw fa-times-circle"></i></td>
                 <td>
                     <button class="btn btn-outline-success" data-toggle="modal" data-target="#relativeModal" ng-click="vm.editRelative(r)" ng-disabled="vm.IsViewing"><i class="fas fa-fw fa-pen"></i></button>
@@ -81,35 +81,37 @@
                         </div>
                         <br />
                         <div class="row">
-                            <div class="col-md-6" style="display: grid;">
+                            <div class="col-md-6">
                                 <label style="display: inline-flex;vertical-align: -webkit-baseline-middle;">
-                                    <input type="checkbox" ng-model="vm.personRelationship.IsDependent" />&nbsp;&nbsp;Người phụ thuộc
+                                    <input type="checkbox" ng-model="vm.personDependance.IsDependent" />&nbsp;&nbsp;Người phụ thuộc
                                 </label>
-
+                            </div>
+                            <div class="col-md-6">
                                 <label style="display: inline-flex;vertical-align: -webkit-baseline-middle;">
                                     <input type="checkbox" ng-model="vm.personRelationship.IsDead" />&nbsp;&nbsp;Đã mất
                                 </label>
                             </div>
-                            <div class="col-md-6" style="display: grid;">
-                                <div ng-if="vm.personRelationship.IsDependent">
-                                    <label for="StartDate">Thời gian bắt đầu: <span class="required_ico">*</span></label>
-                                    <input name="StartDate" class="form-control" type="date" min="1900" ng-model="vm.personRelationship.StartDate" ng-change="vm.checkValid()" />
-                                    <br />
-                                    <label for="EndDate">Thời gian kết thúc: <span class="required_ico">*</span></label>
-                                    <input name="EndDate" class="form-control" type="date" min="1900" ng-model="vm.personRelationship.EndDate" ng-change="vm.checkValid()" />
+                        </div>
+                        <div class="row" ng-if="vm.personDependance.IsDependent">
+                            <div class="col-md-6">
+                                <label for="StartDate">Thời gian bắt đầu: <span class="required_ico">*</span></label>
+                                <input name="StartDate" class="form-control" type="date" min="1900" ng-model="vm.personDependance.StartDate" ng-change="vm.checkValid()" />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="EndDate">Thời gian kết thúc: <span class="required_ico">*</span></label>
+                                <input name="EndDate" class="form-control" type="date" min="1900" ng-model="vm.personDependance.EndDate" ng-change="vm.checkValid()" />
+                            </div>
+                        </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="address">Địa chỉ: <span class="required_ico">*</span></label>
+                                    <input name="address" class="form-control" type="text" placeholder="..." ng-model="vm.personRelationship.Address" ng-change="vm.checkValid()" />
                                 </div>
                             </div>
-                        </div>
-                        <br />
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label for="address">Địa chỉ: <span class="required_ico">*</span></label>
-                                <input name="address" class="form-control" type="text" placeholder="..." ng-model="vm.personRelationship.Address" ng-change="vm.checkValid()" />
-                            </div>
-                        </div>
 
 
-                    </form>
+</form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
