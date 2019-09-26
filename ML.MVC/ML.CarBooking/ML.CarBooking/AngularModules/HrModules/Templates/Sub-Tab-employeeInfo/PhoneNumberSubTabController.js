@@ -2,11 +2,11 @@
     'use strict'
     angular.module('mainApp').controller('phoneNumberSubTabController', phoneNumberSubTabController);
 
-    phoneNumberSubTabController.$inject = ['$http', '$state','$stateParams'];
+    phoneNumberSubTabController.$inject = ['$http', '$state', '$stateParams'];
 
     function phoneNumberSubTabController($http, $state, $stateParams) {
         var vm = this;
-        
+
         vm.initialize = initialize;
         vm.checkValid = checkValid;
         vm.openAddModal = openAddModal
@@ -19,18 +19,16 @@
         var userId = $state.params.id;
         vm.IsViewing = $stateParams.IsViewing;
 
-         vm.personPhoneModel = {};
+        vm.personPhoneModel = {};
 
         function initialize() {
-            resetModel(); 
+            resetModel();
             getPhoneNumbers();
             getTypesOfPhoneNumber();
 
             //Example
             var date = new Date();
             vm.getDate = date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear();
-
-           
 
         };
 
@@ -48,14 +46,14 @@
                             case 3: item.TypeDisplay = 'Số Fax'; break;
                         }
                     });
-                   
+
                 });
         }
 
         function getTypesOfPhoneNumber() {
             //TODO: get data by api
             vm.typesOfPhoneNumber = [
-                
+
                 { typeId: 1, typeName: "Điện Thoại Di Động" },
                 { typeId: 2, typeName: "Điện Thoại Bàn" },
                 { typeId: 3, typeName: "Fax" },
@@ -64,7 +62,7 @@
 
         function checkValid() {
             if (vm.personPhoneModel.phoneType != null) {
-                if (vm.personPhoneModel.phoneNumber.length==0 && !vm.personPhoneModel.phoneNumber) {
+                if (vm.personPhoneModel.phoneNumber.length == 0 && !vm.personPhoneModel.phoneNumber) {
                     vm.message = "Không để trống các mục!";
                     vm.isValid = false;
                     return;
@@ -78,10 +76,10 @@
 
         function resetModel() {
             vm.personPhoneModel = {
-                id : 0,
-                phoneNumber:'',
-                phoneType :0,
-                personId:userId
+                id: 0,
+                phoneNumber: '',
+                phoneType: 0,
+                personId: userId
             };
         }
 
@@ -98,7 +96,7 @@
             vm.personPhoneModel.phoneType = row.PhoneType;
             vm.personPhoneModel.phoneNumber = row.PhoneNumber;
             vm.isValid = true;
-            
+
         }
 
         function saveChanges() {
@@ -117,11 +115,11 @@
                         getPhoneNumbers();
                     });
             }
-        }  
+        }
 
         function openDeleteModal(row) {
             vm.deletedDataRow = row;
-            
+
         }
 
         function deleted(row) {

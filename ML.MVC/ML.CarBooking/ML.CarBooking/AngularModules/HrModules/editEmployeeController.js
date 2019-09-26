@@ -112,8 +112,8 @@
                         } else {
                             getContactDistricts();
                         }
-                        
-                        
+                        vm.person.PhoneNumber = "0909090909";
+                        console.log(vm.person);
                     }
                 });
         }
@@ -162,11 +162,6 @@
                 { id: 3, name: 'Thư Ký' },
                 { id: 4, name: 'Nhân Viên' }
             ];
-
-
-
-        
-
 
         }
 
