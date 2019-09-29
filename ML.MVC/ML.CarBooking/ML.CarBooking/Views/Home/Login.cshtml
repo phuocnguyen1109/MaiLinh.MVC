@@ -5,6 +5,12 @@
 }
 
 <link rel="stylesheet" href="~/Content/CustomCSS/sb-admin-2.css" />
+<style>
+      .error {  
+            font-size: 16px;
+            color: red;  
+        }  
+</style>
 @using (Html.BeginForm())
 {
     <div class="container">
@@ -23,6 +29,13 @@
                             <div class="form-group">
                                 @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control form-control-user", @placeholder = "Mật Khẩu...", @type = "password" } })
                             </div>
+                            <div class="form-group error">
+                                @if (@ViewBag.NotValid == true)
+                                {
+
+                                    <label>Sai tên đăng nhập hoặc mật khẩu !</label>
+                                }
+                            </div>
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox small">
                                     <input type="checkbox" class="custom-control-input" id="customCheck">
@@ -30,9 +43,6 @@
                                 </div>
                             </div>
                             <input type="submit" class="btn btn-primary btn-user btn-block" value="Đăng Nhập" />
-                            @*<div class="text-center">
-                                <a class="small" href="#!forgotPassword">Quên mật khẩu</a>
-                            </div>*@
                         </form>
                         
                     </div>

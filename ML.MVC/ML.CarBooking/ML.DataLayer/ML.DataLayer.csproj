@@ -48,12 +48,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataObject\Hr\PersonWorkHistory.cs" />
+    <Compile Include="Implements\Common\AccountDataLayer.cs" />
     <Compile Include="Implements\Hr\LocationDataLayer.cs" />
     <Compile Include="Implements\Hr\PersonDataLayer.cs" />
     <Compile Include="Implements\Hr\PersonEducationDataLayer.cs" />
     <Compile Include="Implements\Hr\PersonHealthCheckDataLayer.cs" />
     <Compile Include="Implements\Hr\PersonMariage.cs" />
     <Compile Include="Implements\Hr\PersonWorkingHistoryDataLayer.cs" />
+    <Compile Include="Interfaces\Common\IAccountDataLayer.cs" />
     <Compile Include="Interfaces\Hr\ILocationDataLayer.cs" />
     <Compile Include="Interfaces\Hr\IPersonDataLayer.cs" />
     <Compile Include="Interfaces\Hr\IPersonEducationDataLayer.cs" />

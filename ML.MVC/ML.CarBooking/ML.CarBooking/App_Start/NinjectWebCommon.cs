@@ -17,6 +17,10 @@ namespace ML.CarBooking.App_Start
     using ML.Business.Implements.Hr;
     using ML.DataLayer.Interfaces.Hr;
     using ML.DataLayer.Implements.Hr;
+    using ML.Business.Interfaces.Common;
+    using ML.Business.Implements;
+    using ML.DataLayer.Interfaces.Common;
+    using ML.DataLayer.Implements.Common;
 
     public static class NinjectWebCommon
     {
@@ -70,6 +74,10 @@ namespace ML.CarBooking.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IConnectionFactory>().ToConstructor(contructor => new ConnectionFactory(GetConnectionString()));
+
+            kernel.Bind<IAccountBussiness>().To<AccountBusiness>().InSingletonScope();
+            kernel.Bind<IAccountDataLayer>().To<AccountDataLayer>().InSingletonScope();
+
             kernel.Bind<IPersonWorkingHistory>().To<PersonWorkingHistory>().InSingletonScope();
             kernel.Bind<IPersonWorkingHistoryDataLayer>().To<PersonWorkingHistoryDataLayer>().InSingletonScope();
 
