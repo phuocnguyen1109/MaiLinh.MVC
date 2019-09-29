@@ -120,5 +120,14 @@ namespace ML.Business.Implements.Hr
             return m_PersonDataLayer.UpdatePersonSIContract(request, userId);
         }
 
+        public IEnumerable<PersonEquipment> GetPersonEquipments(int pid) {
+            return m_PersonDataLayer.GetPersonEquipments(pid);
+        }
+
+        public int CreateOrUpdatePersonEquipment(PersonEquipment request)
+        {
+            return m_PersonDataLayer.CreateOrUpdatePersonEquipment(request);
+        }
+
     }
 }

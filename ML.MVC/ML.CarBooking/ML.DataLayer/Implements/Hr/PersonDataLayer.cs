@@ -272,5 +272,26 @@ namespace ML.DataLayer.Implements.Hr
                 sINote = request.SINote
               }, commandType: System.Data.CommandType.StoredProcedure));
         }
+
+        public IEnumerable<PersonEquipment> GetPersonEquipments(int pid)
+        {
+            return Execute(connection => connection.Query<PersonEquipment>("[Hr].[GetPersonEquipments]",
+                new
+                {
+                    pid = pid
+                }, commandType: CommandType.StoredProcedure));
+        }
+
+        public int CreateOrUpdatePersonEquipment(PersonEquipment request)
+        {
+            return Execute(connection =>
+           connection.Execute("[Hr].[CreateOrUpdatePersonEquipment]",
+           new
+           {
+              pid = request.PersonId,
+              receivedDate = request.ReceivedDate,
+              equipmentId = request.Id
+           }, commandType: System.Data.CommandType.StoredProcedure));
+        }
     }
 }

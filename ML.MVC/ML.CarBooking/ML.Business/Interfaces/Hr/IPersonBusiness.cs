@@ -41,5 +41,8 @@ namespace ML.Business.Interfaces.Hr
         int CreatePersonContract(PersonContract request, int userId);
         int UpdatePersonContract(PersonContract request, int userId);
         int DeletePersonContract(int id, int userId);
+
+        IEnumerable<PersonEquipment> GetPersonEquipments(int pid);
+        int CreateOrUpdatePersonEquipment(PersonEquipment request);
     }
 }

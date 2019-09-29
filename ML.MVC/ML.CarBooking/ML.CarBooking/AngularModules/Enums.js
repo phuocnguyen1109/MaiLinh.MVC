@@ -31,5 +31,12 @@
         { Id: 3, Name: 'Tốt Nghiệp THPT' },
         { Id: 4, Name: 'Tốt Nghiệp Cao Đẳng' },
         { Id: 1, Name: 'Tốt Nghiệp Đại Học' }
+    ],
+
+    Equipments: [
+        { Id: 1, Name: "DÙ" },
+        { Id: 2, Name: "TÚI XÁCH" },
+        { Id: 3, Name: "BÌA TRÌNH KÝ" },
+        { Id: 4, Name: "SIM ĐIỆN THOẠI" },
     ]
 };

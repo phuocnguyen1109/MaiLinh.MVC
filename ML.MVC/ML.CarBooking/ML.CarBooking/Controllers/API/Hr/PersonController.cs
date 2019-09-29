@@ -131,6 +131,16 @@ namespace ML.CarBooking.Controllers.API.Hr
             return m_PersonBusiness.DeletePersonContract(id, userId);
         }
 
+        public IEnumerable<PersonEquipment> GetPersonEquipments(int pid)
+        {
+            return m_PersonBusiness.GetPersonEquipments(pid);
+        }
+
+        public int CreateOrUpdatePersonEquipment(PersonEquipment request)
+        {
+            return m_PersonBusiness.CreateOrUpdatePersonEquipment(request);
+        }
+
 
 
 
