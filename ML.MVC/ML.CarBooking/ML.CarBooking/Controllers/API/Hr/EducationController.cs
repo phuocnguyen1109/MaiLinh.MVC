@@ -32,5 +32,16 @@ namespace ML.CarBooking.Controllers.API.Hr
         {
             return m_personEducation.CreateAndUpdatePersonLanguage(request, userId);
         }
+
+        public int SaveWorkLicense(PersonWorkLicense request, int userId = 1)
+        {
+            return m_personEducation.CreateOrUpdatePersonWorkLicense(request, userId);
+        }
+
+        [HttpPost]
+        public int DeletePersonLanguage(PersonLanguage request)
+        {
+            return m_personEducation.DeletePersonLanguage(request.Id);
+        }
     }
 }

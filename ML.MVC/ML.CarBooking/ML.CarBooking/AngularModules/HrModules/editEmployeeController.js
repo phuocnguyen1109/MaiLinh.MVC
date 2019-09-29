@@ -3,14 +3,17 @@
     angular.module('mainApp')
         .controller('editEmployeeController', editEmployeeController);
 
-    editEmployeeController.$inject = ['$http', '$scope', '$state', '$stateParams'];
-    function editEmployeeController($http, $scope, $state, $stateParams) {
+    editEmployeeController.$inject = ['$http', '$scope', '$state', '$stateParams', 'PubSub'];
+    function editEmployeeController($http, $scope, $state, $stateParams, PubSub) {
         var vm = this;
         var personId = $stateParams.id;
         vm.IsViewing = $stateParams.IsViewing;
         
+        var syncEducation = false;
 
         vm.personAddresses = [];
+        vm.person = {};
+
 
         vm.saveChanges = saveChanges;
         vm.cancel = cancel;
@@ -20,13 +23,27 @@
 
         vm.initialize = initialize;
 
+        var changeEducation = null;
+
         function initialize() {
             getMasterData();
             getCities();
             getPerson();
-
+            PubSub.subscribe('education', changeEducation, true);
 
         }
+
+        changeEducation = function (data) {
+            vm.person.GradeId = data.GradeId;
+            vm.person.Major = data.Major;
+            vm.person.DriveLicenseId = data.selectedDriveLicense;
+            vm.person.DriveLicenseExpired = data.DriveLicenseExpired;
+            vm.person.DriveLicensePlace = data.DriveLicensePlace;
+            syncEducation = !syncEducation;
+            _save();
+        }
+
+        
 
         function getCities() {
             vm.cities = [{ Id: 0, Name: '-- Chọn Thành Phố --' }];
@@ -73,8 +90,10 @@
             angular.element(document).find('.modal-backdrop').remove();
             $state.go('employees');
         }
-
-        function saveChanges() {
+        function _save() {
+            if (!syncEducation) {
+                return;
+            }
             vm.person.addresses = [vm.personAddresses.address, vm.personAddresses.contactAddress];
             vm.person.IsPension = vm.person.IsPension == 'true' ? true : false;
             vm.person.IsMale = vm.person.IsMale == 'true' ? true : false;
@@ -87,6 +106,9 @@
                 .then(function (result) {
                     alert('Lưu Thông Tin Thành Công');
                 });
+        }
+        function saveChanges() {
+            PubSub.publish('SAVE_PERSON');
         }
 
         function getPerson() {

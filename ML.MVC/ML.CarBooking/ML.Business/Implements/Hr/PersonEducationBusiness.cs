@@ -103,5 +103,14 @@ namespace ML.Business.Implements.Hr
         {
             return m_PEducationDataLayer.GetPersonEducation(pid);
         }
+
+        public int CreateOrUpdatePersonWorkLicense(PersonWorkLicense request, int userId)
+        {
+            return m_PEducationDataLayer.CreateOrUpdatePersonWorkLicense(request, userId);
+        }
+
+        public int DeletePersonLanguage(int id) {
+            return m_PEducationDataLayer.DeletePersonLanguage(id);
+        }
     }
 }

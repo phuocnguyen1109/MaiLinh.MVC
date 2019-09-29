@@ -2,17 +2,16 @@
     'use strict'
     angular.module('mainApp').controller('educationController', educationController);
 
-    educationController.$inject = ['$http', '$rootScope', '$scope', '$state', '$stateParams'];
-    function educationController( $http, $rootScope, $scope, $state, $stateParams) {
+    educationController.$inject = ['$http', '$rootScope', '$scope', '$state', '$stateParams','PubSub'];
+    function educationController($http, $rootScope, $scope, $state, $stateParams, PubSub) {
         var vm = this;
-
+        
         vm.isValidPersonlanguage = isValidPersonlanguage;
         vm.savePersonLanguage = savePersonLanguage;
         vm.initialize = initialize;
         vm.checkValid = checkValid;
         vm.openAdd = openAdd;
         vm.openEditLanguage = openEditLanguage;
-        vm.saveChanges = saveChanges;
         vm.saveLincense = saveLincense;
         vm.openDelModal = openDelModal;
         vm.deleted = deleted;
@@ -25,26 +24,64 @@
         vm.usedTime = null;
         vm.startDate = null;
         vm.expiredDate = null;
+
+        vm.selectedDriveLicense = 0;
+        vm.selectedEducationGrade = 0;
+        vm.personEdu = {
+            selectedDriveLicense: 0,
+            GradeId: 0
+        };
         var personId = $stateParams.id;
 
+        
+
+        $scope.$parent.$watch('vm.person', function (values) {
+            if (values && values.Id) {
+                vm.personEdu.PersonLanguages = values.PersonLanguages;
+                vm.personEdu.selectedDriveLicense = values.DriveLicenseId;
+                vm.personEdu.Major = values.Major;
+                vm.personEdu.GradeId = values.GradeId;
+                vm.personEdu.DriveLicenseExpired = new Date(values.DriveLicenseExpired); 
+                vm.personEdu.DriveLicensePlace = values.DriveLicensePlace;
+                vm.personEdu.PersonWorkLicenses = buildWorkLincenseGrid(values.PersonWorkLicenses);
+
+            }
+        });
+      
+
+
+        function buildPersonLanguageGrid(data) {
+                data.forEach(function (item, index) {
+                    item.LanguageName = vm.languages.find(x => x.Id == item.LanguageId).Name;
+                });
+            }
+
         function resetModel() {
-            vm.personEducation = {
-                languages :[]
-
-            };
-
             vm.selectedPersonLanguage = { Id: 0, PersonId: personId, LanguageId: 0, Level: '' };
         }
+
         function initialize() {
             resetModel();
             getMLanguages();
             vm.userLanguage = { id: null, name: null, qualification: null };
-            getLicenses();
+            getDriveLicenses();
+            getEducationGrades();
             getListQualifications();
+            PubSub.subscribe('SAVE_PERSON', _savePerson);
         }
 
-        function getPersonEducations() {
+        function _savePerson() {
+            PubSub.publish('education', vm.personEdu);
+        }
 
+        function getEducationGrades() {
+            vm.educationGrades = E.EducationGrades;
+            vm.educationGrades.splice(0, 0, { Id: 0, Name: '-- Chọn Trình Độ Học Vấn --' });
+        }
+
+        function getDriveLicenses() {
+            vm.driveLicenses = E.DriveLicenses;
+            vm.driveLicenses.splice(0, 0, { Id: 0, Name: '--Chọn Giấy Phép Lái Xe' });
         }
 
         function savePersonLanguage() {
@@ -55,48 +92,49 @@
                 .then(function (result) {
                     var createdPersonLanguage = angular.copy(vm.selectedPersonLanguage);
                     createdPersonLanguage.LanguageName = getLanguageName(createdPersonLanguage.LanguageId);
-                    vm.personEducation.languages.push(createdPersonLanguage);
+                    vm.personEdu.PersonLanguages.push(createdPersonLanguage);
                 });
         }
 
         function getMLanguages() {
-            $http.get('/api/Education/GetMLanguages')
-                .then(function (result) {
-                    vm.languages = result.data;
-                    vm.languages.splice(0, 0, { Id: 0, Name: '--Chọn Ngôn Ngữ--' });
-                });
+                $http.get('/api/Education/GetMLanguages')
+                    .then(function (result) {
+                        vm.languages = result.data;
+                        vm.languages.splice(0, 0, { Id: 0, Name: '--Chọn Ngôn Ngữ--' });
+                        if (vm.personEdu.PersonLanguages && vm.personEdu.PersonLanguages.length > 0) {
+                            buildPersonLanguageGrid(vm.personEdu.PersonLanguages);
+                        }
+                    });
         }
 
         function getLanguageName(id) {
             return vm.languages.find(x => x.Id == id).Name;
         }
 
-        function getLicenses() {
-            //TODO: get data by api
-            vm.lincenses = [
-                { id: "1", isCheck: false, isEnable: false, name: "An toàn vệ sinh lao động", usedTime: 0, licenseDate: null, expiredDate: null },
-                { id: "2", isCheck: false, isEnable: false, name: "Sơ cấp cứu", usedTime: 0, licenseDate: null, expiredDate: null },
-                { id: "3", isCheck: false, isEnable: false, name: "Giấy chứng nhận tập huấn nghiệp vụ", usedTime: 0, licenseDate: null, expiredDate: null },
-                { id: "4", isCheck: false, isEnable: false, name: "Giấy chứng nhận nhân viên phục vụ hành khác", usedTime: 0, licenseDate: null, expiredDate: null },
-                { id: "5", isCheck: false, isEnable: false, name: "Giấy chứng nhận lái xe phòng thủ", usedTime: 0, licenseDate: null, expiredDate: null },
-                { id: "6", isCheck: false, isEnable: false, name: "Giấy xác nhận huấn luyện an toàn nội bộ", usedTime: 0, licenseDate: null, expiredDate: null },
-            ];
+        function getWorkLicenses() {
+            vm.personWorkLicenses = [];
+            var workLincenses = E.WorkLincenses;
+            workLincenses.forEach(function (item, index) {
+                vm.personWorkLicenses.push({ Id: item.Id, Name: item.Name, IsChecked: false, IsEnabled: false });
+            });
         }
 
-        //remove
-        function getListLanguages() {
-            ////TODO: get data by api
-            //vm.listLanguages = [
-            //    { id: 1, name: "Tiếng Anh" },
-            //    { id: 2, name: "Tiếng Hàn" },
-            //    { id: 3, name: "Tiếng Trung" },
-            //    { id: 4, name: "Tiếng Đức" },
-            //    { id: 5, name: "Tiếng Nga" },
-            //    { id: 6, name: "Tiếng Tây Ban Nha" },
-            //    { id: 7, name: "Tiếng Nhật" },
-            //    { id: 8, name: "Tiếng Ý" },
-            //];
+        function buildWorkLincenseGrid(personWorkLicenses) {
+            if (!vm.personWorkLicenses) {
+                getWorkLicenses();
+            }
+            vm.personWorkLicenses.forEach(function (item, index) {
+                var selectedWL = personWorkLicenses.find(x => x.WorkLisenceId == item.Id);
+                if (selectedWL) {
+                    item.IsChecked = true;
+                    item.IsEnabled = true;
+                    item.Duration = selectedWL.Duration;
+                    item.FromDate = new Date(selectedWL.FromDate);
+                    item.ToDate = new Date(selectedWL.ToDate);
+                }
+            });
         }
+
 
         function getListQualifications() {
             vm.listQualifications = [
@@ -128,59 +166,6 @@
             vm.userLanguage = l;
         }
 
-        function saveChanges() {
-            var r = vm.userLanguage;
-            if (r.id) {
-                vm.languagesCertifications.forEach(function (item, index) {
-                    if (r.id == item.id) {
-                        vm.listLanguages.forEach(function (lang, index) {
-                            if (r.langId == lang.id) {
-                                item.langId = lang.id;
-                                item.name = lang.name;
-                            }
-                        });
-                        vm.listQualifications.forEach(function (quality, index) {
-                            if (r.qualityId == quality.id) {
-                                item.qualityId = quality.id;
-                                item.qualification = quality.qualification;
-                            }
-                        });
-                        return r;
-                    };
-                });
-            }
-            else {
-                var found = false;
-                vm.languagesCertifications.forEach(function (item, index) {
-                    if (r.langId == item.langId) {
-                        alert("Không thể nhập ngôn ngữ đã có!");
-                        found = true;
-                        return;
-                    }
-                });
-                if (!found) {
-
-                    vm.message = null;
-                    vm.userLanguage.id = r.langId;
-                    vm.listLanguages.forEach(function (lang, index) {
-                        if (r.langId == lang.id) {
-                            vm.userLanguage.name = lang.name;
-                            return;
-                        }
-                    });
-                    vm.listQualifications.forEach(function (quality, index) {
-                        if (r.qualityId == quality.id) {
-                            vm.userLanguage.qualification = quality.qualification;
-                            return;
-                        }
-                    });
-                    vm.languagesCertifications.push(vm.userLanguage);
-
-                }
-            };
-
-            console.log(vm.languagesCertifications);
-        }
 
 
         function checkValid() {
@@ -195,43 +180,34 @@
         }
 
         function changeTime(row) {
-            //debugger;
-            var expiredDate = null;
-            if (row.licenseDate != null && row.usedTime != null) {
-                var licenseDate = new Date(row.licenseDate);
-                expiredDate = licenseDate.setMonth(licenseDate.getMonth() + row.usedTime);
-                row.expiredDate = new Date(expiredDate);
-                if (row.isCheck == true && row.usedTime != null && row.licenseDate != null && row.expiredDate != null) {
-                    row.isEnable = true;
+            var ToDate = null;
+            if (row.FromDate != null && row.Duration != null) {
+                var FromDate = new Date(row.FromDate);
+                ToDate = FromDate.setMonth(FromDate.getMonth() + row.Duration);
+                row.ToDate = new Date(ToDate);
+                if (row.IsChecked == true && row.Duration != null && row.FromDate != null && row.ToDate != null) {
+                    row.IsEnabled = true;
                     return;
                 }
             }
-            row.isEnable = false;
+            row.IsEnabled = false;
         }
-        //function changeLicenseDate(row) {
-        //    //debugger;
-        //    var expiredDate = null;
-        //    if (row.usedTime != null) {
-        //        var licenseDate = new Date(row.licenseDate);
-        //        expiredDate = licenseDate.setMonth(licenseDate.getMonth() + row.usedTime);
-        //        row.expiredDate = new Date(expiredDate); 
-        //        return;
-        //    }
-        //    alert("Không để trống thời gian sử dụng!");
-        //}
-        //function btnSaveCheckNotNull(row) {
-        //    if (row.usedTime == null || row.licenseDate == null || row.expiredDate == null) {
-        //        vm.isEnable = false;
-        //        return;
-        //    }
-        //    vm.isEnable = true;
-        //}
+      
 
 
         function saveLincense(r) {
-            var l = vm.lincenses.find(x => x.id == r.id);
-            //l = r;
-            console.log(vm.lincenses);
+            debugger;
+            var params = {
+                PersonId: parseInt(personId),
+                Duration: r.Duration,
+                WorkLisenceId: parseInt(r.Id),
+                FromDate: r.FromDate,
+                ToDate: r.ToDate
+            };
+            $http.post('/api/Education/SaveWorkLicense', params)
+                .then(function (result) {
+                    debugger;
+                });
         }
 
         function openDelModal(r) {
@@ -240,13 +216,18 @@
         }
 
         function deleted(r) {
-            var deletedInndex = null;
-            vm.languagesCertifications.forEach(function (item, index) {
-                if (r.id == item.id) {
-                    deletedInndex = index;
-                }
-            });
-            vm.languagesCertifications.splice(deletedInndex, 1);
+            $http.post('/api/Education/DeletePersonLanguage', { id: r.Id })
+                .then(function (result) {
+                    var deletedIndex;
+                    vm.personEdu.PersonLanguages.forEach(function (item, index) {
+                        if (r.Id == item.Id) {
+                            deletedIndex = index;
+                        }
+                    });
+
+                    vm.personEdu.PersonLanguages.splice(deletedIndex, 1);
+                });
+           
         }
     }
 

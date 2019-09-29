@@ -1810,6 +1810,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\angular-pubsub.js" />
     <Content Include="Scripts\angular-ui-router.min.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -1883,6 +1884,7 @@
     <Content Include="SQL_Scripts\Hr_Update_001.sql" />
     <Content Include="SQL_Scripts\Hr_Init.sql" />
     <Content Include="SQL_Scripts\Hr_Update_002.sql" />
+    <Content Include="SQL_Scripts\Hr_Update_005.sql" />
     <Content Include="SQL_Scripts\Hr_Update_004.sql" />
     <Content Include="SQL_Scripts\SP_Hr_Education.sql" />
     <Content Include="SQL_Scripts\SP_Hr_HealthCheck.sql" />
