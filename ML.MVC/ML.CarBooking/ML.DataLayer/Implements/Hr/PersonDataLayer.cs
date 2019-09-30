@@ -136,12 +136,24 @@ namespace ML.DataLayer.Implements.Hr
 
         public PersonResponse GetPersonInformation(int id)
         {
-            return Execute(connection =>
-            connection.Query<PersonResponse>("[Hr].[GetPersonInformation]",
-            new {
-                id
-            }, commandType: System.Data.CommandType.StoredProcedure)).FirstOrDefault();
+            PersonResponse response = new PersonResponse();
+            return Execute(connection => {
+                using (var result = connection.QueryMultiple("[Hr].[GetPersonInformation]",
+                    new
+                    {
+                        id = id
+                    }, 
+                    commandType: System.Data.CommandType.StoredProcedure))
+            {
+                response = result.Read<PersonResponse>().FirstOrDefault();
+                response.PersonWorkLicenses = result.Read<PersonWorkLicense>();
+                response.PersonLanguages = result.Read<PersonLanguage>();
+                return response;
+                } 
+            });
         }
+
+
 
         public IEnumerable<PersonPhone> GetPersonPhones(int pid)
         {
@@ -225,7 +237,12 @@ namespace ML.DataLayer.Implements.Hr
                 isPension = request.IsPension,
                 siNote = request.SINote,
                 sINumber = request.SINumber,
-                sIContractNUmber = request.SIContractNumber
+                sIContractNUmber = request.SIContractNumber,
+                major = request.Major,
+                gradeId = request.GradeId,
+                driveLicenseId = request.DriveLicenseId,
+                signedPlace = request.DriveLicensePlace,
+                expiredOn = request.DriveLicenseExpired
 
             }, commandType: System.Data.CommandType.StoredProcedure));
         }
@@ -254,6 +271,27 @@ namespace ML.DataLayer.Implements.Hr
                 sIContractNumber = request.SIContractNumber,
                 sINote = request.SINote
               }, commandType: System.Data.CommandType.StoredProcedure));
+        }
+
+        public IEnumerable<PersonEquipment> GetPersonEquipments(int pid)
+        {
+            return Execute(connection => connection.Query<PersonEquipment>("[Hr].[GetPersonEquipments]",
+                new
+                {
+                    pid = pid
+                }, commandType: CommandType.StoredProcedure));
+        }
+
+        public int CreateOrUpdatePersonEquipment(PersonEquipment request)
+        {
+            return Execute(connection =>
+           connection.Execute("[Hr].[CreateOrUpdatePersonEquipment]",
+           new
+           {
+              pid = request.PersonId,
+              receivedDate = request.ReceivedDate,
+              equipmentId = request.Id
+           }, commandType: System.Data.CommandType.StoredProcedure));
         }
     }
 }

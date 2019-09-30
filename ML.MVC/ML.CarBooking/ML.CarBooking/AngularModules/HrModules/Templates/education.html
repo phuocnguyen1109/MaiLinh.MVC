@@ -5,39 +5,36 @@
                 <div class="row custom-card" style="height:45%">
                     <div class="col-lg-6 col-md-6">
                         <label for="grade">TRÌNH ĐỘ:</label>
-                        <select ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'">
-                            <option>Tốt Nghiệp Tiểu Học</option>
-                            <option>Tốt Nghiệp THCS</option>
-                            <option>Tốt Nghiệp THPT</option>
-                            <option>Tốt Nghiệp Cao Đẳng</option>
-                            <option>Tốt Nghiệp Đại Học</option>
+                        <select ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'"
+                         ng-options="l.Id as l.Name for l in vm.educationGrades"
+                         ng-model="vm.personEdu.GradeId"
+                        >
                         </select>
                     </div>
 
                     <div class="col-lg-6 col-md-6">
                         <label for="major">CHUYÊN MÔN:</label>
-                        <input type="text" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'"/>
+                        <input type="text" ng-model="vm.personEdu.Major" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'"/>
                     </div>
                 </div>
                 <!-- GPLX -->
                 <div class="row custom-card" style="margin-top: 20px; height: 50%">
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <label for="grade">GPLX:</label>
-                        <select ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'">
-                            <option>Dấu B2</option>
-                            <option>Dấu C</option>
-                            <option>Dấu D</option>
-                            <option>Dấu E</option>
+                        <select 
+                         ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'"
+                         ng-options="l.Id as l.Name for l in vm.driveLicenses"
+                         ng-model="vm.personEdu.selectedDriveLicense">
                         </select>
                     </div>
 
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <label for="major">CÓ GIÁ TRỊ ĐẾN:</label>
-                        <input type="date" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'"/>
+                        <input type="date" ng-model="vm.personEdu.DriveLicenseExpired" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'"/>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6 mt-2">
                         <label for="major">NƠI CẤP:</label>
-                        <input type="text" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" />
+                        <input type="text" ng-model="vm.personEdu.DriveLicensePlace" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" />
                     </div>
                 </div>
             </div>
@@ -60,7 +57,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="row in vm.personEducation.languages">
+                        <tr ng-repeat="row in vm.personEdu.PersonLanguages">
                             <td>{{row.LanguageName}}</td>
                             <td>{{row.Level}}</td>
                             <td>
@@ -152,14 +149,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="row in vm.lincenses">
-                        <td class="center-block txt-center"><input type="checkbox" ng-model="row.isCheck" ng-change="vm.changeTime(row)" ng-disabled="vm.IsViewing"/></td>
-                        <td class="text-uppercase">{{row.name}}</td>
-                        <td><input type="number" class="form-control" ng-model="row.usedTime" ng-change="vm.changeTime(row)" ng-disabled="!row.isCheck" /></td>
-                        <td><input type="date" class="form-control" ng-model="row.licenseDate" ng-change="vm.changeTime(row)" ng-disabled="!row.isCheck" /></td>
-                        <td><input type="date" class="form-control" ng-model="row.expiredDate" ng-disabled="!row.isCheck" /></td>
+                    <tr ng-repeat="row in vm.personWorkLicenses">
+                        <td class="center-block txt-center"><input type="checkbox" ng-model="row.IsChecked" ng-change="vm.changeTime(row)" ng-disabled="vm.IsViewing"/></td>
+                        <td class="text-uppercase">{{row.Name}}</td>
+                        <td><input type="number" class="form-control" ng-model="row.Duration" ng-change="vm.changeTime(row)" ng-disabled="!row.IsChecked" /></td>
+                        <td><input type="date" class="form-control" ng-model="row.FromDate" ng-change="vm.changeTime(row)" ng-disabled="!row.IsChecked" /></td>
+                        <td><input type="date" class="form-control" ng-model="row.ToDate" disabled /></td>
                         <td>
-                            <button class="btn btn-outline-primary" ng-click="vm.saveLincense(row)" ng-disabled="!row.isEnable">
+                            <button class="btn btn-outline-primary" ng-click="vm.saveLincense(row)" ng-disabled="!row.IsEnabled">
                                 <i class="fas fa-fw fa-save"></i>
                             </button>
                         </td>

@@ -4,18 +4,24 @@
         <h5>CHỈNH SỬA THÔNG TIN NHÂN VIÊN</h5>
         <br />
         <div class="panel-body row">
-            <!--<div class="col-lg-1 col-md-1">
-                <img src="../../../Content/Images/anh.jpg" class="img-thumbnail" />
-            </div>-->
+            <div class="col-lg-2 col-md-2">
+                <div class="bg-white" style="height: 142px;">
+                    <img src="{{vm.person.imageUrl}}" class="img-thumbnail" style="height: 142px; width: 100%;"/>
+                </div>
+                <div class="btn btn-outline-light w-100" ngf-select="vm.getFile($file)" name="file" ngf-pattern="'image/*'"
+                     ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="142" ngf-resize="{height: 142}">
+                Upload Image
+                </div>
+            </div>
             <div class="col-lg-2 col-md-2 form-group d-gr">
                 <label for="id">MÃ SỐ NHÂN VIÊN:</label>
                 <input id="id" class="form-control" type="text" disabled ng-model="vm.person.EmpCode" />
             </div>
-            <div class="col-lg-5 col-md-5 form-group d-gr w-100" style="display: grid;">
+            <div class="col-lg-4 col-md-4 form-group d-gr w-100">
                 <label for="fName" style="margin-left:0.1rem">HỌ VÀ TÊN:</label>
-                <div style="display:inline-flex;">
-                    <input id="fName" ng-class="vm.IsViewing ? 'disableEl form-control mr-2':'form-control mr-2'" style="width:50% !important" placeholder="Họ và tên lót..." type="text" ng-model="vm.person.FirstName" />
-                    <input id="lName" ng-class="vm.IsViewing ? 'disableEl form-control mr-2':'form-control mr-2'" style="width:50% !important" placeholder="Tên..." type="text" ng-model="vm.person.LastName" />
+                <div>
+                    <input id="fName" ng-class="vm.IsViewing ? 'disableEl form-control mr-2':'form-control mr-2'" placeholder="Họ và tên..." type="text" ng-model="vm.person.FullName" />
+                    <!--<input id="lName" ng-class="vm.IsViewing ? 'disableEl form-control mr-2':'form-control mr-2'" style="width:50% !important" placeholder="Tên..." type="text" ng-model="vm.person.LastName" />-->
                 </div>
             </div>
             <div class="col-lg-2 col-md-2 form-group d-gr txt-center">
@@ -40,7 +46,7 @@
     <div class="panel panel-default " style="display: block; overflow-x: hidden;">
         <div class="panel-body row">
             <uib-tabset justified="true" style="margin-left:10px; width:100%;">
-                <uib-tab index="0" heading="THÔNG TIN">
+                <uib-tab index="0" heading="LÝ LỊCH">
                     <div ng-include="'/AngularModules/HrModules/Templates/employeeInfo.html'"></div>
                 </uib-tab>
                 <uib-tab index="1" heading="TRÌNH ĐỘ HỌC VẤN">
@@ -64,15 +70,16 @@
 
     <div class="row" style="float:right; margin: 20px 10px 20px 0">
         <button class="btn btn-outline-success" ng-click="vm.saveChanges()" style="height: 50px; width:200px; margin-right: 20px;" ng-disabled="vm.IsViewing">LƯU THAY ĐỔI</button>
-        <button class="btn btn-outline-danger"  data-toggle="modal" data-target="#Cancel" style="height: 50px; width:200px;" ng-disabled="vm.IsViewing">HỦY BỎ</button>
+        <button class="btn btn-outline-danger" data-toggle="modal" data-target="#Cancel" style="height: 50px; width:200px;" ng-disabled="vm.IsViewing">HỦY BỎ</button>
     </div>
 </div>
+<!-- Delete Modal -->
 <div class="modal fade" id="Cancel" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-body">
                 <p>Bạn có chắc muốn hủy bỏ thao tác , mọi dữ liệu chưa được lưu sẽ mất?</p>
-               
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>

@@ -4,58 +4,53 @@
         .controller('equipmentController', equipmentController);
 
     equipmentController.$inject = ['$http', '$rootScope', '$scope', '$state', '$stateParams'];
-    function equipmentController($rootScope, $scope, $state, $stateParams) {
+    function equipmentController($http , $rootScope, $scope, $state, $stateParams) {
         var vm = this;
         vm.initialize = initialize;
         vm.save = save;
-        vm.IsViewing = $stateParams.params.IsViewing;
+        //vm.IsViewing = $stateParams.params.IsViewing;
+        var personId = $stateParams.id;
 
         function initialize() {
-            var userId = "0001";
-
-            getEquipments();
-            getEquipmentsByUserId(userId);
-
-
-            vm.equipments.forEach(function (item, index) {
-
-                var userEquiments = vm.userEquipments.filter(function (value) {
-                    return value.equipmentId == item.equipmentId;
-                });
-
-                if (userEquiments.length > 0) {
-                    item.receivedDate = new Date(userEquiments[0].receivedDate);
-                    item.isReceive = true;
-                }
-            });
-
-
-        };
+            getEquipmentsByUserId(personId);
+        }
 
 
         function getEquipments() {
-            vm.equipments = [
-                { equipmentId: 1, name: "Dù" },
-                { equipmentId: 2, name: "TÚI XÁCH" },
-                { equipmentId: 3, name: "BÌA TRÌNH KÝ" },
-                { equipmentId: 4, name: "SIM ĐIỆN THOẠI" },
-            ]
+            vm.PersonEquipments = [];
+            vm.PersonEquipments = E.Equipments;
+            vm.PersonEquipments.forEach(function (item, index) {
+                item.IsChecked = false;
+                item.IsEnabled = false;
+                item.PersonId = personId;
+            });
+            
         };
 
         function getEquipmentsByUserId(userId) {
-            vm.userEquipments = [
-                { id: 1, userId: "0001", equipmentId: 1, receivedDate: "1/1/2019" },
-                { id: 2, userId: "0001", equipmentId: 2, receivedDate: "1/1/2019" },
-                { id: 3, userId: "0001", equipmentId: 4, receivedDate: "3/1/2019" },
-
-            ]
+            getEquipments();
+            $http.get('/api/Person/GetPersonEquipments', { params: { pid: personId } })
+                .then(function (result) {
+                    var data = result.data;
+                    if (data && data.length > 0) {
+                        vm.PersonEquipments.forEach(function (item, index) {
+                            var select = data.find(x => x.EquipmentId == item.Id);
+                            if (select) {
+                                item.IsChecked = true;
+                                item.ReceivedDate = new Date(select.ReceivedDate);
+                            }
+                        });
+                    }
+                });
         };
 
         function save(row) {
-            console.log(row)
+            $http.post('/api/Person/CreateOrUpdatePersonEquipment', row)
+                .then(function (result) {
+                    alert('Lưu Thông Tin Thành Công');
+                });
         };
 
-        console.log("vm", vm)
 
     }
 

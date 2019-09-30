@@ -35,6 +35,11 @@ namespace ML.DataLayer.Interfaces.Hr
         int CreateAndUpdatePersonEducation(CreateAndUpdatePersonEducationRequest request, int userId);
         int CreateAndUpdatePersonWorkLicense(PersonWorkLicense request, int userId);
 
+        //PersonWorkLicense
+        int CreateOrUpdatePersonWorkLicense(PersonWorkLicense request, int userId);
+
+        int DeletePersonLanguage(int id);
+
 
 
 

@@ -2,37 +2,41 @@
     <div ng-init="vm.initialize()" class="panel panel-default">
         <div class="panel-body row">
             <uib-tabset justified="true" style="margin:10px; width:100%;">
-                <uib-tab index="0" heading="LÝ LỊCH">
+                <uib-tab index="0" heading="THÔNG TIN">
                     <div class="row mt-4">
-                        <div class="col-lg-3 col-md-3">
+                        <div class="col-lg-2 col-md-2">
+                            <label for="dob">EMAIL:</label>
+                            <input type="text" ng-model="vm.person.Email" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" placeholder="Địa chỉ email.." />
+                        </div>
+
+                        <div class="col-lg-2 col-md-2">
                             <label for="dob">NGÀY SINH:</label>
                             <input type="date" ng-model="vm.person.DoB" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" />
                         </div>
 
-                        <div class="col-lg-3 col-md-3">
+                        <div class="col-lg-2 col-md-2">
                             <label for="placeOfBorn">NƠI SINH:</label>
-                            <select ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'"  ng-model="vm.person.PlaceOfBirth"
+                            <select ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" ng-model="vm.person.PlaceOfBirth"
                                     ng-options="l.Id as l.Name for l in vm.cities">
-                               
                             </select>
                         </div>
 
                         <div class="col-lg-2 col-md-2">
                             <label for="placeOfBorn">QUỐC TỊCH:</label>
-                            <select ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'"  ng-model="vm.person.HomeTownId"
-                                  ng-options="l.id as l.name for l in vm.countries"  >
+                            <select ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" ng-model="vm.person.HomeTownId"
+                                    ng-options="l.id as l.name for l in vm.countries">
                             </select>
                         </div>
                         <div class="col-lg-2 col-md-2">
                             <label for="placeOfBorn">TÔN GIÁO:</label>
-                            <select ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'"  ng-model="vm.person.ReligionId"
-                                    ng-options="l.id as l.name for l in vm.religion">                          
+                            <select ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" ng-model="vm.person.ReligionId"
+                                    ng-options="l.id as l.name for l in vm.religion">
                             </select>
                         </div>
 
                         <div class="col-lg-2 col-md-2">
                             <label for="placeOfBorn">DÂN TỘC:</label>
-                            <select ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'"  ng-model="vm.person.NationId"
+                            <select ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" ng-model="vm.person.NationId"
                                     ng-options="l.id as l.name for l in vm.nations">
                             </select>
                         </div>

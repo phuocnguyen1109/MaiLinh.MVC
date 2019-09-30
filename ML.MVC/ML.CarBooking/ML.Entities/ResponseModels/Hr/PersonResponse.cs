@@ -37,7 +37,20 @@ namespace ML.Entities.ResponseModels.Hr
         public bool Actived { get; set; }
         public bool IsDeleted { get; set; }
         public int MariageStatus { get; set; }  
+        public int GradeId { get; set; }
+        public string Major { get; set; }
+        public int DriveLicenseId { get; set; }
+        public DateTime? DriveLicenseExpired { get; set; }
+        public string DriveLicensePlace { get; set; }
         public IEnumerable<PersonAddress> Addresses { get; set; }
+
+        public IEnumerable<PersonLanguage> PersonLanguages { get; set; }
+        public IEnumerable<PersonWorkLicense> PersonWorkLicenses { get; set; }
+    }
+
+    public class PersonInformation
+    {
+        PersonResponse PersonInfo { get; set; }
     }
 
     public class PersonGridResponse

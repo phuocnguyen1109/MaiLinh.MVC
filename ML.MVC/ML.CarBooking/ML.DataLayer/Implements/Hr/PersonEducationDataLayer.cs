@@ -214,5 +214,26 @@ namespace ML.DataLayer.Implements.Hr
 
             return personEdu;
         }
+
+        public int CreateOrUpdatePersonWorkLicense(PersonWorkLicense request, int userId)
+        {
+            return Execute(conection => conection.ExecuteScalar<int>("[Hr].[CreateOrUpdatePersonWorkLicense]",
+                new {
+                    workLicenseId = request.WorkLisenceId,
+                    duration = request.Duration,
+                    fromDate = request.FromDate,
+                    toDate = request.ToDate,
+                    personId = request.PersonId,
+                    userId = userId
+                }, commandType: CommandType.StoredProcedure));
+        }
+
+        public int DeletePersonLanguage(int id) {
+            return Execute(conection => conection.ExecuteScalar<int>("[Hr].[DeletePersonLanguage]",
+               new
+               {
+                  id = id
+               }, commandType: CommandType.StoredProcedure));
+        }
     }
 }

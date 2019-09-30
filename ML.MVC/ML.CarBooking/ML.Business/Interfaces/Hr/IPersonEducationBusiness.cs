@@ -35,5 +35,11 @@ namespace ML.Business.Interfaces.Hr
         int CreateAndUpdatePersonEducation(CreateAndUpdatePersonEducationRequest request, int userId);
         int CreateAndUpdatePersonWorkLicense(PersonWorkLicense request, int userId);
 
+        //PersonWorkLicense
+        int CreateOrUpdatePersonWorkLicense(PersonWorkLicense request, int userId);
+
+        //PersonLanguage
+        int DeletePersonLanguage(int id);
+
     }
 }

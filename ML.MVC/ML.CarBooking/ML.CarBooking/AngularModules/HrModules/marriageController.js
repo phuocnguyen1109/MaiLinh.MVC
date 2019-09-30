@@ -16,16 +16,32 @@
         vm.editRelative = editRelative;
         vm.openDelModel = openDelModel;
         vm.deleteRelationShip = deleteRelationShip;
+        vm.checkIsDependent = checkIsDependent;
         var a = $scope;
-       // vm.IsViewing = $stateParams.params.IsViewing;
+        // vm.IsViewing = $stateParams.params.IsViewing;
 
         var personIsMale = true;
         var personId = $stateParams.id;
 
         vm.marriageStatusObject = { Id: null, marritalStatusName: null };
 
+
         function resetModel() {
-            vm.personRelationship = { Id: 0, RelationshipId: 0, FullName: null, YearOfBirth: 0, Address: null, IsDead: false, PersonId: personId };
+            vm.personRelationship = {
+                Id: 0,
+                RelationshipId: 0,
+                FullName: null,
+                YearOfBirth: 0,
+                Address: null,
+                IsDead: false,
+                PersonId: personId
+            };
+            vm.personDependance = {
+                RelationshipId: 0,
+                IsDependent: false,
+                StartDate: null,
+                EndDate: null,
+            }
         }
 
         function loadMariageStatuses() {
@@ -33,7 +49,7 @@
                 .then(function (response) {
                     if (response && response.data.length > 0) {
                         vm.mariageStatuses = response.data;
-                  
+                        //console.log(vm.mariageStatuses);
                     }
                 });
         }
@@ -50,43 +66,76 @@
             loadMariageStatuses();
             loadRelationships();
             getRelatives();
-
-            
+            vm.Dependancers = [
+                {
+                    RelationShipId: 1,
+                    IsDependent: false,
+                    StartDate: null,
+                    EndDate: null,
+                },
+                {
+                    RelationShipId: 2,
+                    IsDependent: true,
+                    StartDate: '02/02/1990',
+                    EndDate: '02/02/2032',
+                }
+            ];
 
         };
 
         function getRelatives() {
-            $http.get('/api/Mariage/GetPersonRelationShips', { params: {pid: personId } }).then(function (result) {
+            $http.get('/api/Mariage/GetPersonRelationShips', { params: { pid: personId } }).then(function (result) {
                 vm.personRelations = result.data;
                 vm.personRelations.forEach(function (relation, index) {
+                    loadRelationships();
                     relation.RelationName = vm.RelationShipTypes.find(x => x.Id == relation.RelationShipId).Name;
+                    relation.Dependance = vm.Dependancers.find(x => x.RelationShipId == relation.RelationShipId);
+                    console.log(vm.personRelations);
                 });
+
             });
         };
-
-     
 
         function addNewRelative() {
             vm.isValid = false;
             resetModel();
+            vm.personRelations.forEach(function (relation, index) {
+                vm.RelationShipTypes.forEach(function (i, index) {
+                    if (i.Id == relation.RelationShipId) {
+                        vm.RelationShipTypes.splice(index, 1);
+                        return;
+                    }
+                });
+            });
         };
 
         function checkValid() {
             if (vm.personRelationship.FullName && vm.personRelationship.YearOfBirth && vm.personRelationship.Address && vm.personRelationship.RelationshipId) {
-                vm.isValid = true;
-                vm.message = null;
+
+                if (vm.personDependance.IsDependent) {
+                    if (vm.personDependance.StartDate && vm.personDependance.EndDate) {
+                        vm.isValid = true;
+                        vm.message = null;
+                        return;
+                    }
+                } else {
+                    vm.isValid = true;
+                    vm.message = null;
+                }
             }
             else {
                 vm.isValid = false;
                 vm.message = "Nhập đầy đủ các mục!";
                 return;
             }
-
         };
 
         function saveRelative(relative) {
 
             if (relative.Id == 0) {
+                vm.personDependance.RelationshipId = vm.personRelationship.RelationshipId;
+                vm.Dependancers.push(vm.personDependance);
+                console.log(vm.Dependancers);
                 $http.post('/api/Mariage/Add', vm.personRelationship).then(function (result) {
                     resetModel();
                     getRelatives();
@@ -102,7 +151,15 @@
 
         function editRelative(relative) {
             vm.isValid = true;
-            vm.personRelationship = { Id: relative.Id, RelationshipId: relative.RelationShipId, FullName: relative.FullName, YearOfBirth: relative.YearOfBirth, Address: relative.Address, IsDead: relative.IsDead, PersonId: personId };
+            vm.personRelationship = {
+                Id: relative.Id,
+                RelationshipId: relative.RelationShipId,
+                FullName: relative.FullName,
+                YearOfBirth: relative.YearOfBirth,
+                Address: relative.Address,
+                IsDead: relative.IsDead,
+                PersonId: personId
+            };
 
         };
 
@@ -116,15 +173,17 @@
                 vm.relativeDel = null;
                 getRelatives();
             });
-            
+
         };
 
+        function checkIsDependent(r) {
+            if (r.IsDependent == undefined || !r.IsDependent) {
+                return { 'color': 'black' };
+            } else {
+                return { 'color': 'green' };
+            }
 
-
+        }
 
     }
-
-
-
-
 })();
