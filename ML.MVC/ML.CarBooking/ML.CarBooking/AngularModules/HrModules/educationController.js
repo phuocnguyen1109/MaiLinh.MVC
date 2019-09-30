@@ -76,12 +76,12 @@
 
         function getEducationGrades() {
             vm.educationGrades = E.EducationGrades;
-            vm.educationGrades.splice(0, 0, { Id: 0, Name: '-- Chọn Trình Độ Học Vấn --' });
+            //vm.educationGrades.splice(0, 0, { Id: 0, Name: '-- Chọn Trình Độ Học Vấn --' });
         }
 
         function getDriveLicenses() {
             vm.driveLicenses = E.DriveLicenses;
-            vm.driveLicenses.splice(0, 0, { Id: 0, Name: '--Chọn Giấy Phép Lái Xe' });
+            //vm.driveLicenses.splice(0, 0, { Id: 0, Name: '--Chọn Giấy Phép Lái Xe' });
         }
 
         function savePersonLanguage() {

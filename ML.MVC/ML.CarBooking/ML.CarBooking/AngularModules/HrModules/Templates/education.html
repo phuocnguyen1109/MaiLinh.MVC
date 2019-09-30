@@ -6,31 +6,31 @@
                     <div class="col-lg-6 col-md-6">
                         <label for="grade">TRÌNH ĐỘ:</label>
                         <select ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'"
-                         ng-options="l.Id as l.Name for l in vm.educationGrades"
-                         ng-model="vm.personEdu.GradeId"
-                        >
+                                ng-options="l.Id as l.Name for l in vm.educationGrades"
+                                ng-model="vm.personEdu.GradeId">
+                            <option value="">-- Chọn Trình Độ Học Vấn --</option>
                         </select>
                     </div>
 
                     <div class="col-lg-6 col-md-6">
                         <label for="major">CHUYÊN MÔN:</label>
-                        <input type="text" ng-model="vm.personEdu.Major" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'"/>
+                        <input type="text" ng-model="vm.personEdu.Major" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" />
                     </div>
                 </div>
                 <!-- GPLX -->
                 <div class="row custom-card" style="margin-top: 20px; height: 50%">
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <label for="grade">GPLX:</label>
-                        <select 
-                         ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'"
-                         ng-options="l.Id as l.Name for l in vm.driveLicenses"
-                         ng-model="vm.personEdu.selectedDriveLicense">
+                        <select ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'"
+                                ng-options="l.Id as l.Name for l in vm.driveLicenses"
+                                ng-model="vm.personEdu.selectedDriveLicense">
+                            <option value="">-- Chọn Giấy Phép Lái Xe --</option>
                         </select>
                     </div>
 
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <label for="major">CÓ GIÁ TRỊ ĐẾN:</label>
-                        <input type="date" ng-model="vm.personEdu.DriveLicenseExpired" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'"/>
+                        <input type="date" ng-model="vm.personEdu.DriveLicenseExpired" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" />
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6 mt-2">
                         <label for="major">NƠI CẤP:</label>
@@ -95,7 +95,7 @@
                                         ng-model="vm.selectedPersonLanguage.LanguageId"
                                         ng-options="l.Id as l.Name for l in vm.languages"
                                         ng-change="vm.isValidPersonlanguage()">
-                                    <option value="0">--Chọn ngôn ngữ--</option>
+                                    <option value="0">--Chọn Ngôn Ngữ--</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
@@ -104,7 +104,7 @@
                                         ng-model="vm.selectedPersonLanguage.Level"
                                         ng-options="q.id as q.qualification for q in vm.listQualifications"
                                         ng-change="vm.isValidPersonlanguage()">
-                                    <option value="">--Chọn đánh giá--</option>
+                                    <option value="">--Chọn Đánh Giá--</option>
                                 </select>
                             </div>
                         </div>
@@ -150,7 +150,7 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="row in vm.personWorkLicenses">
-                        <td class="center-block txt-center"><input type="checkbox" ng-model="row.IsChecked" ng-change="vm.changeTime(row)" ng-disabled="vm.IsViewing"/></td>
+                        <td class="center-block txt-center"><input type="checkbox" ng-model="row.IsChecked" ng-change="vm.changeTime(row)" ng-disabled="vm.IsViewing" /></td>
                         <td class="text-uppercase">{{row.Name}}</td>
                         <td><input type="number" class="form-control" ng-model="row.Duration" ng-change="vm.changeTime(row)" ng-disabled="!row.IsChecked" /></td>
                         <td><input type="date" class="form-control" ng-model="row.FromDate" ng-change="vm.changeTime(row)" ng-disabled="!row.IsChecked" /></td>
