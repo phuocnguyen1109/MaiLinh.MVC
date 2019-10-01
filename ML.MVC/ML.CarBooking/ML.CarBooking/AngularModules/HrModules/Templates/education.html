@@ -100,7 +100,7 @@
                                 <label for="qualification">Đánh giá</label>
                                 <select id="qualification" class="form-control"
                                         ng-model="vm.selectedPersonLanguage.Level"
-                                        ng-options="q.id as q.qualification for q in vm.listQualifications"
+                                        ng-options="q.LevelId as q.Level for q in vm.listQualifications"
                                         ng-change="vm.isValidPersonlanguage()">
                                     <option value="">--Chọn Đánh Giá--</option>
                                 </select>
@@ -120,7 +120,7 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-body">
-                        Bạn muốn xóa đánh giá {{vm.deletedDataRow.name}} này?
+                        Bạn muốn xóa đánh giá của {{vm.deletedDataRow.LanguageName}}?
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
