@@ -30,9 +30,9 @@ namespace ML.Business.Implements.Hr
             return m_PersonHealthCheck.CreatePersonHealthCheck(request, userId);
         }
 
-        public int DeleteHealthCheck(IEnumerable<int> ids)
+        public int DeleteHealthCheck(int id)
         {
-            return m_PersonHealthCheck.DeleteHealthCheck(ids);
+            return m_PersonHealthCheck.DeleteHealthCheck(id);
         }
 
         public int DeleteMHealthCheck(IEnumerable<int> ids)

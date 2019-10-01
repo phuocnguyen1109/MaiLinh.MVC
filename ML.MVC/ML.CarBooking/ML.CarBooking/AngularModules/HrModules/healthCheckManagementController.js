@@ -3,52 +3,45 @@
     angular.module('mainApp').controller('healthCheckManagementController', healthCheckManagementController);
 
     healthCheckManagementController.$inject = ['$http', '$rootScope', '$scope', '$state', '$stateParams'];
-    function healthCheckManagementController($rootScope, $scope, $state, $stateParams) {
+    function healthCheckManagementController( $http, $rootScope, $scope, $state, $stateParams) {
         var vm = this;
         vm.initialize = initialize;
         vm.openAddModal = openAddModal;
         vm.openEditModal = openEditModal;
         vm.openDeleteModal = openDeleteModal;
-        vm.deleted = deleted;
-        vm.IsViewing = $stateParams.params.IsViewing;
+        vm.deletePersonHealthCheck = deletePersonHealthCheck;
+        //vm.IsViewing = $stateParams.params.IsViewing;
+
+        var personId = $stateParams.id;
+        var selectedRow = { id: null, index: null };
 
         function initialize() {
-
-            getHealthChecks();
             getHealthStandards();
+            getHealthChecks();
+
         }
 
         function getHealthChecks() {
-            //TODO: get data by api
-            vm.healthChecks = [
-                {
-                    id: 1,
-                    healthStandards: [
-                        { isCheck: true, healthStandardId: 1, healthStandardName: "Thông tư 14" },
-                        { isCheck: true, healthStandardId: 2, healthStandardName: "Thông tư 24" },
-                    ],
-                    yearOfhealthStandar: "2016",
-                    note: "Bình thường"
-                },
-                {
-                    id: 2,
-                    healthStandards: [
-                        { isCheck: true, healthStandardId: 3, healthStandardName: "Đặc thù theo khách hàng" },
-                    ],
-                    yearOfhealthStandar: "2017",
-                    note: "Khám Tổng Quát (Mắt Cận : T0,5/P1)"
-                },
-            ];
-            console.log("healthChecks => " + vm.healthChecks);
+            $http.get('/api/HealthCheck/GetPersonHealthCheck', { params: { pid : personId } })
+                .then(function (response) {
+                    vm.personHealthCheck = response.data;
+                    vm.personHealthCheck.forEach(function (item, index) {
+                        item.StandardNames = '';
+                        var ids = item.StandardIds.split(',');
+                        for (var i = 0; i < ids.length; i++) {
+                            item.StandardNames += vm.healthStandards.find(x => x.Id == ids[i]).Name;
+                            if (i != ids.length - 1) {
+                                item.StandardNames += '<br/>';
+                            }
+                        }
+                    });
+                });
+            
         }
 
         function getHealthStandards() {
-            vm.healthStandards = [
-                { isCheck: false, healthStandardId: 1, healthStandardName: "Thông tư 14" },
-                { isCheck: false, healthStandardId: 2, healthStandardName: "Thông tư 24" },
-                { isCheck: false, healthStandardId: 3, healthStandardName: "Đặc thù theo khách hàng" },
-                { isCheck: false, healthStandardId: 4, healthStandardName: "Khác" },
-            ];
+            vm.healthStandards = [];
+            vm.healthStandards = E.HealthCheckStandard;
         }
 
         function openAddModal() {
@@ -66,12 +59,21 @@
 
             
         }
-        function openDeleteModal(r) {
-
+        function openDeleteModal(row, $index) {
+            selectedRow.id = row.Id;
+            selectedRow.index = $index;
         }
 
-        function deleted() {
-
+        function deletePersonHealthCheck() {
+            $http.post('/api/HealthCheck/DeletePersonHealthCheck', { Id: selectedRow.id })
+                .then(function (response) {
+                    if (response.data > 0) {
+                        vm.personHealthCheck.splice(selectedRow.index, 1);
+                        selectedRow.id = null;
+                        selectedRow.index = null;
+                        alert('Xóa Mục Thành Công');
+                    }
+                });
         }
     }
 })();

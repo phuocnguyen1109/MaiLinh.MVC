@@ -38,5 +38,11 @@
         { Id: 2, Name: "TÚI XÁCH" },
         { Id: 3, Name: "BÌA TRÌNH KÝ" },
         { Id: 4, Name: "SIM ĐIỆN THOẠI" },
-    ]
+    ],
+
+    HealthCheckStandard: [
+        { Id: 1, Name: 'Thông Tư 14' },
+        { Id: 2, Name: 'Thông Tư 24' },
+        { Id: 3, Name: 'Khác' }
+    ],
 };

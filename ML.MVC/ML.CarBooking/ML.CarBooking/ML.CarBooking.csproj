@@ -182,6 +182,7 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\API\Hr\EducationController.cs" />
+    <Compile Include="Controllers\API\Hr\HealthCheckController.cs" />
     <Compile Include="Controllers\API\Hr\LocationController.cs" />
     <Compile Include="Controllers\API\Hr\MariageController.cs" />
     <Compile Include="Controllers\API\Hr\PersonController.cs" />
@@ -1893,6 +1894,7 @@
     <Content Include="SQL_Scripts\Hr_Update_001.sql" />
     <Content Include="SQL_Scripts\Hr_Init.sql" />
     <Content Include="SQL_Scripts\Hr_Update_002.sql" />
+    <Content Include="SQL_Scripts\Hr_Update_008.sql" />
     <Content Include="SQL_Scripts\Hr_Update_007.sql" />
     <Content Include="SQL_Scripts\Hr_Update_006.sql" />
     <Content Include="SQL_Scripts\Hr_Update_005.sql" />

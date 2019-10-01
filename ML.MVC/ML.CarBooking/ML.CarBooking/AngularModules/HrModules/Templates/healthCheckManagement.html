@@ -14,19 +14,16 @@
                 </tr>
             </thead>
             <tbody class="txt-center">
-                <tr ng-repeat="row in vm.healthChecks">
-                    <td class="center-block">{{row.yearOfhealthStandar}}</td>
-                    <td>
-                        <div class="mb-1" ng-repeat="h in row.healthStandards">
-                            {{h.healthStandardName}}
-                        </div>
+                <tr ng-repeat="row in vm.personHealthCheck">
+                    <td class="center-block">{{row.Year}}</td>
+                    <td ng-bind="row.StandardNames">                       
                     </td>
-                    <td>{{row.note}}</td>
+                    <td>{{row.Note}}</td>
                     <td>
                         <button class="btn btn-outline-success" data-toggle="modal" data-target="#HealthCheckModal" ng-click="vm.openEditModal(row)" ng-disabled="vm.IsViewing">
                             <i class="fas fa-fw fa-pen"></i>
                         </button>
-                        <button class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteHealthCheckModal" ng-click="vm.openDeleteModal(row)" ng-disabled="vm.IsViewing">
+                        <button class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteHealthCheckModal" ng-click="vm.openDeleteModal(row, $index)" ng-disabled="vm.IsViewing">
                             <i class="fas fa-fw fa-trash"></i>
                         </button>
                     </td>
@@ -81,7 +78,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
-                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.deleted()">Đồng ý</button>
+                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.deletePersonHealthCheck()">Đồng ý</button>
                     </div>
                 </div>
             </div>

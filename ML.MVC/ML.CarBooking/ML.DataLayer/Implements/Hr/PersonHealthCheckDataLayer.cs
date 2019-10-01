@@ -49,14 +49,12 @@ namespace ML.DataLayer.Implements.Hr
                 commandType: System.Data.CommandType.StoredProcedure));
         }
 
-        public int DeleteHealthCheck(IEnumerable<int> ids)
+        public int DeleteHealthCheck(int id)
         {
-            DataTable idsTbl = new DataTable();
-            idsTbl = ids.ConvertToDataTable();
             return Execute(connection => connection.Execute("[Hr].[DeleteHealthCheck]",
                 new
                 {
-                    ids = idsTbl
+                    id=id
                 },
                 commandType: System.Data.CommandType.StoredProcedure)) ;
         }
@@ -75,7 +73,7 @@ namespace ML.DataLayer.Implements.Hr
 
         public IEnumerable<GetPersonHelthCheckByPerson> GetHealthCheckByPerson(int pid)
         {
-            return Execute(connection => connection.Query<GetPersonHelthCheckByPerson>("[Hr].[GetHealthCheckByPerson]",
+            return Execute(connection => connection.Query<GetPersonHelthCheckByPerson>("[Hr].[GetPersonHealthCheck]",
                 new { pid = pid },
                 commandType: CommandType.StoredProcedure));
         }

@@ -20,7 +20,7 @@ namespace ML.DataLayer.Interfaces.Hr
         IEnumerable<GetPersonHelthCheckByPerson> GetHealthCheckByPerson(int pid);
         int CreatePersonHealthCheck(CreateAndUpdatePersonHealthCheckRequest request, int userId);
         int UpdateHealthCheck(CreateAndUpdatePersonHealthCheckRequest request, int userId);
-        int DeleteHealthCheck(IEnumerable<int> ids);
+        int DeleteHealthCheck(int id);
         PersonHealthCheck GetPersonHealthCheckById(int Id);
     }
 }
