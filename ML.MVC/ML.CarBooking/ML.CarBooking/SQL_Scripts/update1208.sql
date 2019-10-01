@@ -78,7 +78,7 @@ ALTER PROC [Hr].[GetAllPerson]
 
 	p.RoleId,
 
-	'Tài Xế' AS [Role],
+	N'Tài Xế' AS [Role],
 	(SELECT TOP 1 ContractNumber FROM [Hr].[PersonContract] WHERE PersonId = p.id ORDER BY SignedIn DESC) AS ContractNumber,
 	(SELECT TOP 1 ContractNumber FROM [Hr].[PersonContract] WHERE PersonId = p.id ORDER BY SignedIn DESC) AS ContractDuration
 

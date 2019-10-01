@@ -15,8 +15,10 @@
             firstName: null,
             lastName: null,
             userName: null,
-            gender: 1
+            gender: 1,
+            id:null,
         };
+
         vm.createValid = false;
 
 
@@ -30,10 +32,10 @@
         vm.checkValidCreate = checkValidCreate;
         vm.createGenderChange = createGenderChange;
         vm.createSimplePerson = createSimplePerson;
+        vm.checkIdIsVailable = checkIdIsVailable;
 
         function initialize() {
             getPersons();
-
         }
 
         function gotoView() {
@@ -91,8 +93,6 @@
             $state.go('editEmployee', { id: selectedId, IsViewing: false });
         }
 
-       
-
         function checkValidCreate() {
             var userNameValid = false;
             if (vm.createModel.userName && vm.createModel.userName != '') {
@@ -129,6 +129,21 @@
                 });
 
         }
+
+        function checkIdIsVailable() {
+            vm.employees.forEach(function (person, index) {
+                var id = parseInt(vm.createModel.id);
+                if (id == person.Id) {
+                    return vm.mess = "Mã nhân viên đã tồn tại!";
+                }
+                else {
+                    return vm.mess = "Mã nhân viên có thể sử dụng";
+                }
+                vm.mess = null;
+            });
+ 
+        }
     }
 
+    
 })();

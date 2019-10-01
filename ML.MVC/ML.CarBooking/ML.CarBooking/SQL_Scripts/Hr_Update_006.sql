@@ -1,4 +1,4 @@
-﻿ALTER PROC [Hr].[UserLogin]
+﻿CREATE PROC [Hr].[UserLogin]
 
 @userName varchar(50),
 
@@ -12,3 +12,5 @@ BEGIN
 	WHERE UserName=@userName AND [PassWord] = @password
 	SELECT @result
 END
+
+GO

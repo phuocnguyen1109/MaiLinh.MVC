@@ -113,7 +113,7 @@
             if (vm.personRelationship.FullName && vm.personRelationship.YearOfBirth && vm.personRelationship.Address && vm.personRelationship.RelationshipId) {
 
                 if (vm.personDependance.IsDependent) {
-                    if (vm.personDependance.StartDate && vm.personDependance.EndDate) {
+                    if (vm.personDependance.StartDate && vm.personDependance.EndDate && vm.personDependance.StartDate < vm.personDependance.EndDate) {
                         vm.isValid = true;
                         vm.message = null;
                         return;
@@ -151,6 +151,7 @@
 
         function editRelative(relative) {
             vm.isValid = true;
+            debugger;
             vm.personRelationship = {
                 Id: relative.Id,
                 RelationshipId: relative.RelationShipId,
@@ -160,6 +161,12 @@
                 IsDead: relative.IsDead,
                 PersonId: personId
             };
+            vm.personDependance = {
+                RelationshipId: relative.RelationShipId,
+                IsDependent: relative.Dependance ? true : false,
+                StartDate: relative.Dependance.StartDate, //vì khai báo kiểu string nên k hiện date
+                EndDate: relative.Dependance.EndDate,   //vì khai báo kiểu string nên k hiện date
+            }
 
         };
 
