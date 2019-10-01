@@ -52,8 +52,9 @@ namespace ML.DataLayer.Implements.Hr
 
         public int CreatePersonContract(PersonContract request, int userId)
         {
-            return Execute(connection => connection.Execute("[Hr].[CreatePersonContract]", 
-                new {
+            return Execute(connection => connection.Execute("[Hr].[CreatePersonContract]",
+                new
+                {
                     pid = request.PersonId,
                     contractTypeId = request.ContractTypeId,
                     contractNumber = request.ContractNumber,
@@ -61,7 +62,7 @@ namespace ML.DataLayer.Implements.Hr
                     signedIn = request.SignedIn,
                     signedOut = request.SignOut,
                     userId = userId
-                }, commandType:CommandType.StoredProcedure));
+                }, commandType: CommandType.StoredProcedure));
         }
 
         public int CreateSimple(CreateSimpleRequest request)
@@ -74,7 +75,7 @@ namespace ML.DataLayer.Implements.Hr
                     lastName = request.LastName,
                     userName = request.UserName,
                     gender = request.Gender
-                }, commandType: System.Data.CommandType.StoredProcedure)); 
+                }, commandType: System.Data.CommandType.StoredProcedure));
         }
 
         public int DeletePersonContract(int id, int userId)
@@ -103,13 +104,13 @@ namespace ML.DataLayer.Implements.Hr
                connection.Execute("[Hr].[DeletePersonPhone]",
                new
                {
-                   id= id
+                   id = id
                }, commandType: System.Data.CommandType.StoredProcedure));
         }
 
         public IEnumerable<PersonGridResponse> GetAllPerson()
         {
-            return Execute(connection => 
+            return Execute(connection =>
             connection.Query<PersonGridResponse>("[Hr].[GetAllPerson]", commandType: System.Data.CommandType.StoredProcedure));
         }
 
@@ -124,7 +125,7 @@ namespace ML.DataLayer.Implements.Hr
             return Execute(connection => connection.Query<PersonContract>("[Hr].[GetPersonContracts]",
                 new
                 {
-                   pid = pid
+                    pid = pid
                 }, commandType: CommandType.StoredProcedure));
         }
 
@@ -137,19 +138,20 @@ namespace ML.DataLayer.Implements.Hr
         public PersonResponse GetPersonInformation(int id)
         {
             PersonResponse response = new PersonResponse();
-            return Execute(connection => {
+            return Execute(connection =>
+            {
                 using (var result = connection.QueryMultiple("[Hr].[GetPersonInformation]",
                     new
                     {
                         id = id
-                    }, 
+                    },
                     commandType: System.Data.CommandType.StoredProcedure))
-            {
-                response = result.Read<PersonResponse>().FirstOrDefault();
-                response.PersonWorkLicenses = result.Read<PersonWorkLicense>();
-                response.PersonLanguages = result.Read<PersonLanguage>();
-                return response;
-                } 
+                {
+                    response = result.Read<PersonResponse>().FirstOrDefault();
+                    response.PersonWorkLicenses = result.Read<PersonWorkLicense>();
+                    response.PersonLanguages = result.Read<PersonLanguage>();
+                    return response;
+                }
             });
         }
 
@@ -221,7 +223,7 @@ namespace ML.DataLayer.Implements.Hr
             new
             {
                 pid = request.Id,
-                fName =request.FirstName,
+                fName = request.FirstName,
                 lName = request.LastName,
                 isMale = request.IsMale,
                 dob = request.DoB,
@@ -232,7 +234,7 @@ namespace ML.DataLayer.Implements.Hr
                 countryId = request.CountryId,
                 mlcDate = request.MLCDate,
                 startDate = request.StartDate,
-                deptId =request.DepartmentId,
+                deptId = request.DepartmentId,
                 roleId = request.RoleId,
                 isPension = request.IsPension,
                 siNote = request.SINote,
@@ -266,10 +268,10 @@ namespace ML.DataLayer.Implements.Hr
               connection.Execute("[Hr].[UpdatePersonSIContract]",
               new
               {
-                pid = request.Id,
-                sINumber = request.SINumber,
-                sIContractNumber = request.SIContractNumber,
-                sINote = request.SINote
+                  pid = request.Id,
+                  sINumber = request.SINumber,
+                  sIContractNumber = request.SIContractNumber,
+                  sINote = request.SINote
               }, commandType: System.Data.CommandType.StoredProcedure));
         }
 
@@ -288,9 +290,9 @@ namespace ML.DataLayer.Implements.Hr
            connection.Execute("[Hr].[CreateOrUpdatePersonEquipment]",
            new
            {
-              pid = request.PersonId,
-              receivedDate = request.ReceivedDate,
-              equipmentId = request.Id
+               pid = request.PersonId,
+               receivedDate = request.ReceivedDate,
+               equipmentId = request.Id
            }, commandType: System.Data.CommandType.StoredProcedure));
         }
     }

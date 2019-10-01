@@ -8,7 +8,6 @@
                         <select ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'"
                                 ng-options="l.Id as l.Name for l in vm.educationGrades"
                                 ng-model="vm.personEdu.GradeId">
-                            <option value="">-- Chọn Trình Độ Học Vấn --</option>
                         </select>
                     </div>
 
@@ -24,7 +23,6 @@
                         <select ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'"
                                 ng-options="l.Id as l.Name for l in vm.driveLicenses"
                                 ng-model="vm.personEdu.selectedDriveLicense">
-                            <option value="">-- Chọn Giấy Phép Lái Xe --</option>
                         </select>
                     </div>
 
