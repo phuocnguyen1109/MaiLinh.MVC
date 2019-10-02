@@ -56,6 +56,7 @@
     <Compile Include="PersonIdentityCard.cs" />
     <Compile Include="PersonLanguage.cs" />
     <Compile Include="PersonRelationShip.cs" />
+    <Compile Include="PersonWorkLeaveHistory.cs" />
     <Compile Include="PersonWorkLicense.cs" />
     <Compile Include="PersonPhone.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

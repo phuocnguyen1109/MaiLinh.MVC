@@ -48,17 +48,17 @@
                             <label>Tiêu chuẩn khám</label>
                             <ul class="list-group" ng-repeat="row in vm.healthStandards">
                                 <li class="list-group-item list-group-item-action">
-                                    <input type="checkbox" ng-model="row.IsChecked" ng-change="vm.Checked(row); vm.checkValid()" />{{row.Name}}
+                                    <input type="checkbox" ng-model="row.IsChecked" ng-change="vm.checkValid()" />{{row.Name}}
                                 </li>
                             </ul>
                         </div>
                         <div class="form-group" style="display: inline-grid;">
                             <label for="year">Năm</label>
-                            <input type="text" name="year" ng-model="vm.userHealthCheck.yearOfhealthStandar" ng-change="vm.checkValid()" />
+                            <input type="text" name="year" ng-disabled="vm.isEditing" ng-model="vm.selectedPersonHealthCheck.Year" ng-change="vm.checkValid()" />
                         </div>
                         <div class="form-group w-100" style="display: inline-grid;">
                             <label for="note">Ghi chú</label>
-                            <textarea name="note" style="height: 75px; width: 100%" ng-model="vm.userHealthCheck.note"></textarea>
+                            <textarea name="note" style="height: 75px; width: 100%" ng-model="vm.selectedPersonHealthCheck.Note"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">

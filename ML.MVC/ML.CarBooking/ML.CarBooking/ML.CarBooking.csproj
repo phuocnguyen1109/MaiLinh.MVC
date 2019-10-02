@@ -1894,6 +1894,7 @@
     <Content Include="SQL_Scripts\Hr_Update_001.sql" />
     <Content Include="SQL_Scripts\Hr_Init.sql" />
     <Content Include="SQL_Scripts\Hr_Update_002.sql" />
+    <Content Include="SQL_Scripts\Hr_Update_009.sql" />
     <Content Include="SQL_Scripts\Hr_Update_008.sql" />
     <Content Include="SQL_Scripts\Hr_Update_007.sql" />
     <Content Include="SQL_Scripts\Hr_Update_006.sql" />

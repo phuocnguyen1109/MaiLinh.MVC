@@ -1,7 +1,7 @@
 ﻿<div ng-controller="quitJobHistoriesController as vm" class="mt-4 display-igr">
     <div ng-init="vm.initialize()">
 
-        <button class="btn btn-outline-primary mt-3 mb-2 mr-1 float-right" ng-click="vm.addNewDetail()" ng-disabled="vm.IsViewing">
+        <button class="btn btn-outline-primary mt-3 mb-2 mr-1 float-right" ng-click="vm.createPersonWorkLeaveHistory()" ng-disabled="vm.IsViewing || vm.isEditing || vm.isAdding">
             <i class="fas fa-fw fa-plus"></i> THÊM MỚI
         </button>
 
@@ -16,35 +16,21 @@
                 </tr>
             </thead>
             <tbody class="txt-center">
-                <tr ng-repeat="row in vm.quitJobHistories">
-                    <td>{{row.startWorkingDate}}</td>
-                    <td>{{row.signingDate}}</td>
-                    <td>{{row.quittingDate}}</td>
-                    <td>{{row.reason}}</td>
-                    <td>
-                        <button class="btn btn-outline-success" ng-click="vm.editDetail(row)" ng-disabled="vm.IsViewing">
-                            <i class="fas fa-fw fa-pen"></i>
-                        </button>
-                        <button class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteHistory" ng-click="vm.openDeleteModal(row)" ng-disabled="vm.IsViewing">
-                            <i class="fas fa-fw fa-trash"></i>
-                        </button>
-                    </td>
-                </tr>
                 <tr ng-if="vm.isAdding == true">
                     <td>
-                        <input type="date" class="form-control" ng-model="vm.newQuittingJob.startWorkingDate" />
+                        <input type="date" class="form-control" ng-model="vm.personWorkLeaveHistory.StartDate" />
                     </td>
                     <td>
-                        <input type="date" class="form-control" ng-model="vm.newQuittingJob.signingDate" />
+                        <input type="date" class="form-control" ng-model="vm.personWorkLeaveHistory.ContractDate" />
                     </td>
                     <td>
-                        <input type="date" class="form-control" ng-model="vm.newQuittingJob.quittingDate" />
+                        <input type="date" class="form-control" ng-model="vm.personWorkLeaveHistory.EndDate" />
                     </td>
                     <td>
-                        <textarea class="form-control" ng-model="vm.newQuittingJob.reason" />
+                        <textarea class="form-control" ng-model="vm.personWorkLeaveHistory.Reason" />
                     </td>
                     <td>
-                        <button class="btn btn-outline-success" ng-click="vm.saveChanges(vm.newQuittingJob)">
+                        <button class="btn btn-outline-success" ng-click="vm.saveChanges($index)">
                             <i class="fas fa-fw fa-save"></i>
                         </button>
                         <button class="btn btn-outline-dark" ng-click="vm.isAdding = false">
@@ -52,6 +38,45 @@
                         </button>
                     </td>
                 </tr>
+                <tr ng-repeat="row in vm.personWorkLeaveHistories">
+
+                    <td ng-if="!row.isEditing">{{row.StartDate | date : 'dd/MM/yyyy'}}</td>
+                    <td ng-if="!row.isEditing">{{row.ContractDate | date : 'dd/MM/yyyy'}}</td>
+                    <td ng-if="!row.isEditing">{{row.EndDate | date : 'dd/MM/yyyy'}}</td>
+                    <td ng-if="!row.isEditing">{{row.Reason}}</td>
+                    <td ng-if="!row.isEditing">
+                        <button class="btn btn-outline-success" ng-click="vm.updatePersonWorkLeaveHistory(row)" ng-disabled="vm.IsViewing || vm.isEditing || vm.isAdding">
+                            <i class="fas fa-fw fa-pen"></i>
+                        </button>
+                        <button class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteHistory" ng-click="vm.openDeleteModal(row, $index)" ng-disabled="vm.IsViewing || vm.isEditing || vm.isAdding">
+                            <i class="fas fa-fw fa-trash"></i>
+                        </button>
+                    </td>
+
+                    <td ng-if="row.isEditing">
+                        <input type="date" class="form-control" ng-model="vm.personWorkLeaveHistory.StartDate" />
+                    </td>
+                    <td ng-if="row.isEditing">
+                        <input type="date" class="form-control" ng-model="vm.personWorkLeaveHistory.ContractDate" />
+                    </td>
+                    <td ng-if="row.isEditing">
+                        <input type="date" class="form-control" ng-model="vm.personWorkLeaveHistory.EndDate" />
+                    </td>
+                    <td ng-if="row.isEditing">
+                        <textarea class="form-control" ng-model="vm.personWorkLeaveHistory.Reason" />
+                    </td>
+                    <td ng-if="row.isEditing">
+                        <button class="btn btn-outline-success" ng-click="vm.saveChanges($index)">
+                            <i class="fas fa-fw fa-save"></i>
+                        </button>
+                        <button class="btn btn-outline-dark" ng-click="row.isEditing = false; vm.isEditing =false;">
+                            <i class="fas fa-fw fa-window-close"></i>
+                        </button>
+                    </td>
+
+
+                </tr>
+
             </tbody>
         </table>
 
@@ -61,14 +86,11 @@
                 <div class="modal-content">
                     <div class="modal-body">
                         <div ng-if="vm.message" class="err-message">{{vm.message}}</div>
-                        <div>
-                            <label>Vui lòng nhập lý do xóa:</label>
-                            <textarea class="form-control" ng-model="vm.reasonForDelete" ng-change="vm.checkValid()" />
-                        </div>
+                        Bạn chắc chắn muốn xóa dữ liệu này ?
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
-                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.deletedHistories()" ng-disabled="!vm.isValid">Đồng ý</button>
+                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.deletePersonWorkLeaveHistory()">Đồng ý</button>
                     </div>
                 </div>
             </div>

@@ -1,4 +1,5 @@
-﻿using ML.Entities.ResponseModels.Hr;
+﻿using ML.Entities;
+using ML.Entities.ResponseModels.Hr;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,10 @@ namespace ML.DataLayer.Interfaces.Hr
         int Delete(int id);
         PWH_GetAllByPerson GetById(int id);
 
+        //Work Leave History
+        IEnumerable<PersonWorkLeaveHistory> GetPersonWorkLeaveHistory(int pid);
+        int CreatePersonWorkLeaveHistory(PersonWorkLeaveHistory request, int userId);
+        int UpdatePersonWorkLeaveHistory(PersonWorkLeaveHistory request, int userId);
+        int DeletePersonWorkLeaveHistory(int id, int userId);
     }
 }

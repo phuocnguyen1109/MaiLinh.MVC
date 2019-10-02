@@ -37,7 +37,7 @@ namespace ML.DataLayer.Implements.Hr
         {
             DataTable stdIds = new DataTable();
             stdIds = request.StandardIds.ConvertToDataTable();
-            return Execute(connection => connection.Execute("[Hr].[CreateAndUpdateMHealthCheck]",
+            return Execute(connection => connection.Execute("[Hr].[CreatePersonHealthCheck]",
                 new
                 {
                    pid = request.Pid,

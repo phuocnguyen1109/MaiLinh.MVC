@@ -8,101 +8,115 @@
         var vm = this;
         vm.initialize = initialize;
         vm.checkValid = checkValid;
-        vm.addNewDetail = addNewDetail;
-        vm.editDetail = editDetail;
+        vm.createPersonWorkLeaveHistory = createPersonWorkLeaveHistory;
+        vm.updatePersonWorkLeaveHistory = updatePersonWorkLeaveHistory;
         vm.saveChanges = saveChanges;
         vm.openDeleteModal = openDeleteModal;
-        vm.deletedHistories = deletedHistories;
+        vm.deletePersonWorkLeaveHistory = deletePersonWorkLeaveHistory;
 
         vm.isAdding = false;
+        vm.isEditing = false;
         vm.isDeleting = false;
         vm.isValid = false;
+        vm.personWorkLeaveHistories = [];
+
         vm.IsViewing = $stateParams.IsViewing;
 
+        var personId = $stateParams.id;
+        var deleteRow = { id: null, index: null };
+
         function initialize() {
-            getQuitJobHistories();
-            vm.newQuittingJob = { id: null, startWorkingDate: null, signingDate: null, quittingDate: null, reason: null };
+            resetModel();
+            getPersonWorkLeaveHistory();
         };
 
-        function getQuitJobHistories() {
-            //TO DO: get api here
-            vm.quitJobHistories = [
-                { id: 1, startWorkingDate: "01/26/2019", signingDate: "01/31/2019", quittingDate: "07/27/2019", reason: "Nghỉ bệnh!" },
-            ];
-        }
-
-        function addNewDetail() {
-            vm.newQuittingJob = { id: null, startWorkingDate: null, signingDate: null, quittingDate: null, reason: null };
-            vm.isAdding = !vm.isAdding;
-        }
-
-        function editDetail(row) {
-            vm.newQuittingJob = {
-                id: row.id,
-                startWorkingDate: new Date(row.startWorkingDate),
-                signingDate: new Date(row.signingDate),
-                quittingDate: new Date(row.quittingDate),
-                reason: row.reason
+        function resetModel() {
+            vm.personWorkLeaveHistory = {
+                Id: 0,
+                PersonId: personId,
+                StartDate: null,
+                EndDate: null,
+                ContractDate: null,
+                Reason: null
             };
+        }
+
+        function getPersonWorkLeaveHistory() {
+            $http.get('/api/WorkingHistory/GetPersonWorkLeaveHistory', { params: { pid: personId } })
+                .then(function (result) {
+                    vm.personWorkLeaveHistories = result.data;
+                });
+        }
+
+        function createPersonWorkLeaveHistory() {
+            resetModel();
             vm.isAdding = !vm.isAdding;
         }
 
-        function formattedDate(date) {
-            var format = (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear();
-            return format;
+        function updatePersonWorkLeaveHistory(row) {
+            vm.personWorkLeaveHistory.Id = row.Id;
+            vm.personWorkLeaveHistory.StartDate = new Date(row.StartDate);
+            vm.personWorkLeaveHistory.ContractDate = new Date(row.ContractDate);
+            vm.personWorkLeaveHistory.EndDate = new Date(row.EndDate);
+            vm.personWorkLeaveHistory.Reason = row.Reason;
+            vm.personWorkLeaveHistory.PersonId = personId;
+            row.isEditing = true;
+            vm.isEditing = true;
         }
 
-        function saveChanges() {
-            var r = vm.newQuittingJob;
-            if (r.id) {
-                vm.quitJobHistories.forEach(function (item, index) {
-                    if (r.id == item.id) {
-                        item.startWorkingDate = formattedDate(r.startWorkingDate);
-                        item.signingDate = formattedDate(r.signingDate);
-                        item.quittingDate = formattedDate(r.quittingDate);
-                        item.reason = r.reason;
-                        return;
-                    }
-                });
+        function saveChanges($index) {
+            if (vm.personWorkLeaveHistory.Id == 0) {
+                //add
+                $http.post('/api/WorkingHistory/CreatePersonWorkLeaveHistory', vm.personWorkLeaveHistory)
+                    .then(function (result) {
+                        if (result.data > 0) {
+                            vm.isAdding = false;
+                            vm.personWorkLeaveHistory.Id = result.data;
+                            vm.personWorkLeaveHistories.splice(0, 0, angular.copy(vm.personWorkLeaveHistory));
+                            vm.isEditing = false;
+                            alert('Lưu Thông Tin Thành Công !');
+                        }
+                    });
             } else {
-                var newId = new Date();
-                newId = newId.getMilliseconds().toString();
-                vm.newQuittingJob = {
-                    id: newId,
-                    startWorkingDate: formattedDate(r.startWorkingDate),
-                    signingDate: formattedDate(r.signingDate),
-                    quittingDate: formattedDate(r.quittingDate),
-                    reason: r.reason
-                }
-                vm.quitJobHistories.push(vm.newQuittingJob);
+                //update
+                $http.post('/api/WorkingHistory/UpdatePersonWorkLeaveHistory', vm.personWorkLeaveHistory)
+                    .then(function (result) {
+                        if (result.data > 0) {
+                            vm.isAdding = false;
+                            vm.personWorkLeaveHistory.isEditing = false;
+                            vm.personWorkLeaveHistories.splice($index, 1, angular.copy(vm.personWorkLeaveHistory));
+                            resetModel();
+                            vm.isEditing = false;
+                            alert('Lưu Thông Tin Thành Công !');
+                        }
+                    });
             }
-            vm.isAdding = false;
         }
 
         function checkValid() {
-            if (vm.reasonForDelete == "" || vm.reasonForDelete == null) {
-                vm.message = "Nhập lý do xóa lịch sử nghỉ việc!";
-                vm.isValid = false;
-                return;
-            }
-            vm.message = null;
+            vm.isValid = false;
+            if ((vm.isAdding || vm.isEditing)
+                && (!vm.personWorkLeaveHistory.StartDate
+                    || !vm.personWorkLeaveHistory.EndDate
+                    || !vm.personWorkLeaveHistory.ContractDate)) return;
             vm.isValid = true;
         }
 
-        function openDeleteModal(r) {
-            vm.deletedRow = r;
-            vm.isValid = false;
-            vm.reasonForDelete = null;
+        function openDeleteModal(row, $index) {
+            deleteRow.id = row.Id;
+            deleteRow.index = $index;
         }
 
-        function deletedHistories() {
-            //debugger;
-            vm.quitJobHistories.forEach(function (i, index) {
-                if (i.id == vm.deletedRow.id) {
-                    vm.quitJobHistories.splice(index, 1);
-                    return;
-                }
-            });
+        function deletePersonWorkLeaveHistory() {
+            var params = { Id: deleteRow.id };
+            $http.post('/api/WorkingHistory/DeletePersonWorkLeaveHistory', params)
+                .then(function (result) {
+                    if (result.data > 0) {
+                        vm.personWorkLeaveHistories.splice(deleteRow.index, 1);
+                        deleteRow.id = null;
+                        deleteRow.index = null;
+                    }
+                });
         }
     }
 })();

@@ -1,4 +1,4 @@
-﻿ALTER PROC [Hr].[UserLogin]
+﻿CREATE PROC [Hr].[UserLogin]
 
 @userName varchar(50),
 

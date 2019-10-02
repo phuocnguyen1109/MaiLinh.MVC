@@ -1,5 +1,6 @@
 ﻿using ML.Business.Interfaces.Hr;
 using ML.Entities;
+using ML.Entities.RequestModels.Hr;
 using ML.Entities.ResponseModels.Hr;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,11 @@ namespace ML.CarBooking.Controllers.API.Hr
         public int DeletePersonHealthCheck(PersonHealthCheck request)
         {
             return m_healthCheckBusiness.DeleteHealthCheck(request.Id);
+        }
+
+        public int CreateOrUpdateHealthStandard(CreateAndUpdatePersonHealthCheckRequest request, int userId = 1)
+        {
+            return m_healthCheckBusiness.CreatePersonHealthCheck(request, userId);
         }
     }
 }

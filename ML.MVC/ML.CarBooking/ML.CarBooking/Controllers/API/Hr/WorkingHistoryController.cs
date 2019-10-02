@@ -1,4 +1,5 @@
 ﻿using ML.Business.Interfaces.Hr;
+using ML.Entities;
 using ML.Entities.ResponseModels.Hr;
 using System;
 using System.Collections.Generic;
@@ -36,5 +37,28 @@ namespace ML.CarBooking.Controllers.API.Hr
         {
             return m_personWorkingHistory.Delete(request.Id);
         }
+
+
+        public IEnumerable<PersonWorkLeaveHistory> GetPersonWorkLeaveHistory(int pid)
+        {
+            return m_personWorkingHistory.GetPersonWorkLeaveHistory(pid);
+        }
+
+        public int CreatePersonWorkLeaveHistory(PersonWorkLeaveHistory request, int userId = 1)
+        {
+            return m_personWorkingHistory.CreatePersonWorkLeaveHistory(request, userId);
+        }
+
+        public int UpdatePersonWorkLeaveHistory(PersonWorkLeaveHistory request, int userId = 1)
+        {
+            return m_personWorkingHistory.UpdatePersonWorkLeaveHistory(request, userId);
+        }
+
+        [HttpPost]
+        public int DeletePersonWorkLeaveHistory(PersonWorkLeaveHistory request, int userId = 1)
+        {
+            return m_personWorkingHistory.DeletePersonWorkLeaveHistory(request.Id, userId);
+        }
+        
     }
 }
