@@ -12,5 +12,6 @@ namespace ML.Entities.RequestModels.Hr
         public string LastName { get; set; }
         public string UserName { get; set; }
         public int Gender { get; set; }
+        public string EmployeeCode { get; set; }
     }
 }

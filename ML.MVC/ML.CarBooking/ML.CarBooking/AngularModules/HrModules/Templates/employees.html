@@ -3,11 +3,7 @@
     <div class="w-100" style="float:right; margin-top:20px; margin-bottom:10px;">
         <div class="input-group" style="width:50%;">
             <input type="text" class="form-control bg-light small" ng-change="vm.filter()" ng-model="vm.filterText" placeholder="Tìm kiếm ..." aria-label="Search" aria-describedby="basic-addon2">
-            <!--<div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                    <i class="fas fa-search fa-sm"></i>
-                </button>
-            </div>-->
+           
         </div>
     </div>
 
@@ -57,8 +53,8 @@
         <button class="btn btn-outline-info mr-1" ng-disabled="!vm.CanEdit" ng-click="vm.gotoView()">
             <i class="fas fa-fw fa-street-view"></i> XEM
         </button>
-        <!--<button class="btn btn-outline-danger w200" ng-click="vm.remove()">XÓA</button>-->
     </div>
+
     <!--Modal Create Employee  -->
     <div class="modal fade" id="CreatePerson" tabindex="-1" role="dialog" aria-labelledby="ModalTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -91,15 +87,28 @@
                                 <label for="lastName">GIỚI TÍNH: <span class="required_ico">*</span></label>
                                 <div class="form-check-inline">
                                     <label class="form-check-label">
-                                        <input type="radio" name="gender" class="form-check-input" ng-model="vm.createModel.isMale" ng-change="vm.createGenderChange(1)" checked/> Nam
+                                        <input type="radio" name="gender" class="form-check-input"  value="true" ng-checked="vm.createModel.isMale" ng-model="vm.createModel.isMale" checked/> Nam
                                     </label>
                                 </div>
                                 <div class="form-check-inline">
                                     <label class="form-check-label">
-                                        <input type="radio" name="gender" ng-model="!vm.createModel.isMale" ng-change="vm.createGenderChange(2)" class="form-check-input" /> Nữ
+                                        <input type="radio" name="gender" value="false" ng-checked="!vm.createModel.isMale" ng-model="vm.createModel.isMale" class="form-check-input" /> Nữ
                                     </label>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="userId">Mã Nhân Viên: <span class="required_ico">*</span> </label>
+                                <input name="userId" maxlength="10" class="form-control" type="text" ng-model="vm.createModel.employeeCode" />
+                                <span style="width:100%;" ng-if="!vm.isValidEmployeeCode" class="required_ico">{{vm.checkEmployeeCodeMessage}}</span>
+                                <span style="width:100%; color:green;" ng-if="vm.isValidEmployeeCode" >{{vm.checkEmployeeCodeMessage}}</span>
+
+                            </div>
+                            <div class="col-md-6">
+                                <button style="margin-top:30px;" class="btn btn-outline-primary" ng-disabled="vm.createModel.employeeCode ==''" ng-click="vm.checkEmployeeCode()">Kiểm Tra Mã Nhân Viên</button>
+                            </div>
+                            
                         </div>
                     </form>
                 </div>

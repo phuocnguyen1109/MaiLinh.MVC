@@ -129,5 +129,10 @@ namespace ML.Business.Implements.Hr
             return m_PersonDataLayer.CreateOrUpdatePersonEquipment(request);
         }
 
+        public int CheckEmployeeCode(string employeeCode)
+        {
+            return m_PersonDataLayer.CheckEmployeeCode(employeeCode);
+        }
+
     }
 }

@@ -15,7 +15,8 @@
             firstName: null,
             lastName: null,
             userName: null,
-            gender: 1
+            employeeCode:'',
+            isMale: 'true'
         };
         vm.createValid = false;
 
@@ -28,12 +29,30 @@
         vm.rowClick = rowClick;
         vm.filter = filter;
         vm.checkValidCreate = checkValidCreate;
-        vm.createGenderChange = createGenderChange;
         vm.createSimplePerson = createSimplePerson;
+        vm.checkEmployeeCode = checkEmployeeCode;
+
+        vm.isValidEmployeeCode = false;
 
         function initialize() {
             getPersons();
 
+        }
+
+        function checkEmployeeCode() {
+            if (!vm.createModel.employeeCode || vm.createModel.employeeCode == '') return;
+            $http.get('/api/Person/CheckEmployeeCode', { params: { employeeCode: vm.createModel.employeeCode } })
+                .then(function (result) {
+                    if (result.data == 1) {
+                        vm.checkEmployeeCodeMessage = 'Mã Nhân Viên Hợp Lệ';
+                        vm.isValidEmployeeCode = true;
+                        checkValidCreate();
+                        return;
+                    }
+                    vm.checkEmployeeCodeMessage = 'Mã Nhân Viên Đã Tồn Tại!';
+                    vm.isValidEmployeeCode = false;
+                    checkValidCreate();
+                });
         }
 
         function gotoView() {
@@ -102,8 +121,9 @@
                 }
                 userNameValid = true;
             }
-            if (!vm.createModel.firstName || !vm.createModel.firstName != ''
-                || !vm.createModel.lastName || !vm.createModel.lastName != ''
+            if (!vm.createModel.firstName || vm.createModel.firstName == ''
+                || !vm.createModel.lastName || vm.createModel.lastName == ''
+                || !vm.createModel.employeeCode || vm.createModel.employeeCode ==''
                 || !userNameValid) {
                 vm.message = "Cần Nhập Đẩy Đủ Thông Tin";
                 return;
@@ -112,15 +132,12 @@
             vm.message = null;
         }
 
-        function createGenderChange(gender) {
-            vm.createModel.gender = gender;
-        }
 
         function createSimplePerson() {
             if (!vm.createValid) {
                 return;
             }
-
+            vm.createModel.gender = vm.createModel.isMale == 'true' ? 1 : 0;
             $http.post('/api/Person/CreateSimple', vm.createModel)
                 .then(function (result) {
                     if (result.data) {

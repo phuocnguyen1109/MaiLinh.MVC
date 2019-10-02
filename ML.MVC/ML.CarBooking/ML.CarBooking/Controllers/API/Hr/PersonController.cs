@@ -140,6 +140,12 @@ namespace ML.CarBooking.Controllers.API.Hr
         {
             return m_PersonBusiness.CreateOrUpdatePersonEquipment(request);
         }
+        
+        [HttpGet]
+        public int CheckEmployeeCode([FromUri]string employeeCode)
+        {
+            return m_PersonBusiness.CheckEmployeeCode(employeeCode);
+        }
 
 
 

@@ -73,7 +73,8 @@ namespace ML.DataLayer.Implements.Hr
                     firstName = request.FirstName,
                     lastName = request.LastName,
                     userName = request.UserName,
-                    gender = request.Gender
+                    gender = request.Gender,
+                    employeeCode = request.EmployeeCode
                 }, commandType: System.Data.CommandType.StoredProcedure)); 
         }
 
@@ -291,6 +292,16 @@ namespace ML.DataLayer.Implements.Hr
               pid = request.PersonId,
               receivedDate = request.ReceivedDate,
               equipmentId = request.Id
+           }, commandType: System.Data.CommandType.StoredProcedure));
+        }
+
+        public int CheckEmployeeCode(string employeeCode)
+        {
+            return Execute(connection =>
+           connection.ExecuteScalar<int>("[Hr].[CheckEmployeeCode]",
+           new
+           {
+               employeeCode = employeeCode
            }, commandType: System.Data.CommandType.StoredProcedure));
         }
     }
