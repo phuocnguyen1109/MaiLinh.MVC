@@ -4,34 +4,38 @@
         <h5>CHỈNH SỬA THÔNG TIN NHÂN VIÊN</h5>
         <br />
         <div class="panel-body row">
-            <div class="col-lg-2 col-md-2">
-                <div class="bg-white" style="height: 142px;">
-                    <img src="{{vm.person.imageUrl}}" class="img-thumbnail" style="height: 142px; width: 100%;"/>
+            <div class="col-lg-1 col-md-1">
+                <div class="bg-white">
+                    <img src="{{vm.person.imageUrl}}" class="img-thumbnail" />
                 </div>
-                <div class="btn btn-outline-light w-100" ngf-select="vm.getFile($file)" name="file" ngf-pattern="'image/*'"
+                <div style="font-size:14px; width:100%;" class="btn btn-outline-light " ngf-select="vm.getFile($file)" name="file" ngf-pattern="'image/*'"
                      ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="142" ngf-resize="{height: 142}">
-                Upload Image
+                Tải Ảnh Lên
                 </div>
             </div>
             <div class="col-lg-2 col-md-2 form-group d-gr">
                 <label for="id">MÃ SỐ NHÂN VIÊN:</label>
                 <input id="id" class="form-control" type="text" disabled ng-model="vm.person.EmpCode" />
+                <label for="id">BỘ PHẬN:</label>
+                <input id="id" class="form-control" type="text" disabled ng-model="vm.person.DepartmentName" />
             </div>
             <div class="col-lg-4 col-md-4 form-group d-gr w-100">
                 <label for="fName" style="margin-left:0.1rem">HỌ VÀ TÊN:</label>
                 <div>
-                    <input id="fName" ng-class="vm.IsViewing ? 'disableEl form-control mr-2':'form-control mr-2'" placeholder="Họ và tên..." type="text" ng-model="vm.person.FullName" />
-                    <!--<input id="lName" ng-class="vm.IsViewing ? 'disableEl form-control mr-2':'form-control mr-2'" style="width:50% !important" placeholder="Tên..." type="text" ng-model="vm.person.LastName" />-->
+                    <input id="fName" style="width:30%; display:inline-block;" ng-class="vm.IsViewing ? 'disableEl form-control mr-2':'form-control mr-2'" placeholder="Họ " type="text" ng-model="vm.person.FirstName" />
+                    <input id="lName" style="width:65%; display:inline-block;" ng-class="vm.IsViewing ? 'disableEl form-control mr-2':'form-control mr-2'" placeholder="Tên" type="text" ng-model="vm.person.LastName" />
                 </div>
+                <label for="id">CHỨC VỤ:</label>
+                <input id="id" style="width:50%;" class="form-control" type="text" disabled ng-model="vm.person.RoleName" />
             </div>
             <div class="col-lg-2 col-md-2 form-group d-gr txt-center">
                 <label>GIỚI TÍNH:</label>
                 <div class="w-100">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" ng-model="vm.person.IsMale" value="true" ng-checked="vm.person.IsMale" name="optradio" ng-disabled="vm.IsViewing">Nam
+                        <input type="radio" class="form-check-input" ng-model="vm.person.IsMale" value="true"  name="optradio" ng-disabled="vm.IsViewing">Nam
                     </label>
                     <label class="form-check-label ml-4">
-                        <input type="radio" class="form-check-input" ng-model="vm.person.IsMale" value="false" ng-checked="!vm.person.IsMale" name="optradio" ng-disabled="vm.IsViewing">Nữ
+                        <input type="radio" class="form-check-input" ng-model="vm.person.IsMale" value="false"  name="optradio" ng-disabled="vm.IsViewing">Nữ
                     </label>
                 </div>
             </div>

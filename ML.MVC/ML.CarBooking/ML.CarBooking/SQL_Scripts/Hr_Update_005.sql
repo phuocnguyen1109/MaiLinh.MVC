@@ -1,17 +1,7 @@
 ﻿
-
 ALTER PROC [Hr].[GetPersonInformation]
-
-
-
  @id INT
-
-
-
 AS
-
-
-
 BEGIN
 	SELECT
 	p.Id,
@@ -71,7 +61,6 @@ BEGIN
 
 	SELECT * FROM [Hr].[PersonLanguage] WHERE PersonId = @id
 	
-	 
 END
 
 GO
@@ -232,3 +221,4 @@ BEGIN
 	DELETE FROM [Hr].[PersonLanguage] WHERE Id = @id
 	SELECT @@ROWCOUNT
 END
+GO

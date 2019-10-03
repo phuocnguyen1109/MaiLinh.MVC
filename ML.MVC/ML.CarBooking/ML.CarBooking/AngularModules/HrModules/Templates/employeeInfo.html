@@ -44,11 +44,11 @@
 
                     <!-- row2: Address -->
                     <div class="row mt-4" style="margin: 0;">
-                        <div class="col-md-5">
+                        <div class="col-md-6">
                             <div style="display: block">
                                 <div class="row">
                                     <label for="">ĐỊA CHỈ THƯỜNG TRÚ:</label>
-                                    <input type="text" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" placeholder="Địa Chỉ, Tên Đường..." ng-model="vm.personAddresses.address.Address" />
+                                    <input style="width:95%;" type="text" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" placeholder="Địa Chỉ, Tên Đường..." ng-model="vm.personAddresses.address.Address" />
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6" style="padding: 10px 5px 0 0;">
@@ -56,18 +56,18 @@
                                         <select ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" ng-change="vm.getDistricts()" ng-options="l.Id as l.Name for l in vm.cities" ng-model="vm.personAddresses.address.CityId"></select>
                                     </div>
                                     <div class="col-md-6" style="padding: 10px 0 0 5px;">
-                                        <label ng-if="vm.personAddresses.address.CityId ==5" for="">QUẬN / HUYỆN:</label>
-                                        <select ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" ng-if="vm.personAddresses.address.CityId ==5 && vm.districts.length>1" ng-options="l.Id as l.Name for l in vm.districts" ng-model="vm.personAddresses.address.DistrictId"></select>
+                                        <label  for="">QUẬN / HUYỆN:</label>
+                                        <select style="width:90%;" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" ng-disabled="vm.personAddresses.address.CityId !=5 || vm.districts.length==1" ng-options="l.Id as l.Name for l in vm.districts" ng-model="vm.personAddresses.address.DistrictId"></select>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-2"></div>
-                        <div class="col-md-5">
+
+                        <div class="col-md-6">
                             <div style="display: block">
                                 <div class="row">
                                     <label for="">ĐỊA CHỈ LIÊN LẠC:</label>
-                                    <input type="text" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" placeholder="Địa Chỉ, Tên Đường..." ng-model="vm.personAddresses.contactAddress.Address" />
+                                    <input style="width:95%;" type="text" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" placeholder="Địa Chỉ, Tên Đường..." ng-model="vm.personAddresses.contactAddress.Address" />
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6" style="padding: 10px 5px 0 0;">
@@ -75,8 +75,8 @@
                                         <select ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" ng-change="vm.getContactDistricts()" ng-options="l.Id as l.Name for l in vm.cities" ng-model="vm.personAddresses.contactAddress.CityId"></select>
                                     </div>
                                     <div class="col-md-6" style="padding: 10px 0 0 5px;">
-                                        <label ng-if="vm.personAddresses.contactAddress.CityId == 5" for="">QUẬN / HUYỆN:</label>
-                                        <select ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" ng-options="l.Id as l.Name for l in vm.contactDistricts" ng-if="vm.personAddresses.contactAddress.CityId == 5 && vm.contactDistricts.length > 1" ng-model="vm.personAddresses.contactAddress.DistrictId"></select>
+                                        <label for="">QUẬN / HUYỆN:</label>
+                                        <select style="width:90%;" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" ng-options="l.Id as l.Name for l in vm.contactDistricts" ng-disabled="vm.personAddresses.contactAddress.CityId != 5 || vm.contactDistricts.length == 1" ng-model="vm.personAddresses.contactAddress.DistrictId"></select>
                                     </div>
                                 </div>
                             </div>
@@ -89,11 +89,20 @@
                             <!--<div ng-include="'/AngularModules/HrModules/Templates/Sub-Tab-employeeInfo/PhoneNumberSubTab.html'"></div>-->
                             <div style="display: grid;">
                                 <label>ĐIỆN THOẠI:</label>
-                                <textarea type="text" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" name="phoneNumber" ng-model="vm.person.PhoneNumber" />
-                            </div>                        
+                                <input type="text" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" name="phoneNumber" ng-model="vm.person.PhoneNumber" />
+                            </div>
                         </div>
-                        <div class="col-md-8">
-                            <div ng-include="'/AngularModules/HrModules/Templates/Sub-Tab-employeeInfo/identificationCardSubTab.html'"></div>
+
+                        <div class="col-lg-4 col-md-4">
+                            <label for="dob">BỘ PHẬN:</label>
+                            <select ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" ng-model="vm.person.DepartmentId" ng-options="l.id as l.name for l in vm.departments">
+                            </select>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4">
+                            <label for="dob">CHỨC VỤ:</label>
+                            <select ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" ng-model="vm.person.RoleId" ng-options="l.id as l.name for l in vm.roles">
+                            </select>
                         </div>
                     </div>
 
@@ -109,21 +118,6 @@
                             <input type="date" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" placeholder="..." ng-model="vm.person.StartDate" />
                         </div>
 
-                        <div class="col-lg-3 col-md-3">
-                            <label for="dob">BỘ PHẬN:</label>
-                            <select ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" ng-model="vm.person.DepartmentId" ng-options="l.id as l.name for l in vm.departments">
-                            </select>
-                        </div>
-
-                        <div class="col-lg-3 col-md-3">
-                            <label for="dob">CHỨC VỤ:</label>
-                            <select ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" ng-model="vm.person.RoleId" ng-options="l.id as l.name for l in vm.roles">
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- row5: retired -->
-                    <div class="row mt-4">
                         <div class="col-lg-3 col-md-3">
                             <label>LƯƠNG HƯU TRÍ:</label>
                             <div class="w-100" style="margin-left: 20px;">
@@ -147,6 +141,12 @@
                                 </label>
                             </div>
                         </div>
+
+
+                    </div>
+
+                    <div style="width:100%;" class="row mt-4">
+                        <div class="col-md-12" ng-include="'/AngularModules/HrModules/Templates/Sub-Tab-employeeInfo/identificationCardSubTab.html'"></div>
                     </div>
                 </uib-tab>
 

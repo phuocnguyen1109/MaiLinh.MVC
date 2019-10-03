@@ -18,6 +18,7 @@
             employeeCode:'',
             isMale: 'true'
         };
+
         vm.createValid = false;
 
 
@@ -36,7 +37,6 @@
 
         function initialize() {
             getPersons();
-
         }
 
         function checkEmployeeCode() {
@@ -110,8 +110,6 @@
             $state.go('editEmployee', { id: selectedId, IsViewing: false });
         }
 
-       
-
         function checkValidCreate() {
             var userNameValid = false;
             if (vm.createModel.userName && vm.createModel.userName != '') {
@@ -146,6 +144,21 @@
                 });
 
         }
+
+        function checkIdIsVailable() {
+            vm.employees.forEach(function (person, index) {
+                var id = parseInt(vm.createModel.id);
+                if (id == person.Id) {
+                    return vm.mess = "Mã nhân viên đã tồn tại!";
+                }
+                else {
+                    return vm.mess = "Mã nhân viên có thể sử dụng";
+                }
+                vm.mess = null;
+            });
+ 
+        }
     }
 
+    
 })();

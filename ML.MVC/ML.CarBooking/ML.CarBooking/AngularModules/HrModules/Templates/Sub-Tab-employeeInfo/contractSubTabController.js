@@ -133,12 +133,14 @@
                 $http.post('/api/Person/CreatePersonContract', vm.userContract)
                     .then(function (result) {
                         debugger;
+                        getContracts();
                     });
             }
             else {
                 $http.post('/api/Person/UpdatePersonContract', vm.userContract)
                     .then(function (result) {
                         debugger;
+                        getContracts();
                     });
             }
         }

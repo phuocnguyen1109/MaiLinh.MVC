@@ -44,7 +44,6 @@
                 vm.personEdu.DriveLicenseExpired = new Date(values.DriveLicenseExpired); 
                 vm.personEdu.DriveLicensePlace = values.DriveLicensePlace;
                 vm.personEdu.PersonWorkLicenses = buildWorkLincenseGrid(values.PersonWorkLicenses);
-
             }
         });
       
@@ -104,6 +103,12 @@
                         if (vm.personEdu.PersonLanguages && vm.personEdu.PersonLanguages.length > 0) {
                             buildPersonLanguageGrid(vm.personEdu.PersonLanguages);
                         }
+
+                        vm.personEdu.PersonLanguages.forEach(function (item) {
+                            if (item) {
+                                item.LanguageName = getLanguageName(item.LanguageId);
+                            }
+                        });
                     });
         }
 
@@ -138,11 +143,11 @@
 
         function getListQualifications() {
             vm.listQualifications = [
-                { id:'', qualification:'--Chọn Trình Độ--'},
-                { id: "Giỏi", qualification: "Giỏi" },
-                { id: "Khá", qualification: "Khá" },
-                { id: "Trung bình", qualification: "Trung bình" },
-                { id: "Yếu", qualification: "Yếu" },
+                { LevelId: '', Level:'--Chọn Trình Độ--'},
+                { LevelId: "Giỏi", Level: "Giỏi" },
+                { LevelId: "Khá", Level: "Khá" },
+                { LevelId: "Trung bình", Level: "Trung bình" },
+                { LevelId: "Yếu", Level: "Yếu" },
             ];
         }
 
@@ -163,7 +168,8 @@
             vm.message = null;
             vm.isValid = true;
 
-            vm.userLanguage = l;
+            vm.selectedPersonLanguage = l;
+            console.log(vm.selectedPersonLanguage);
         }
 
 

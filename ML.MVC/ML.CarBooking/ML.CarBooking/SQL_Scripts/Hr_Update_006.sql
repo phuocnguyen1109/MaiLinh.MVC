@@ -12,3 +12,5 @@ BEGIN
 	WHERE UserName=@userName AND [PassWord] = @password
 	SELECT @result
 END
+
+GO

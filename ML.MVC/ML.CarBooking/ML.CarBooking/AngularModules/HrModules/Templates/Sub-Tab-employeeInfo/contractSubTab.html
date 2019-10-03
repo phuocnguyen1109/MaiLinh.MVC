@@ -23,8 +23,8 @@
                     <td>{{row.ContractTypeDisplay}}</td>
                     <td>{{row.ContractNumber}}</td>
                     <td>{{row.Duration}}</td>
-                    <td>{{row.SignedInDisplay}}</td>
-                    <td>{{row.SignedOutDisplay}}</td>
+                    <td>{{row.SignedInDisplay | date:'short'}}</td>
+                    <td>{{row.SignedOutDisplay | date:'short'}}</td>
                     <td>{{row.CreateByName}}</td>
                     <td>{{row.CreateOnDisplay}}</td>
                     <td>
