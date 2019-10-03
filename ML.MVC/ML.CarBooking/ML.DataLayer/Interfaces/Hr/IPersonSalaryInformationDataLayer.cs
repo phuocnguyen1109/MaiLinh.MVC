@@ -13,5 +13,10 @@ namespace ML.DataLayer.Interfaces.Hr
         IEnumerable<PersonBankAccount> GetPersonBankAccount(int pid);
         int CreateOrUpdatePersonBankAccount(PersonBankAccount request, int userId);
         int DeletePersonBankAccount(int id, int userId);
+
+        // Person Life Insurance
+        IEnumerable<PersonLifeInsurance> GetPersonLifeInsurance(int pid);
+        int CreateOrUpdatePersonLifeInsurance(PersonLifeInsurance request);
+        int DeletePersonLifeInsurance(int id);
     }
 }

@@ -33,6 +33,23 @@ namespace ML.DataLayer.Implements.Hr
                 }, commandType: System.Data.CommandType.StoredProcedure));
         }
 
+        public int CreateOrUpdatePersonLifeInsurance(PersonLifeInsurance request)
+        {
+            return Execute(connection =>
+            connection.ExecuteScalar<int>("[Hr].[CreateOrUpdatePersonLifeInsurance]",
+            new
+            {
+                id = request.Id,
+                pid= request.PersonId,
+                number = request.Number,
+                joinLevel = request.JoinLevel,
+                fromDate = request.FromDate,
+                toDate = request.ToDate,
+                amount = request.Amount
+
+            }, commandType: System.Data.CommandType.StoredProcedure));
+        }
+
         public int DeletePersonBankAccount(int id, int userId)
         {
             return Execute(connection =>
@@ -45,6 +62,18 @@ namespace ML.DataLayer.Implements.Hr
              }, commandType: System.Data.CommandType.StoredProcedure));
         }
 
+        public int DeletePersonLifeInsurance(int id)
+        {
+            return Execute(connection =>
+             connection.ExecuteScalar<int>("[Hr].[DeletePersonLifeInsurance]",
+             new
+             {
+                 id = id
+                 
+
+             }, commandType: System.Data.CommandType.StoredProcedure));
+        }
+
         public IEnumerable<PersonBankAccount> GetPersonBankAccount(int pid)
         {
             return Execute(connection =>
@@ -52,6 +81,17 @@ namespace ML.DataLayer.Implements.Hr
             new
             {
                pid= pid
+
+            }, commandType: System.Data.CommandType.StoredProcedure));
+        }
+
+        public IEnumerable<PersonLifeInsurance> GetPersonLifeInsurance(int pid)
+        {
+            return Execute(connection =>
+            connection.Query<PersonLifeInsurance>("[Hr].[GetPersonLifeInsurance]",
+            new
+            {
+                pid = pid
 
             }, commandType: System.Data.CommandType.StoredProcedure));
         }

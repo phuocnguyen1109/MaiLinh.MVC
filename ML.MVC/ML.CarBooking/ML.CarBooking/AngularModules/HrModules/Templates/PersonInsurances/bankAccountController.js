@@ -51,7 +51,7 @@
         }
 
         function getPersonBankAccount() {
-            $http.get('/api/PersonSalaryInformation', { params: { pid: personId } })
+            $http.get('/api/PersonSalaryInformation/GetPersonBankAccount', { params: { pid: personId } })
                 .then(function (result) {
                     vm.personBankAccounts = result.data;
                     vm.personBankAccounts.forEach(function (item, index) {

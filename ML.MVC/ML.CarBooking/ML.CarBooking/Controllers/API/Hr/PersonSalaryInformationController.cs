@@ -17,6 +17,7 @@ namespace ML.CarBooking.Controllers.API.Hr
             m_personSalaryBusiness = personSalaryInformation;
         }
 
+        
         public IEnumerable<PersonBankAccount> GetPersonBankAccount(int pid)
         {
             return m_personSalaryBusiness.GetPersonBankAccount(pid);
@@ -30,6 +31,21 @@ namespace ML.CarBooking.Controllers.API.Hr
         public int DeletePersonBankAccount(PersonBankAccount request, int userId)
         {
             return m_personSalaryBusiness.DeletePersonBankAccount(request.Id, userId);
+        }
+
+        public IEnumerable<PersonLifeInsurance> GetPersonLifeInsurances(int pid)
+        {
+            return m_personSalaryBusiness.GetPersonLifeInsurance(pid);
+        }
+
+        public int CreateOrUpdatePersonLifeInsurance(PersonLifeInsurance request)
+        {
+            return m_personSalaryBusiness.CreateOrUpdatePersonLifeInsurance(request);
+        }
+
+        public int DeletePersonLifeInsurance(int id)
+        {
+            return m_personSalaryBusiness.DeletePersonLifeInsurance(id);
         }
     }
 }

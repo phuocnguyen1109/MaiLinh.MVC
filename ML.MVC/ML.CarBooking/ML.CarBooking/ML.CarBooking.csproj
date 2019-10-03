@@ -221,6 +221,7 @@
     <Content Include="AngularModules\HrModules\Templates\marriage.html" />
     <Content Include="AngularModules\HrModules\Templates\PersonInsurances\bankAccountController.js" />
     <Content Include="AngularModules\HrModules\Templates\PersonInsurances\businessCooperation.js" />
+    <Content Include="AngularModules\HrModules\Templates\PersonInsurances\lifeInsuranceController.js" />
     <Content Include="AngularModules\HrModules\Templates\PersonInsurances\Templates\bankAccount.html" />
     <Content Include="AngularModules\HrModules\Templates\PersonInsurances\Templates\businessCooperation.html" />
     <Content Include="AngularModules\HrModules\Templates\PersonInsurances\Templates\dependentPerson.html" />
@@ -1905,6 +1906,7 @@
     <Content Include="SQL_Scripts\Hr_Update_001.sql" />
     <Content Include="SQL_Scripts\Hr_Init.sql" />
     <Content Include="SQL_Scripts\Hr_Update_002.sql" />
+    <Content Include="SQL_Scripts\Hr_Update_013.sql" />
     <Content Include="SQL_Scripts\Hr_Update_012.sql" />
     <Content Include="SQL_Scripts\Hr_Update_011.sql" />
     <Content Include="SQL_Scripts\Hr_Update_010.sql" />

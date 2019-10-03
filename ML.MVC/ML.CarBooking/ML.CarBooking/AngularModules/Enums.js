@@ -52,4 +52,9 @@
         { Id: 3, Name: 'Techcombank' },
         { Id: 4, Name: 'Shinhan Bank' }
     ],
+    JoinLevel: [
+        { Id: 1, Name: '3000 Dưới 5 Năm' },
+        { Id: 2, Name: '3500 Từ 5 Năm' },
+        { Id: 3, Name: '4000 Từ 10 Năm' }
+    ],
 };

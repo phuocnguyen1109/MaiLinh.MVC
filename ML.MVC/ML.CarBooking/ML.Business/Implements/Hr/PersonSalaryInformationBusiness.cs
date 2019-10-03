@@ -22,14 +22,29 @@ namespace ML.Business.Implements.Hr
             return m_PersonSalaryDataLayer.CreateOrUpdatePersonBankAccount(request, userId);
         }
 
+        public int CreateOrUpdatePersonLifeInsurance(PersonLifeInsurance request)
+        {
+            return m_PersonSalaryDataLayer.CreateOrUpdatePersonLifeInsurance(request);
+        }
+
         public int DeletePersonBankAccount(int id, int userId)
         {
             return m_PersonSalaryDataLayer.DeletePersonBankAccount(id, userId);
         }
 
+        public int DeletePersonLifeInsurance(int id)
+        {
+            return m_PersonSalaryDataLayer.DeletePersonLifeInsurance(id);
+        }
+
         public IEnumerable<PersonBankAccount> GetPersonBankAccount(int pid)
         {
             return m_PersonSalaryDataLayer.GetPersonBankAccount(pid);
+        }
+
+        public IEnumerable<PersonLifeInsurance> GetPersonLifeInsurance(int pid)
+        {
+            return m_PersonSalaryDataLayer.GetPersonLifeInsurance(pid);
         }
     }
 }
