@@ -186,6 +186,7 @@
     <Compile Include="Controllers\API\Hr\LocationController.cs" />
     <Compile Include="Controllers\API\Hr\MariageController.cs" />
     <Compile Include="Controllers\API\Hr\PersonController.cs" />
+    <Compile Include="Controllers\API\Hr\PersonSalaryInformationController.cs" />
     <Compile Include="Controllers\API\Hr\WorkingHistoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -218,6 +219,14 @@
     <Content Include="AngularModules\HrModules\Templates\equiments.html" />
     <Content Include="AngularModules\HrModules\Templates\healthCheckManagement.html" />
     <Content Include="AngularModules\HrModules\Templates\marriage.html" />
+    <Content Include="AngularModules\HrModules\Templates\PersonInsurances\bankAccountController.js" />
+    <Content Include="AngularModules\HrModules\Templates\PersonInsurances\businessCooperation.js" />
+    <Content Include="AngularModules\HrModules\Templates\PersonInsurances\Templates\bankAccount.html" />
+    <Content Include="AngularModules\HrModules\Templates\PersonInsurances\Templates\businessCooperation.html" />
+    <Content Include="AngularModules\HrModules\Templates\PersonInsurances\Templates\dependentPerson.html" />
+    <Content Include="AngularModules\HrModules\Templates\PersonInsurances\Templates\healthInsurance.html" />
+    <Content Include="AngularModules\HrModules\Templates\PersonInsurances\Templates\lifeInsurance.html" />
+    <Content Include="AngularModules\HrModules\Templates\PersonInsurances\Templates\socialInsurance.html" />
     <Content Include="AngularModules\HrModules\Templates\Sub-Tab-employeeInfo\contractSubTab.html" />
     <Content Include="AngularModules\HrModules\Templates\Sub-Tab-employeeInfo\contractSubTabController.js" />
     <Content Include="AngularModules\HrModules\Templates\Sub-Tab-employeeInfo\identificationCardSubTab.html" />
@@ -1896,6 +1905,7 @@
     <Content Include="SQL_Scripts\Hr_Update_001.sql" />
     <Content Include="SQL_Scripts\Hr_Init.sql" />
     <Content Include="SQL_Scripts\Hr_Update_002.sql" />
+    <Content Include="SQL_Scripts\Hr_Update_012.sql" />
     <Content Include="SQL_Scripts\Hr_Update_011.sql" />
     <Content Include="SQL_Scripts\Hr_Update_010.sql" />
     <Content Include="SQL_Scripts\Hr_Update_009.sql" />

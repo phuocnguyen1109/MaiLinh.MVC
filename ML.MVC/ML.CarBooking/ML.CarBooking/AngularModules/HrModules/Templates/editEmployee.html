@@ -68,6 +68,28 @@
                 <uib-tab index="5" heading="THIẾT BỊ">
                     <div ng-include="'/AngularModules/HrModules/Templates/equiments.html'"></div>
                 </uib-tab>
+                <uib-tab index="6" heading="THÔNG TIN LƯƠNG">
+                    <uib-tabset justified="true" style="margin-left:10px; width:100%;">
+                        <uib-tab index="0" heading="TIỀN HỢP TÁC KD">
+                            <div ng-include="'/AngularModules/HrModules/Templates/PersonInsurances/Templates/businessCooperation.html'"></div>
+                        </uib-tab>
+                        <uib-tab index="1" heading="BẢO HIỂM XÃ HỘI">
+                            <div ng-include="'/AngularModules/HrModules/Templates/PersonInsurances/Templates/socialInsurance.html'"></div>
+                        </uib-tab>
+                        <uib-tab index="2" heading="BẢO HIỂM NHÂN THỌ">
+                            <div ng-include="'/AngularModules/HrModules/Templates/PersonInsurances/Templates/lifeInsurance.html'"></div>
+                        </uib-tab>
+                        <uib-tab index="3" heading="BẢO HIỂM Y TẾ TỰ NGUYỆN">
+                            <div ng-include="'/AngularModules/HrModules/Templates/PersonInsurances/Templates/healthInsurance.html'"></div>
+                        </uib-tab>
+                        <uib-tab index="4" heading="TÀI KHOẢN NGÂN HÀNG">
+                            <div ng-include="'/AngularModules/HrModules/Templates/PersonInsurances/Templates/bankAccount.html'"></div>
+                        </uib-tab>
+                        <uib-tab index="5" heading="GIẢM TRỪ NGƯỜI PHỤ THUỘC">
+                            <div ng-include="'/AngularModules/HrModules/Templates/PersonInsurances/Templates/dependentPerson.html'"></div>
+                        </uib-tab>
+                    </uib-tabset>
+                </uib-tab>
             </uib-tabset>
         </div>
     </div>

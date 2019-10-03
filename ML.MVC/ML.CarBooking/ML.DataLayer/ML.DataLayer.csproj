@@ -54,6 +54,7 @@
     <Compile Include="Implements\Hr\PersonEducationDataLayer.cs" />
     <Compile Include="Implements\Hr\PersonHealthCheckDataLayer.cs" />
     <Compile Include="Implements\Hr\PersonMariage.cs" />
+    <Compile Include="Implements\Hr\PersonSalaryInformationDataLayer.cs" />
     <Compile Include="Implements\Hr\PersonWorkingHistoryDataLayer.cs" />
     <Compile Include="Interfaces\Common\IAccountDataLayer.cs" />
     <Compile Include="Interfaces\Hr\ILocationDataLayer.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="Interfaces\Hr\IPersonEducationDataLayer.cs" />
     <Compile Include="Interfaces\Hr\IPersonHealthCheck.cs" />
     <Compile Include="Interfaces\Hr\IPersonMariage.cs" />
+    <Compile Include="Interfaces\Hr\IPersonSalaryInformationDataLayer.cs" />
     <Compile Include="Interfaces\Hr\IPersonWorkingHistoryDataLayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

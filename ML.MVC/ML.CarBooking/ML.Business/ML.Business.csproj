@@ -46,6 +46,7 @@
     <Compile Include="Implements\Hr\PersonEducationBusiness.cs" />
     <Compile Include="Implements\Hr\PersonHealthCheckBusiness.cs" />
     <Compile Include="Implements\Hr\PersonMariageBusiness.cs" />
+    <Compile Include="Implements\Hr\PersonSalaryInformationBusiness.cs" />
     <Compile Include="Implements\Hr\PersonWorkingHistory.cs" />
     <Compile Include="Interfaces\Common\IAccountBussiness.cs" />
     <Compile Include="Interfaces\Hr\ILocation.cs" />
@@ -53,6 +54,7 @@
     <Compile Include="Interfaces\Hr\IPersonEducationBusiness.cs" />
     <Compile Include="Interfaces\Hr\IPersonHealthCheckBusiness.cs" />
     <Compile Include="Interfaces\Hr\IPersonMariageBusiness.cs" />
+    <Compile Include="Interfaces\Hr\IPersonSalaryInformation.cs" />
     <Compile Include="Interfaces\Hr\IPersonWorkingHistory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

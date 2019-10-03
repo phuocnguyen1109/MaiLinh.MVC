@@ -45,4 +45,11 @@
         { Id: 2, Name: 'Thông Tư 24' },
         { Id: 3, Name: 'Khác' }
     ],
+
+    Banks: [
+        { Id: 1, Name: 'Vietcombank' },
+        { Id: 2, Name: 'Aribank' },
+        { Id: 3, Name: 'Techcombank' },
+        { Id: 4, Name: 'Shinhan Bank' }
+    ],
 };
