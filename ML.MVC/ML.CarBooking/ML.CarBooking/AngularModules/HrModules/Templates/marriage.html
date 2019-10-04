@@ -37,9 +37,9 @@
                 <td>{{r.YearOfBirth}}</td>
                 <td>{{r.Address}}</td>
                 <td>{{r.RelationName}}</td>
-                <td><i class="fas fa-fw fa-check-circle" ng-style="vm.checkIsDependent(r.Dependance)"></i></td>
-                <td>{{r.Dependance.StartDate}}</td>
-                <td>{{r.Dependance.EndDate}}</td>
+                <td><i class="fas fa-fw fa-check-circle" ng-style="vm.checkIsDependent(r.IsDependent)"></i></td>
+                <td>{{r.DependentStart | date: 'dd/MM/yyyy'}}</td>
+                <td>{{r.DependentEnd | date: 'dd/MM/yyyy'}}</td>
                 <td><i class="fas fa-fw fa-times-circle"></i></td>
                 <td>
                     <button class="btn btn-outline-success" data-toggle="modal" data-target="#relativeModal" ng-click="vm.editRelative(r)" ng-disabled="vm.IsViewing"><i class="fas fa-fw fa-pen"></i></button>
@@ -84,7 +84,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label style="display: inline-flex;vertical-align: -webkit-baseline-middle;">
-                                    <input type="checkbox" ng-model="vm.personDependance.IsDependent" />&nbsp;&nbsp;Người phụ thuộc
+                                    <input type="checkbox" ng-model="vm.personRelationship.IsDependent" />&nbsp;&nbsp;Người phụ thuộc
                                 </label>
                             </div>
                             <div class="col-md-6">
@@ -93,14 +93,14 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="row" ng-if="vm.personDependance.IsDependent">
+                        <div class="row" ng-if="vm.personRelationship.IsDependent">
                             <div class="col-md-6">
                                 <label for="StartDate">Thời gian bắt đầu: <span class="required_ico">*</span></label>
-                                <input name="StartDate" class="form-control" type="date" min="1900" ng-model="vm.personDependance.StartDate" ng-change="vm.checkValid()" />
+                                <input name="StartDate" class="form-control" type="date" min="1900" ng-model="vm.personRelationship.DependentStart" ng-change="vm.checkValid()" />
                             </div>
                             <div class="col-md-6">
                                 <label for="EndDate">Thời gian kết thúc: <span class="required_ico">*</span></label>
-                                <input name="EndDate" class="form-control" type="date" min="1900" ng-model="vm.personDependance.EndDate" ng-change="vm.checkValid()" />
+                                <input name="EndDate" class="form-control" type="date" min="1900" ng-model="vm.personRelationship.DependentEnd" ng-change="vm.checkValid()" />
                             </div>
                         </div>
                         <br />

@@ -46,5 +46,10 @@ namespace ML.Business.Implements.Hr
         {
             return m_PersonSalaryDataLayer.GetPersonLifeInsurance(pid);
         }
+
+        public IEnumerable<PersonRelationShip> GetPersonDependents(int pid)
+        {
+            return m_PersonSalaryDataLayer.GetPersonDependents(pid);
+        }
     }
 }

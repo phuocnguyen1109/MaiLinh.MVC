@@ -48,6 +48,7 @@
 
         function getListBank() {
             vm.banks = E.Banks;
+            vm.banks.splice(0, 0, { Id: 0, Name: '-- Chọn Ngân Hàng --' });
         }
 
         function getPersonBankAccount() {

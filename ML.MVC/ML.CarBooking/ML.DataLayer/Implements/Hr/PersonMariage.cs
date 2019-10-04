@@ -27,6 +27,9 @@ namespace ML.DataLayer.Implements.Hr
                   YearOfBirth = request.YearOfBirth,
                   IsDead = request.IsDead,
                   Address = request.Address,
+                  IsDependent = request.IsDependent,
+                  DependentStart = request.DependentStart,
+                  DependentEnd = request.DependentEnd,
                   RelationShipId = request.RelationShipId,
                   UserId = userId},
             commandType: System.Data.CommandType.StoredProcedure));
@@ -63,6 +66,9 @@ namespace ML.DataLayer.Implements.Hr
                    IsDead = request.IsDead,
                    Address = request.Address,
                    RelationShipId = request.RelationShipId,
+                   IsDependent = request.IsDependent,
+                   DependentStart = request.DependentStart,
+                   DependentEnd = request.DependentEnd,
                    UserId = userId
                },
                commandType: System.Data.CommandType.StoredProcedure));

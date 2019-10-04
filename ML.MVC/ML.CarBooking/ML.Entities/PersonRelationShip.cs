@@ -15,6 +15,9 @@ namespace ML.Entities
         public string Address { get; set; }
         public int PersonId { get; set; }
         public int RelationShipId { get; set; }
+        public bool IsDependent { get; set; }
+        public DateTime? DependentStart { get; set; }
+        public DateTime? DependentEnd { get; set; }
         public int CreatedBy { get; set; }
         public DateTime? CreatedOn { get; set; }
         public int UpdatedBy { get; set; }

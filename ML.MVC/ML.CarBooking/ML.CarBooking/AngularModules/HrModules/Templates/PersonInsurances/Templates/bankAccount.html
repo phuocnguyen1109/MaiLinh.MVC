@@ -1,4 +1,6 @@
 ﻿
+
+
 <div ng-controller="bankAccountController as vm" style="margin-right: 40px;">
     <div ng-init="vm.initialize()">
         <button class="btn btn-outline-primary mt-4 mb-2 mr-1 float-right" data-toggle="modal" data-target="#BankAccountController" ng-click="vm.openCreateModal()" ng-disabled="vm.IsViewing">
@@ -23,7 +25,7 @@
                         <button class="btn btn-outline-success" data-toggle="modal" data-target="#BankAccountController" ng-click="vm.openEditModal(row, $index)" ng-disabled="vm.IsViewing">
                             <i class="fas fa-fw fa-pen"></i>
                         </button>
-                        <button class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteModal" ng-click="vm.openDeleteModal(row, $index)" ng-disabled="vm.IsViewing">
+                        <button class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteBankAccount" ng-click="vm.openDeleteModal(row, $index)" ng-disabled="vm.IsViewing">
                             <i class="fas fa-fw fa-trash"></i>
                         </button>
                     </td>
@@ -32,9 +34,24 @@
             </tbody>
         </table>
 
-        <!--WorkingHistory Modal -->
-        <div class="modal fade" id="BankAccountController" tabindex="-1" role="dialog" aria-labelledby="ModalTitle" aria-hidden="true">
+
+
+        <div class="modal fade" id="DeleteBankAccount" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        Bạn Chắc chắn muốn xóa thông tin tài khoản này ?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
+                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.deletePersonBankAccount()">Đồng ý</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="BankAccountController" tabindex="-1" role="dialog" aria-labelledby="ModalTitle" aria-hidden="true">
+            <div class="modal-dialog ">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title text-uppercase" id="ModalTitle">{{vm.modelTilte}}</h5>
@@ -50,8 +67,7 @@
                                     <label for="bankName">CHỌN NGÂN HÀNG:</label>
                                     <select ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" ng-model="vm.selectedRow.BankId"
                                             ng-options="l.Id as l.Name for l in vm.banks"
-                                            ng-change="vm.checkValid()">
-                                    </select>
+                                            ng-change="vm.checkValid()"></select>
                                 </div>
                             </div>
                             <div class="row">
@@ -64,7 +80,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="bankName">SỐ TÀI KHOẢN:</label>
-                                    <input class="form-control" ng-model="vm.selectedRow.AccountNumber" placeholder="Tên chủ thẻ không dấu" ng-change="vm.checkValid()" />
+                                    <input class="form-control" ng-model="vm.selectedRow.AccountNumber" placeholder="Số Tài Khoản" ng-change="vm.checkValid()" />
                                 </div>
                             </div>
                         </form>
@@ -77,19 +93,6 @@
             </div>
         </div>
 
-        <!-- Delete WH Modal -->
-        <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="ModalTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        Bạn Chắc chắn muốn xóa thông tin tài khoản này ?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
-                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.deletePersonBankAccount()">Đồng ý</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
+

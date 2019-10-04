@@ -47,5 +47,11 @@ namespace ML.CarBooking.Controllers.API.Hr
         {
             return m_personSalaryBusiness.DeletePersonLifeInsurance(id);
         }
+
+        public IEnumerable<PersonRelationShip> GetPersonDependents(int pid)
+        {
+            return m_personSalaryBusiness.GetPersonDependents(pid);
+        }
+            
     }
 }

@@ -18,5 +18,8 @@ namespace ML.Business.Interfaces.Hr
         IEnumerable<PersonLifeInsurance> GetPersonLifeInsurance(int pid);
         int CreateOrUpdatePersonLifeInsurance(PersonLifeInsurance request);
         int DeletePersonLifeInsurance(int id);
+
+        //Person Dependents
+        IEnumerable<PersonRelationShip> GetPersonDependents(int pid);
     }
 }

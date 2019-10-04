@@ -95,5 +95,16 @@ namespace ML.DataLayer.Implements.Hr
 
             }, commandType: System.Data.CommandType.StoredProcedure));
         }
+
+        public IEnumerable<PersonRelationShip> GetPersonDependents(int pid)
+        {
+            return Execute(connection =>
+             connection.Query<PersonRelationShip>("[Hr].[GetPersonDependents]",
+             new
+             {
+                 pid = pid
+
+             }, commandType: System.Data.CommandType.StoredProcedure));
+        }
     }
 }
