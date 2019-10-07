@@ -20,7 +20,6 @@
         vm.IsViewing = $stateParams.IsViewing;
 
         function initialize() {
-            //Example
             var date = new Date();
             vm.getDate = (date.getMonth()+1) + "/" + date.getDate() + "/" + date.getFullYear();
 
@@ -53,8 +52,6 @@
                     vm.userContracts = [];
                     if (!response) return;
                     response.data.forEach(function (item, index) {
-                        item.SignedInDisplay = new Date(item.SignedIn);
-                        item.SignedOutDisplay = new Date(item.SignOut);
                         item.DurationDisplay = angular.copy(vm.contractPeriods).find(x => x.contractPeriodId == item.Duration).contractPeriod;
                         item.ContractTypeDisplay = angular.copy(vm.typesOfContracts).find(x => x.typeId == item.ContractTypeId).typeName;
                         vm.userContracts.push(item);
@@ -132,32 +129,30 @@
             if (vm.userContract.Id == 0) {
                 $http.post('/api/Person/CreatePersonContract', vm.userContract)
                     .then(function (result) {
-                        debugger;
                         getContracts();
                     });
             }
             else {
                 $http.post('/api/Person/UpdatePersonContract', vm.userContract)
                     .then(function (result) {
-                        debugger;
                         getContracts();
                     });
             }
         }
 
-        function openDeleteModal(row) {
+        function openDeleteModal(row, $index) {
             vm.deletedDataRow = row;
+            vm.deletedDataRow.Index = $index;
         }
 
-        function deleted(row) {
-            var deletedIndex = null;
-            vm.contracts.forEach(function (item, index) {
-                if (row.id == item.id) {
-                    deletedIndex = index;
-                    vm.contracts.splice(deletedIndex, 1);
-                    return;
-                }
-            });
+        function deleted() {
+            $http.post('/api/Person/DeletePersonContract', vm.deletedDataRow)
+                .then(function (result) {
+                    if (result.data > 0) {
+                        alert('Xóa Thông Tin Hợp Đồng Thành Công');
+                        vm.userContracts.splice(vm.deletedDataRow.Index, 1);
+                    }
+                });
         }
 
     };

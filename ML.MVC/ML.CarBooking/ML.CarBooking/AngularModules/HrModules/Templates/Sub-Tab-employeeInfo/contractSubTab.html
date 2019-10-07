@@ -13,8 +13,7 @@
                     <th>THỜI HẠN</th>
                     <th>NGÀY KÝ HĐ</th>
                     <th>NGÀY HẾT HẠN</th>
-                    <th>NGƯỜI TẠO</th>
-                    <th>NGÀY TẠO</th>
+                 
                     <th></th>
                 </tr>
             </thead>
@@ -22,16 +21,14 @@
                 <tr ng-repeat="row in vm.userContracts">
                     <td>{{row.ContractTypeDisplay}}</td>
                     <td>{{row.ContractNumber}}</td>
-                    <td>{{row.Duration}}</td>
-                    <td>{{row.SignedInDisplay | date:'short'}}</td>
-                    <td>{{row.SignedOutDisplay | date:'short'}}</td>
-                    <td>{{row.CreateByName}}</td>
-                    <td>{{row.CreateOnDisplay}}</td>
+                    <td>{{row.DurationDisplay}}</td>
+                    <td>{{row.SignedIn | date:'dd/MM/yyyy'}}</td>
+                    <td>{{row.SignOut | date:'dd/MM/yyyy'}}</td>
                     <td>
                         <button class="btn btn-outline-success" data-toggle="modal" data-target="#ContractModal" ng-click="vm.openEditModal(row)" ng-disabled="vm.IsViewing">
                             <i class="fas fa-fw fa-pen"></i>
                         </button>
-                        <button class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteContractModal" ng-click="vm.openDeleteModal(row)" ng-disabled="vm.IsViewing">
+                        <button class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteContractModal" ng-click="vm.openDeleteModal(row, $index)" ng-disabled="vm.IsViewing">
                             <i class="fas fa-fw fa-trash"></i>
                         </button>
                     </td>
@@ -106,7 +103,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
-                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.deleted(vm.deletedDataRow)">Đồng ý</button>
+                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.deleted()">Đồng ý</button>
                     </div>
                 </div>
             </div>

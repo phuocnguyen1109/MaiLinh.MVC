@@ -21,5 +21,9 @@ namespace ML.Business.Interfaces.Hr
 
         //Person Dependents
         IEnumerable<PersonRelationShip> GetPersonDependents(int pid);
+
+        //person health Insurance
+        IEnumerable<PersonHealthInsurance> GetPersonHealthInsurances(int pid);
+        int CreateOrUpdatePersonHealthInsurance(PersonHealthInsurance request, int userId);
     }
 }

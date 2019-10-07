@@ -1,1 +1,99 @@
-﻿Health Insurance
+﻿<div ng-controller="healthInsuranceController as vm" style="margin-right:25px;" class="mt-4 display-igr">
+    <div ng-init="vm.initialize()">
+
+        <button class="btn btn-outline-primary mt-3 mb-2 mr-1 float-right" ng-click="vm.createPersonHealthInsurance()" ng-disabled="vm.IsViewing || vm.isEditing || vm.isAdding">
+            <i class="fas fa-fw fa-plus"></i> THÊM MỚI
+        </button>
+
+        <table class="table table-hover mb-4">
+            <thead class="thead-light shadow_tb txt-center">
+                <tr>
+                    <th>SỐ TIỀN</th>
+                    <th>THÁNG THANH TOÁN</th>
+                    <th>TỪ NGÀY</th>
+                    <th>ĐẾN NGÀY</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody class="txt-center">
+                <tr ng-if="vm.isAdding == true">
+                    <td>
+                        <input type="number" class="form-control" ng-model="vm.personHealthInsurance.Amount" />
+                    </td>
+                    <td>
+                        <input type="number" class="form-control" ng-model="vm.personHealthInsurance.Duration" />
+                    </td>
+                    <td>
+                        <input type="date" class="form-control" ng-model="vm.personHealthInsurance.FromDate" />
+                    </td>
+                    <td>
+                        <input type="date" class="form-control" ng-model="vm.personHealthInsurance.ToDate" />
+                    </td>
+                    <td>
+                        <button class="btn btn-outline-success" ng-click="vm.saveChanges($index)">
+                            <i class="fas fa-fw fa-save"></i>
+                        </button>
+                        <button class="btn btn-outline-dark" ng-click="vm.isAdding = false">
+                            <i class="fas fa-fw fa-window-close"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr ng-repeat="row in vm.personHealthInsurances">
+
+                    <td ng-if="!row.isEditing">{{row.Amount}}</td>
+                    <td ng-if="!row.isEditing">{{row.Duration}}</td>
+                    <td ng-if="!row.isEditing">{{row.FromDate | date : 'dd/MM/yyyy'}}</td>
+                    <td ng-if="!row.isEditing">{{row.ToDate | date : 'dd/MM/yyyy'}}</td>
+                    <td ng-if="!row.isEditing">
+                        <button class="btn btn-outline-success" ng-click="vm.updatePersonHealthInsurance(row, $index)" ng-disabled="vm.IsViewing || vm.isEditing || vm.isAdding">
+                            <i class="fas fa-fw fa-pen"></i>
+                        </button>
+                        <button class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteHealthInsurance" ng-click="vm.openDeleteModal(row, $index)" ng-disabled="vm.IsViewing || vm.isEditing || vm.isAdding">
+                            <i class="fas fa-fw fa-trash"></i>
+                        </button>
+                    </td>
+
+                    <td ng-if="row.isEditing">
+                        <input type="number" class="form-control" ng-model="vm.personHealthInsurance.Amount" />
+                    </td>
+                    <td ng-if="row.isEditing">
+                        <input type="number" class="form-control" ng-model="vm.personHealthInsurance.Duration" />
+                    </td>
+                    <td ng-if="row.isEditing">
+                        <input type="date" class="form-control" ng-model="vm.personHealthInsurance.FromDate" />
+                    </td>
+                    <td ng-if="row.isEditing">
+                        <input type="date" class="form-control" ng-model="vm.personHealthInsurance.ToDate" />
+                    </td>
+                    <td ng-if="row.isEditing">
+                        <button class="btn btn-outline-success" ng-click="vm.saveChanges($index)">
+                            <i class="fas fa-fw fa-save"></i>
+                        </button>
+                        <button class="btn btn-outline-dark" ng-click="row.isEditing = false; vm.isEditing =false;">
+                            <i class="fas fa-fw fa-window-close"></i>
+                        </button>
+                    </td>
+
+
+                </tr>
+
+            </tbody>
+        </table>
+
+        <!-- Delete Modal -->
+        <div class="modal fade" id="DeleteHealthInsurance" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        
+                        Bạn chắc chắn muốn xóa dữ liệu này ?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
+                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.deletePersonHealthInsurance()">Đồng ý</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

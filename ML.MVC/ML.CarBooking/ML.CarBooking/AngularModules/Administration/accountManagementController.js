@@ -119,7 +119,6 @@
         };
 
         function togglePassword() {
-            debugger;
             console(vm.isShow)
         };
 

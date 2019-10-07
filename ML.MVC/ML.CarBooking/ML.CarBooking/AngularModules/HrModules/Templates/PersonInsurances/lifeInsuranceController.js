@@ -76,8 +76,8 @@
             vm.selectedRow.Id = row.Id;
             vm.selectedRow.JoinLevel = row.JoinLevel;
             vm.selectedRow.Number = row.Number;
-            vm.selectedRow.FromDate = row.FromDate;
-            vm.selectedRow.ToDate = row.ToDate;
+            vm.selectedRow.FromDate = new Date(row.FromDate);
+            vm.selectedRow.ToDate = new Date(row.ToDate);
             vm.selectedRow.Amount = row.Amount;
             vm.selectedRow.Index = $index;
         }

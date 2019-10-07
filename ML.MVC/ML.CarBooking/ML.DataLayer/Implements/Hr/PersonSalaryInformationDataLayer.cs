@@ -106,5 +106,34 @@ namespace ML.DataLayer.Implements.Hr
 
              }, commandType: System.Data.CommandType.StoredProcedure));
         }
+
+        public IEnumerable<PersonHealthInsurance> GetPersonHealthInsurances(int pid)
+        {
+            return Execute(connection =>
+              connection.Query<PersonHealthInsurance>("[Hr].[GetPersonHealthInsurance]",
+              new
+              {
+                  pid = pid
+
+              }, commandType: System.Data.CommandType.StoredProcedure));
+        }
+
+        public int CreateOrUpdatePersonHealthInsurance(PersonHealthInsurance request, int userId)
+        {
+            return Execute(connection =>
+              connection.ExecuteScalar<int>("[Hr].[CreateOrUpdatePersonHealthInsurance]",
+              new
+              {
+                  id= request.Id,
+                  pid = request.PersonId,
+                  amount = request.Amount,
+                  duration = request.Duration,
+                  fromDate = request.FromDate,
+                  toDate = request.ToDate,
+                  userId = userId,
+                  isDeleted = request.IsDeleted
+
+              }, commandType: System.Data.CommandType.StoredProcedure));
+        }
     }
 }

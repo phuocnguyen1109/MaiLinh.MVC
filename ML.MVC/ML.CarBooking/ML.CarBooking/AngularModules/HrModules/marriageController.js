@@ -3,12 +3,11 @@
     angular.module('mainApp')
         .controller('marriageController', marriageController);
 
-    marriageController.$inject = ['$scope', '$http', '$state', '$stateParams'];
+    marriageController.$inject = ['$scope', '$http', '$state', '$stateParams', 'PubSub'];
 
-    function marriageController($scope, $http, $state, $stateParams) {
+    function marriageController($scope, $http, $state, $stateParams, PubSub) {
         var vm = this;
         vm.initialize = initialize;
-        vm.gender = "male";
         vm.addNewRelative = addNewRelative;
         vm.checkValid = checkValid;
         vm.isValid = false;
@@ -17,14 +16,26 @@
         vm.openDelModel = openDelModel;
         vm.deleteRelationShip = deleteRelationShip;
         vm.checkIsDependent = checkIsDependent;
-        var a = $scope;
-        // vm.IsViewing = $stateParams.params.IsViewing;
+        vm.changeMariageStatus = changeMariageStatus;
 
-        var personIsMale = true;
+        vm.personMariageStatus = 0;
+
         var personId = $stateParams.id;
+
+        $scope.$parent.$watch('vm.person', function (values) {
+            if (values && values.Id) {
+                vm.personMariageStatus = values.MariageStatus;
+                vm.isMale = values.IsMale;
+            }
+        });
+
 
         vm.marriageStatusObject = { Id: null, marritalStatusName: null };
 
+
+        function changeMariageStatus() {
+            PubSub.publish('PERSON_MARIAGESTATUS', vm.personMariageStatus);
+        }
 
         function resetModel() {
             vm.personRelationship = {
@@ -42,16 +53,17 @@
         }
 
         function loadMariageStatuses() {
-            $http.get('/api/Mariage/GetMMariageStatuses')
+           return $http.get('/api/Mariage/GetMMariageStatuses')
                 .then(function (response) {
                     if (response && response.data.length > 0) {
                         vm.mariageStatuses = response.data;
+                        vm.mariageStatuses.splice(0, 0, { Id: 0, Name: '--Chọn Tình Trạng Hôn Nhân--' });
                     }
                 });
         }
 
         function loadRelationships() {
-            if (!personIsMale) {
+            if (!vm.IsMale) {
                 vm.RelationShipTypes = angular.copy(E.RelationShipType).filter(x => x.Id != 4 && x.Id != 5); // Excludes 'Bố Chồng', 'Mẹ Chồng' 
             }
             vm.RelationShipTypes = angular.copy(E.RelationShipType).filter(x => x.Id != 6 && x.Id != 7); // Excludes 'Bố Vợ', 'Mẹ Vợ' 
@@ -59,16 +71,17 @@
         }
 
         function initialize() {
-            loadMariageStatuses();
-            loadRelationships();
-            getRelatives();
+            loadMariageStatuses().then(function (result) {
+                loadRelationships();
+                getRelatives();
+            });
+            
 
         };
 
         function getRelatives() {
             $http.get('/api/Mariage/GetPersonRelationShips', { params: { pid: personId } }).then(function (result) {
                 vm.personRelations = result.data;
-                debugger;
                 vm.personRelations.forEach(function (relation, index) {
                     loadRelationships();
                     relation.RelationName = vm.RelationShipTypes.find(x => x.Id == relation.RelationShipId).Name;

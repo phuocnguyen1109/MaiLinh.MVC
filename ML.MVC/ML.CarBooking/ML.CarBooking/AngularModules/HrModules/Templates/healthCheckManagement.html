@@ -16,7 +16,7 @@
             <tbody class="txt-center">
                 <tr ng-repeat="row in vm.personHealthCheck">
                     <td class="center-block">{{row.Year}}</td>
-                    <td ng-bind="row.StandardNames">                       
+                    <td><p ng-bind-html="row.StandardNames"></p>                       
                     </td>
                     <td>{{row.Note}}</td>
                     <td>

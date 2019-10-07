@@ -34,10 +34,7 @@
             $http.get('/api/WorkingHistory/GetAllByPerson', { params: { personId: userId } })
                 .then(function (result) {
                     vm.workingHistories = result.data;
-                    vm.workingHistories.forEach(function (item, index) {
-                        item.DisplayFromDate = new Date(item.FromDate).toLocaleDateString('en-GB');
-                        item.DisplayToDate = new Date(item.ToDate).toLocaleDateString('en-GB');
-                    });
+                   
                 });
 
         }

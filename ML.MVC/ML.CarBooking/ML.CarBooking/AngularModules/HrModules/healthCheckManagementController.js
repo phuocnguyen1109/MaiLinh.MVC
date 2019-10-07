@@ -2,8 +2,8 @@
     'use strict'
     angular.module('mainApp').controller('healthCheckManagementController', healthCheckManagementController);
 
-    healthCheckManagementController.$inject = ['$http', '$rootScope', '$scope', '$state', '$stateParams'];
-    function healthCheckManagementController( $http, $rootScope, $scope, $state, $stateParams) {
+    healthCheckManagementController.$inject = ['$http', '$rootScope', '$scope', '$state', '$stateParams','$sce'];
+    function healthCheckManagementController( $http, $rootScope, $scope, $state, $stateParams, $sce) {
         var vm = this;
         vm.initialize = initialize;
         vm.openAddModal = openAddModal;
@@ -76,6 +76,7 @@
                                 item.StandardNames += '<br/>';
                             }
                         }
+                            item.StandardNames = $sce.trustAsHtml(item.StandardNames);
                     });
                 });
             

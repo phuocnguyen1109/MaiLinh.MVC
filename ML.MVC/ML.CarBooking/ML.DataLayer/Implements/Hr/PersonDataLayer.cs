@@ -247,7 +247,15 @@ namespace ML.DataLayer.Implements.Hr
                 gradeId = request.GradeId,
                 driveLicenseId = request.DriveLicenseId,
                 signedPlace = request.DriveLicensePlace,
-                expiredOn = request.DriveLicenseExpired
+                expiredOn = request.DriveLicenseExpired,
+                cooperationAmount  = request.CooperationAmount,
+                cooperationFirstPay = request.CooperationFirstPay,
+                cooperationMinutePerMonth = request.CooperationMinutePerMonth,
+                socialInsuranceCode = request.SocialInsuranceCode,
+                socialInsuranceSalaryJoin = request.SocialInsuranceSalaryJoin,
+                socialInsurancePayPerMonth = request.SocialInsurancePayPerMonth,
+                taxCode = request.TaxCode,
+                mariageStatus = request.MariageStatus
 
             }, commandType: System.Data.CommandType.StoredProcedure)) ;
         }

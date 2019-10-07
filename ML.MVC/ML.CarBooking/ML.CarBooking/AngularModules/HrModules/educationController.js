@@ -89,9 +89,15 @@
             }
             $http.post('/api/Education/SavePersonLanguage', vm.selectedPersonLanguage)
                 .then(function (result) {
-                    var createdPersonLanguage = angular.copy(vm.selectedPersonLanguage);
-                    createdPersonLanguage.LanguageName = getLanguageName(createdPersonLanguage.LanguageId);
-                    vm.personEdu.PersonLanguages.push(createdPersonLanguage);
+                    if (result.data <= 0) { return; }
+                    if (vm.selectedPersonLanguage.Id == 0) {
+                        var createdPersonLanguage = angular.copy(vm.selectedPersonLanguage);
+                        createdPersonLanguage.LanguageName = getLanguageName(createdPersonLanguage.LanguageId);
+                        vm.personEdu.PersonLanguages.push(createdPersonLanguage);
+                    } else {
+                        vm.personEdu.PersonLanguages.splice(vm.selectedPersonLanguage.Index, 1, vm.selectedPersonLanguage);
+                    }
+                    resetModel();
                 });
         }
 
@@ -100,10 +106,6 @@
                     .then(function (result) {
                         vm.languages = result.data;
                         vm.languages.splice(0, 0, { Id: 0, Name: '--Chọn Ngôn Ngữ--' });
-                        if (vm.personEdu.PersonLanguages && vm.personEdu.PersonLanguages.length > 0) {
-                            buildPersonLanguageGrid(vm.personEdu.PersonLanguages);
-                        }
-
                         vm.personEdu.PersonLanguages.forEach(function (item) {
                             if (item) {
                                 item.LanguageName = getLanguageName(item.LanguageId);
@@ -159,17 +161,17 @@
             vm.userLanguage = { id: null, langId: null, name: null, qualityId: null, qualification: null };
             vm.selectedLanguage = null;
             vm.selectedQualification = null;
+            vm.isEditing = false;
             vm.modalTitle = "Thêm mới ngoại ngữ";
         }
 
-        function openEditLanguage(l) {
-            console.log(l);
+        function openEditLanguage(l, $index) {
             vm.modalTitle = "Chỉnh sửa ngoại ngữ";
             vm.message = null;
             vm.isValid = true;
-
+            vm.isEditing = true;
             vm.selectedPersonLanguage = l;
-            console.log(vm.selectedPersonLanguage);
+            vm.selectedPersonLanguage.Index = $index;
         }
 
 

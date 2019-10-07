@@ -59,7 +59,7 @@
                             <td>{{row.LanguageName}}</td>
                             <td>{{row.Level}}</td>
                             <td>
-                                <button class="btn btn-outline-success" data-toggle="modal" data-target="#LanguageModal" ng-click="vm.openEditLanguage(row)" ng-disabled="vm.IsViewing">
+                                <button class="btn btn-outline-success" data-toggle="modal" data-target="#LanguageModal" ng-click="vm.openEditLanguage(row, $index)" ng-disabled="vm.IsViewing">
                                     <i class="fas fa-fw fa-pen"></i>
                                 </button>
                                 <button class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteLanguageModal" ng-click="vm.openDelModal(row)" ng-disabled="vm.IsViewing">
@@ -89,7 +89,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="language">Ngoại ngữ</label>
-                                <select id="language" class="form-control"
+                                <select ng-disabled="vm.isEditing" id="language" class="form-control"
                                         ng-model="vm.selectedPersonLanguage.LanguageId"
                                         ng-options="l.Id as l.Name for l in vm.languages"
                                         ng-change="vm.isValidPersonlanguage()">
@@ -102,7 +102,6 @@
                                         ng-model="vm.selectedPersonLanguage.Level"
                                         ng-options="q.LevelId as q.Level for q in vm.listQualifications"
                                         ng-change="vm.isValidPersonlanguage()">
-                                    <option value="">--Chọn Đánh Giá--</option>
                                 </select>
                             </div>
                         </div>

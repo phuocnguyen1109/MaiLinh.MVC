@@ -73,7 +73,7 @@ namespace ML.DataLayer.Implements.Hr
         public int CreateAndUpdatePersonLanguage(PersonLanguage request, int userId)
         {
             return Execute(connection =>
-                                connection.Execute("[Hr].[CreateAndUpdatePersonLanguage]",
+                                connection.ExecuteScalar<int>("[Hr].[CreateAndUpdatePersonLanguage]",
                                 new
                                 {
                                     id = request.Id,

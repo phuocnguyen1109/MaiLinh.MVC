@@ -53,6 +53,7 @@
     <Compile Include="PersonEducation.cs" />
     <Compile Include="PersonEquipment.cs" />
     <Compile Include="PersonHealthCheck.cs" />
+    <Compile Include="PersonHealthInsurance.cs" />
     <Compile Include="PersonHealthStd.cs" />
     <Compile Include="PersonIdentityCard.cs" />
     <Compile Include="PersonLanguage.cs" />

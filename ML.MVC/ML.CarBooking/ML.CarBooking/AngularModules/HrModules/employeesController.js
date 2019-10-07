@@ -21,6 +21,14 @@
 
         vm.createValid = false;
 
+        vm.roles = [
+            { id: 0, name: '-- Chọn Chức Vụ --' },
+            { id: 2, name: 'Trưởng Phòng' },
+            { id: 1, name: 'Phó Phòng' },
+            { id: 3, name: 'Thư Ký' },
+            { id: 4, name: 'Nhân Viên' }
+        ];
+
 
         //biding functions
         vm.gotoEdit = gotoEdit;
@@ -100,6 +108,8 @@
                         person.dobDisplay = person.DoB.toString() != '0001-01-01T00:00:00' ? new Date(person.DoB).toLocaleDateString('en-GB') : '';
                         person.StartDateDisplay = person.StartDate.toString() != '0001-01-01T00:00:00' ? new Date(person.StartDate).toLocaleDateString('en-GB') : '';
                         person.IsSelected = false;
+                        debugger;
+                        person.Role = vm.roles.find(x => x.id == person.RoleId).name;
                     });
                     tempEmployees = angular.copy(vm.employees);
 

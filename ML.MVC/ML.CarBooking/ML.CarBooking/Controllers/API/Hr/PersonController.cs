@@ -126,9 +126,9 @@ namespace ML.CarBooking.Controllers.API.Hr
         }
 
         [HttpPost]
-        public int DeletePersonContract(int id, int userId = 1)
+        public int DeletePersonContract(PersonContract request, int userId = 1)
         {
-            return m_PersonBusiness.DeletePersonContract(id, userId);
+            return m_PersonBusiness.DeletePersonContract(request.Id, userId);
         }
 
         public IEnumerable<PersonEquipment> GetPersonEquipments(int pid)

@@ -25,12 +25,14 @@
         vm.initialize = initialize;
 
         var changeEducation = null;
+        var changeMariageStatus = null;
 
         function initialize() {
             getMasterData();
             getCities();
             getPerson();
             PubSub.subscribe('education', changeEducation, true);
+            PubSub.subscribe('PERSON_MARIAGESTATUS', changeMariageStatus, true);
 
         }
 
@@ -42,6 +44,10 @@
             vm.person.DriveLicensePlace = data.DriveLicensePlace;
             syncEducation = !syncEducation;
             _save();
+        }
+
+        changeMariageStatus = function (data) {
+            vm.person.MariageStatus = data;
         }
 
         

@@ -15,14 +15,14 @@
             </thead>
             <tbody class="txt-center">
                 <tr ng-repeat="row in vm.workingHistories">
-                    <td>{{row.DisplayFromDate}}</td>
-                    <td>{{row.DisplayToDate}}</td>
+                    <td>{{row.FromDate | date:'dd/MM/yyyy'}}</td>
+                    <td>{{row.ToDate | date:'dd/MM/yyyy'}}</td>
                     <td>{{row.CompanyName}}</td>
                     <td>
                         <button class="btn btn-outline-success" data-toggle="modal" data-target="#WorkingHistoryModal" ng-click="vm.openEditWokingHistory(row)" ng-disabled="vm.IsViewing">
                             <i class="fas fa-fw fa-pen"></i>
                         </button>
-                        <button class="btn btn-outline-danger"  ng-click="vm.deleted(row)" ng-disabled="vm.IsViewing">
+                        <button class="btn btn-outline-danger" data-target="#DeleteWHModal"  ng-click="vm.deleted(row)" ng-disabled="vm.IsViewing">
                             <i class="fas fa-fw fa-trash"></i>
                         </button>
                     </td>
@@ -71,7 +71,7 @@
         </div>
     
         <!-- Delete WH Modal -->
-        <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade" id="DeleteWHModal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-body">

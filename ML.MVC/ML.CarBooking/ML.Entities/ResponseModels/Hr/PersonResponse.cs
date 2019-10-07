@@ -44,6 +44,13 @@ namespace ML.Entities.ResponseModels.Hr
         public int DriveLicenseId { get; set; }
         public DateTime? DriveLicenseExpired { get; set; }
         public string DriveLicensePlace { get; set; }
+        public int CooperationAmount { get; set; }
+        public int CooperationFirstPay { get; set; }
+        public int CooperationMinutePerMonth { get; set; }
+        public string SocialInsuranceCode { get; set; }
+        public int SocialInsuranceSalaryJoin { get; set; }
+        public int SocialInsurancePayPerMonth { get; set; }
+        public string TaxCode { get; set; }
         public IEnumerable<PersonAddress> Addresses { get; set; }
 
         public IEnumerable<PersonLanguage> PersonLanguages { get; set; }
@@ -65,7 +72,7 @@ namespace ML.Entities.ResponseModels.Hr
         public string ContactAddress { get; set; }
         public string PhoneNumber { get; set; }
         public DateTime StartDate { get; set; }
-        public string Role { get; set; }
+        public int RoleId { get; set; }
         public string ContractNumber { get; set; }
         public int ContractDuration { get; set; }
 

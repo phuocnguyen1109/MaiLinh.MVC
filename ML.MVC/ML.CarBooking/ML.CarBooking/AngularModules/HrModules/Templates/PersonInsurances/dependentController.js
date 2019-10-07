@@ -21,7 +21,6 @@
         function getPersonDependents() {
             $http.get('/api/PersonSalaryInformation/GetPersonDependents', { params: { pid: personId } })
                 .then(function (result) {
-                    debugger;
                     vm.personDependents = result.data;
                 });
         }

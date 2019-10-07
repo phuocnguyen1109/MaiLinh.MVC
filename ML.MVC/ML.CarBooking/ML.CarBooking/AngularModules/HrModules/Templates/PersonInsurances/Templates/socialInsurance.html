@@ -1,1 +1,26 @@
-﻿social insurance
+﻿<div class="row">
+    <div class="col-md-4">
+        <label for="numberSocicalInsurance">SỐ SỔ BẢO HIỂM XÃ HỘI:</label>
+        <input type="text" name="numberSocialInsurance" class="form-control" ng-model="vm.person.SocialInsuranceCode" placeholder="Số sổ bảo hiểm" />
+    </div>
+    <div class="col-md-4">
+        <label for="salaryJoin">MỨC LƯƠNG THAM GIA:</label>
+        <input type="number" name="salaryJoin" class="form-control" ng-model="vm.person.SocialInsuranceSalaryJoin" />
+    </div>
+    <div class="col-md-4">
+        <label for="AmountPerMonth">SỐ TIỀN ĐÓNG HÀNG THÁNG:</label>
+        <input type="text" name="AmountPerMonth" class="form-control" ng-model="vm.person.SocialInsurancePayPerMonth" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <label for="taxCode">MÃ SỐ THUẾ:</label>
+        <input type="text" name="taxCode" class="form-control" ng-model="vm.person.TaxCode" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <label for="taxCode">GHI NHẬN BÀN GIAO BHXN -BHNT:</label>
+        <textarea class="form-control" name="taxCode" ng-model="vm.person.SINote"></textarea>
+    </div>
+</div>

@@ -1,7 +1,7 @@
 ﻿
 <div ng-controller="lifeInsuranceController as vm" style="margin-right: 40px;">
     <div ng-init="vm.initialize()">
-        <button class="btn btn-outline-primary mt-4 mb-2 mr-1 float-right" data-toggle="modal" data-target="#BankAccountController" ng-click="vm.openCreateModal()" ng-disabled="vm.IsViewing">
+        <button class="btn btn-outline-primary mt-4 mb-2 mr-1 float-right" data-toggle="modal" data-target="#lifeInsuranceModal" ng-click="vm.openCreateModal()" ng-disabled="vm.IsViewing">
             <i class="fas fa-fw fa-plus"></i> THÊM MỚI
         </button>
 
@@ -24,7 +24,7 @@
                     <td>{{row.ToDate| date:'MM/yyyy'}}</td>
                     <td>{{row.Amount}}</td>
                     <td>
-                        <button class="btn btn-outline-success" data-toggle="modal" data-target="#LifeInsurance" ng-click="vm.openEditModal(row, $index)" ng-disabled="vm.IsViewing">
+                        <button class="btn btn-outline-success" data-toggle="modal" data-target="#lifeInsuranceModal" ng-click="vm.openEditModal(row, $index)" ng-disabled="vm.IsViewing">
                             <i class="fas fa-fw fa-pen"></i>
                         </button>
                         <button class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteLifeInsurance" ng-click="vm.openDeleteModal(row, $index)" ng-disabled="vm.IsViewing">
@@ -37,7 +37,7 @@
         </table>
 
         <!--WorkingHistory Modal -->
-        <div class="modal fade" id="LifeInsurance" tabindex="-1" role="dialog" aria-labelledby="ModalTitle" aria-hidden="true">
+        <div class="modal fade" id="lifeInsuranceModal" tabindex="-1" role="dialog" aria-labelledby="ModalTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">

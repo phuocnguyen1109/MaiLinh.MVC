@@ -51,5 +51,15 @@ namespace ML.Business.Implements.Hr
         {
             return m_PersonSalaryDataLayer.GetPersonDependents(pid);
         }
+
+        public IEnumerable<PersonHealthInsurance> GetPersonHealthInsurances(int pid)
+        {
+            return m_PersonSalaryDataLayer.GetPersonHealthInsurances(pid);
+        }
+
+        public int CreateOrUpdatePersonHealthInsurance(PersonHealthInsurance request, int userId)
+        {
+            return m_PersonSalaryDataLayer.CreateOrUpdatePersonHealthInsurance(request, userId);
+        }
     }
 }
