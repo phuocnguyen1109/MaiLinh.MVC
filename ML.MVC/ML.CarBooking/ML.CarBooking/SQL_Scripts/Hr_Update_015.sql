@@ -1,18 +1,20 @@
 ﻿
-CREATE TABLE [Hr].[PersonLifeInsurance](
+CREATE TABLE [Hr].[PersonHealthInsurance](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[PersonId] [int] NULL,
-	[Number] [varchar](50) NULL,
-	[JoinLevel] [int] NULL,
+	[Amount] [int] NULL,
+	[Duration] [int] NULL,
 	[FromDate] [datetime] NULL,
 	[ToDate] [datetime] NULL,
-	[Amount] [int] NULL,
- CONSTRAINT [PK_PersonLifeInsurance] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	[CreatedBy] [int] NULL,
+	[CreatedOn] [datetime] NULL,
+	[UpdatedBy] [int] NULL,
+	[UpdatedOn] [datetime] NULL,
+	[IsDeleted] [bit] NULL
 ) ON [PRIMARY]
+GO
 
+ALTER TABLE [Hr].[PersonHealthInsurance] ADD  CONSTRAINT [DF_PersonHealthInsurance_IsDeleted]  DEFAULT ((0)) FOR [IsDeleted]
 GO
 
 CREATE PROC [Hr].[GetPersonHealthInsurance]

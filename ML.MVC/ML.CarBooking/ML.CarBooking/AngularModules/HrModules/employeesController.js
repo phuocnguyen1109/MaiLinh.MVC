@@ -10,12 +10,12 @@
         var tempEmployees = [];
         var selectedId;
         //biding variables
-        
+
         vm.createModel = {
             firstName: null,
             lastName: null,
             userName: null,
-            employeeCode:'',
+            employeeCode: '',
             isMale: 'true'
         };
 
@@ -40,6 +40,7 @@
         vm.checkValidCreate = checkValidCreate;
         vm.createSimplePerson = createSimplePerson;
         vm.checkEmployeeCode = checkEmployeeCode;
+        vm.checkValidEmployeeCode = checkValidEmployeeCode;
 
         vm.isValidEmployeeCode = false;
 
@@ -47,8 +48,19 @@
             getPersons();
         }
 
+        function checkValidEmployeeCode() {
+            vm.employeeCodeIsNumber = false;
+            vm.isValidEmployeeCode = false;
+            if (vm.createModel.employeeCode != '' && isNaN(vm.createModel.employeeCode)) {
+                vm.checkEmployeeCodeMessage = 'Mã Nhân Viên Chỉ Được Phép Nhập Số';
+                return;
+            }
+            vm.checkEmployeeCodeMessage = '';
+            vm.employeeCodeIsNumber = true;
+        }
+
         function checkEmployeeCode() {
-            if (!vm.createModel.employeeCode || vm.createModel.employeeCode == '') return;
+            if (!vm.createModel.employeeCode || vm.createModel.employeeCode == '' || !vm.employeeCodeIsNumber || vm.createModel.employeeCode.length != 6) return;
             $http.get('/api/Person/CheckEmployeeCode', { params: { employeeCode: vm.createModel.employeeCode } })
                 .then(function (result) {
                     if (result.data == 1) {
@@ -64,7 +76,6 @@
         }
 
         function gotoView() {
-            //alert('Chức Năng Đang Được Cập Nhật');
             $state.go('editEmployee', { id: selectedId, IsViewing: true });
 
         }
@@ -108,7 +119,6 @@
                         person.dobDisplay = person.DoB.toString() != '0001-01-01T00:00:00' ? new Date(person.DoB).toLocaleDateString('en-GB') : '';
                         person.StartDateDisplay = person.StartDate.toString() != '0001-01-01T00:00:00' ? new Date(person.StartDate).toLocaleDateString('en-GB') : '';
                         person.IsSelected = false;
-                        debugger;
                         person.Role = vm.roles.find(x => x.id == person.RoleId).name;
                     });
                     tempEmployees = angular.copy(vm.employees);

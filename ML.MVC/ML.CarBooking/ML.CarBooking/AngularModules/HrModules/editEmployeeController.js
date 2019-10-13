@@ -5,6 +5,7 @@
 
     editEmployeeController.$inject = ['$http', '$scope', '$state', '$stateParams', 'PubSub', 'Upload'];
     function editEmployeeController($http, $scope, $state, $stateParams, PubSub, Upload) {
+        angular.element(document).find('.modal-backdrop').remove();
         var vm = this;
         var personId = $stateParams.id;
         vm.IsViewing = $stateParams.IsViewing;

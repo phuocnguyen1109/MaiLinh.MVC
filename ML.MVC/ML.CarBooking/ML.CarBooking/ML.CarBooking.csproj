@@ -1807,8 +1807,11 @@
     <Content Include="Content\fontawesome-free\webfonts\fa-brands-400.svg" />
     <Content Include="Content\fontawesome-free\webfonts\fa-regular-400.svg" />
     <Content Include="Content\fontawesome-free\webfonts\fa-solid-900.svg" />
+    <Content Include="Content\Images\16seats.jpg" />
+    <Content Include="Content\Images\29seats.png" />
     <Content Include="Content\Images\anh.jpg" />
     <Content Include="Content\Images\avatar.jpg" />
+    <Content Include="Content\Images\car.png" />
     <Content Include="Content\Images\male.png" />
     <Content Include="Content\Images\circle-fill-add.png" />
     <Content Include="Content\Images\female.png" />
@@ -1908,6 +1911,7 @@
     <Content Include="SQL_Scripts\Hr_Update_001.sql" />
     <Content Include="SQL_Scripts\Hr_Init.sql" />
     <Content Include="SQL_Scripts\Hr_Update_002.sql" />
+    <Content Include="SQL_Scripts\Hr_Update_017.sql" />
     <Content Include="SQL_Scripts\Hr_Update_016.sql" />
     <Content Include="SQL_Scripts\Hr_Update_015.sql" />
     <Content Include="SQL_Scripts\Hr_Update_014.sql" />

@@ -65,6 +65,8 @@ namespace ML.Entities.ResponseModels.Hr
     public class PersonGridResponse
     {
         public int Id { get; set; }
+
+        public string EmpCode { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime DoB { get; set; }

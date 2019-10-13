@@ -29,7 +29,7 @@
             <tbody class="txt-center">
                 <tr ng-repeat="row in vm.employees | filter:lookup" ng-click="vm.rowClick(row)">
                     <td><input type="checkbox" class="mt-2" ng-change="vm.checkSelected()" ng-model="row.IsSelected" /></td>
-                    <td>{{row.Id}}</td>
+                    <td>{{row.EmpCode}}</td>
                     <!--<td><img class="circle-img" style="height:45px;" src="../../../Content/Images/{{row.picture}}" /></td>-->
                     <td style="width: 10%;">{{row.FirstName}}</td>
                     <td style="width: 10%;">{{row.LastName}}</td>
@@ -100,13 +100,13 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="userId">Mã Nhân Viên: <span class="required_ico">*</span> </label>
-                                <input name="userId" maxlength="10" class="form-control" type="text" ng-model="vm.createModel.employeeCode" />
+                                <input name="userId" maxlength="6" class="form-control" ng-change="vm.checkValidEmployeeCode()" type="text" ng-model="vm.createModel.employeeCode" />
                                 <span style="width:100%;" ng-if="!vm.isValidEmployeeCode" class="required_ico">{{vm.checkEmployeeCodeMessage}}</span>
                                 <span style="width:100%; color:green;" ng-if="vm.isValidEmployeeCode" >{{vm.checkEmployeeCodeMessage}}</span>
 
                             </div>
                             <div class="col-md-6">
-                                <button style="margin-top:30px;" class="btn btn-outline-primary" ng-disabled="vm.createModel.employeeCode ==''" ng-click="vm.checkEmployeeCode()">Kiểm Tra Mã Nhân Viên</button>
+                                <button style="margin-top:30px;" class="btn btn-outline-primary" ng-disabled="vm.createModel.employeeCode =='' || !vm.employeeCodeIsNumber || vm.createModel.employeeCode.length !=6" ng-click="vm.checkEmployeeCode()">Kiểm Tra Mã Nhân Viên</button>
                             </div>
                             
                         </div>
@@ -114,7 +114,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">HỦY BỎ</button>
-                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.createSimplePerson()" ng-disabled="!vm.createValid">LƯU</button>
+                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.createSimplePerson()" ng-disabled="!vm.createValid ||!vm.isValidEmployeeCode">LƯU</button>
                 </div>
             </div>
         </div>
