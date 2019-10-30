@@ -23,5 +23,7 @@ namespace ML.Business.Interfaces.Hr
         int UpdatePersonWorkLeaveHistory(PersonWorkLeaveHistory request, int userId);
         int DeletePersonWorkLeaveHistory(int id, int userId);
 
+        PersonProcessDateTime GetPersonProcessDateTime(int pid);
+
     }
 }

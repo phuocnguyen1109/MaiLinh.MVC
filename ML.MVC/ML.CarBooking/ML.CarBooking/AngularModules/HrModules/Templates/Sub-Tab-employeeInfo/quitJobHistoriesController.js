@@ -48,9 +48,21 @@
                 });
         }
 
+
         function createPersonWorkLeaveHistory() {
-            resetModel();
-            vm.isAdding = !vm.isAdding;
+            return $http.get('/api/WorkingHistory/GetPersonProcessDateTime', { params: { pid: personId } })
+                .then(function (result) {
+                    vm.personWorkLeaveHistory = {
+                        Id: 0,
+                        PersonId: personId,
+                        StartDate: new Date(result.data.StartDate),
+                        EndDate: null ,
+                        ContractDate: new Date(result.data.JoinDate),
+                        Reason: null
+                    };
+                    vm.isAdding = !vm.isAdding;
+                });
+           
         }
 
         function updatePersonWorkLeaveHistory(row) {
@@ -67,6 +79,7 @@
         function saveChanges($index) {
             if (vm.personWorkLeaveHistory.Id == 0) {
                 //add
+                
                 $http.post('/api/WorkingHistory/CreatePersonWorkLeaveHistory', vm.personWorkLeaveHistory)
                     .then(function (result) {
                         if (result.data > 0) {

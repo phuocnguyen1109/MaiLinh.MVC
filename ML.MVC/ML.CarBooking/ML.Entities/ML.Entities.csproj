@@ -69,6 +69,7 @@
     <Compile Include="ResponseModels\Hr\GetPersonHelthCheckByPerson.cs" />
     <Compile Include="ResponseModels\Hr\LocationObject.cs" />
     <Compile Include="ResponseModels\Hr\PersonEducationResponse.cs" />
+    <Compile Include="ResponseModels\Hr\PersonProcessDateTime.cs" />
     <Compile Include="ResponseModels\Hr\PersonResponse.cs" />
     <Compile Include="ResponseModels\Hr\PersonWorkingHistoryResponse.cs" />
   </ItemGroup>

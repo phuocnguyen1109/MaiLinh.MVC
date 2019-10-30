@@ -97,6 +97,16 @@ namespace ML.DataLayer.Implements.Hr
                   }, commandType: CommandType.StoredProcedure)).FirstOrDefault();
         }
 
+        public PersonProcessDateTime GetPersonProcessDateTime(int pid)
+        {
+            return Execute(connection => connection
+                 .Query<PersonProcessDateTime>("[Hr].[GetPersonProcessDateTime]",
+                 new
+                 {
+                     pid = pid
+                 }, commandType: CommandType.StoredProcedure)).FirstOrDefault();
+        }
+
         public IEnumerable<PersonWorkLeaveHistory> GetPersonWorkLeaveHistory(int pid)
         {
             return Execute(connection => connection
@@ -114,7 +124,7 @@ namespace ML.DataLayer.Implements.Hr
                             new
                             {
                                 id = request.Id,
-                                startDate = request.StartDate,
+                                startDate = TimeZoneInfo.ConvertTimeToUtc(DateTime.Parse(request.StartDate.ToString())) ,
                                 endDate = request.EndDate,
                                 contractDate = request.ContractDate,
                                 reason = request.Reason,

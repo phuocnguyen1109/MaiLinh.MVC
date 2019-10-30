@@ -21,5 +21,7 @@ namespace ML.DataLayer.Interfaces.Hr
         int CreatePersonWorkLeaveHistory(PersonWorkLeaveHistory request, int userId);
         int UpdatePersonWorkLeaveHistory(PersonWorkLeaveHistory request, int userId);
         int DeletePersonWorkLeaveHistory(int id, int userId);
+
+        PersonProcessDateTime GetPersonProcessDateTime(int pid);
     }
 }
