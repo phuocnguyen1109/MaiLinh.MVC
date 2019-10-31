@@ -59,6 +59,12 @@ namespace ML.CarBooking.Controllers.API.Hr
         {
             return m_personWorkingHistory.DeletePersonWorkLeaveHistory(request.Id, userId);
         }
+
+        [HttpGet]
+        public PersonProcessDateTime GetPersonProcessDateTime(int pid)
+        {
+            return m_personWorkingHistory.GetPersonProcessDateTime(pid);
+        }
         
     }
 }

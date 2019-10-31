@@ -50,6 +50,11 @@ namespace ML.Business.Implements.Hr
             return m_personWorkingHistoryDataLayer.GetById(id);
         }
 
+        public PersonProcessDateTime GetPersonProcessDateTime(int pid)
+        {
+            return m_personWorkingHistoryDataLayer.GetPersonProcessDateTime(pid);
+        }
+
         public IEnumerable<PersonWorkLeaveHistory> GetPersonWorkLeaveHistory(int pid)
         {
             return m_personWorkingHistoryDataLayer.GetPersonWorkLeaveHistory(pid);
