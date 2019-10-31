@@ -242,6 +242,7 @@
     <Content Include="AngularModules\HrModules\workingHistoriesController.js" />
     <Content Include="AngularModules\MainApp.js" />
     <Content Include="AngularModules\mainApp.routes.js" />
+    <Content Include="AngularModules\Utilities.js" />
     <Content Include="AngularModules\Vehicle\editVehicleController.js" />
     <Content Include="AngularModules\Vehicle\Templates\EditVehicle.html" />
     <Content Include="AngularModules\Vehicle\Templates\GPS.html" />

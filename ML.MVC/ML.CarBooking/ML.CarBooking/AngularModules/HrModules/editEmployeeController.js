@@ -3,8 +3,8 @@
     angular.module('mainApp')
         .controller('editEmployeeController', editEmployeeController);
 
-    editEmployeeController.$inject = ['$http', '$scope', '$state', '$stateParams', 'PubSub', 'Upload'];
-    function editEmployeeController($http, $scope, $state, $stateParams, PubSub, Upload) {
+    editEmployeeController.$inject = ['$http', '$scope', '$state', '$stateParams', 'PubSub', 'Upload','Utilities'];
+    function editEmployeeController($http, $scope, $state, $stateParams, PubSub, Upload, Utilities) {
         angular.element(document).find('.modal-backdrop').remove();
         var vm = this;
         var personId = $stateParams.id;
@@ -15,18 +15,40 @@
         vm.personAddresses = [];
         vm.person = {};
 
-
         vm.saveChanges = saveChanges;
         vm.cancel = cancel;
         vm.getDistricts = getDistricts;
         vm.getContactDistricts = getContactDistricts;
         vm.getFile = getFile;
+        vm.changeCurrencyValue = changeCurrencyValue;
 
 
         vm.initialize = initialize;
 
         var changeEducation = null;
         var changeMariageStatus = null;
+
+        function changeCurrencyValue(value) {
+            var strValue;
+            switch (value) {
+                case 'CooperationAmount':
+                    strValue = vm.person.CooperationAmountDisplay;
+                    var iValue = Utilities.convertToInt(strValue);
+                    vm.person.CooperationAmountDisplay = Utilities.convertToCurrency(iValue);
+                    break;
+                case 'CooperationFirstPay':
+                    strValue = vm.person.CooperationFirstPayDisplay;
+                    var iValue = Utilities.convertToInt(strValue);
+                    vm.person.CooperationFirstPayDisplay = Utilities.convertToCurrency(iValue);
+                    break;
+                case 'CooperationMinutePerMonth': 
+                    strValue = vm.person.CooperationMinutePerMonthDisplay;
+                    var iValue = Utilities.convertToInt(strValue);
+                    vm.person.CooperationMinutePerMonthDisplay = Utilities.convertToCurrency(iValue);
+                    break;
+            }
+            
+        }
 
         function initialize() {
             getMasterData();
@@ -108,6 +130,9 @@
             vm.person.DoB = vm.person.DoB.getFullYear() == 1 ? null : vm.person.DoB;
             vm.person.MLCDate = vm.person.MLCDate.getFullYear() == 1 ? null : vm.person.MLCDate;
             vm.person.StartDate = vm.person.StartDate.getFullYear() == 1 ? null : vm.person.StartDate;
+            vm.person.CooperationAmount = Utilities.convertToInt(vm.person.CooperationAmountDisplay);
+            vm.person.CooperationFirstPay = Utilities.convertToInt(vm.person.CooperationFirstPayDisplay);
+            vm.person.CooperationMinutePerMonth = Utilities.convertToInt(vm.person.CooperationMinutePerMonthDisplay);
 
             $http.post('/api/Person/UpdatePersonInformation', vm.person)
                 .then(function (result) {
@@ -130,6 +155,9 @@
                         vm.person.DoB = new Date(vm.person.DoB);
                         vm.person.MLCDate = new Date(vm.person.MLCDate);
                         vm.person.StartDate = new Date(vm.person.StartDate);
+                        vm.person.CooperationAmountDisplay = Utilities.convertToCurrency(vm.person.CooperationAmount);
+                        vm.person.CooperationFirstPayDisplay = Utilities.convertToCurrency(vm.person.CooperationFirstPay);
+                        vm.person.CooperationMinutePerMonthDisplay = Utilities.convertToCurrency(vm.person.CooperationMinutePerMonth);
                         vm.person.DepartmentName = vm.departments.find(x => x.id == vm.person.DepartmentId).name;
                         vm.person.RoleName = vm.roles.find(x => x.id == vm.person.RoleId).name;
                         vm.person.imageUrl = vm.person.imageUrl == null ? vm.person.IsMale == 'true' ? "../../../Content/Images/male.png" : "../../../Content/Images/female.png" : vm.person.imageUrl;
