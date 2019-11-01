@@ -48,7 +48,7 @@ BEGIN
 END
 
 GO
-ALTER PROC [Hr].[GetPersonHealthCheck]
+Create PROC [Hr].[GetPersonHealthCheck]
 @pid INT
 AS
 BEGIN

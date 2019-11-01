@@ -22,7 +22,7 @@ begin
 end
 
 GO
-alter proc [Hr].[CreateOrUpdatePersonLifeInsurance]
+Create proc [Hr].[CreateOrUpdatePersonLifeInsurance]
 @id int,
 @pid int,
 @number varchar(50),

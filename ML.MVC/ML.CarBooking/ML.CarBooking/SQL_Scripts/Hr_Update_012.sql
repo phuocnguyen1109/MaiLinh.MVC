@@ -25,7 +25,7 @@ BEGIN
 END
 
 GO
-ALTER PROC [Hr].[CreateOrUpdatePersonBankAccount]
+Create PROC [Hr].[CreateOrUpdatePersonBankAccount]
 	@id INT,
 	@pid INT,
 	@accountName NVARCHAR(100),
