@@ -11,7 +11,7 @@
 
                         <div class="col-lg-2 col-md-2">
                             <label for="dob">NGÀY SINH:</label>
-                            <input type="date" ng-model="vm.person.DoB" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" />
+                            <date-picker value="vm.person.DoB" format="dd/MM/yyyy"></date-picker>
                         </div>
 
                         <div class="col-lg-2 col-md-2">
@@ -110,12 +110,14 @@
                     <div class="row mt-4">
                         <div class="col-lg-3 col-md-3">
                             <label for="dob">NGÀY VÀO HỆ THỐNG MLC:</label>
-                            <input type="date" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" ng-model="vm.person.MLCDate" />
+                            <!--<input type="date" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" ng-model="vm.person.MLCDate" />-->
+                            <date-picker value="vm.person.MLCDate" format="dd/MM/yyyy"></date-picker>
                         </div>
 
                         <div class="col-lg-3 col-md-3">
                             <label for="dob">NGÀY VÀO CÔNG TY:</label>
-                            <input type="date" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" placeholder="..." ng-model="vm.person.StartDate" />
+                            <!--<input type="date" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" placeholder="..." ng-model="vm.person.StartDate" />-->
+                            <date-picker value="vm.person.StartDate" format="dd/MM/yyyy"></date-picker>
                         </div>
 
                         <div class="col-lg-3 col-md-3">

@@ -55,9 +55,9 @@
                     vm.personWorkLeaveHistory = {
                         Id: 0,
                         PersonId: personId,
-                        StartDate: new Date(result.data.StartDate),
+                        StartDate: result.data.StartDate,
                         EndDate: null ,
-                        ContractDate: new Date(result.data.JoinDate),
+                        ContractDate: result.data.JoinDate,
                         Reason: null
                     };
                     vm.isAdding = !vm.isAdding;

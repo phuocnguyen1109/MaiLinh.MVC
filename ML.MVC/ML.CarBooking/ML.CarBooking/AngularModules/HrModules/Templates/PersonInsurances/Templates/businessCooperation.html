@@ -1,14 +1,19 @@
 ﻿<div class="row">
     <div class="col-md-4">
         <label for="Amount">TỔNG TIỀN:</label>
-        <input type="text" name="Amount" class="form-control" ng-change="vm.changeCurrencyValue('CooperationAmount')" ng-model="vm.person.CooperationAmountDisplay" />
+        <ml-currency value="vm.person.CooperationAmount"></ml-currency>
+        <!--<input type="text" name="Amount" class="form-control" ng-change="vm.changeCurrencyValue('CooperationAmount')" ng-model="vm.person.CooperationAmountDisplay" />-->
     </div>
     <div class="col-md-4">
         <label for="firstPay">ĐÓNG TIỀN ĐỢT ĐẦU:</label>
-        <input type="text" name="firstPay" class="form-control" ng-change="vm.changeCurrencyValue('CooperationFirstPay')" ng-model="vm.person.CooperationFirstPayDisplay" />
+        <ml-currency value="vm.person.CooperationFirstPay"></ml-currency>
+        <!--<input type="text" name="firstPay" class="form-control" ng-change="vm.changeCurrencyValue('CooperationFirstPay')" ng-model="vm.person.CooperationFirstPayDisplay" />-->
     </div>
     <div class="col-md-4">
         <label for="minutePerMonth">TRỪ HÀNG THÁNG TRONG LƯƠNG:</label>
-        <input type="text" name="minutePerMonth" class="form-control" ng-change="vm.changeCurrencyValue('CooperationMinutePerMonth')" ng-model="vm.person.CooperationMinutePerMonthDisplay" />
+        <ml-currency value="vm.person.CooperationMinutePerMonth"></ml-currency>
+        <!--<input type="text" name="minutePerMonth" class="form-control" ng-change="vm.changeCurrencyValue('CooperationMinutePerMonth')" ng-model="vm.person.CooperationMinutePerMonthDisplay" />-->
     </div>
+
 </div>
+

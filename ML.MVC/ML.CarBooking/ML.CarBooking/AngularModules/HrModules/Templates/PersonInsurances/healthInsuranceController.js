@@ -57,8 +57,8 @@
         function updatePersonHealthInsurance(row ,$index) {
             resetModel();
             vm.personHealthInsurance.Id = row.Id;
-            vm.personHealthInsurance.FromDate = new Date(row.FromDate);
-            vm.personHealthInsurance.ToDate = new Date(row.ToDate);
+            vm.personHealthInsurance.FromDate = row.FromDate;
+            vm.personHealthInsurance.ToDate = row.ToDate;
             vm.personHealthInsurance.Amount = row.Amount;
             vm.personHealthInsurance.Duration = row.Duration;
             vm.personHealthInsurance.IsDeleted = row.IsDeleted;
@@ -104,8 +104,8 @@
         function openDeleteModal(row, $index) {
             resetModel();
             vm.personHealthInsurance.Id = row.Id;
-            vm.personHealthInsurance.FromDate = new Date(row.FromDate);
-            vm.personHealthInsurance.ToDate = new Date(row.ToDate);
+            vm.personHealthInsurance.FromDate = row.FromDate;
+            vm.personHealthInsurance.ToDate = row.ToDate;
             vm.personHealthInsurance.Amount = row.Amount;
             vm.personHealthInsurance.Duration = row.Duration;
             vm.personHealthInsurance.Index = $index;

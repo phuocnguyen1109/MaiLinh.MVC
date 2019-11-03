@@ -41,7 +41,7 @@
                 vm.personEdu.selectedDriveLicense = values.DriveLicenseId;
                 vm.personEdu.Major = values.Major;
                 vm.personEdu.GradeId = values.GradeId;
-                vm.personEdu.DriveLicenseExpired = new Date(values.DriveLicenseExpired); 
+                //vm.personEdu.DriveLicenseExpired = new Date(values.DriveLicenseExpired); 
                 vm.personEdu.DriveLicensePlace = values.DriveLicensePlace;
                 vm.personEdu.PersonWorkLicenses = buildWorkLincenseGrid(values.PersonWorkLicenses);
             }
@@ -136,8 +136,8 @@
                     item.IsChecked = true;
                     item.IsEnabled = true;
                     item.Duration = selectedWL.Duration;
-                    item.FromDate = new Date(selectedWL.FromDate);
-                    item.ToDate = new Date(selectedWL.ToDate);
+                    item.FromDate = selectedWL.FromDate;
+                    item.ToDate = selectedWL.ToDate;
                 }
             });
         }

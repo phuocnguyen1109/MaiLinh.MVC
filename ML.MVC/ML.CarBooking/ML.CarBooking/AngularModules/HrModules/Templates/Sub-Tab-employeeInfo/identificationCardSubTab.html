@@ -71,7 +71,8 @@
                             <div class="row mt-3">
                                 <div class="col-md-6">
                                     <label for="issuanceDate">Cấp ngày <span class="required_ico">*</span></label>
-                                    <input name="issuanceDate" class="form-control" type="date" ng-model="vm.userIdentificationCard.DateReleased" ng-change="vm.checkValid()" />
+                                    <!--<input name="issuanceDate" class="form-control" type="date" ng-model="vm.userIdentificationCard.DateReleased" ng-change="vm.checkValid()" />-->
+                                    <date-picker value="vm.userIdentificationCard.DateReleased" format="dd/MM/yyyy"></date-picker>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="issuedBy">Nơi cấp <span class="required_ico">*</span></label>

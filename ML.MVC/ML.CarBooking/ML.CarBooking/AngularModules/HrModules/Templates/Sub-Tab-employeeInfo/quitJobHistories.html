@@ -18,13 +18,16 @@
             <tbody class="txt-center">
                 <tr ng-if="vm.isAdding == true">
                     <td>
-                        <input type="date" class="form-control" ng-model="vm.personWorkLeaveHistory.StartDate" />
+                        <!--<input type="date" class="form-control" ng-model="vm.personWorkLeaveHistory.StartDate" />-->
+                        <date-picker value="vm.personWorkLeaveHistory.StartDate" format="dd/MM/yyyy"></date-picker>
                     </td>
                     <td>
-                        <input type="date" class="form-control" ng-model="vm.personWorkLeaveHistory.ContractDate" />
+                        <!--<input type="date" class="form-control" ng-model="vm.personWorkLeaveHistory.ContractDate" />-->
+                        <date-picker value="vm.personWorkLeaveHistory.ContractDate" format="dd/MM/yyyy"></date-picker>
                     </td>
                     <td>
-                        <input type="date" class="form-control" ng-model="vm.personWorkLeaveHistory.EndDate" />
+                        <!--<input type="date" class="form-control" ng-model="vm.personWorkLeaveHistory.EndDate" />-->
+                        <date-picker value="vm.personWorkLeaveHistory.EndDate" format="dd/MM/yyyy"></date-picker>
                     </td>
                     <td>
                         <textarea class="form-control" ng-model="vm.personWorkLeaveHistory.Reason" />
@@ -54,13 +57,16 @@
                     </td>
 
                     <td ng-if="row.isEditing">
-                        <input type="date" class="form-control" ng-model="vm.personWorkLeaveHistory.StartDate" />
+                        <!--<input type="date" class="form-control" ng-model="vm.personWorkLeaveHistory.StartDate" />-->
+                        <date-picker value="vm.personWorkLeaveHistory.StartDate" format="dd/MM/yyyy"></date-picker>
                     </td>
                     <td ng-if="row.isEditing">
-                        <input type="date" class="form-control" ng-model="vm.personWorkLeaveHistory.ContractDate" />
+                        <!--<input type="date" class="form-control" ng-model="vm.personWorkLeaveHistory.ContractDate" />-->
+                        <date-picker value="vm.personWorkLeaveHistory.ContractDate" format="dd/MM/yyyy"></date-picker>
                     </td>
                     <td ng-if="row.isEditing">
-                        <input type="date" class="form-control" ng-model="vm.personWorkLeaveHistory.EndDate" />
+                        <!--<input type="date" class="form-control" ng-model="vm.personWorkLeaveHistory.EndDate" />-->
+                        <date-picker value="vm.personWorkLeaveHistory.EndDate" format="dd/MM/yyyy"></date-picker>
                     </td>
                     <td ng-if="row.isEditing">
                         <textarea class="form-control" ng-model="vm.personWorkLeaveHistory.Reason" />

@@ -5,11 +5,13 @@
     </div>
     <div class="col-md-4">
         <label for="salaryJoin">MỨC LƯƠNG THAM GIA:</label>
-        <input type="number" name="salaryJoin" class="form-control" ng-model="vm.person.SocialInsuranceSalaryJoin" />
+        <!--<input type="number" name="salaryJoin" class="form-control" ng-model="" />-->
+        <ml-currency value="vm.person.SocialInsuranceSalaryJoin"></ml-currency>
     </div>
     <div class="col-md-4">
         <label for="AmountPerMonth">SỐ TIỀN ĐÓNG HÀNG THÁNG:</label>
-        <input type="text" name="AmountPerMonth" class="form-control" ng-model="vm.person.SocialInsurancePayPerMonth" />
+        <!--<input type="text" name="AmountPerMonth" class="form-control" ng-model="vm.person.SocialInsurancePayPerMonth" />-->
+        <ml-currency value="vm.person.SocialInsurancePayPerMonth"></ml-currency>
     </div>
 </div>
 <div class="row">

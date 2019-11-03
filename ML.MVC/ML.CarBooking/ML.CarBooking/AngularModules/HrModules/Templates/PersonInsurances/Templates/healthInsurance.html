@@ -18,16 +18,20 @@
             <tbody class="txt-center">
                 <tr ng-if="vm.isAdding == true">
                     <td>
-                        <input type="number" class="form-control" ng-model="vm.personHealthInsurance.Amount" />
+                        <!--<input type="number" class="form-control" ng-model="vm.personHealthInsurance.Amount" />-->
+                        <ml-currency value="vm.personHealthInsurance.Amount"></ml-currency>
                     </td>
                     <td>
-                        <input type="number" class="form-control" ng-model="vm.personHealthInsurance.Duration" />
+                        <!--<input type="number" class="form-control" ng-model="vm.personHealthInsurance.Duration" />-->
+                        <ml-currency value="vm.personHealthInsurance.Duration"></ml-currency>
                     </td>
                     <td>
-                        <input type="date" class="form-control" ng-model="vm.personHealthInsurance.FromDate" />
+                        <!--<input type="date" class="form-control" ng-model="vm.personHealthInsurance.FromDate" />-->
+                        <date-picker value="vm.personHealthInsurance.FromDate" format="dd/MM/yyyy"></date-picker>
                     </td>
                     <td>
-                        <input type="date" class="form-control" ng-model="vm.personHealthInsurance.ToDate" />
+                        <!--<input type="date" class="form-control" ng-model="vm.personHealthInsurance.ToDate" />-->
+                        <date-picker value="vm.personHealthInsurance.ToDate" format="dd/MM/yyyy"></date-picker>
                     </td>
                     <td>
                         <button class="btn btn-outline-success" ng-click="vm.saveChanges($index)">
@@ -54,16 +58,20 @@
                     </td>
 
                     <td ng-if="row.isEditing">
-                        <input type="number" class="form-control" ng-model="vm.personHealthInsurance.Amount" />
+                        <!--<input type="number" class="form-control" ng-model="vm.personHealthInsurance.Amount" />-->
+                        <ml-currency value="vm.personHealthInsurance.Amount"></ml-currency>
                     </td>
                     <td ng-if="row.isEditing">
-                        <input type="number" class="form-control" ng-model="vm.personHealthInsurance.Duration" />
+                        <!--<input type="number" class="form-control" ng-model="vm.personHealthInsurance.Duration" />-->
+                        <ml-currency value="vm.personHealthInsurance.Amount"></ml-currency>
                     </td>
                     <td ng-if="row.isEditing">
-                        <input type="date" class="form-control" ng-model="vm.personHealthInsurance.FromDate" />
+                        <!--<input type="date" class="form-control" ng-model="vm.personHealthInsurance.FromDate" />-->
+                        <date-picker value="vm.personHealthInsurance.FromDate" format="dd/MM/yyyy"></date-picker>
                     </td>
                     <td ng-if="row.isEditing">
-                        <input type="date" class="form-control" ng-model="vm.personHealthInsurance.ToDate" />
+                        <!--<input type="date" class="form-control" ng-model="vm.personHealthInsurance.ToDate" />-->
+                        <date-picker value="vm.personHealthInsurance.ToDate" format="dd/MM/yyyy"></date-picker>
                     </td>
                     <td ng-if="row.isEditing">
                         <button class="btn btn-outline-success" ng-click="vm.saveChanges($index)">

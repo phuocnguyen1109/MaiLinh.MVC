@@ -64,18 +64,21 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="bankName">TỪ NGÀY:</label>
-                                    <input class="form-control" type="date" ng-model="vm.selectedRow.FromDate" ng-change="vm.checkValid()" />
+                                    <!--<input class="form-control" type="date" ng-model="vm.selectedRow.FromDate" ng-change="vm.checkValid()" />-->
+                                    <date-picker value="vm.selectedRow.FromDate" format="dd/MM/yyyy"></date-picker>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="bankName">ĐẾN NGÀY:</label>
-                                    <input class="form-control" type="date" ng-model="vm.selectedRow.ToDate" ng-change="vm.checkValid()" />
+                                    <!--<input class="form-control" type="date" ng-model="vm.selectedRow.ToDate" ng-change="vm.checkValid()" />-->
+                                    <date-picker value="vm.selectedRow.ToDate" format="dd/MM/yyyy"></date-picker>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="bankName">SỐ TIỀN ĐÓNG HÀNG THÁNG:</label>
-                                    <input class="form-control" type="number" ng-model="vm.selectedRow.Amount" ng-change="vm.checkValid()" />
+                                    <!--<input class="form-control" type="number" ng-model="vm.selectedRow.Amount" ng-change="vm.checkValid()" />-->
+                                    <ml-currency value="vm.selectedRow.Amount"></ml-currency>
                                 </div>
                             </div>
                         </form>

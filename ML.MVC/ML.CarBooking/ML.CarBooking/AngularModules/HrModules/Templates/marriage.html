@@ -96,11 +96,13 @@
                         <div class="row" ng-if="vm.personRelationship.IsDependent">
                             <div class="col-md-6">
                                 <label for="StartDate">Thời gian bắt đầu: <span class="required_ico">*</span></label>
-                                <input name="StartDate" class="form-control" type="date" min="1900" ng-model="vm.personRelationship.DependentStart" ng-change="vm.checkValid()" />
+                                <!--<input name="StartDate" class="form-control" type="date" min="1900" ng-model="vm.personRelationship.DependentStart" ng-change="vm.checkValid()" />-->
+                                <date-picker value="vm.personRelationship.DependentStart" format="dd/MM/yyyy"></date-picker>
                             </div>
                             <div class="col-md-6">
                                 <label for="EndDate">Thời gian kết thúc: <span class="required_ico">*</span></label>
-                                <input name="EndDate" class="form-control" type="date" min="1900" ng-model="vm.personRelationship.DependentEnd" ng-change="vm.checkValid()" />
+                                <!--<input name="EndDate" class="form-control" type="date" min="1900" ng-model="vm.personRelationship.DependentEnd" ng-change="vm.checkValid()" />-->
+                                <date-picker value="vm.personRelationship.DependentEnd" format="dd/MM/yyyy"></date-picker>
                             </div>
                         </div>
                         <br />

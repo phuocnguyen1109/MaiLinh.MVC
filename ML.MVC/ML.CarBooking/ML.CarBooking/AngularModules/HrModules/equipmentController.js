@@ -37,7 +37,7 @@
                             var select = data.find(x => x.EquipmentId == item.Id);
                             if (select) {
                                 item.IsChecked = true;
-                                item.ReceivedDate = new Date(select.ReceivedDate);
+                                item.ReceivedDate = select.ReceivedDate;
                             }
                         });
                     }

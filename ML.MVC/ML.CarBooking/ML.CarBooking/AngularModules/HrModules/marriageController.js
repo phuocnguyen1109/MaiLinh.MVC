@@ -141,8 +141,8 @@
                 IsDead: relative.IsDead,
                 PersonId: personId,
                 IsDependent: relative.IsDependent,
-                DependentStart: new Date(relative.DependentStart),
-                DependentEnd:new Date(relative.DependentEnd)
+                DependentStart: relative.DependentStart,
+                DependentEnd: relative.DependentEnd
             };
 
         };

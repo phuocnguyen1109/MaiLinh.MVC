@@ -121,8 +121,8 @@
             vm.modalTitle = "Chỉnh sửa";
             vm.isValid = true;
             vm.userContract = row;
-            vm.userContract.SignedIn = new Date(vm.userContract.SignedIn);
-            vm.userContract.SignOut = new Date(vm.userContract.SignOut);
+            vm.userContract.SignedIn = vm.userContract.SignedIn;
+            vm.userContract.SignOut = vm.userContract.SignOut;
         }
 
         function saveChanges() {

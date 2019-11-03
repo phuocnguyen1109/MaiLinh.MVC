@@ -127,12 +127,10 @@
             vm.person.IsPension = vm.person.IsPension == 'true' ? true : false;
             vm.person.IsMale = vm.person.IsMale == 'true' ? true : false;
             vm.person.Actived = vm.person.Actived ? 'true' : 'false';
-            vm.person.DoB = vm.person.DoB.getFullYear() == 1 ? null : vm.person.DoB;
+            vm.person.DoB = vm.person.DoB;
             vm.person.MLCDate = vm.person.MLCDate.getFullYear() == 1 ? null : vm.person.MLCDate;
             vm.person.StartDate = vm.person.StartDate.getFullYear() == 1 ? null : vm.person.StartDate;
-            vm.person.CooperationAmount = Utilities.convertToInt(vm.person.CooperationAmountDisplay);
-            vm.person.CooperationFirstPay = Utilities.convertToInt(vm.person.CooperationFirstPayDisplay);
-            vm.person.CooperationMinutePerMonth = Utilities.convertToInt(vm.person.CooperationMinutePerMonthDisplay);
+            console.log(vm.person.StartDate);
 
             $http.post('/api/Person/UpdatePersonInformation', vm.person)
                 .then(function (result) {
@@ -152,12 +150,10 @@
                         vm.person.IsPension = vm.person.IsPension ? 'true' : 'false';
                         vm.person.IsMale = vm.person.IsMale ? 'true' : 'false';
                         vm.person.Actived = vm.person.Actived ? 'true' : 'false';
-                        vm.person.DoB = new Date(vm.person.DoB);
-                        vm.person.MLCDate = new Date(vm.person.MLCDate);
-                        vm.person.StartDate = new Date(vm.person.StartDate);
-                        vm.person.CooperationAmountDisplay = Utilities.convertToCurrency(vm.person.CooperationAmount);
-                        vm.person.CooperationFirstPayDisplay = Utilities.convertToCurrency(vm.person.CooperationFirstPay);
-                        vm.person.CooperationMinutePerMonthDisplay = Utilities.convertToCurrency(vm.person.CooperationMinutePerMonth);
+                       // vm.person.DoB = new Date(vm.person.DoB);
+                       // console.log(vm.person.DoB);
+                        //vm.person.MLCDate = new Date(vm.person.MLCDate);
+                        //vm.person.StartDate = new Date(vm.person.StartDate);
                         vm.person.DepartmentName = vm.departments.find(x => x.id == vm.person.DepartmentId).name;
                         vm.person.RoleName = vm.roles.find(x => x.id == vm.person.RoleId).name;
                         vm.person.imageUrl = vm.person.imageUrl == null ? vm.person.IsMale == 'true' ? "../../../Content/Images/male.png" : "../../../Content/Images/female.png" : vm.person.imageUrl;

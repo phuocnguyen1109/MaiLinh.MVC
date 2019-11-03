@@ -204,6 +204,8 @@
     <Content Include="AngularModules\Administration\Templates\MasterDataManagements.html" />
     <Content Include="AngularModules\Administration\Templates\nationalManagement.html" />
     <Content Include="AngularModules\Administration\Templates\NationalModal.html" />
+    <Content Include="AngularModules\Directives\CurrencyDirective.js" />
+    <Content Include="AngularModules\Directives\DatePickerDirective.js" />
     <Content Include="AngularModules\Enums.js" />
     <Content Include="AngularModules\HrModules\editEmployeeController.js" />
     <Content Include="AngularModules\HrModules\educationController.js" />
@@ -1887,6 +1889,9 @@
     <Content Include="Content\fontawesome-free\webfonts\fa-solid-900.ttf" />
     <Content Include="Content\fontawesome-free\webfonts\fa-solid-900.woff" />
     <Content Include="Content\fontawesome-free\webfonts\fa-solid-900.woff2" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\CustomScripts\sb-admin-2.min.js" />
     <Content Include="Scripts\FileAPI.flash.swf" />

@@ -1,5 +1,5 @@
-﻿(function () {
-    'use strict'
+﻿//(function () {
+//    'use strict'
     angular.module('mainApp').controller('healthCheckManagementController', healthCheckManagementController);
 
     healthCheckManagementController.$inject = ['$http', '$rootScope', '$scope', '$state', '$stateParams','$sce'];
@@ -122,4 +122,4 @@
                 });
         }
     }
-})();
+//})();

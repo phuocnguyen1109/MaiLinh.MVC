@@ -36,7 +36,7 @@
             if (value == NaN) return 0;
             var removeDots;
             for (var i = 0; i < value.toString().length; i++) {
-                removeDots = value.toString().replace('.', '');
+                removeDots = value.toString().replace(/\./gi, '');
             }
             var result = parseInt(removeDots);
             return result;

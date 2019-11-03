@@ -86,8 +86,6 @@
             resetModel();
             vm.modalTitle = "Chỉnh sửa giấy tờ tùy thân";
             vm.userIdentificationCard = row;
-            var iDate = new Date(row.DateReleased);
-            vm.userIdentificationCard.DateReleased = iDate;
             vm.isValid = true;
         }
 

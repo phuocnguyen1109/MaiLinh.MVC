@@ -28,7 +28,7 @@
 
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <label for="major">CÓ GIÁ TRỊ ĐẾN:</label>
-                        <input type="date" ng-model="vm.personEdu.DriveLicenseExpired" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" />
+                        <date-picker value="vm.personEdu.DriveLicenseExpired" format="dd/MM/yyyy"></date-picker>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6 mt-2">
                         <label for="major">NƠI CẤP:</label>
@@ -150,8 +150,8 @@
                         <td class="center-block txt-center"><input type="checkbox" ng-model="row.IsChecked" ng-change="vm.changeTime(row)" ng-disabled="vm.IsViewing" /></td>
                         <td class="text-uppercase">{{row.Name}}</td>
                         <td><input type="number" class="form-control" ng-model="row.Duration" ng-change="vm.changeTime(row)" ng-disabled="!row.IsChecked" /></td>
-                        <td><input type="date" class="form-control" ng-model="row.FromDate" ng-change="vm.changeTime(row)" ng-disabled="!row.IsChecked" /></td>
-                        <td><input type="date" class="form-control" ng-model="row.ToDate" disabled /></td>
+                        <td><date-picker value="row.FromDate" format="dd/MM/yyyy" ></date-picker></td>
+                        <td><date-picker value="row.ToDate" format="dd/MM/yyyy" ></date-picker></td>
                         <td>
                             <button class="btn btn-outline-primary" ng-click="vm.saveLincense(row)" ng-disabled="!row.IsEnabled">
                                 <i class="fas fa-fw fa-save"></i>

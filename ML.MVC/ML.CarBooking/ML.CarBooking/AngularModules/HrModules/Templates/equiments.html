@@ -14,8 +14,9 @@
                 <td>{{row.Id}}</td>
                 <td>{{row.Name}}</td>
                 <td><input type="checkbox" ng-model="row.IsChecked" ng-disabled="vm.IsViewing" /></td>
-                <td>
-                    <input type="date" class="form-control" ng-disabled="!row.IsChecked || vm.IsViewing"  ng-model="row.ReceivedDate" />
+                <td style="padding-bottom: 0;">
+                    <!--<input type="date" class="form-control" ng-disabled="!row.IsChecked || vm.IsViewing" ng-model="row.ReceivedDate" />-->
+                    <date-picker value="row.ReceivedDate" format="dd/MM/yyyy"></date-picker>
                 </td>
                 <td>
                     <button class="btn btn-outline-primary" ng-disabled="!(row.IsChecked && row.ReceivedDate) || vm.IsViewing" ng-click="vm.save(row)">
