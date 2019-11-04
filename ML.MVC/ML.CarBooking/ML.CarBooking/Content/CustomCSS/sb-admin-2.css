@@ -480,6 +480,18 @@ mark,
     list-style: none;
 }
 
+.information {
+    width: 100%;
+    border-style: solid;
+    border-width: thin;
+    display: block;
+    padding-left: 10px;
+    height: 32px;
+    border-color: lightgrey;
+    color: black;
+    padding-top: 3px;
+}
+
 .list-inline-item {
     display: inline-block;
 }

@@ -21,9 +21,13 @@ function datePicker() {
 
     function controller($scope) {
 
-        $scope.$watch('$scope.disabled', function (oldValue, newValue) {
+        $scope.$watch('$scope.disabled', function (newValue, oldValue) {
             $scope.disabled = newValue;
             console.log(newValue);
+        });
+
+        $scope.$watch('value', function (newValue, oldValue) {
+            initialize();
         });
 
         function initialize() {

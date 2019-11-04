@@ -51,16 +51,16 @@
                 <table class="table table-hover">
                     <thead class="thead-light shadow_tb">
                         <tr>
-                            <th style="width:45%;">NGOẠI NGỮ</th>
-                            <th style="width:30%;">ĐÁNH GIÁ</th>
-                            <th style="width:25%;"></th>
+                            <th class="custom-col" style="width:45%;">NGOẠI NGỮ</th>
+                            <th class="custom-col" style="width:30%;">ĐÁNH GIÁ</th>
+                            <th class="custom-col" style="width:25%;"></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="row in vm.personEdu.PersonLanguages">
-                            <td>{{row.LanguageName}}</td>
-                            <td>{{row.Level}}</td>
-                            <td>
+                            <td class="custom-col">{{row.LanguageName}}</td>
+                            <td class="custom-col">{{row.Level}}</td>
+                            <td class="custom-col">
                                 <button class="btn btn-outline-success" data-toggle="modal" data-target="#LanguageModal" ng-click="vm.openEditLanguage(row, $index)" ng-disabled="vm.IsViewing">
                                     <i class="fas fa-fw fa-pen"></i>
                                 </button>
@@ -149,11 +149,11 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="row in vm.personWorkLicenses">
-                        <td class="center-block txt-center custom-col"><input type="checkbox" ng-model="row.IsChecked" ng-change="vm.changeTime(row)" ng-disabled="vm.IsViewing" /></td>
+                        <td class="center-block txt-center custom-col"><input type="checkbox" ng-model="row.IsChecked" ng-disabled="vm.IsViewing" /></td>
                         <td class="text-uppercase custom-col">{{row.Name}}</td>
-                        <td class="custom-col"><input type="number" class="form-control" ng-model="row.Duration" ng-change="vm.changeTime(row)" ng-disabled="!row.IsChecked" /></td>
-                        <td class="custom-col"><div style="width:100%;"><date-picker datepicker-append-to-body="true" value="row.FromDate" format="dd/MM/yyyy"></date-picker></div></tdclass="custom-col">
-                        <td class="custom-col"><div style="width:100%;"><date-picker datepicker-append-to-body="true" value="row.ToDate" format="dd/MM/yyyy"></date-picker></div></td>
+                        <td class="custom-col"><input type="number" class="form-control" ng-model="row.Duration"  ng-disabled="!row.IsChecked" /></td>
+                        <td class="custom-col"><div style="width:100%; margin-top:15px;"><date-picker datepicker-append-to-body="true" value="row.FromDate" format="dd/MM/yyyy"></date-picker></div></td>
+                        <td class="custom-col"><button style="display:inline; float:left;" class="btn btn-outline-info" ng-click="vm.changeTime(row)"><i class="glyphicon glyphicon-adjust"></i></button> <span style="width:60%; padding-left:45px;" class="information">{{row.ToDate | date:'dd/MM/yyyy'}}</span></td>
                         <td class="custom-col">
                             <button class="btn btn-outline-primary" ng-click="vm.saveLincense(row)" ng-disabled="!row.IsEnabled">
                                 <i class="fas fa-fw fa-save"></i>

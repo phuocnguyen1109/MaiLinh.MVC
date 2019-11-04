@@ -1,4 +1,6 @@
-﻿<div ng-controller="contractSubTabController as vm" class="mt-4 display-igr">
+﻿
+
+<div ng-controller="contractSubTabController as vm" class="mt-4 display-igr">
     <div ng-init="vm.initialize()">
 
         <button class="btn btn-outline-primary mt-3 mb-2 mr-1 float-right" data-toggle="modal" data-target="#ContractModal" ng-click="vm.openAddModal()" ng-disabled="vm.IsViewing">
@@ -80,9 +82,10 @@
                                     <date-picker value="vm.userContract.SignedIn" format="dd/MM/yyyy"></date-picker>
                                     <!--<input name="startDate" class="form-control" type="date" ng-model="vm.userContract.SignedIn" ng-change="vm.generExpiredDate();vm.checkValid()" />-->
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6" ng-show="vm.userContract.Duration != 0">
                                     <label for="expiredDate">Ngày Hết Hạn HĐ <span class="required_ico">*</span></label>
-                                    <date-picker value="vm.userContract.SignOut" format="dd/MM/yyyy"></date-picker>
+                                    <!--<date-picker value="vm.userContract.SignOut" format="dd/MM/yyyy"></date-picker>-->
+                                    <span  class="information">{{vm.userContract.SignOut | date: 'dd/MM/yyyy' }}</span>
                                     <!--<input name="expiredDate" class="form-control" type="date" ng-model="vm.userContract.SignOut" />-->
                                 </div>
                             </div>

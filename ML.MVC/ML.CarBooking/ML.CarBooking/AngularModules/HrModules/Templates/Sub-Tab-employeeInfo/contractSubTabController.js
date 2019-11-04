@@ -20,9 +20,8 @@
         vm.IsViewing = $stateParams.IsViewing;
 
         function initialize() {
-            var date = new Date();
-            vm.getDate = (date.getMonth()+1) + "/" + date.getDate() + "/" + date.getFullYear();
-
+            //var date = new Date();
+            //vm.getDate = (date.getMonth()+1) + "/" + date.getDate() + "/" + date.getFullYear();
             getContracts();
             getTypesOfContract();
             getContractPeriod();
@@ -65,7 +64,7 @@
                 { typeId: 0, typeName: "--Chọn Loại Hợp Đồng--" },
                 { typeId: 1, typeName: "Hợp Đồng Lao Động" },
                 { typeId: 2, typeName: "Hợp Đồng Hợp Tác" },
-                { typeId: 3, typeName: "Khác" },
+                { typeId: 3, typeName: "Khác" }
             ];
         }
 
@@ -81,28 +80,41 @@
         }
 
         function checkValid() {
-            if (vm.userContract.ContractTypeId != null) {
-                if (vm.userContract.Duration == null) {
-                    vm.message = "Nhập thời hạn của hợp đồng!";
-                    vm.isValid = false;
-                    return;
-                }
-                if (vm.userContract.ContractNumber == 0 || !vm.userContract.ContractNumber) {
+            vm.isValid = false;
+            if (!vm.userContract.ContractTypeId) return;
+
+                //if (!vm.userContract.Duration) {
+                //    vm.message = "Nhập thời hạn của hợp đồng!";
+                //    return;
+                //}
+                if (vm.userContract.ContractNumber.toString().trim().length==0 || !vm.userContract.ContractNumber) {
                     vm.message = "Nhập số hợp đồng!";
-                    vm.isValid = false;
                     return;
                 }
                 if (vm.userContract.SignedIn == null) {
                     vm.message = "Nhập ngày ký hợp đồng!";
-                    vm.isValid = false;
                     return;
                 }
                 vm.message = null;
                 vm.isValid = true;
             }
-        }
 
-        function generExpiredDate(row) {
+        $scope.$watch('vm.userContract.SignedIn', function (value) {
+            if (!vm.userContract || vm.userContract.Duration == 0 ) return;
+            if (!value) {
+                vm.userContract.SignOut = null;
+                return;
+            }
+
+            var date = new Date(value);
+            vm.userContract.SignOut = new Date(date.getFullYear(), date.getMonth() + vm.userContract.Duration, date.getDate(), 7, 0, 0);
+        });
+
+        function generExpiredDate() {
+            if (vm.userContract.Duration == 0) {
+                vm.userContract.SignOut = null;
+                return;
+            }
             var signedOutDate = null;
             if (vm.userContract.SignedIn != null && vm.userContract.Duration != null) {
                 var signedInDate = new Date(vm.userContract.SignedIn);
@@ -121,8 +133,6 @@
             vm.modalTitle = "Chỉnh sửa";
             vm.isValid = true;
             vm.userContract = row;
-            vm.userContract.SignedIn = vm.userContract.SignedIn;
-            vm.userContract.SignOut = vm.userContract.SignOut;
         }
 
         function saveChanges() {

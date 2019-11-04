@@ -42,8 +42,6 @@
                             case 2: item.TypeDisplay = "Passport"; break;
                             case 3: item.TypeDisplay = "Thẻ Căn Cước Công Dân"; break;
                         }
-
-                        item.DateDisplay = new Date(item.DateReleased).toLocaleDateString('en-GB');
                     });
                 });       
         }

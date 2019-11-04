@@ -3,15 +3,14 @@
     angular.module('mainApp')
         .controller('editEmployeeController', editEmployeeController);
 
-    editEmployeeController.$inject = ['$http', '$scope', '$state', '$stateParams', 'PubSub', 'Upload','Utilities'];
+    editEmployeeController.$inject = ['$http', '$scope', '$state', '$stateParams', 'PubSub', 'Upload', 'Utilities'];
+
     function editEmployeeController($http, $scope, $state, $stateParams, PubSub, Upload, Utilities) {
         angular.element(document).find('.modal-backdrop').remove();
         var vm = this;
         var personId = $stateParams.id;
         vm.IsViewing = $stateParams.IsViewing;
-        
         var syncEducation = false;
-
         vm.personAddresses = [];
         vm.person = {};
 
@@ -20,43 +19,17 @@
         vm.getDistricts = getDistricts;
         vm.getContactDistricts = getContactDistricts;
         vm.getFile = getFile;
-        vm.changeCurrencyValue = changeCurrencyValue;
-
-
         vm.initialize = initialize;
 
         var changeEducation = null;
         var changeMariageStatus = null;
 
-        function changeCurrencyValue(value) {
-            var strValue;
-            switch (value) {
-                case 'CooperationAmount':
-                    strValue = vm.person.CooperationAmountDisplay;
-                    var iValue = Utilities.convertToInt(strValue);
-                    vm.person.CooperationAmountDisplay = Utilities.convertToCurrency(iValue);
-                    break;
-                case 'CooperationFirstPay':
-                    strValue = vm.person.CooperationFirstPayDisplay;
-                    var iValue = Utilities.convertToInt(strValue);
-                    vm.person.CooperationFirstPayDisplay = Utilities.convertToCurrency(iValue);
-                    break;
-                case 'CooperationMinutePerMonth': 
-                    strValue = vm.person.CooperationMinutePerMonthDisplay;
-                    var iValue = Utilities.convertToInt(strValue);
-                    vm.person.CooperationMinutePerMonthDisplay = Utilities.convertToCurrency(iValue);
-                    break;
-            }
-            
-        }
-
         function initialize() {
             getMasterData();
             getCities();
             getPerson();
-            PubSub.subscribe('education', changeEducation, true);
-            PubSub.subscribe('PERSON_MARIAGESTATUS', changeMariageStatus, true);
-
+            PubSub.subscribe('education', changeEducation);
+            PubSub.subscribe('PERSON_MARIAGESTATUS', changeMariageStatus);
         }
 
         changeEducation = function (data) {
@@ -72,8 +45,6 @@
         changeMariageStatus = function (data) {
             vm.person.MariageStatus = data;
         }
-
-        
 
         function getCities() {
             vm.cities = [{ Id: 0, Name: '-- Chọn Thành Phố --' }];
@@ -119,6 +90,7 @@
             angular.element(document).find('.modal-backdrop').remove();
             $state.go('employees');
         }
+
         function _save() {
             if (!syncEducation) {
                 return;
@@ -127,16 +99,13 @@
             vm.person.IsPension = vm.person.IsPension == 'true' ? true : false;
             vm.person.IsMale = vm.person.IsMale == 'true' ? true : false;
             vm.person.Actived = vm.person.Actived ? 'true' : 'false';
-            vm.person.DoB = vm.person.DoB;
-            vm.person.MLCDate = vm.person.MLCDate.getFullYear() == 1 ? null : vm.person.MLCDate;
-            vm.person.StartDate = vm.person.StartDate.getFullYear() == 1 ? null : vm.person.StartDate;
-            console.log(vm.person.StartDate);
-
             $http.post('/api/Person/UpdatePersonInformation', vm.person)
                 .then(function (result) {
+                    syncEducation = false;
                     alert('Lưu Thông Tin Thành Công');
                 });
         }
+
         function saveChanges() {
             PubSub.publish('SAVE_PERSON');
         }
@@ -150,8 +119,8 @@
                         vm.person.IsPension = vm.person.IsPension ? 'true' : 'false';
                         vm.person.IsMale = vm.person.IsMale ? 'true' : 'false';
                         vm.person.Actived = vm.person.Actived ? 'true' : 'false';
-                       // vm.person.DoB = new Date(vm.person.DoB);
-                       // console.log(vm.person.DoB);
+                        // vm.person.DoB = new Date(vm.person.DoB);
+                        // console.log(vm.person.DoB);
                         //vm.person.MLCDate = new Date(vm.person.MLCDate);
                         //vm.person.StartDate = new Date(vm.person.StartDate);
                         vm.person.DepartmentName = vm.departments.find(x => x.id == vm.person.DepartmentId).name;
@@ -240,4 +209,4 @@
 
         };
     }
-})();
+    })();

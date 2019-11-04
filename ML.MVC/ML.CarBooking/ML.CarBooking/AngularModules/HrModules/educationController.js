@@ -41,7 +41,7 @@
                 vm.personEdu.selectedDriveLicense = values.DriveLicenseId;
                 vm.personEdu.Major = values.Major;
                 vm.personEdu.GradeId = values.GradeId;
-                //vm.personEdu.DriveLicenseExpired = new Date(values.DriveLicenseExpired); 
+                vm.personEdu.DriveLicenseExpired = values.DriveLicenseExpired; 
                 vm.personEdu.DriveLicensePlace = values.DriveLicensePlace;
                 vm.personEdu.PersonWorkLicenses = buildWorkLincenseGrid(values.PersonWorkLicenses);
             }
