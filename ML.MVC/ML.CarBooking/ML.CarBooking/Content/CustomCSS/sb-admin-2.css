@@ -97,7 +97,7 @@ p {
 }
 
 .uib-datepicker-popup.dropdown-menu {
-    width: calc(100% + 15%) !important;
+    width: 280px;
 }
 
 abbr[title],
@@ -3765,6 +3765,10 @@ pre {
     }
 }
 
+.custom-col {
+    padding: 0.75rem;
+}
+
 .table {
     width: 100%;
     margin-bottom: 1rem;
@@ -3773,7 +3777,7 @@ pre {
 
     .table th,
     .table td {
-        padding: 0.75rem;
+        /*padding: 0.75rem;*/
         vertical-align: middle;
         border-top: 1px solid #e3e6f0;
     }

@@ -1,4 +1,6 @@
-﻿<div ng-controller="educationController as vm" id="education">
+﻿
+
+<div ng-controller="educationController as vm" id="education">
     <div ng-init="vm.initialize()">
         <div class="row mt-5" style="margin-right: 15px; margin-left: 5px; height: 400px">
             <div class="col-lg-6 col-md-6">
@@ -134,25 +136,25 @@
             <div>
                 <label>GIẤY PHÉP HÀNH NGHỀ:</label>
             </div>
-            <table class="table table-hover">
+            <table class="table table-hover tblWorkLicense">
                 <thead class="thead-light shadow_tb">
                     <tr>
-                        <th class="txt-center" style="width:10%;">ĐÃ CÓ</th>
-                        <th style="width:55%;">TÊN GIẤY PHÉP HÀNH NGHỀ</th>
-                        <th style="width:15%;">THỜI HẠN SD (tháng)</th>
-                        <th style="width:10%;">NGÀY CẤP</th>
-                        <th style="width:10%;">CÓ GIÁ TRỊ ĐẾN</th>
-                        <th></th>
+                        <th class="txt-center custom-col" style="width:5%;">ĐÃ CÓ</th>
+                        <th class="custom-col" style="width:20%;">TÊN GIẤY PHÉP HÀNH NGHỀ</th>
+                        <th class="custom-col" style="width:15%;">THỜI HẠN SD (tháng)</th>
+                        <th class="custom-col" style="width:25%;">NGÀY CẤP</th>
+                        <th class="custom-col" style="width:25%;">CÓ GIÁ TRỊ ĐẾN</th>
+                        <th class="custom-col"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="row in vm.personWorkLicenses">
-                        <td class="center-block txt-center"><input type="checkbox" ng-model="row.IsChecked" ng-change="vm.changeTime(row)" ng-disabled="vm.IsViewing" /></td>
-                        <td class="text-uppercase">{{row.Name}}</td>
-                        <td><input type="number" class="form-control" ng-model="row.Duration" ng-change="vm.changeTime(row)" ng-disabled="!row.IsChecked" /></td>
-                        <td><date-picker value="row.FromDate" format="dd/MM/yyyy" ></date-picker></td>
-                        <td><date-picker value="row.ToDate" format="dd/MM/yyyy" ></date-picker></td>
-                        <td>
+                        <td class="center-block txt-center custom-col"><input type="checkbox" ng-model="row.IsChecked" ng-change="vm.changeTime(row)" ng-disabled="vm.IsViewing" /></td>
+                        <td class="text-uppercase custom-col">{{row.Name}}</td>
+                        <td class="custom-col"><input type="number" class="form-control" ng-model="row.Duration" ng-change="vm.changeTime(row)" ng-disabled="!row.IsChecked" /></td>
+                        <td class="custom-col"><div style="width:100%;"><date-picker datepicker-append-to-body="true" value="row.FromDate" format="dd/MM/yyyy"></date-picker></div></tdclass="custom-col">
+                        <td class="custom-col"><div style="width:100%;"><date-picker datepicker-append-to-body="true" value="row.ToDate" format="dd/MM/yyyy"></date-picker></div></td>
+                        <td class="custom-col">
                             <button class="btn btn-outline-primary" ng-click="vm.saveLincense(row)" ng-disabled="!row.IsEnabled">
                                 <i class="fas fa-fw fa-save"></i>
                             </button>

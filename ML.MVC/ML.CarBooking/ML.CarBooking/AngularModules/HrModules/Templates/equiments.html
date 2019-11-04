@@ -2,23 +2,23 @@
     <table class="table table-hover mt-5">
         <thead class="thead-light shadow_tb txt-center">
             <tr>
-                <th style="width:10%;"> MÃ THIẾT BỊ</th>
-                <th style="width:50%;"> TÊN THIẾT BỊ</th>
-                <th style="width:10%;"> ĐÃ CẤP</th>
-                <th style="width:25%;"> NGÀY CẤP</th>
-                <th style="width:5%"></th>
+                <th class="custom-col" style="width:10%;"> MÃ THIẾT BỊ</th>
+                <th class="custom-col" style="width:50%;"> TÊN THIẾT BỊ</th>
+                <th class="custom-col" style="width:10%;"> ĐÃ CẤP</th>
+                <th class="custom-col" style="width:25%;"> NGÀY CẤP</th>
+                <th class="custom-col" style="width:5%"></th>
             </tr>
         </thead>
         <tbody class="txt-center">
             <tr ng-repeat="row in vm.PersonEquipments">
-                <td>{{row.Id}}</td>
-                <td>{{row.Name}}</td>
-                <td><input type="checkbox" ng-model="row.IsChecked" ng-disabled="vm.IsViewing" /></td>
-                <td style="padding-bottom: 0;">
+                <td class="custom-col">{{row.Id}}</td>
+                <td class="custom-col">{{row.Name}}</td>
+                <td class="custom-col"><input type="checkbox" ng-model="row.IsChecked" ng-disabled="vm.IsViewing" /></td>
+                <td class="custom-col" style="padding-bottom: 0;">
                     <!--<input type="date" class="form-control" ng-disabled="!row.IsChecked || vm.IsViewing" ng-model="row.ReceivedDate" />-->
                     <date-picker value="row.ReceivedDate" format="dd/MM/yyyy"></date-picker>
                 </td>
-                <td>
+                <td class="custom-col">
                     <button class="btn btn-outline-primary" ng-disabled="!(row.IsChecked && row.ReceivedDate) || vm.IsViewing" ng-click="vm.save(row)">
                     <i class="fas fa-fw fa-save"></i>
                     </button>
