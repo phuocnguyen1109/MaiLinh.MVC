@@ -8,32 +8,33 @@
         <table class="table table-hover mb-4">
             <thead class="thead-light shadow_tb txt-center">
                 <tr>
-                    <th>SỐ TIỀN</th>
-                    <th>THÁNG THANH TOÁN</th>
-                    <th>TỪ NGÀY</th>
-                    <th>ĐẾN NGÀY</th>
+                    <th class="custom-col">SỐ TIỀN</th>
+                    <th class="custom-col">THÁNG THANH TOÁN</th>
+                    <th class="custom-col">TỪ NGÀY</th>
+                    <th class="custom-col">ĐẾN NGÀY</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody class="txt-center">
                 <tr ng-if="vm.isAdding == true">
-                    <td>
+                    <td class="custom-col">
                         <!--<input type="number" class="form-control" ng-model="vm.personHealthInsurance.Amount" />-->
                         <ml-currency value="vm.personHealthInsurance.Amount"></ml-currency>
                     </td>
-                    <td>
-                        <!--<input type="number" class="form-control" ng-model="vm.personHealthInsurance.Duration" />-->
-                        <ml-currency value="vm.personHealthInsurance.Duration"></ml-currency>
+                    <td class="custom-col">
+                        <input type="number" class="form-control" ng-model="vm.personHealthInsurance.Duration" />
                     </td>
-                    <td>
-                        <!--<input type="date" class="form-control" ng-model="vm.personHealthInsurance.FromDate" />-->
-                        <date-picker value="vm.personHealthInsurance.FromDate" format="dd/MM/yyyy"></date-picker>
+                    <td class="custom-col">
+                        <div style="width:100%; margin-top: 15px;">
+                            <date-picker value="vm.personHealthInsurance.FromDate" format="dd/MM/yyyy"></date-picker>
+                        </div>
                     </td>
-                    <td>
-                        <!--<input type="date" class="form-control" ng-model="vm.personHealthInsurance.ToDate" />-->
-                        <date-picker value="vm.personHealthInsurance.ToDate" format="dd/MM/yyyy"></date-picker>
+                    <td class="custom-col">
+                        <div style="width:100%; margin-top: 15px;">
+                            <date-picker value="vm.personHealthInsurance.ToDate" format="dd/MM/yyyy"></date-picker>
+                        </div>
                     </td>
-                    <td>
+                    <td class="custom-col">
                         <button class="btn btn-outline-success" ng-click="vm.saveChanges($index)">
                             <i class="fas fa-fw fa-save"></i>
                         </button>
@@ -44,11 +45,11 @@
                 </tr>
                 <tr ng-repeat="row in vm.personHealthInsurances">
 
-                    <td ng-if="!row.isEditing">{{row.Amount}}</td>
-                    <td ng-if="!row.isEditing">{{row.Duration}}</td>
-                    <td ng-if="!row.isEditing">{{row.FromDate | date : 'dd/MM/yyyy'}}</td>
-                    <td ng-if="!row.isEditing">{{row.ToDate | date : 'dd/MM/yyyy'}}</td>
-                    <td ng-if="!row.isEditing">
+                    <td class="custom-col" ng-if="!row.isEditing">{{row.AmountDisplay}}</td>
+                    <td class="custom-col" ng-if="!row.isEditing">{{row.Duration}}</td>
+                    <td class="custom-col" ng-if="!row.isEditing">{{row.FromDate | date : 'dd/MM/yyyy'}}</td>
+                    <td class="custom-col" ng-if="!row.isEditing">{{row.ToDate | date : 'dd/MM/yyyy'}}</td>
+                    <td class="custom-col" ng-if="!row.isEditing">
                         <button class="btn btn-outline-success" ng-click="vm.updatePersonHealthInsurance(row, $index)" ng-disabled="vm.IsViewing || vm.isEditing || vm.isAdding">
                             <i class="fas fa-fw fa-pen"></i>
                         </button>
@@ -57,23 +58,24 @@
                         </button>
                     </td>
 
-                    <td ng-if="row.isEditing">
-                        <!--<input type="number" class="form-control" ng-model="vm.personHealthInsurance.Amount" />-->
+                    <td class="custom-col" ng-if="row.isEditing">
                         <ml-currency value="vm.personHealthInsurance.Amount"></ml-currency>
                     </td>
-                    <td ng-if="row.isEditing">
-                        <!--<input type="number" class="form-control" ng-model="vm.personHealthInsurance.Duration" />-->
-                        <ml-currency value="vm.personHealthInsurance.Amount"></ml-currency>
+                    <td class="custom-col" ng-if="row.isEditing">
+                        <input type="number" class="form-control" ng-model="vm.personHealthInsurance.Duration" />
                     </td>
-                    <td ng-if="row.isEditing">
-                        <!--<input type="date" class="form-control" ng-model="vm.personHealthInsurance.FromDate" />-->
-                        <date-picker value="vm.personHealthInsurance.FromDate" format="dd/MM/yyyy"></date-picker>
+                    <td class="custom-col" ng-if="row.isEditing">
+                        <div style="width:100%; margin-top: 15px;">
+                            <date-picker value="vm.personHealthInsurance.FromDate" format="dd/MM/yyyy"></date-picker>
+                        </div>
                     </td>
-                    <td ng-if="row.isEditing">
+                    <td class="custom-col" ng-if="row.isEditing">
                         <!--<input type="date" class="form-control" ng-model="vm.personHealthInsurance.ToDate" />-->
-                        <date-picker value="vm.personHealthInsurance.ToDate" format="dd/MM/yyyy"></date-picker>
+                        <div style="width:100%; margin-top: 15px;">
+                            <date-picker value="vm.personHealthInsurance.ToDate" format="dd/MM/yyyy"></date-picker>
+                        </div>
                     </td>
-                    <td ng-if="row.isEditing">
+                    <td class="custom-col" ng-if="row.isEditing">
                         <button class="btn btn-outline-success" ng-click="vm.saveChanges($index)">
                             <i class="fas fa-fw fa-save"></i>
                         </button>
@@ -93,7 +95,7 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-body">
-                        
+
                         Bạn chắc chắn muốn xóa dữ liệu này ?
                     </div>
                     <div class="modal-footer">

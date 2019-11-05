@@ -11,11 +11,20 @@ function mlCurrency() {
         controller: ['$scope', controller]
     };
 
+   
+
     function controller($scope) {
         $scope.changeCurrencyValue = changeCurrencyValue;
         $scope.seperator = $scope.seperator || '.';
+
+        $scope.$watch('value', function (newValue) {
+            if (newValue) {
+                initialize();
+            }
+        });
+
         function initialize() {
-            $scope.display =  convertToCurrency($scope.value);
+            $scope.display = convertToCurrency($scope.value);
         }
 
         initialize();

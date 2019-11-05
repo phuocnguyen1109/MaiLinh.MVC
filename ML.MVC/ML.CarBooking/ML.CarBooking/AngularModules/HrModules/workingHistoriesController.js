@@ -86,7 +86,7 @@
         }
 
         function deleted(r) {
-            $http.post('/api/WorkingHistory/Delete', vm.userWorkingHistory)
+            $http.post('/api/WorkingHistory/Delete', r)
                 .then(function (result) {
                     getworkingHistories();
                 });

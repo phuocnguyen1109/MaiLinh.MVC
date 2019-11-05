@@ -8,31 +8,31 @@
         <table class="table table-hover mb-4">
             <thead class="thead-light shadow_tb txt-center">
                 <tr>
-                    <th>NGÀY VÀO CÔNG TY</th>
-                    <th>NGÀY KÝ HỢP ĐỒNG</th>
-                    <th>NGÀY NGHỈ VIỆC</th>
-                    <th>LÝ DO NGHỈ VIỆC</th>
-                    <th></th>
+                    <th class="custom-col">NGÀY VÀO CÔNG TY</th>
+                    <th class="custom-col">NGÀY KÝ HỢP ĐỒNG</th>
+                    <th class="custom-col">NGÀY NGHỈ VIỆC</th>
+                    <th class="custom-col">LÝ DO NGHỈ VIỆC</th>
+                    <th class="custom-col"></th>
                 </tr>
             </thead>
             <tbody class="txt-center">
                 <tr ng-if="vm.isAdding == true">
-                    <td>
+                    <td class="custom-col">
                         <!--<input type="date" class="form-control" ng-model="vm.personWorkLeaveHistory.StartDate" />-->
                         <date-picker value="vm.personWorkLeaveHistory.StartDate" format="dd/MM/yyyy"></date-picker>
                     </td>
-                    <td>
+                    <td class="custom-col">
                         <!--<input type="date" class="form-control" ng-model="vm.personWorkLeaveHistory.ContractDate" />-->
                         <date-picker value="vm.personWorkLeaveHistory.ContractDate" format="dd/MM/yyyy"></date-picker>
                     </td>
-                    <td>
+                    <td class="custom-col">
                         <!--<input type="date" class="form-control" ng-model="vm.personWorkLeaveHistory.EndDate" />-->
                         <date-picker value="vm.personWorkLeaveHistory.EndDate" format="dd/MM/yyyy"></date-picker>
                     </td>
-                    <td>
+                    <td class="custom-col">
                         <textarea class="form-control" ng-model="vm.personWorkLeaveHistory.Reason" />
                     </td>
-                    <td>
+                    <td class="custom-col">
                         <button class="btn btn-outline-success" ng-click="vm.saveChanges($index)">
                             <i class="fas fa-fw fa-save"></i>
                         </button>
@@ -43,11 +43,11 @@
                 </tr>
                 <tr ng-repeat="row in vm.personWorkLeaveHistories">
 
-                    <td ng-if="!row.isEditing">{{row.StartDate | date : 'dd/MM/yyyy'}}</td>
-                    <td ng-if="!row.isEditing">{{row.ContractDate | date : 'dd/MM/yyyy'}}</td>
-                    <td ng-if="!row.isEditing">{{row.EndDate | date : 'dd/MM/yyyy'}}</td>
-                    <td ng-if="!row.isEditing">{{row.Reason}}</td>
-                    <td ng-if="!row.isEditing">
+                    <td class="custom-col" ng-if="!row.isEditing">{{row.StartDate | date : 'dd/MM/yyyy'}}</td>
+                    <td class="custom-col" ng-if="!row.isEditing">{{row.ContractDate | date : 'dd/MM/yyyy'}}</td>
+                    <td class="custom-col" ng-if="!row.isEditing">{{row.EndDate | date : 'dd/MM/yyyy'}}</tdclass="custom-col">
+                    <td class="custom-col" ng-if="!row.isEditing">{{row.Reason}}</td>
+                    <td class="custom-col" ng-if="!row.isEditing">
                         <button class="btn btn-outline-success" ng-click="vm.updatePersonWorkLeaveHistory(row)" ng-disabled="vm.IsViewing || vm.isEditing || vm.isAdding">
                             <i class="fas fa-fw fa-pen"></i>
                         </button>
@@ -56,22 +56,22 @@
                         </button>
                     </td>
 
-                    <td ng-if="row.isEditing">
+                    <td class="custom-col" ng-if="row.isEditing">
                         <!--<input type="date" class="form-control" ng-model="vm.personWorkLeaveHistory.StartDate" />-->
                         <date-picker value="vm.personWorkLeaveHistory.StartDate" format="dd/MM/yyyy"></date-picker>
                     </td>
-                    <td ng-if="row.isEditing">
+                    <td class="custom-col" ng-if="row.isEditing">
                         <!--<input type="date" class="form-control" ng-model="vm.personWorkLeaveHistory.ContractDate" />-->
                         <date-picker value="vm.personWorkLeaveHistory.ContractDate" format="dd/MM/yyyy"></date-picker>
                     </td>
-                    <td ng-if="row.isEditing">
+                    <td class="custom-col" ng-if="row.isEditing">
                         <!--<input type="date" class="form-control" ng-model="vm.personWorkLeaveHistory.EndDate" />-->
                         <date-picker value="vm.personWorkLeaveHistory.EndDate" format="dd/MM/yyyy"></date-picker>
                     </td>
-                    <td ng-if="row.isEditing">
+                    <td class="custom-col" ng-if="row.isEditing">
                         <textarea class="form-control" ng-model="vm.personWorkLeaveHistory.Reason" />
                     </td>
-                    <td ng-if="row.isEditing">
+                    <td class="custom-col" ng-if="row.isEditing">
                         <button class="btn btn-outline-success" ng-click="vm.saveChanges($index)">
                             <i class="fas fa-fw fa-save"></i>
                         </button>

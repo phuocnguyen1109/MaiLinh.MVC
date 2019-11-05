@@ -79,6 +79,11 @@ namespace ML.Business.Implements.Hr
             return m_PEducationDataLayer.GetMDriveLicenses();
         }
 
+        public IEnumerable<PersonLanguage> GetPersonLanguages(int pid)
+        {
+            return m_PEducationDataLayer.GetPersonLanguages(pid);
+        }
+
         public MLanguage GetMLanguageById(int id)
         {
             return m_PEducationDataLayer.GetMLanguageById(id);

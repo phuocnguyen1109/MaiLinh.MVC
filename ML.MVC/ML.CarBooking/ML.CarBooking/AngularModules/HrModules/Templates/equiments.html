@@ -16,7 +16,7 @@
                 <td class="custom-col"><input type="checkbox" ng-model="row.IsChecked" ng-disabled="vm.IsViewing" /></td>
                 <td class="custom-col" style="padding-bottom: 0;">
                     <!--<input type="date" class="form-control" ng-disabled="!row.IsChecked || vm.IsViewing" ng-model="row.ReceivedDate" />-->
-                    <date-picker value="row.ReceivedDate" format="dd/MM/yyyy"></date-picker>
+                    <div style="width:100%; margin-top: 5px;"> <date-picker value="row.ReceivedDate" format="dd/MM/yyyy"></date-picker></div>
                 </td>
                 <td class="custom-col">
                     <button class="btn btn-outline-primary" ng-disabled="!(row.IsChecked && row.ReceivedDate) || vm.IsViewing" ng-click="vm.save(row)">

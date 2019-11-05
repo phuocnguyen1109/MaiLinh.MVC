@@ -16,6 +16,8 @@ namespace ML.DataLayer.Interfaces.Hr
         int DeleteMLanguage(IEnumerable<int> ids);
         MLanguage GetMLanguageById(int id);
 
+        IEnumerable<PersonLanguage> GetPersonLanguages(int pid);
+
         //MWorkLicense
         IEnumerable<MWorkLicense> GetMWorkLicenses();
         int CreateAndUpdateMWorkLicense(MWorkLicense request, int userId);

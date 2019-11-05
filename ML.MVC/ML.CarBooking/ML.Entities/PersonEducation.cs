@@ -18,7 +18,6 @@ namespace ML.Entities
         public DateTime UpdatedOn { get; set; }
 
         public PersonDriveLicense PersonDriveLicense { get; set; }
-        public IEnumerable<PersonLanguage> PersonLanguages { get; set; }
         public IEnumerable<PersonWorkLicense> PersonWorkLicenses { get; set; }
     }
 }

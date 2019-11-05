@@ -57,7 +57,7 @@
                 Year: 0,
                 Note: null,
                 StandardIds: [],
-                PersonId: personId
+                Pid: personId
             };
             vm.isEditing = false;
         }
@@ -99,7 +99,7 @@
             vm.isEditing = true;
             vm.isValid = true;
             vm.selectedPersonHealthCheck = angular.copy(row);
-            vm.selectedPersonHealthCheck.PersonId = personId;
+            vm.selectedPersonHealthCheck.Pid = personId;
             row.stdIds.forEach(function (item, index) {
                 vm.healthStandards.find(x => x.Id == item).IsChecked = true;
             });

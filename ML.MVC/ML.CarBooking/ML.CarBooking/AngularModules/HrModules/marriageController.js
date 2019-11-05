@@ -17,9 +17,8 @@
         vm.deleteRelationShip = deleteRelationShip;
         vm.checkIsDependent = checkIsDependent;
         vm.changeMariageStatus = changeMariageStatus;
-
+        vm.changeIsDependent = changeIsDependent;
         vm.personMariageStatus = 0;
-
         var personId = $stateParams.id;
 
         $scope.$parent.$watch('vm.person', function (values) {
@@ -29,9 +28,11 @@
             }
         });
 
-
-        vm.marriageStatusObject = { Id: null, marritalStatusName: null };
-
+        function changeIsDependent() {
+            if (vm.personRelationship.IsDependent) return;
+            vm.personRelationship.DependentStart = null;
+            vm.personRelationship.DependentEnd = null;
+        }
 
         function changeMariageStatus() {
             PubSub.publish('PERSON_MARIAGESTATUS', vm.personMariageStatus);
@@ -120,12 +121,14 @@
                 $http.post('/api/Mariage/Add', vm.personRelationship).then(function (result) {
                     resetModel();
                     getRelatives();
+                    PubSub.publish('MARRIAGE_GRID_CHANGE');
                 });
             }
             else {
                 $http.post('/api/Mariage/Update', vm.personRelationship).then(function (result) {
                     resetModel();
                     getRelatives();
+                    PubSub.publish('MARRIAGE_GRID_CHANGE');
                 });
             }
         };
@@ -156,6 +159,7 @@
             $http.post('/api/Mariage/Delete', relationship).then(function (result) {
                 vm.relativeDel = null;
                 getRelatives();
+                PubSub.publish('MARRIAGE_GRID_CHANGE');
             });
 
         };

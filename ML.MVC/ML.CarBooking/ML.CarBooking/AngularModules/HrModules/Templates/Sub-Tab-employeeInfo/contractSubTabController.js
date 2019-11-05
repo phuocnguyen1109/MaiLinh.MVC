@@ -80,8 +80,10 @@
         }
 
         function checkValid() {
+            if (!vm.userContract) return false;
+
             vm.isValid = false;
-            if (!vm.userContract.ContractTypeId) return;
+            if (!vm.userContract.ContractTypeId) return vm.isValid;
 
                 //if (!vm.userContract.Duration) {
                 //    vm.message = "Nhập thời hạn của hợp đồng!";
@@ -89,14 +91,15 @@
                 //}
                 if (vm.userContract.ContractNumber.toString().trim().length==0 || !vm.userContract.ContractNumber) {
                     vm.message = "Nhập số hợp đồng!";
-                    return;
+                    return vm.isValid;
                 }
                 if (vm.userContract.SignedIn == null) {
                     vm.message = "Nhập ngày ký hợp đồng!";
-                    return;
+                    return vm.isValid;
                 }
                 vm.message = null;
-                vm.isValid = true;
+            
+            return true;
             }
 
         $scope.$watch('vm.userContract.SignedIn', function (value) {

@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict'
     angular.module('mainApp')
-        .factory('Utilities', utilities);
+        .factory('UtilityFactory', utilities);
 
     function utilities() {
 

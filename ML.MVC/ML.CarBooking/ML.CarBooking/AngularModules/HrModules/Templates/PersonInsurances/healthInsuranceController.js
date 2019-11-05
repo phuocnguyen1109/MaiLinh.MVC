@@ -46,12 +46,40 @@
             $http.get('/api/PersonSalaryInformation/GetPersonHealthInsurances', { params: { pid: personId } })
                 .then(function (result) {
                     vm.personHealthInsurances = result.data;
+                    vm.personHealthInsurances.forEach(item => {
+                        item.AmountDisplay = convertToCurrency(item.Amount);
+                    });
                 });
         }
 
         function createPersonHealthInsurance() {
             resetModel();
             vm.isAdding = !vm.isAdding;
+        }
+
+        function convertToCurrency(value) {
+            var strValue = value.toString();
+            if (strValue.length <= 3) {
+                return strValue;
+            }
+            var splitedValues = strValue.split('');
+            var result = '';
+            var numberFirst = strValue.length % 3;
+            //10000
+            if (numberFirst > 0) {
+                result += strValue.substr(0, numberFirst);
+                result += '.';
+            }
+            var countset = 1;
+            for (var i = numberFirst; i < strValue.length; i++) {
+                result += splitedValues[i];
+                countset++;
+                if (countset == 4 && i < strValue.length - 1) {
+                    result += '.';
+                    countset = 1;
+                }
+            }
+            return result;
         }
 
         function updatePersonHealthInsurance(row ,$index) {
@@ -68,24 +96,24 @@
         }
 
         function saveChanges() {
-            debugger;
             $http.post('/api/PersonSalaryInformation/CreateOrUpdatePersonHealthInsurance', vm.personHealthInsurance)
                 .then(function (result) {
-                    debugger;
                         if (result.data > 0) {
                             vm.isAdding = false;
                             vm.isEditing = false;
                             alert('Lưu Thông Tin Thành Công !');
+
                             if (vm.personHealthInsurance.IsDeleted == true) {
                                 vm.personHealthInsurances.splice(vm.personHealthInsurance.Index, 1);
                                 return;
                             }
+                            vm.personHealthInsurance.AmountDisplay = convertToCurrency(vm.personHealthInsurance.Amount);
                             if (vm.personHealthInsurance.Id == 0) {
                                 vm.personHealthInsurance.Id = result.data;
                                 vm.personHealthInsurances.splice(0, 0, angular.copy(vm.personHealthInsurance));
                             } else {
                                 vm.personHealthInsurance.isEditing = false;
-                                vm.personHealthInsurances.splice($index, 1, angular.copy(vm.personHealthInsurance));
+                                vm.personHealthInsurances.splice(vm.personHealthInsurance.Index, 1, angular.copy(vm.personHealthInsurance));
                             }
                         }
                     });

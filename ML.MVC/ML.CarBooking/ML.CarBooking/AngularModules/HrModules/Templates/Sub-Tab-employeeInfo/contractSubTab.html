@@ -10,23 +10,22 @@
         <table class="table table-hover mb-4">
             <thead class="thead-light shadow_tb txt-center">
                 <tr>
-                    <th>LOẠI HỢP ĐỒNG</th>
-                    <th>SỐ HĐ</th>
-                    <th>THỜI HẠN</th>
-                    <th>NGÀY KÝ HĐ</th>
-                    <th>NGÀY HẾT HẠN</th>
-                 
-                    <th></th>
+                    <th class="custom-col">LOẠI HỢP ĐỒNG</th>
+                    <th class="custom-col">SỐ HĐ</th>
+                    <th class="custom-col">THỜI HẠN</th>
+                    <th class="custom-col">NGÀY KÝ HĐ</th>
+                    <th class="custom-col">NGÀY HẾT HẠN</th>
+                    <th class="custom-col"></th>
                 </tr>
             </thead>
             <tbody class="txt-center">
                 <tr ng-repeat="row in vm.userContracts">
-                    <td>{{row.ContractTypeDisplay}}</td>
-                    <td>{{row.ContractNumber}}</td>
-                    <td>{{row.DurationDisplay}}</td>
-                    <td>{{row.SignedIn | date:'dd/MM/yyyy'}}</td>
-                    <td>{{row.SignOut | date:'dd/MM/yyyy'}}</td>
-                    <td>
+                    <td class="custom-col">{{row.ContractTypeDisplay}}</td>
+                    <td class="custom-col">{{row.ContractNumber}}</td>
+                    <td class="custom-col">{{row.DurationDisplay}}</td>
+                    <td class="custom-col">{{row.SignedIn | date:'dd/MM/yyyy'}}</td>
+                    <td class="custom-col">{{row.SignOut | date:'dd/MM/yyyy'}}</td>
+                    <td class="custom-col">
                         <button class="btn btn-outline-success" data-toggle="modal" data-target="#ContractModal" ng-click="vm.openEditModal(row)" ng-disabled="vm.IsViewing">
                             <i class="fas fa-fw fa-pen"></i>
                         </button>
@@ -93,7 +92,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
-                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.saveChanges()" ng-disabled="!vm.isValid">Lưu</button>
+                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-disabled="!vm.checkValid()" ng-click="vm.saveChanges()" >Lưu</button>
                     </div>
                 </div>
             </div>

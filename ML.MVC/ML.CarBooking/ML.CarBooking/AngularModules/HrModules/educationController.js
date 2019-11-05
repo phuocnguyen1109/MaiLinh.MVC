@@ -16,6 +16,7 @@
         vm.openDelModal = openDelModal;
         vm.deleted = deleted;
         vm.changeTime = changeTime;
+        
 
         vm.isValidPLanguage = false;
         vm.isValid = false;
@@ -37,7 +38,7 @@
 
         $scope.$parent.$watch('vm.person', function (values) {
             if (values && values.Id) {
-                vm.personEdu.PersonLanguages = values.PersonLanguages;
+                //vm.personEdu.PersonLanguages = values.PersonLanguages;
                 vm.personEdu.selectedDriveLicense = values.DriveLicenseId;
                 vm.personEdu.Major = values.Major;
                 vm.personEdu.GradeId = values.GradeId;
@@ -54,6 +55,14 @@
                     item.LanguageName = vm.languages.find(x => x.Id == item.LanguageId).Name;
                 });
             }
+
+        function getPersonLanguages() {
+            $http.get('/api/Education/GetPersonLanguages', { params: { pid: personId } })
+                .then(response => {
+                    vm.personEdu.PersonLanguages = response.data;
+                    buildPersonLanguageGrid(vm.personEdu.PersonLanguages);
+                });
+        }
 
         function resetModel() {
             vm.selectedPersonLanguage = { Id: 0, PersonId: personId, LanguageId: 0, Level: '' };
@@ -106,18 +115,12 @@
                     .then(function (result) {
                         vm.languages = result.data;
                         vm.languages.splice(0, 0, { Id: 0, Name: '--Chọn Ngôn Ngữ--' });
-                        vm.personEdu.PersonLanguages.forEach(function (item) {
-                            if (item) {
-                                item.LanguageName = getLanguageName(item.LanguageId);
-                            }
-                        });
+                        getPersonLanguages();
                     });
         }
-
         function getLanguageName(id) {
             return vm.languages.find(x => x.Id == id).Name;
         }
-
         function getWorkLicenses() {
             vm.personWorkLicenses = [];
             var workLincenses = E.WorkLincenses;
@@ -177,7 +180,6 @@
 
 
         function checkValid() {
-            console.log(vm.userLanguage);
             if (vm.userLanguage.langId == null || vm.userLanguage.qualityId == null) {
                 vm.message = "Nhập đầy đủ các mục!";
                 vm.isValid = false;
@@ -204,7 +206,6 @@
 
 
         function saveLincense(r) {
-            debugger;
             var params = {
                 PersonId: parseInt(personId),
                 Duration: r.Duration,
@@ -220,7 +221,6 @@
 
         function openDelModal(r) {
             vm.deletedDataRow = r;
-            console.log(vm.deletedDataRow);
         }
 
         function deleted(r) {

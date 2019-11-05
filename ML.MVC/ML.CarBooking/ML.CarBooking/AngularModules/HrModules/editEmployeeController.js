@@ -3,9 +3,9 @@
     angular.module('mainApp')
         .controller('editEmployeeController', editEmployeeController);
 
-    editEmployeeController.$inject = ['$http', '$scope', '$state', '$stateParams', 'PubSub', 'Upload', 'Utilities'];
+    editEmployeeController.$inject = ['$q', '$http', '$scope', '$state', '$stateParams', 'PubSub', 'Upload'];
 
-    function editEmployeeController($http, $scope, $state, $stateParams, PubSub, Upload, Utilities) {
+    function editEmployeeController($q, $http, $scope, $state, $stateParams, PubSub, Upload) {
         angular.element(document).find('.modal-backdrop').remove();
         var vm = this;
         var personId = $stateParams.id;
@@ -13,21 +13,24 @@
         var syncEducation = false;
         vm.personAddresses = [];
         vm.person = {};
+        var tempDistricts = { addressDistrictId: 0, contactDistrictId: 0 };
 
         vm.saveChanges = saveChanges;
         vm.cancel = cancel;
-        vm.getDistricts = getDistricts;
-        vm.getContactDistricts = getContactDistricts;
         vm.getFile = getFile;
         vm.initialize = initialize;
+        vm.onChangeAddressCity = onChangeAddressCity;
+        vm.onChangeAddressContactCity = onChangeAddressContactCity;
 
         var changeEducation = null;
         var changeMariageStatus = null;
 
         function initialize() {
             getMasterData();
-            getCities();
-            getPerson();
+            $q.all([getCities(), getDistricts()])
+                .then(function (result) {
+                    getPerson();
+                });
             PubSub.subscribe('education', changeEducation);
             PubSub.subscribe('PERSON_MARIAGESTATUS', changeMariageStatus);
         }
@@ -48,7 +51,7 @@
 
         function getCities() {
             vm.cities = [{ Id: 0, Name: '-- Chọn Thành Phố --' }];
-            $http.get('/api/Location/GetAllCity')
+            return $http.get('/api/Location/GetAllCity')
                 .then(function (result) {
                     if (result) {
                         result.data.forEach(function (item, index) {
@@ -60,31 +63,36 @@
 
         function getDistricts() {
             vm.districts = [{ Id: 0, Name: '-- Chọn Quận / Huyện --' }];
-            if (vm.personAddresses.address.CityId == 0) {
-                return;
-            }
-            $http.get('/api/Location/GetAllDistrictByCityId', { params: { cityId: vm.personAddresses.address.CityId } })
+            return $http.get('/api/Location/GetAllDistrictByCityId', { params: { cityId: 0 } })
                 .then(function (result) {
                     if (!result) return;
-                    result.data.forEach(function (item, index) {
-                        vm.districts.push({ Id: item.Id, Name: item.Name });
-                    });
+                   vm.districts = result.data;
                 });
         }
 
-        function getContactDistricts() {
-            vm.contactDistricts = [{ Id: 0, Name: '-- Chọn Quận / Huyện --' }];
-            if (vm.personAddresses.contactAddress.CityId == 0) {
+        function onChangeAddressCity() {
+            if (!vm.personAddresses) return;
+            vm.addressDistricts = angular.copy(vm.districts).filter(x => x.ParentId == vm.personAddresses.address.CityId);
+            vm.addressDistricts.splice(0, 0, { Id: 0, Name: '-- Chọn Quận / Huyện --' });
+            var isIncludeCurrentDistrict = vm.addressDistricts.some(x => x.Id == tempDistricts.addressDistrictId);
+            if (!isIncludeCurrentDistrict) {
+                vm.personAddresses.address.DistrictId = 0;
                 return;
             }
-            $http.get('/api/Location/GetAllDistrictByCityId', { params: { cityId: vm.personAddresses.contactAddress.CityId } })
-                .then(function (result) {
-                    if (!result) return;
-                    result.data.forEach(function (item, index) {
-                        vm.contactDistricts.push({ Id: item.Id, Name: item.Name });
-                    });
-                });
-        }
+            vm.personAddresses.address.DistrictId = tempDistricts.addressDistrictId;
+        } 
+
+        function onChangeAddressContactCity() {
+            if (!vm.personAddresses) return;
+            vm.addressContactDistricts = angular.copy(vm.districts).filter(x => x.ParentId == vm.personAddresses.contactAddress.CityId);
+            vm.addressContactDistricts.splice(0, 0, { Id: 0, Name: '-- Chọn Quận / Huyện --' });
+            var isIncludeCurrentDistrict = vm.addressContactDistricts.some(x => x.Id == tempDistricts.contactDistrictId);
+            if (!isIncludeCurrentDistrict) {
+                vm.personAddresses.contactAddress.DistrictId = 0;
+                return;
+            }
+            vm.personAddresses.contactAddress.DistrictId = tempDistricts.contactDistrictId;
+        } 
 
         function cancel() {
             angular.element(document).find('.modal-backdrop').remove();
@@ -119,10 +127,6 @@
                         vm.person.IsPension = vm.person.IsPension ? 'true' : 'false';
                         vm.person.IsMale = vm.person.IsMale ? 'true' : 'false';
                         vm.person.Actived = vm.person.Actived ? 'true' : 'false';
-                        // vm.person.DoB = new Date(vm.person.DoB);
-                        // console.log(vm.person.DoB);
-                        //vm.person.MLCDate = new Date(vm.person.MLCDate);
-                        //vm.person.StartDate = new Date(vm.person.StartDate);
                         vm.person.DepartmentName = vm.departments.find(x => x.id == vm.person.DepartmentId).name;
                         vm.person.RoleName = vm.roles.find(x => x.id == vm.person.RoleId).name;
                         vm.person.imageUrl = vm.person.imageUrl == null ? vm.person.IsMale == 'true' ? "../../../Content/Images/male.png" : "../../../Content/Images/female.png" : vm.person.imageUrl;
@@ -130,13 +134,16 @@
                         if (!vm.personAddresses.address) {
                             vm.personAddresses.address = { Id: 0, PersonId: personId, Address: null, CityId: 0, DistrictId: 0, Type: 1 };
                         } else {
-                            getDistricts();
+                            tempDistricts.addressDistrictId = vm.personAddresses.address.DistrictId;
+                            onChangeAddressCity();
                         }
                         vm.personAddresses.contactAddress = angular.copy(vm.person.Addresses).find(x => x.Type == 2);
                         if (!vm.personAddresses.contactAddress) {
                             vm.personAddresses.contactAddress = { Id: 0, PersonId: personId, Address: null, CityId: 0, DistrictId: 0, Type: 2 };
-                        } else {
-                            getContactDistricts();
+                        }
+                        else {
+                            tempDistricts.contactDistrictId = vm.personAddresses.contactAddress.DistrictId;
+                            onChangeAddressContactCity();
                         }
                     }
                 });
@@ -209,4 +216,4 @@
 
         };
     }
-    })();
+})();

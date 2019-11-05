@@ -28,6 +28,11 @@ namespace ML.CarBooking.Controllers.API.Hr
             return m_personEducation.GetPersonEducation(pid);
         }
 
+        public IEnumerable<PersonLanguage> GetPersonLanguages(int pid)
+        {
+            return m_personEducation.GetPersonLanguages(pid);
+        }
+
         public int SavePersonLanguage(PersonLanguage request, int userId = 1)
         {
             return m_personEducation.CreateAndUpdatePersonLanguage(request, userId);

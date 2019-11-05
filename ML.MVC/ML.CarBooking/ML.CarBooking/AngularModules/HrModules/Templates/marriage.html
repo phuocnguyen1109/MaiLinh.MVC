@@ -2,9 +2,8 @@
     <div class="row mt-2">
         <div class="col-lg-4 col-md-4">
             <label>TÌNH TRẠNG HÔN NHÂN:</label>
-            <select ng-model="vm.marriageStatusObject.marritalStatusId" class="form-control"
+            <select ng-if="vm.mariageStatuses" ng-model="vm.personMariageStatus" class="form-control" ng-change="vm.changeMariageStatus()"
                     ng-options="ms.Id as ms.Name for ms in vm.mariageStatuses">
-                <option value="">--Tình Trạng Hôn Nhân--</option>
             </select>
         </div>
     </div>
@@ -20,28 +19,28 @@
     <table class="table table-hover">
         <thead class="thead-light shadow_tb txt-center">
             <tr>
-                <th style="width:15%;">HỌ VÀ TÊN</th>
-                <th style="width:10%;">NĂM SINH</th>
-                <th style="width:20%;">NƠI Ở</th>
-                <th style="width:10%;">QUAN HỆ</th>
-                <th style="width:5%;">PHỤ THUỘC</th>
-                <th style="width:10%;">THỜI GIAN BẮT ĐẦU</th>
-                <th style="width:10%;">THỜI GIAN KẾT THÚC</th>
-                <th style="width:5%;">ĐÃ MẤT</th>
-                <th style="width:13%;"></th>
+                <th class="custom-col" style="width:15%;">HỌ VÀ TÊN</th>
+                <th class="custom-col" style="width:10%;">NĂM SINH</th>
+                <th class="custom-col" style="width:20%;">NƠI Ở</th>
+                <th class="custom-col" style="width:10%;">QUAN HỆ</th>
+                <th class="custom-col" style="width:5%;">PHỤ THUỘC</th>
+                <th class="custom-col" style="width:10%;">THỜI GIAN BẮT ĐẦU</th>
+                <th class="custom-col" style="width:10%;">THỜI GIAN KẾT THÚC</th>
+                <th class="custom-col" style="width:5%;">ĐÃ MẤT</th>
+                <th class="custom-col" style="width:13%;"></th>
             </tr>
         </thead>
         <tbody class="txt-center">
             <tr ng-repeat="r in vm.personRelations">
-                <td>{{r.FullName}}</td>
-                <td>{{r.YearOfBirth}}</td>
-                <td>{{r.Address}}</td>
-                <td>{{r.RelationName}}</td>
-                <td><i class="fas fa-fw fa-check-circle" ng-style="vm.checkIsDependent(r.IsDependent)"></i></td>
-                <td>{{r.DependentStart | date: 'dd/MM/yyyy'}}</td>
-                <td>{{r.DependentEnd | date: 'dd/MM/yyyy'}}</td>
-                <td><i class="fas fa-fw fa-times-circle"></i></td>
-                <td>
+                <td class="custom-col">{{r.FullName}}</td>
+                <td class="custom-col">{{r.YearOfBirth}}</td>
+                <td class="custom-col">{{r.Address}}</td>
+                <td class="custom-col">{{r.RelationName}}</td>
+                <td class="custom-col"><i class="fas fa-fw fa-check-circle" ng-style="vm.checkIsDependent(r.IsDependent)"></i></td>
+                <td class="custom-col">{{r.DependentStart | date: 'dd/MM/yyyy'}}</td>
+                <td class="custom-col">{{r.DependentEnd | date: 'dd/MM/yyyy'}}</td>
+                <td class="custom-col"><i class="fas fa-fw fa-times-circle"></i></td>
+                <td class="custom-col">
                     <button class="btn btn-outline-success" data-toggle="modal" data-target="#relativeModal" ng-click="vm.editRelative(r)" ng-disabled="vm.IsViewing"><i class="fas fa-fw fa-pen"></i></button>
                     <button class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteRModal" ng-click="vm.openDelModel(r)" ng-disabled="vm.IsViewing"><i class="fas fa-fw fa-trash"></i></button>
                 </td>
@@ -84,7 +83,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label style="display: inline-flex;vertical-align: -webkit-baseline-middle;">
-                                    <input type="checkbox" ng-model="vm.personRelationship.IsDependent" />&nbsp;&nbsp;Người phụ thuộc
+                                    <input type="checkbox" ng-change="vm.changeIsDependent()" ng-model="vm.personRelationship.IsDependent" />&nbsp;&nbsp;Người phụ thuộc
                                 </label>
                             </div>
                             <div class="col-md-6">

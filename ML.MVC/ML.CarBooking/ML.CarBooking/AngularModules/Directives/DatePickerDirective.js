@@ -23,7 +23,6 @@ function datePicker() {
 
         $scope.$watch('$scope.disabled', function (newValue, oldValue) {
             $scope.disabled = newValue;
-            console.log(newValue);
         });
 
         $scope.$watch('value', function (newValue, oldValue) {
@@ -41,7 +40,6 @@ function datePicker() {
             var date = $scope.display;
             if (!date) { $scope.value = null; return; }
             $scope.value = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 7, 0, 0);
-            console.log($scope.value);
         };
 
         $scope.openModal = function () {

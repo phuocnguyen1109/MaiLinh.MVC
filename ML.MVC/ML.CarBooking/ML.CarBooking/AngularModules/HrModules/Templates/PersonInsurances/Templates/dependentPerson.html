@@ -7,18 +7,18 @@
         <table class="table table-hover">
             <thead class="thead-light shadow_tb txt-center">
                 <tr>
-                    <th style="width:40%;">TÊN NGƯỜI PHỤ THUỘC</th>
-                    <th style="width:10%;">MÃ NGƯỜI PHỤ THUỘC</th>
-                    <th style="width:25%;">THỜI GIAN GIẢM TRỪ</th>
-                    <th style="width:25%;">THỜI GIAN KẾT THÚC</th>
+                    <th class="custom-col" style="width:40%;">TÊN NGƯỜI PHỤ THUỘC</th>
+                    <th class="custom-col" style="width:10%;">MÃ NGƯỜI PHỤ THUỘC</th>
+                    <th class="custom-col" style="width:25%;">THỜI GIAN GIẢM TRỪ</th>
+                    <th class="custom-col" style="width:25%;">THỜI GIAN KẾT THÚC</th>
                 </tr>
             </thead>
             <tbody class="txt-center">
                 <tr ng-repeat="row in vm.personDependents">
-                    <td>{{row.FullName}}</td>
-                    <td>{{row.Id}}</td>
-                    <td>{{row.DependentStart | date: 'dd/MM/yyyy'}}</td>
-                    <td>{{row.DependentEnd | date: 'dd/MM/yyyy'}}</td>
+                    <td class="custom-col">{{row.FullName}}</td>
+                    <td class="custom-col">{{row.Id}}</td>
+                    <td class="custom-col">{{row.DependentStart | date: 'dd/MM/yyyy'}}</td>
+                    <td class="custom-col">{{row.DependentEnd | date: 'dd/MM/yyyy'}}</td>
                 </tr>
                 <tr></tr>
             </tbody>

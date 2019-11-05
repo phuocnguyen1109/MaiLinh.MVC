@@ -150,7 +150,6 @@ namespace ML.DataLayer.Implements.Hr
                 {
                     response = result.Read<PersonResponse>().FirstOrDefault();
                     response.PersonWorkLicenses = result.Read<PersonWorkLicense>();
-                    response.PersonLanguages = result.Read<PersonLanguage>();
                     return response;
                 }
             });

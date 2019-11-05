@@ -14,7 +14,14 @@
 
         vm.personDependents = [];
 
+        var killDependentGridChange = null;
+
         function initialize() {
+            getPersonDependents();
+            PubSub.subscribe('MARRIAGE_GRID_CHANGE', killDependentGridChange);
+        }
+
+        killDependentGridChange = function () {
             getPersonDependents();
         }
 
