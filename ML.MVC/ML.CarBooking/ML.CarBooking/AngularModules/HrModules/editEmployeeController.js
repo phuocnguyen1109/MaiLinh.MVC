@@ -183,7 +183,8 @@
                 { id: 1, name: 'Nhân Sự' },
                 { id: 2, name: 'Kế Toán' },
                 { id: 3, name: 'Kỹ Thuật - An Toàn' },
-                { id: 4, name: 'Điều Hành' }
+                { id: 4, name: 'Điều Hành' },
+                { id: 5, name: 'Đội Xe' }
             ];
 
             vm.roles = [
@@ -191,7 +192,9 @@
                 { id: 2, name: 'Trưởng Phòng' },
                 { id: 1, name: 'Phó Phòng' },
                 { id: 3, name: 'Thư Ký' },
-                { id: 4, name: 'Nhân Viên' }
+                { id: 4, name: 'Nhân Viên' },
+                { id: 5, name: 'Tài Xế' },
+                { id: 4, name: 'Phụ Xe' }
             ];
         }
 
