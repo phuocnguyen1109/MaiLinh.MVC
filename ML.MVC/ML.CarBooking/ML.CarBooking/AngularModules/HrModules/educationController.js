@@ -16,6 +16,8 @@
         vm.openDelModal = openDelModal;
         vm.deleted = deleted;
         vm.changeTime = changeTime;
+        vm.dataChanges = dataChanges;
+        vm.driveLicenseExpiredChange = driveLicenseExpiredChange;
         
 
         vm.isValidPLanguage = false;
@@ -34,21 +36,12 @@
         };
         var personId = $stateParams.id;
 
-        
-
-        $scope.$parent.$watch('vm.person', function (values) {
-            if (values && values.Id) {
-                //vm.personEdu.PersonLanguages = values.PersonLanguages;
-                vm.personEdu.selectedDriveLicense = values.DriveLicenseId;
-                vm.personEdu.Major = values.Major;
-                vm.personEdu.GradeId = values.GradeId;
-                vm.personEdu.DriveLicenseExpired = values.DriveLicenseExpired; 
-                vm.personEdu.DriveLicensePlace = values.DriveLicensePlace;
-                vm.personEdu.PersonWorkLicenses = buildWorkLincenseGrid(values.PersonWorkLicenses);
-            }
-        });
+        var _initPersonInfo = null;
       
-
+        function driveLicenseExpiredChange(value) {
+            vm.personEdu.DriveLicenseExpired = value;
+            dataChanges();
+        }
 
         function buildPersonLanguageGrid(data) {
                 data.forEach(function (item, index) {
@@ -75,11 +68,23 @@
             getDriveLicenses();
             getEducationGrades();
             getListQualifications();
-            PubSub.subscribe('SAVE_PERSON', _savePerson);
+            PubSub.subscribe('PERSON_LOAD', _initPersonInfo);
         }
 
-        function _savePerson() {
-            PubSub.publish('education', vm.personEdu);
+        _initPersonInfo = function (data) {
+            vm.personEdu.selectedDriveLicense = data.DriveLicenseId;
+            vm.personEdu.Major = data.Major;
+            vm.personEdu.GradeId = data.GradeId;
+            vm.personEdu.DriveLicenseExpired = data.DriveLicenseExpired;
+            vm.personEdu.DriveLicensePlace = data.DriveLicensePlace;
+            vm.personEdu.PersonWorkLicenses = buildWorkLincenseGrid(data.PersonWorkLicenses);
+            console.log(vm.personEdu);
+        }
+
+        
+
+        function dataChanges() {
+            PubSub.publish('PERSON_EDU_CHANGED', vm.personEdu);
         }
 
         function getEducationGrades() {

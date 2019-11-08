@@ -57,4 +57,23 @@
         { Id: 2, Name: '3500 Từ 5 Năm' },
         { Id: 3, Name: '4000 Từ 10 Năm' }
     ],
+
+    Departments: [
+            { id: 0, name: '-- Chọn Bộ Phận --' },
+            { id: 1, name: 'Nhân Sự' },
+            { id: 2, name: 'Kế Toán' },
+            { id: 3, name: 'Kỹ Thuật - An Toàn' },
+            { id: 4, name: 'Điều Hành' },
+            { id: 5, name: 'Đội Xe' }
+    ],
+
+    Roles: [
+        { id: 0, name: '-- Chọn Chức Vụ --' },
+        { id: 2, name: 'Trưởng Phòng' },
+        { id: 1, name: 'Phó Phòng' },
+        { id: 3, name: 'Thư Ký' },
+        { id: 4, name: 'Nhân Viên' },
+        { id: 5, name: 'Tài Xế' },
+        { id: 6, name: 'Phụ Xe' },
+    ]
 };

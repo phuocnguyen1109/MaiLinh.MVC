@@ -21,13 +21,7 @@
 
         vm.createValid = false;
 
-        vm.roles = [
-            { id: 0, name: '-- Chọn Chức Vụ --' },
-            { id: 2, name: 'Trưởng Phòng' },
-            { id: 1, name: 'Phó Phòng' },
-            { id: 3, name: 'Thư Ký' },
-            { id: 4, name: 'Nhân Viên' }
-        ];
+        vm.roles = E.Roles;
 
 
         //biding functions

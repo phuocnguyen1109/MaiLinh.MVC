@@ -14,7 +14,8 @@ function datePicker() {
         scope: {
             format: '@',
             value: '=',
-            disabled: '='
+            disabled: '=',
+            onChange: '&'
         },
         controller: ['$scope', controller]
     };
@@ -36,10 +37,11 @@ function datePicker() {
         }
         initialize();
 
-        $scope.changeValue = function () {
+        $scope.changeValue = function (e) {
             var date = $scope.display;
             if (!date) { $scope.value = null; return; }
             $scope.value = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 7, 0, 0);
+            $scope.onChange({ value: $scope.value });
         };
 
         $scope.openModal = function () {

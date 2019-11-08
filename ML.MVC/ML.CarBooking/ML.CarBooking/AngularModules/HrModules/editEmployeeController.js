@@ -10,7 +10,6 @@
         var vm = this;
         var personId = $stateParams.id;
         vm.IsViewing = $stateParams.IsViewing;
-        var syncEducation = false;
         vm.personAddresses = [];
         vm.person = {};
         var tempDistricts = { addressDistrictId: 0, contactDistrictId: 0 };
@@ -31,7 +30,7 @@
                 .then(function (result) {
                     getPerson();
                 });
-            PubSub.subscribe('education', changeEducation);
+            PubSub.subscribe('PERSON_EDU_CHANGED', changeEducation);
             PubSub.subscribe('PERSON_MARIAGESTATUS', changeMariageStatus);
         }
 
@@ -41,8 +40,6 @@
             vm.person.DriveLicenseId = data.selectedDriveLicense;
             vm.person.DriveLicenseExpired = data.DriveLicenseExpired;
             vm.person.DriveLicensePlace = data.DriveLicensePlace;
-            syncEducation = !syncEducation;
-            _save();
         }
 
         changeMariageStatus = function (data) {
@@ -99,23 +96,17 @@
             $state.go('employees');
         }
 
-        function _save() {
-            if (!syncEducation) {
-                return;
-            }
+
+        function saveChanges() {
+            console.log(vm.person);
             vm.person.Addresses = [vm.personAddresses.address, vm.personAddresses.contactAddress];
             vm.person.IsPension = vm.person.IsPension == 'true' ? true : false;
             vm.person.IsMale = vm.person.IsMale == 'true' ? true : false;
             vm.person.Actived = vm.person.Actived ? 'true' : 'false';
             $http.post('/api/Person/UpdatePersonInformation', vm.person)
                 .then(function (result) {
-                    syncEducation = false;
                     alert('Lưu Thông Tin Thành Công');
                 });
-        }
-
-        function saveChanges() {
-            PubSub.publish('SAVE_PERSON');
         }
 
         function getPerson() {
@@ -146,6 +137,7 @@
                             onChangeAddressContactCity();
                         }
                     }
+                    PubSub.publish('PERSON_LOAD', vm.person);
                 });
         }
 
@@ -178,21 +170,9 @@
                 { id: 4, name: 'Nùng' }
             ];
 
-            vm.departments = [
-                { id: 0, name: '-- Chọn Bộ Phận --' },
-                { id: 1, name: 'Nhân Sự' },
-                { id: 2, name: 'Kế Toán' },
-                { id: 3, name: 'Kỹ Thuật - An Toàn' },
-                { id: 4, name: 'Điều Hành' }
-            ];
+            vm.departments = E.Departments;
 
-            vm.roles = [
-                { id: 0, name: '-- Chọn Chức Vụ --' },
-                { id: 2, name: 'Trưởng Phòng' },
-                { id: 1, name: 'Phó Phòng' },
-                { id: 3, name: 'Thư Ký' },
-                { id: 4, name: 'Nhân Viên' }
-            ];
+            vm.roles = E.Roles;
         }
 
         function getFile(file) {

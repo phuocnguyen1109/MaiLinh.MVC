@@ -9,13 +9,14 @@
                         <label for="grade">TRÌNH ĐỘ:</label>
                         <select ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'"
                                 ng-options="l.Id as l.Name for l in vm.educationGrades"
-                                ng-model="vm.personEdu.GradeId">
+                                ng-model="vm.personEdu.GradeId"
+                                ng-change="vm.dataChanges()">
                         </select>
                     </div>
 
                     <div class="col-lg-6 col-md-6">
                         <label for="major">CHUYÊN MÔN:</label>
-                        <input type="text" ng-model="vm.personEdu.Major" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" />
+                        <input type="text" ng-change="vm.dataChanges()" ng-model="vm.personEdu.Major" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" />
                     </div>
                 </div>
                 <!-- GPLX -->
@@ -24,17 +25,18 @@
                         <label for="grade">GPLX:</label>
                         <select ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'"
                                 ng-options="l.Id as l.Name for l in vm.driveLicenses"
-                                ng-model="vm.personEdu.selectedDriveLicense">
+                                ng-model="vm.personEdu.selectedDriveLicense"
+                                ng-change="vm.dataChanges()">
                         </select>
                     </div>
 
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <label for="major">CÓ GIÁ TRỊ ĐẾN:</label>
-                        <date-picker value="vm.personEdu.DriveLicenseExpired" format="dd/MM/yyyy"></date-picker>
+                        <date-picker value="vm.personEdu.DriveLicenseExpired" on-change="vm.driveLicenseExpiredChange(value)" format="dd/MM/yyyy"></date-picker>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6 mt-2">
                         <label for="major">NƠI CẤP:</label>
-                        <input type="text" ng-model="vm.personEdu.DriveLicensePlace" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" />
+                        <input type="text" ng-change="vm.dataChanges()" ng-model="vm.personEdu.DriveLicensePlace" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" />
                     </div>
                 </div>
             </div>

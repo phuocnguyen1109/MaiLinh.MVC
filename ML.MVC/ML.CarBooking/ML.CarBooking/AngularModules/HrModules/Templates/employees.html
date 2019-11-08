@@ -11,36 +11,36 @@
         <table class="table table-bordered table-hover">
             <thead class="thead-light shadow_tb txt-center">
                 <tr>
-                    <th style="width: 2%;"></th>
-                    <th style="width: 5%">Mã NV</th>
+                    <th class="custom-col" style="width: 2%;"></th>
+                    <th class="custom-col" style="width: 5%">Mã NV</th>
                     <!--<th style="width: 3%;">Ảnh</th>-->
-                    <th style="width: 5%;">Họ</th>
-                    <th style="width: 10%;">Tên</th>
-                    <th style="width: 10%;">Ngày Sinh</th>
-                    <th style="width: 10%;">Điện Thoại</th>
-                    <th style="width: 10%;">Ngày Vào Cty</th>
-                    <th style="width: 5%;">Chức Vụ</th>
-                    <th style="width: 10%;">HDLD/HDHT</th>
-                    <th style="width: 5%;">Thời Hạn HĐ</th>
-                    <th style="width: 10%;">Ngày Hết Hạn HĐ</th>
-                    <th style="width: 10%;">Ngày Nghỉ Việc</th>
+                    <th class="custom-col" style="width: 5%;">Họ</th>
+                    <th class="custom-col" style="width: 10%;">Tên</th>
+                    <th class="custom-col" style="width: 10%;">Ngày Sinh</th>
+                    <th class="custom-col" style="width: 10%;">Điện Thoại</th>
+                    <th class="custom-col" style="width: 10%;">Ngày Vào Cty</th>
+                    <th class="custom-col" style="width: 5%;">Chức Vụ</th>
+                    <th class="custom-col" style="width: 10%;">HDLD/HDHT</th>
+                    <th class="custom-col" style="width: 5%;">Thời Hạn HĐ</th>
+                    <th class="custom-col" style="width: 10%;">Ngày Hết Hạn HĐ</th>
+                    <th class="custom-col" style="width: 10%;">Ngày Nghỉ Việc</th>
                 </tr>
             </thead>
             <tbody class="txt-center">
                 <tr ng-repeat="row in vm.employees | filter:lookup" ng-click="vm.rowClick(row)">
-                    <td><input type="checkbox" class="mt-2" ng-change="vm.checkSelected()" ng-model="row.IsSelected" /></td>
-                    <td>{{row.EmpCode}}</td>
+                    <td class="custom-col"><input type="checkbox" class="mt-2" ng-change="vm.checkSelected()" ng-model="row.IsSelected" /></td>
+                    <td class="custom-col">{{row.EmpCode}}</td>
                     <!--<td><img class="circle-img" style="height:45px;" src="../../../Content/Images/{{row.picture}}" /></td>-->
-                    <td style="width: 10%;">{{row.FirstName}}</td>
-                    <td style="width: 10%;">{{row.LastName}}</td>
-                    <td style="width: 10%;">{{row.dobDisplay}}</td>
-                    <td style="width: 5%;">{{row.PhoneNumber}}</td>
-                    <td style="width: 10%;">{{row.StartDateDisplay}}</td>
-                    <td style="width: 10%;">{{row.Role}}</td>
-                    <td style="width: 10%;">{{row.ContractNumber}}</td>
-                    <td style="width: 5%;">{{row.ContractDuration}}</td>
-                    <td style="width: 10%;">{{row.expired}}</td>
-                    <td style="width: 10%;"></td>
+                    <td class="custom-col" style="width: 10%;">{{row.FirstName}}</td>
+                    <td class="custom-col" style="width: 10%;">{{row.LastName}}</td>
+                    <td class="custom-col" style="width: 10%;">{{row.DoB | date:'dd/MM/yyyy'}}</td>
+                    <td class="custom-col" style="width: 5%;">{{row.PhoneNumber}}</td>
+                    <td class="custom-col" style="width: 10%;">{{row.StartDate | date: 'dd/MM/yyyy'}}</td>
+                    <td class="custom-col" style="width: 10%;">{{row.Role}}</td>
+                    <td class="custom-col" style="width: 10%;">{{row.ContractNumber}}</td>
+                    <td class="custom-col" style="width: 5%;">{{row.ContractDuration}}</td>
+                    <td class="custom-col" style="width: 10%;">{{row.expired}}</td>
+                    <td class="custom-col" style="width: 10%;"></td>
                 </tr>
             </tbody>
         </table>
