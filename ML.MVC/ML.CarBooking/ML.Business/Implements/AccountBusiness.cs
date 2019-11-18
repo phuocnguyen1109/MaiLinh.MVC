@@ -1,5 +1,6 @@
 ﻿using ML.Business.Interfaces.Common;
 using ML.DataLayer.Interfaces.Common;
+using ML.Entities.ResponseModels.Hr;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace ML.Business.Implements
 
         
 
-        public bool UserLogin(string userName, string password)
+        public UserClaimsModel UserLogin(string userName, string password)
         {
             return m_AccountDataLayer.UserLogin(userName, password);
         }

@@ -7,6 +7,7 @@
     function mainController($scope, $state, $stateParams) {
         var vm = this;
 
+        vm.userClaims = UserClaims;
         vm.isMainPage = true;
         vm.active = 0;
         vm.slides = [
@@ -22,8 +23,8 @@
         vm.gotoNationalManagement = gotoNationalManagement;
         vm.goMainPage = goMainPage;
 
-
         function gotoEmployees() {
+            debugger;
             $state.go('employees');
             vm.isMainPage = false;
         }

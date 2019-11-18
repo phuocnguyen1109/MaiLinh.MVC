@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ML.Entities.ResponseModels.Hr;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace ML.DataLayer.Interfaces.Common
 {
    public interface IAccountDataLayer
     {
-        bool UserLogin(string userName, string Password);
+        UserClaimsModel UserLogin(string userName, string Password);
     }
 }

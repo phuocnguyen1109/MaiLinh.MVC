@@ -2,7 +2,7 @@
     ViewBag.Title = "Mai Linh Car Booking";
     Layout = null;
 
-    @model ML.CarBooking.Models.Accounts.LoginModel
+    @model ML.Entities.ResponseModels.Hr.UserClaimsModel
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -57,12 +57,12 @@
             </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li ng-if="vm.userClaims.Role == -1" class="nav-item">
                 <div class="sidebar-heading">
                     HỆ THỐNG
                 </div>
             </li>
-            <li class="nav-item">
+            <li ng-if="vm.userClaims.Role == -1" class="nav-item">
                 <a class="nav-link collapsed" data-toggle="collapse" data-target="#National" aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-clipboard-list"></i>
                     <span>Quản Lý Danh Mục</span>
@@ -76,28 +76,19 @@
                     </div>
                 </div>
             </li>
-            <li class="nav-item">
+            <li ng-if="vm.userClaims.Role == -1" class="nav-item">
                 <a class="nav-link" ng-click="vm.gotoAccountManagement()">
                     <i class="fas fa-fw fa-users-cog"></i>
                     <span>Quản Lý Accounts</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <li ng-if="vm.userClaims.Role == -1" class="nav-item">
                 <a class="nav-link" ng-click="gotoPermission()">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Quản Lý Phân Quyền</span>
                 </a>
-
-                <!-- Nav Item - Pages Collapse Menu -->
+            </li>
             <li class="nav-item">
-                @*<a class="nav-link" ng-click="gotoPermission()" ng-if="isAdmin">
-                        <i class="fas fa-fw fa-cog"></i>
-                        Phân Quyền Hệ Thống
-                    </a>
-                    <a class="nav-link" ng-click="gotoRoles()" ng-if="isAdmin">
-                        <i class="fas fa-fw fa-user"></i>
-                        Quản Lý Roles
-                    </a>*@
                 <div class="sidebar-heading">
                     Chức Năng
                 </div>
@@ -109,7 +100,7 @@
                     <i class="fas fa-fw fa-user-tie"></i>
                     <span>Nhân Sự</span>
                 </a>
-                <div id="collapsePagesHR" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div ng-if="vm.userClaims.Role == -1 || vm.userClaims.Role == 1" id="collapsePagesHR" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" ng-click="vm.gotoEmployees()">Hồ Sơ Lái Xe</a>
                     </div>
@@ -120,7 +111,7 @@
             </li>
 
 
-            <li class="nav-item">
+            <li ng-if="vm.userClaims.Role == -1 || vm.userClaims.Role == 4" class="nav-item">
                 <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseExecute" aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-user-tie"></i>
                     <span>Điều Hành - Kinh Doanh</span>
@@ -141,7 +132,7 @@
                 </div>
             </li>
 
-            <li class="nav-item">
+            <li ng-if="vm.userClaims.Role == -1 || vm.userClaims.Role == 2" class="nav-item">
                 <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseAccountance" aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-user-tie"></i>
                     <span>Kế Toán</span>
@@ -162,7 +153,7 @@
                 </div>
             </li>
 
-            <li class="nav-item">
+            <li ng-if="vm.userClaims.Role == -1 || vm.userClaims.Role == 3" class="nav-item">
                 <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapsePagesTECH" aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-tools"></i>
                     <span>Kỹ Thuật - An Toàn</span>
@@ -211,10 +202,10 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img class="img-profile rounded-circle" src="Content/Images/avatar.jpg">
+                                @*<img class="img-profile rounded-circle" src="Content/Images/avatar.jpg">*@
                                 <div class="ml-2">
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">@Model.UserName</span> <br />
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Administrator</span>
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{vm.userClaims.Name}}</span> <br />
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{vm.userClaims.Role}}</span>
                                 </div>
                                 @*<i class="fas fa-sign-out-alt fa-sm fa-fw  ico-only"></i>*@
                             </a>
@@ -275,6 +266,14 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        const UserClaims = {
+            UserId: '@Model.Id',
+            Name: '@Model.FullName',
+            Role:'@Model.Role'
+        };
+    </script>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

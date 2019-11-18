@@ -19,8 +19,9 @@
     <table class="table table-hover">
         <thead class="thead-light shadow_tb txt-center">
             <tr>
+                <th class="custom-col" style="width:5%;">MÃ SỐ</th>
                 <th class="custom-col" style="width:15%;">HỌ VÀ TÊN</th>
-                <th class="custom-col" style="width:10%;">NĂM SINH</th>
+                <th class="custom-col" style="width:5%;">NĂM SINH</th>
                 <th class="custom-col" style="width:20%;">NƠI Ở</th>
                 <th class="custom-col" style="width:10%;">QUAN HỆ</th>
                 <th class="custom-col" style="width:5%;">PHỤ THUỘC</th>
@@ -32,14 +33,21 @@
         </thead>
         <tbody class="txt-center">
             <tr ng-repeat="r in vm.personRelations">
+                <td class="custom-col">{{r.Id}}</td>
                 <td class="custom-col">{{r.FullName}}</td>
                 <td class="custom-col">{{r.YearOfBirth}}</td>
                 <td class="custom-col">{{r.Address}}</td>
                 <td class="custom-col">{{r.RelationName}}</td>
-                <td class="custom-col"><i class="fas fa-fw fa-check-circle" ng-style="vm.checkIsDependent(r.IsDependent)"></i></td>
+                <td class="custom-col">
+                    <i ng-if="!r.IsDependent" class="fas fa-fw fa-times-circle" style="color: lightgray;"></i>
+                    <i ng-if="r.IsDependent" class="fas fa-fw fa-check-circle" style="color: forestgreen;"></i>
+                </td>
                 <td class="custom-col">{{r.DependentStart | date: 'dd/MM/yyyy'}}</td>
                 <td class="custom-col">{{r.DependentEnd | date: 'dd/MM/yyyy'}}</td>
-                <td class="custom-col"><i class="fas fa-fw fa-times-circle"></i></td>
+                <td class="custom-col">
+                    <i ng-if="!r.IsDead" class="fas fa-fw fa-times-circle" style="color: lightgrey"></i>
+                    <i ng-if="r.IsDead" class="fas fa-fw fa-check-circle" style="color: forestgreen"></i>
+                </td>
                 <td class="custom-col">
                     <button class="btn btn-outline-success" data-toggle="modal" data-target="#relativeModal" ng-click="vm.editRelative(r)" ng-disabled="vm.IsViewing"><i class="fas fa-fw fa-pen"></i></button>
                     <button class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteRModal" ng-click="vm.openDelModel(r)" ng-disabled="vm.IsViewing"><i class="fas fa-fw fa-trash"></i></button>

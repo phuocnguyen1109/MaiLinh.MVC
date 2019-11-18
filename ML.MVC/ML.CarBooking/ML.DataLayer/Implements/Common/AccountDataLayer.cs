@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
+using ML.Entities.ResponseModels.Hr;
 
 namespace ML.DataLayer.Implements.Common
 {
@@ -17,16 +18,16 @@ namespace ML.DataLayer.Implements.Common
 
         }
 
-        public bool UserLogin(string userName, string Password)
+        public UserClaimsModel UserLogin(string userName, string Password)
         {
             return Execute(connection =>
-              (bool)connection.ExecuteScalar<bool>("[Hr].[UserLogin]",
+              connection.Query<UserClaimsModel>("[Hr].[UserLogin]",
               new
               {
                  userName = userName,
                  password = Password
               },
-              commandType: System.Data.CommandType.StoredProcedure));
+              commandType: System.Data.CommandType.StoredProcedure)).FirstOrDefault();
         }
     }
 }

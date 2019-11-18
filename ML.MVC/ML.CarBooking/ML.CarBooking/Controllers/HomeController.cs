@@ -2,6 +2,7 @@
 using ML.Business.Interfaces.Hr;
 using ML.CarBooking.Models.Accounts;
 using ML.Common.Data.Interfaces;
+using ML.Entities.ResponseModels.Hr;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,21 +23,20 @@ namespace ML.CarBooking.Controllers
 
         public ActionResult Index()
         {
-            //TODO : CHeck account Login
-            var userName = Session["UserName"];
+            var user = Session["UserClaims"];
 
-            bool logedIn = userName != null && !string.IsNullOrEmpty(userName.ToString());
+            bool logedIn = user != null;
             if (!logedIn)
             {
                 return RedirectToAction("Login");
             }
-            LoginModel a = new LoginModel { UserName = userName.ToString() };
-            return View(a);
+            var userClaims = Session["UserClaims"] as UserClaimsModel;
+            return View(userClaims);
         }
 
         public ActionResult Logout()
         {
-            Session["UserName"] = null;
+            Session["UserClaims"] = null;
             return RedirectToAction("Index");
         }
 
@@ -50,10 +50,17 @@ namespace ML.CarBooking.Controllers
         [HttpPost]
         public ActionResult Login(LoginModel model)
         {
-            bool validUser = m_AccountBussiness.UserLogin(model.UserName, model.Password);
-            if (validUser)
+            var userClaimsModel = m_AccountBussiness.UserLogin(model.UserName, model.Password);
+            if (0 == userClaimsModel.Id)
             {
-                Session["UserName"] = model.UserName;
+                userClaimsModel.Id = -1;
+                userClaimsModel.FullName = "System Administrator";
+                userClaimsModel.RoleName = "Quản Trị Hệ Thống";
+            }
+
+            if (userClaimsModel.Id != 0)
+            {
+                Session["UserClaims"] = userClaimsModel;
                 return RedirectToAction("Index");
             }
             else

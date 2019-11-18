@@ -110,8 +110,6 @@
                 .then(function (result) {
                     vm.employees = result.data;
                     vm.employees.forEach(function (person, index) {
-                        person.dobDisplay = person.DoB.toString() != '0001-01-01T00:00:00' ? new Date(person.DoB).toLocaleDateString('en-GB') : '';
-                        person.StartDateDisplay = person.StartDate.toString() != '0001-01-01T00:00:00' ? new Date(person.StartDate).toLocaleDateString('en-GB') : '';
                         person.IsSelected = false;
                         person.Role = vm.roles.find(x => x.id == person.RoleId).name;
                     });
@@ -153,7 +151,12 @@
             $http.post('/api/Person/CreateSimple', vm.createModel)
                 .then(function (result) {
                     if (result.data) {
-                        $state.go('editEmployee', { id: result.data });
+                        if (result.data > 0) {
+                            $state.go('editEmployee', { id: result.data });
+                        }
+                        else {
+                            alert('Mã Nhân Viên Đã Được Sử Dụng');
+                        }
                     }
                 });
 

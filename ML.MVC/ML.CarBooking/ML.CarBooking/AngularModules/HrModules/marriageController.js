@@ -15,7 +15,6 @@
         vm.editRelative = editRelative;
         vm.openDelModel = openDelModel;
         vm.deleteRelationShip = deleteRelationShip;
-        vm.checkIsDependent = checkIsDependent;
         vm.changeMariageStatus = changeMariageStatus;
         vm.changeIsDependent = changeIsDependent;
         vm.personMariageStatus = 0;
@@ -164,14 +163,6 @@
 
         };
 
-        function checkIsDependent(r) {
-            if (!r) {
-                return { 'color': 'black' };
-            } else {
-                return { 'color': 'green' };
-            }
-
-        }
 
     }
 })();
