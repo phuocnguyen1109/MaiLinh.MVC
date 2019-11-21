@@ -273,7 +273,6 @@ BEGIN
 		BEGIN
 			-- -2: Không có role
 			SELECT -2 AS Id
-			print 'gothere'
 		END
 	ELSE
 		BEGIN 
