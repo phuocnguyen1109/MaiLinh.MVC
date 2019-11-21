@@ -12,6 +12,7 @@ namespace ML.Entities.ResponseModels.Hr
         public string UserName { get; set; }
         public string FullName { get; set; }
         public string RoleName { get; set; }
-        public int Role { get; set; }
+        public int DepartmentId { get; set; }
+        public int RoleId { get; set; }
     }
 }

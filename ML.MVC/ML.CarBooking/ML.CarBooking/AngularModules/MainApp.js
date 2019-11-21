@@ -16,6 +16,7 @@
             { id: 3, imgUrl: '29seats.png' }
         ];
 
+
         vm.gotoEmployees = gotoEmployees;
         vm.gotoVehicleManagement = gotoVehicleManagement;
         vm.gotoMasterDataManagement = gotoMasterDataManagement;
@@ -23,8 +24,17 @@
         vm.gotoNationalManagement = gotoNationalManagement;
         vm.goMainPage = goMainPage;
 
+        function getRoleNames() {
+            if (vm.userClaims.UserId == -1) return;
+            let departmentName = E.Departments.find(x => x.id == vm.userClaims.DepartmentId).name || '';
+            let roleName = E.Roles.find(x => x.id == vm.userClaims.RoleId).name || '';
+            let rName = departmentName + ' - ' + roleName;
+            vm.userClaims.RoleName = rName;
+            console.log(vm.userClaims);
+        }
+        getRoleNames();
+
         function gotoEmployees() {
-            debugger;
             $state.go('employees');
             vm.isMainPage = false;
         }

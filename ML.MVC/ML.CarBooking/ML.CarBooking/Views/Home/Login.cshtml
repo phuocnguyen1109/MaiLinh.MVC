@@ -32,8 +32,8 @@
                             <div class="form-group error">
                                 @if (@ViewBag.NotValid == true)
                                 {
-
-                                    <label>Sai tên đăng nhập hoặc mật khẩu !</label>
+                                    
+                                    <label>@ViewBag.Message</label>
                                 }
                             </div>
                             <div class="form-group">

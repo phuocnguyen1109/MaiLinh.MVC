@@ -57,12 +57,12 @@
             </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li ng-if="vm.userClaims.Role == -1" class="nav-item">
+            <li ng-if="vm.userClaims.DepartmentId == -1" class="nav-item">
                 <div class="sidebar-heading">
                     HỆ THỐNG
                 </div>
             </li>
-            <li ng-if="vm.userClaims.Role == -1" class="nav-item">
+            <li ng-if="vm.userClaims.DepartmentId == -1" class="nav-item">
                 <a class="nav-link collapsed" data-toggle="collapse" data-target="#National" aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-clipboard-list"></i>
                     <span>Quản Lý Danh Mục</span>
@@ -76,13 +76,13 @@
                     </div>
                 </div>
             </li>
-            <li ng-if="vm.userClaims.Role == -1" class="nav-item">
+            <li ng-if="vm.userClaims.DepartmentId == -1" class="nav-item">
                 <a class="nav-link" ng-click="vm.gotoAccountManagement()">
                     <i class="fas fa-fw fa-users-cog"></i>
                     <span>Quản Lý Accounts</span>
                 </a>
             </li>
-            <li ng-if="vm.userClaims.Role == -1" class="nav-item">
+            <li ng-if="vm.userClaims.DepartmentId == -1" class="nav-item">
                 <a class="nav-link" ng-click="gotoPermission()">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Quản Lý Phân Quyền</span>
@@ -100,7 +100,7 @@
                     <i class="fas fa-fw fa-user-tie"></i>
                     <span>Nhân Sự</span>
                 </a>
-                <div ng-if="vm.userClaims.Role == -1 || vm.userClaims.Role == 1" id="collapsePagesHR" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div ng-if="vm.userClaims.DepartmentId == -1 || vm.userClaims.DepartmentId == 1" id="collapsePagesHR" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" ng-click="vm.gotoEmployees()">Hồ Sơ Lái Xe</a>
                     </div>
@@ -111,7 +111,7 @@
             </li>
 
 
-            <li ng-if="vm.userClaims.Role == -1 || vm.userClaims.Role == 4" class="nav-item">
+            <li ng-if="vm.userClaims.DepartmentId == -1 || vm.userClaims.DepartmentId == 4" class="nav-item">
                 <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseExecute" aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-user-tie"></i>
                     <span>Điều Hành - Kinh Doanh</span>
@@ -132,7 +132,7 @@
                 </div>
             </li>
 
-            <li ng-if="vm.userClaims.Role == -1 || vm.userClaims.Role == 2" class="nav-item">
+            <li ng-if="vm.userClaims.DepartmentId == -1 || vm.userClaims.DepartmentId == 2" class="nav-item">
                 <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseAccountance" aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-user-tie"></i>
                     <span>Kế Toán</span>
@@ -153,7 +153,7 @@
                 </div>
             </li>
 
-            <li ng-if="vm.userClaims.Role == -1 || vm.userClaims.Role == 3" class="nav-item">
+            <li ng-if="vm.userClaims.DepartmentId == -1 || vm.userClaims.DepartmentId == 3" class="nav-item">
                 <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapsePagesTECH" aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-tools"></i>
                     <span>Kỹ Thuật - An Toàn</span>
@@ -205,7 +205,7 @@
                                 @*<img class="img-profile rounded-circle" src="Content/Images/avatar.jpg">*@
                                 <div class="ml-2">
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{vm.userClaims.Name}}</span> <br />
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{vm.userClaims.Role}}</span>
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{vm.userClaims.RoleName}}</span>
                                 </div>
                                 @*<i class="fas fa-sign-out-alt fa-sm fa-fw  ico-only"></i>*@
                             </a>
@@ -271,7 +271,8 @@
         const UserClaims = {
             UserId: '@Model.Id',
             Name: '@Model.FullName',
-            Role:'@Model.Role'
+            DepartmentId: '@Model.DepartmentId',
+            RoleId: '@Model.RoleId'
         };
     </script>
 
@@ -285,11 +286,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/12.0.4/ng-file-upload-shim.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/12.0.4/ng-file-upload.js"></script>
     <script src="~/Scripts/angular-pubsub.js" type="text/javascript"></script>
+    <script type="text/javascript" src="~/AngularModules/Enums.js"></script>
 
     <script type="text/javascript" src="~/AngularModules/MainApp.js"></script>
     <script type="text/javascript" src="~/AngularModules/mainApp.routes.js"></script>
 
-    <script type="text/javascript" src="~/AngularModules/Enums.js"></script>
+
     <script type="text/javascript" src="~/AngularModules/Utilities.js"></script>
     <script type="text/javascript" src="~/AngularModules/Directives/CurrencyDirective.js"></script>
     <script type="text/javascript" src="~/AngularModules/Directives/DatePickerDirective.js"></script>

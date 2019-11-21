@@ -244,35 +244,51 @@ END
 
 GO
 
-ALTER PROC [Hr].[UserLogin]  
-  
-@userName varchar(50),  
-  
-@password varchar(50)  
-  
-AS  
-  
-BEGIN  
- Declare @id INT = 0  
- SELECT @id = ISNULL(Id,0) FROM [Hr].[PersonAccount]   
- WHERE UserName=@userName AND [PassWord] = @password  
- 
- IF @id =0
- BEGIN
- SELECT 0 AS Id
- END
- ELSE
- BEGIN
-	SELECT P.Id,
-		   PA.UserName,
-		   PA.[Role],
-		   P.FirstName +' '+P.LastName AS FullName 
-	FROM [Hr].[PersonAccount] PA
-	LEFT JOIN [Hr].[Person] P ON PA.PersonId = P.Id
-	WHERE PA.Id = @id
- END
-END  
+ALTER PROC [Hr].[UserLogin]    
+@userName varchar(50),    
+@password varchar(50)    
+AS    
+    
+BEGIN   
+ Declare @id INT = 0
+ Declare @role INT = 0
+	SELECT @id = ISNULL(Id,0), 
+		   @role =ISNULL([Role], 0) 
+    FROM [Hr].[PersonAccount]     
+	WHERE UserName=@userName 
+	AND [PassWord] = @password   
+
+   print @id
+   print @role
+
+ IF @id =0  
+	BEGIN 
+  --0: Không tìm thấy user
+		SELECT 0 AS Id  
+	END  
+ ELSE  
+	BEGIN  
+	--Nếu không có role
+	IF @role = 0 
+		BEGIN
+			-- -2: Không có role
+			SELECT -2 AS Id
+			print 'gothere'
+		END
+	ELSE
+		BEGIN 
+			SELECT 
+			ISNULL(P.Id, -1) AS Id,  
+			PA.UserName,  
+			PA.[Role] as DepartmentId,
+			P.RoleId,
+			P.FirstName +' '+P.LastName AS FullName   
+			FROM [Hr].[PersonAccount] PA  
+			LEFT JOIN [Hr].[Person] P ON PA.PersonId = P.Id  
+			WHERE PA.Id = @id  
+		END
+	END  
+END 
+
   
     
-
-	exec [Hr].[UserLogin] 'admin', '0'

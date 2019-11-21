@@ -51,23 +51,27 @@ namespace ML.CarBooking.Controllers
         public ActionResult Login(LoginModel model)
         {
             var userClaimsModel = m_AccountBussiness.UserLogin(model.UserName, model.Password);
+
             if (0 == userClaimsModel.Id)
             {
-                userClaimsModel.Id = -1;
+                ViewBag.NotValid = true;
+                ViewBag.Message = "Sai Tên Đăng Nhập Hoặc Mật Khẩu";
+                return View();
+            }
+            if (-2 == userClaimsModel.Id)
+            {
+                ViewBag.NotValid = true;
+                ViewBag.Message = "Tài khoản này hiện chưa được cấp quyền truy cập hệ thống";
+                return View();
+            }
+                
+            if (-1 == userClaimsModel.Id)
+            {
                 userClaimsModel.FullName = "System Administrator";
                 userClaimsModel.RoleName = "Quản Trị Hệ Thống";
             }
-
-            if (userClaimsModel.Id != 0)
-            {
                 Session["UserClaims"] = userClaimsModel;
                 return RedirectToAction("Index");
-            }
-            else
-            {
-                ViewBag.NotValid = true;
-                return View();
-            }
         }
     }
 }
