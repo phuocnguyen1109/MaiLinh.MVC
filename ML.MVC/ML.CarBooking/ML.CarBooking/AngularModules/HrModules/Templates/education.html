@@ -10,8 +10,7 @@
                         <select ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'"
                                 ng-options="l.Id as l.Name for l in vm.educationGrades"
                                 ng-model="vm.personEdu.GradeId"
-                                ng-change="vm.dataChanges()">
-                        </select>
+                                ng-change="vm.dataChanges()"></select>
                     </div>
 
                     <div class="col-lg-6 col-md-6">
@@ -26,8 +25,7 @@
                         <select ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'"
                                 ng-options="l.Id as l.Name for l in vm.driveLicenses"
                                 ng-model="vm.personEdu.selectedDriveLicense"
-                                ng-change="vm.dataChanges()">
-                        </select>
+                                ng-change="vm.dataChanges()"></select>
                     </div>
 
                     <div class="col-lg-6 col-md-6 col-sm-6">
@@ -105,8 +103,7 @@
                                 <select id="qualification" class="form-control"
                                         ng-model="vm.selectedPersonLanguage.Level"
                                         ng-options="q.LevelId as q.Level for q in vm.listQualifications"
-                                        ng-change="vm.isValidPersonlanguage()">
-                                </select>
+                                        ng-change="vm.isValidPersonlanguage()"></select>
                             </div>
                         </div>
                     </div>
@@ -153,11 +150,15 @@
                     <tr ng-repeat="row in vm.personWorkLicenses">
                         <td class="center-block txt-center custom-col"><input type="checkbox" ng-model="row.IsChecked" ng-disabled="vm.IsViewing" /></td>
                         <td class="text-uppercase custom-col">{{row.Name}}</td>
-                        <td class="custom-col"><input type="number" class="form-control" ng-model="row.Duration"  ng-disabled="!row.IsChecked" /></td>
-                        <td class="custom-col"><div style="width:100%; margin-top:15px;"><date-picker datepicker-append-to-body="true" value="row.FromDate" format="dd/MM/yyyy"></date-picker></div></td>
-                        <td class="custom-col"><button style="display:inline; float:left;" class="btn btn-outline-info" ng-click="vm.changeTime(row)"><i class="glyphicon glyphicon-adjust"></i></button> <span style="width:60%; padding-left:45px;" class="information">{{row.ToDate | date:'dd/MM/yyyy'}}</span></td>
+                        <td class="custom-col"><input type="number" class="form-control" min="0" ng-change="vm.durationChange($index)" ng-model="row.Duration" ng-disabled="!row.IsChecked" /></td>
                         <td class="custom-col">
-                            <button class="btn btn-outline-primary" ng-click="vm.saveLincense(row)" ng-disabled="!row.IsEnabled">
+                            <div style="width:100%; margin-top:15px;">
+                                <date-picker value="row.FromDate" on-change="vm.changeFromDate(value, $index)" format="dd/MM/yyyy"></date-picker>
+                            </div>
+                        </td>
+                        <td class="custom-col"><span style="width:60%;" class="information">{{row.ToDate | date:'dd/MM/yyyy'}}</span></td>
+                        <td class="custom-col">
+                            <button class="btn btn-outline-primary" ng-click="vm.saveLincense(row)" ng-disabled="!row.IsChecked">
                                 <i class="fas fa-fw fa-save"></i>
                             </button>
                         </td>

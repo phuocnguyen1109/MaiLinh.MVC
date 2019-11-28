@@ -98,10 +98,9 @@
 
 
         function saveChanges() {
-            console.log(vm.person);
             vm.person.Addresses = [vm.personAddresses.address, vm.personAddresses.contactAddress];
             vm.person.IsPension = vm.person.IsPension == 'true' ? true : false;
-            vm.person.IsMale = vm.person.IsMale == 'true' ? true : false;
+            vm.person.IsMale = vm.person.IsMaleDisplay == 'true' ? true : false;
             vm.person.Actived = vm.person.Actived ? 'true' : 'false';
             $http.post('/api/Person/UpdatePersonInformation', vm.person)
                 .then(function (result) {
@@ -116,11 +115,11 @@
                         vm.person = result.data;
                         vm.person.FullName = vm.person.FirstName + " " + vm.person.LastName;
                         vm.person.IsPension = vm.person.IsPension ? 'true' : 'false';
-                        vm.person.IsMale = vm.person.IsMale ? 'true' : 'false';
+                        vm.person.IsMaleDisplay = vm.person.IsMale ? 'true' : 'false';
                         vm.person.Actived = vm.person.Actived ? 'true' : 'false';
                         vm.person.DepartmentName = vm.departments.find(x => x.id == vm.person.DepartmentId).name;
                         vm.person.RoleName = vm.roles.find(x => x.id == vm.person.RoleId).name;
-                        vm.person.imageUrl = vm.person.imageUrl == null ? vm.person.IsMale == 'true' ? "../../../Content/Images/male.png" : "../../../Content/Images/female.png" : vm.person.imageUrl;
+                        vm.person.imageUrl = vm.person.imageUrl == null ? vm.person.IsMaleDisplay == 'true' ? "../../../Content/Images/male.png" : "../../../Content/Images/female.png" : vm.person.imageUrl;
                         vm.personAddresses.address = angular.copy(vm.person.Addresses).find(x => x.Type == 1);
                         if (!vm.personAddresses.address) {
                             vm.personAddresses.address = { Id: 0, PersonId: personId, Address: null, CityId: 0, DistrictId: 0, Type: 1 };

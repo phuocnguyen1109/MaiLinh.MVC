@@ -1,8 +1,8 @@
 ﻿/*Background*/
 .ml-bg-dark {
-    background-color: #2f3a4c;
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(10%, #2f3a4c), to(#373840));
-    background-image: linear-gradient(180deg, #2f3a4c 10%, #373840 100%);
+    background-color: darkgreen;
+    /*background-image: -webkit-gradient(linear, left top, left bottom, color-stop(10%, #2f3a4c), to(#373840));
+    background-image: linear-gradient(180deg, #2f3a4c 10%, #373840 100%);*/
     background-size: cover;
 }
 
@@ -11,7 +11,7 @@
 }
 
 .bg-mldark {
-    background-color: #2f3a4c;
+    background-color: darkgreen;
     color: #fff !important;
 }
 
@@ -179,7 +179,7 @@ select.form-control {
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
-    background-color: #2f3a4c !important;
+    background-color:darkgreen !important;
     color: #fff;
 }
 /*Table*/

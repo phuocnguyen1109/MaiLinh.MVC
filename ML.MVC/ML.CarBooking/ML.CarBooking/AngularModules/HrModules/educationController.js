@@ -15,9 +15,10 @@
         vm.saveLincense = saveLincense;
         vm.openDelModal = openDelModal;
         vm.deleted = deleted;
-        vm.changeTime = changeTime;
         vm.dataChanges = dataChanges;
         vm.driveLicenseExpiredChange = driveLicenseExpiredChange;
+        vm.changeFromDate = changeFromDate;
+        vm.durationChange = durationChange;
         
 
         vm.isValidPLanguage = false;
@@ -41,6 +42,21 @@
         function driveLicenseExpiredChange(value) {
             vm.personEdu.DriveLicenseExpired = value;
             dataChanges();
+        }
+
+        function changeFromDate(value, index) {
+            let selectedRow = vm.personWorkLicenses[index];
+            if (selectedRow.Duration) {
+                selectedRow.ToDate = new Date(angular.copy(value).setMonth(value.getMonth() + selectedRow.Duration));
+                
+            }
+        }
+
+        function durationChange(index) {
+            let selectedRow = vm.personWorkLicenses[index];
+            if (!selectedRow.FromDate || !selectedRow.Duration || selectedRow.Duration == 0) return;
+            selectedRow.ToDate = new Date(angular.copy(selectedRow.FromDate).setMonth(selectedRow.FromDate.getMonth() + selectedRow.Duration));
+
         }
 
         function buildPersonLanguageGrid(data) {
@@ -194,23 +210,15 @@
             vm.isValid = true;
         }
 
-        function changeTime(row) {
-            var ToDate = null;
-            if (row.FromDate != null && row.Duration != null) {
-                var FromDate = new Date(row.FromDate);
-                ToDate = FromDate.setMonth(FromDate.getMonth() + row.Duration);
-                row.ToDate = new Date(ToDate);
-                if (row.IsChecked == true && row.Duration != null && row.FromDate != null && row.ToDate != null) {
-                    row.IsEnabled = true;
-                    return;
-                }
-            }
-            row.IsEnabled = false;
-        }
-      
-
 
         function saveLincense(r) {
+            if (!r.Duration || r.Duration < 0) {
+                alert('Thời hạn không được để trống'); return;
+            }
+
+            if (!r.FromDate) {
+                alert('Chọn Ngày Cấp'); return;
+            }
             var params = {
                 PersonId: parseInt(personId),
                 Duration: r.Duration,
@@ -220,7 +228,8 @@
             };
             $http.post('/api/Education/SaveWorkLicense', params)
                 .then(function (result) {
-                    debugger;
+                    alert('Lưu Thông Tin Thành Công');
+                    resetModel();
                 });
         }
 
