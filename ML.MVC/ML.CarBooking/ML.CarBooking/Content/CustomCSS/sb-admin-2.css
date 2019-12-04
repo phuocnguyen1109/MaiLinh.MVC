@@ -3785,6 +3785,9 @@ pre {
 
 .custom-col {
     padding: 0.75rem;
+    text-align: center;
+    vertical-align:central;
+    
 }
 
 .table {
@@ -5370,7 +5373,7 @@ input[type="button"].btn-block {
 }
 
 .fade:not(.show) {
-    opacity: 0;
+    opacity: 1;
 }
 
 .collapse:not(.show) {
@@ -8331,7 +8334,7 @@ a.close.disabled {
     max-height: calc(100% - 1rem);
 }
 
-    .modal-dialog-scrollable .modal-content {
+    .modal-dialog-scrollable .custom-modal-content {
         max-height: calc(100vh - 1rem);
         overflow: hidden;
     }
@@ -8373,7 +8376,7 @@ a.close.disabled {
         height: 100%;
     }
 
-        .modal-dialog-centered.modal-dialog-scrollable .modal-content {
+        .modal-dialog-centered.modal-dialog-scrollable .custom-modal-content {
             max-height: none;
         }
 
@@ -8381,7 +8384,7 @@ a.close.disabled {
             content: none;
         }
 
-.modal-content {
+.custom-modal-content {
     position: relative;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -8399,6 +8402,25 @@ a.close.disabled {
     outline: 0;
 }
 
+.modal-content {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0.3rem;
+    outline: 0;
+    top: 20vh;
+}
+
 .modal-backdrop {
     position: fixed;
     top: 0;
@@ -8410,7 +8432,7 @@ a.close.disabled {
 }
 
     .modal-backdrop.fade {
-        opacity: 0;
+        opacity: 0.5;
     }
 
     .modal-backdrop.show {
@@ -8493,7 +8515,7 @@ a.close.disabled {
         max-height: calc(100% - 3.5rem);
     }
 
-        .modal-dialog-scrollable .modal-content {
+        .modal-dialog-scrollable .custom-modal-content {
             max-height: calc(100vh - 3.5rem);
         }
 

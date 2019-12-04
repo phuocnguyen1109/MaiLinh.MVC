@@ -245,6 +245,7 @@
     <Content Include="AngularModules\MainApp.js" />
     <Content Include="AngularModules\mainApp.routes.js" />
     <Content Include="AngularModules\Utilities.js" />
+    <Content Include="AngularModules\Vehicle\addVehicleMasterModal.js" />
     <Content Include="AngularModules\Vehicle\editVehicleController.js" />
     <Content Include="AngularModules\Vehicle\Templates\EditVehicle.html" />
     <Content Include="AngularModules\Vehicle\Templates\GPS.html" />
@@ -256,7 +257,10 @@
     <Content Include="AngularModules\Vehicle\Templates\VehicleLoanManagement.html" />
     <Content Include="AngularModules\Vehicle\Templates\VehicleMaintainManagement.html" />
     <Content Include="AngularModules\Vehicle\Templates\VehicleManagements.html" />
+    <Content Include="AngularModules\Vehicle\Templates\VehicleMaster\addModal.html" />
+    <Content Include="AngularModules\Vehicle\Templates\VehicleMaster\vehicleMaster.html" />
     <Content Include="AngularModules\Vehicle\vehicleManagementController.js" />
+    <Content Include="AngularModules\Vehicle\vehicleMaster.js" />
     <Content Include="App_Readme\readme.txt" />
     <Content Include="Content\CustomCSS\agency.css" />
     <Content Include="Content\fontawesome-free\css\all.css" />

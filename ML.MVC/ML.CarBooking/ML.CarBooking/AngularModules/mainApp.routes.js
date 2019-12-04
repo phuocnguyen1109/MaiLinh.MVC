@@ -37,6 +37,12 @@
                     controller: 'editVehicleController',
                     controllerAs: 'vm'
                 })
+                .state('vehicleMaster', {
+                    url: '/vehicle/setting',
+                    templateUrl: 'AngularModules/Vehicle/Templates/VehicleMaster/vehicleMaster.html',
+                    controller: 'vehicleMasterController',
+                    controllerAs: 'vm'
+                })
 
                 //Master Data
                 //.state('masterData', {

@@ -1,0 +1,39 @@
+﻿<div >
+    <h3>ĐỊNH NGHĨA PHƯƠNG TIỆN</h3>
+    <div class="w-100" style="float:right; margin-top:30px; margin-bottom:10px;">
+        <div class="input-group" style="width:50%;">
+            <input type="text" class="form-control bg-light small" placeholder="Tìm kiếm ..." aria-label="Search" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="button">
+                    <i class="fas fa-search fa-sm"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+
+        <div class="mb-10">
+            <button class="btn btn-outline-primary mr-1" ng-click="vm.add()">
+                <i class="fas fa-fw fa fa-plus"></i> THÊM MỚI
+            </button>
+        </div>
+        <table class="table table-bordered table-hover">
+            <thead class="thead-light shadow_tb">
+                <tr>
+                    <th class="custom-col" rowspan="2">DÒNG XE</th>
+                    <th class="custom-col" rowspan="2">HIỆU XE</th>
+                    <th class="custom-col" colspan="2">VIẾT TẮT</th>
+                </tr>
+                <tr>
+                    <th class="custom-col">DÒNG XE</th>
+                    <th class="custom-col">CS XE</th>
+                </tr>
+
+            </thead>
+            <tbody>
+               <tr ng-if="1==1">
+                   <td class="custom-col" colspan="4"><h5>Chưa có dữ liệu</h5></td>
+               </tr>
+            </tbody>
+        </table>
+    </div>

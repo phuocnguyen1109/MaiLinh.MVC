@@ -23,7 +23,7 @@
         }
     </style>
 
-    <title>Mai Linh v1.0.2-Beta</title>
+    <title>Mai Linh v1.0.3-Beta</title>
 
 </head>
 <body ng-app="mainApp">
@@ -159,6 +159,10 @@
                     <span>Kỹ Thuật - An Toàn</span>
                 </a>
                 <div id="collapsePagesTECH" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" ng-click="vm.gotoVehicleMaster()">Định Nghĩa Phương Tiện</a>
+
+                    </div>
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" ng-click="vm.gotoVehicleManagement()">Hồ Sơ Phương Tiện</a>
 
@@ -319,8 +323,12 @@
 
     <script type="text/javascript" src="~/AngularModules/Vehicle/vehicleManagementController.js"></script>
     <script type="text/javascript" src="~/AngularModules/Vehicle/editVehicleController.js"></script>
+    <script type="text/javascript" src="~/AngularModules/Vehicle/addVehicleMasterModal.js"></script>
+    <script type="text/javascript" src="~/AngularModules/Vehicle/vehicleMaster.js"></script>
+
     <script type="text/javascript" src="~/AngularModules/Administration/masterDataManagementController.js"></script>
     <script type="text/javascript" src="~/AngularModules/Administration/accountManagementController.js"></script>
+
 
     <script type="text/javascript" src="~/AngularModules/Administration/nationalManagementController.js"></script>
     <script type="text/javascript" src="~/AngularModules/Administration/NationalModalController.js"></script>

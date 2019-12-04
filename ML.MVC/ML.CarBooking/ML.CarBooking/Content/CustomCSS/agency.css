@@ -16,7 +16,7 @@
 }
 
 .showBg {
-    background-image: url(../Images/29seats.png);
+    /*background-image: url(../Images/29seats.png);*/
     background-position: center center;
     background-attachment: inherit;
     background-repeat: no-repeat;
@@ -221,4 +221,8 @@ select.form-control {
 .disableRB {
     opacity: 1 !important;
 
+}
+
+.mb-10{
+    margin-bottom: 10px;
 }

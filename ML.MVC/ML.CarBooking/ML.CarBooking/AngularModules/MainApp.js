@@ -22,6 +22,10 @@
         vm.gotoMasterDataManagement = gotoMasterDataManagement;
         vm.gotoAccountManagement = gotoAccountManagement;
         vm.gotoNationalManagement = gotoNationalManagement;
+
+        //Vehicles
+        vm.gotoVehicleMaster = gotoVehicleMaster;
+        
         vm.goMainPage = goMainPage;
 
         function getRoleNames() {
@@ -62,6 +66,12 @@
         function goMainPage() {
             $state.go('dashboard');
             vm.isMainPage = true;
+        }
+
+        // Vehicles
+
+        function gotoVehicleMaster() {
+            $state.go('vehicleMaster');
         }
     }
 })();

@@ -1,0 +1,33 @@
+﻿<div class="uib-custom-modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title text-uppercase" id="modal-title">THÊM ĐỊNH NGHĨA PHƯƠNG TIỆN</h5>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <p class="err-message">* Đã tồn tại định phương tiện</p>
+        <label for="dongxe">
+            NHẬP DÒNG XE :
+        </label>
+            <input class="form-control" name="dongxe" type="text" />
+            <label for="hieuxe">
+                NHẬP HIỆU XE :
+            </label>
+            <input class="form-control" name="hieuxe" type="text" />
+
+            <div  style="width: 45%; float: left;">
+                <label for="vtdongxe">
+                    VIẾT TẮT DÒNG XE :
+                </label>
+                <input class="form-control" name="vtdongxe" type="text" />
+            </div>
+            <div style="width:45%; display: inline-block; float: right; margin-bottom: 15px;">
+                <label for="vtcsxe">
+                    VIẾT TẮT CS XE :
+                </label>
+                <input class="form-control" name="vtcsxe"  type="text" />
+            </div>
+    </div>
+    <div class="modal-footer" style="width: 100%;">
+        <button class="btn btn-outline-primary"  type="button">Lưu </button>
+        <button class="btn btn-outline-secondary" type="button" ng-click="vm.close()">Hủy Bỏ</button>
+    </div>
+</div>
