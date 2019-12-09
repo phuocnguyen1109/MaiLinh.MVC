@@ -9,6 +9,10 @@
         var vm = this;
 
         vm.add = add;
+        vm.editVehicleMaster = editVehicleMaster;
+        vm.deleteVehicleMaster = deleteVehicleMaster;
+
+        vm.vehicleMasters = [];
 
         function add() {
             var modalInstance = $uibModal.open({
@@ -21,9 +25,19 @@
 
                 },
             });
-            modalInstance.result.then(function () {
-                alert("now I'll close the modal");
+            modalInstance.result.then(function (result) {
+                if (result.Id == 0) {
+                    vm.vehicleMasters.push(result);
+                }
             });
+        }
+
+        function editVehicleMaster(row, $index) {
+            console.log('edit');
+        }
+
+        function deleteVehicleMaster(row, $index) {
+            console.log('delete');
         }
 
     }

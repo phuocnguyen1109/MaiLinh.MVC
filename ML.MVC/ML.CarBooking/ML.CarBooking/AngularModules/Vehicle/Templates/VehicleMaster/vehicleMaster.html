@@ -20,9 +20,10 @@
         <table class="table table-bordered table-hover">
             <thead class="thead-light shadow_tb">
                 <tr>
-                    <th class="custom-col" rowspan="2">DÒNG XE</th>
-                    <th class="custom-col" rowspan="2">HIỆU XE</th>
-                    <th class="custom-col" colspan="2">VIẾT TẮT</th>
+                    <th style="width: 20%;" class="custom-col" rowspan="2">DÒNG XE</th>
+                    <th  style="width: 20%;"class="custom-col" rowspan="2">HIỆU XE</th>
+                    <th style="width: 40%;" class="custom-col" colspan="2">VIẾT TẮT</th>
+                    <th  style="width: 20%;"class="custom-col" rowspan="2"></th>
                 </tr>
                 <tr>
                     <th class="custom-col">DÒNG XE</th>
@@ -31,9 +32,20 @@
 
             </thead>
             <tbody>
-               <tr ng-if="1==1">
-                   <td class="custom-col" colspan="4"><h5>Chưa có dữ liệu</h5></td>
+               <tr ng-if="vm.vehicleMasters.length == 0">
+                   <td class="custom-col" colspan="5"><h5>Chưa có dữ liệu</h5></td>
                </tr>
+               <tr ng-if="vm.vehicleMasters.length > 0" ng-repeat="row in vm.vehicleMasters">
+                   <td class="custom-col">{{row.Type}}</td>
+                   <td class="custom-col">{{row.Brand}}</td>
+                   <td class="custom-col">{{row.ShortType}}</td>
+                   <td class="custom-col">{{row.ShortCS}}</td>
+                   <td class="custom-col">
+                       <button class="btn btn-outline-success" ng-click="vm.editVehicleMaster(row, $index)">Chỉnh sửa</button>
+                       <button class="btn btn-outline-danger" ng-click="vm.deleteVehicleMaster(row, $index)">Xóa</button>
+                   </td>
+               </tr>
+
             </tbody>
         </table>
     </div>

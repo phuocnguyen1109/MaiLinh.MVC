@@ -156,7 +156,7 @@ input[type="radio"], input[type="checkbox"] {
 
 /*Modal*/
 .modal-header {
-    background-color: #2f3a4c;
+    background-color: darkgreen;
     color: white;
     font-weight: 500;
 }
