@@ -35,11 +35,27 @@
         vm.createSimplePerson = createSimplePerson;
         vm.checkEmployeeCode = checkEmployeeCode;
         vm.checkValidEmployeeCode = checkValidEmployeeCode;
+        vm.searchEmployee = searchEmployee;
 
         vm.isValidEmployeeCode = false;
 
         function initialize() {
             getPersons();
+        }
+
+        function searchEmployee() {
+            if (!vm.filterText || vm.filterText == '') {
+                getPersons();
+                return;
+            }
+            $http.get('/api/Person/GetPersonBySearchCritical', { params: { filter: vm.filterText } })
+                .then(function (result) {
+                    vm.employees = result.data;
+                    vm.employees.forEach(function (person, index) {
+                        person.IsSelected = false;
+                        person.Role = vm.roles.find(x => x.id == person.RoleId).name;
+                    });
+                });
         }
 
         function checkValidEmployeeCode() {

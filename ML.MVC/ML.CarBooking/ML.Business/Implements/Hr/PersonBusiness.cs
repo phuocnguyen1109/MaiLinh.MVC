@@ -134,5 +134,9 @@ namespace ML.Business.Implements.Hr
             return m_PersonDataLayer.CheckEmployeeCode(employeeCode);
         }
 
+        public IEnumerable<PersonGridResponse> GetPersonBySearch(string filter) {
+            return m_PersonDataLayer.GetPersonBySearch(filter);
+        }
+
     }
 }

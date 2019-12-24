@@ -2,8 +2,8 @@
     <h5>DANH SÁCH NHÂN VIÊN LÁI XE</h5>
     <div class="w-100" style="float:right; margin-top:20px; margin-bottom:10px;">
         <div class="input-group" style="width:50%;">
-            <input type="text" class="form-control bg-light small" ng-change="vm.filter()" ng-model="vm.filterText" placeholder="Tìm kiếm ..." aria-label="Search" aria-describedby="basic-addon2">
-           
+            <input type="text" class="form-control bg-light small" ng-model="vm.filterText" placeholder="Tìm kiếm ..." aria-label="Search" aria-describedby="basic-addon2">
+           <button class="btn btn-primary" style="margin-left: 10px;" ng-click="vm.searchEmployee()">TÌM KIẾM</button>
         </div>
     </div>
 

@@ -22,10 +22,11 @@
                     <th rowspan="2" style="width: 5%;">NĂM SẢN XUẤT</th>
                     <th rowspan="2" style="width: 5%;">MÀU XE</th>
                     <th rowspan="2" style="width: 10%;">LOẠI HÌNH KD</th>
-                    <th rowspan="2" style="width: 10%;">VÙNG HOẠT ĐỘNG</th>
+                    <th rowspan="2" style="width: 5%;">VÙNG HOẠT ĐỘNG</th>
                     <th colspan="2" style="width: 20%;">NGÀY NHẬP XE</th>
                     <th colspan="2" style="width: 20%;">NGÀY THANH LÝ</th>
-                    <th rowspan="2" style="width: 15%;">SỐ KM BẢO DƯỠNG</th>
+                    <th rowspan="2" style="width: 10%;">LÁI XE BẢO QUẢN</th>
+                    <th rowspan="2" style="width: 10%;">SỐ KM BẢO DƯỠNG</th>
                 </tr>
                 <tr>
                     <th>NGÀY NHẬP</th>
@@ -49,13 +50,15 @@
                     <td>{{row.income.incomeNote}}</td>
                     <td>{{row.outcome.outcomeDate}}</td>
                     <td>{{row.outcome.outcomeNote}}</td>
+                    <td>Đỗ Thái Lân</td>
                     <td>{{row.maintainKM}}</td>
                 </tr>
             </tbody>
         </table>
-        <button class="btn btn-outline-primary mr-1" ng-click="vm.add()">
+        <button class="btn btn-outline-success" data-toggle="modal" data-target="#AddVehicleModal">
             <i class="fas fa-fw fa fa-plus"></i> THÊM MỚI
         </button>
+
         <button class="btn btn-outline-success mr-1" ng-click="vm.gotoEdit(1)">
             <i class="fas fa-fw fa-pen"></i> CHỈNH SỬA
         </button>
@@ -64,3 +67,58 @@
         </button>
     </div>
 </div>
+
+<!-- Delete Language Modal -->
+<div class="modal fade" id="AddVehicleModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="custom-modal-content">
+            <div class="modal-body">
+                <div>
+                    <label>
+                        HIỆU XE:
+                        <select class="form-control">
+                            <option>CAMRY 2.0E</option>
+                            <option>CAMRY 2.5Q(2012)</option>
+                            <option>COUNTY TRACO 3.9</option>
+                            <option>FORD TRANSIT 2.4</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        DÒNG XE:
+                        <input type="text" class="form-control" disabled />
+                    </label>
+
+                    <label>
+                        CS XE:
+                        <input type="text" class="form-control" disabled />
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        ĐỜI XE:
+                        </label>
+                    <div style="width: 100%;">
+                        <input type="number" class="form-control d-inline" style="width: 30%;" placeholder="Tháng" />
+                        <input type="number" class="form-control d-inline" style="width: 30%;" placeholder="Năm" />
+                        <input type="number" class="form-control d-inline" style="width: 30%;" disabled placeholder=" Thứ Tự" />
+                    </div>
+                </div>
+                <div>
+                    <label>
+
+                        MÃ XE:
+                        </label>
+                        <input type="number" class="form-control d-inline" disabled  placeholder="Mã Xe" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.deleted(vm.deletedDataRow)">Đồng ý</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

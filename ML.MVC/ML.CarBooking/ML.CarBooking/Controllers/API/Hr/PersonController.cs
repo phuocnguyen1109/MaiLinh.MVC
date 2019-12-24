@@ -147,6 +147,13 @@ namespace ML.CarBooking.Controllers.API.Hr
             return m_PersonBusiness.CheckEmployeeCode(employeeCode);
         }
 
+        [HttpGet]
+        public IEnumerable<PersonGridResponse> GetPersonBySearchCritical(string filter)
+        {
+            return m_PersonBusiness.GetPersonBySearch(filter);
+        }
+
+
 
 
 

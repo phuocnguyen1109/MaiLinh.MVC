@@ -1938,6 +1938,7 @@
     <Content Include="SQL_Scripts\Hr_Update_006.sql" />
     <Content Include="SQL_Scripts\Hr_Update_005.sql" />
     <Content Include="SQL_Scripts\Hr_Update_004.sql" />
+    <Content Include="SQL_Scripts\Hr_Update_022.sql" />
     <Content Include="SQL_Scripts\Hr_Update_021.sql" />
     <Content Include="SQL_Scripts\SP_Hr_Education.sql" />
     <Content Include="SQL_Scripts\SP_Hr_HealthCheck.sql" />
