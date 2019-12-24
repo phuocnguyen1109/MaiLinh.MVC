@@ -76,22 +76,19 @@
                 <div>
                     <label>
                         HIỆU XE:
-                        <select class="form-control">
-                            <option>CAMRY 2.0E</option>
-                            <option>CAMRY 2.5Q(2012)</option>
-                            <option>COUNTY TRACO 3.9</option>
-                            <option>FORD TRANSIT 2.4</option>
+                        <select class="form-control" ng-model="vm.selectedVehicleMaster"  ng-change="vm.changeVehicleMaster()"
+                                ng-options="t.Brand for t in vm.vehicleMasters">
                         </select>
                     </label>
 
                     <label>
                         DÒNG XE:
-                        <input type="text" class="form-control" disabled />
+                        <input type="text" class="form-control" ng-model="vm.vehicleModel.Type" disabled />
                     </label>
 
                     <label>
                         CS XE:
-                        <input type="text" class="form-control" disabled />
+                        <input type="text" class="form-control" ng-model="vm.vehicleModel.ShortCS" disabled />
                     </label>
                 </div>
                 <div>
@@ -99,9 +96,9 @@
                         ĐỜI XE:
                         </label>
                     <div style="width: 100%;">
-                        <input type="number" class="form-control d-inline" style="width: 30%;" placeholder="Tháng" />
-                        <input type="number" class="form-control d-inline" style="width: 30%;" placeholder="Năm" />
-                        <input type="number" class="form-control d-inline" style="width: 30%;" disabled placeholder=" Thứ Tự" />
+                        <input type="number" class="form-control d-inline" style="width: 30%;" placeholder="Tháng" ng-model="vm.vehicleModel.Month" />
+                        <input type="number" class="form-control d-inline" style="width: 30%;" placeholder="Năm" ng-model="vm.vehicleModel.Year" />
+                        <input type="number" class="form-control d-inline" style="width: 30%;" disabled placeholder=" Thứ Tự" ng-model="vm.vehicleModel.Number"/>
                     </div>
                 </div>
                 <div>
@@ -109,7 +106,7 @@
 
                         MÃ XE:
                         </label>
-                        <input type="number" class="form-control d-inline" disabled  placeholder="Mã Xe" />
+                        <input type="text" class="form-control d-inline" disabled ng-model="vm.vehicleModel.Code"  placeholder="Mã Xe" />
                 </div>
             </div>
             <div class="modal-footer">

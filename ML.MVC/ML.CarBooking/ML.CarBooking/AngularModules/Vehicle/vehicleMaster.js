@@ -3,9 +3,9 @@
     angular.module('mainApp')
         .controller('vehicleMasterController', vehicleMasterController);
 
-    vehicleMasterController.$inject = ['$uibModal'];
+    vehicleMasterController.$inject = ['$uibModal', '$window'];
 
-    function vehicleMasterController($uibModal) {
+    function vehicleMasterController($uibModal, $window) {
         var vm = this;
 
         vm.add = add;
@@ -13,6 +13,12 @@
         vm.deleteVehicleMaster = deleteVehicleMaster;
 
         vm.vehicleMasters = [];
+
+        function initialize() {
+            let str_VehicleMasters = $window.localStorage.getItem('Vehicle_Masters');
+            vm.vehicleMasters = !str_VehicleMasters ? [] : JSON.parse(str_VehicleMasters);
+        }
+        initialize();
 
         function add() {
             var modalInstance = $uibModal.open({
@@ -33,11 +39,11 @@
         }
 
         function editVehicleMaster(row, $index) {
-            console.log('edit');
+            alert('Chức năng đang được cập nhật');
         }
 
         function deleteVehicleMaster(row, $index) {
-            console.log('delete');
+            alert('Chức năng đang được cập nhật');
         }
 
     }
