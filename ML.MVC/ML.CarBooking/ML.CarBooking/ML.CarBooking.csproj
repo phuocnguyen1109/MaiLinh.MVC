@@ -1830,7 +1830,6 @@
     <Content Include="Content\CustomCSS\sb-admin-2.css" />
     <Content Include="Content\CustomCSS\sb-admin-2.min.css" />
     <Content Include="Content\Images\no_avatar.png" />
-    <Content Include="Content\Images\xe_16_2.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
