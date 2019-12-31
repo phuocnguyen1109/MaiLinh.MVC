@@ -169,7 +169,8 @@
 
         function getListQualifications() {
             vm.listQualifications = [
-                { LevelId: '', Level:'--Chọn Trình Độ--'},
+                { LevelId: '', Level: '--Chọn Trình Độ--' },
+                { LevelId: "Xuất sắc", Level: "Xuất sắc" },
                 { LevelId: "Giỏi", Level: "Giỏi" },
                 { LevelId: "Khá", Level: "Khá" },
                 { LevelId: "Trung bình", Level: "Trung bình" },
