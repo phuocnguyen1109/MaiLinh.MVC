@@ -3,7 +3,7 @@
     angular.module('mainApp')
         .controller('addVehicleMasterController', addVehicleMasterController);
 
-    function addVehicleMasterController($uibModalInstance) {
+    function addVehicleMasterController($uibModalInstance, $window) {
         var vm = this;
 
         vm.initialize = initialize;
@@ -48,6 +48,14 @@
         }
 
         function add() {
+            let str_vehicleMasters = $window.localStorage.getItem('Vehicle_Masters');
+            let vehicleMasters = JSON.parse(str_vehicleMasters);
+            if (!str_vehicleMasters) {
+                $window.localStorage.setItem('Vehicle_Masters', JSON.stringify([vm.vehicleMaster]));
+            } else {
+                vehicleMasters.push(vm.vehicleMaster);
+                $window.localStorage.setItem('Vehicle_Masters', JSON.stringify(vehicleMasters));
+            }
             $uibModalInstance.close(vm.vehicleMaster);
         }
     }

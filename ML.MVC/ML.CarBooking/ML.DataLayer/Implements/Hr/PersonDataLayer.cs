@@ -315,5 +315,14 @@ namespace ML.DataLayer.Implements.Hr
                employeeCode = employeeCode
            }, commandType: System.Data.CommandType.StoredProcedure));
         }
+
+        public IEnumerable<PersonGridResponse> GetPersonBySearch(string filter)
+        {
+            return Execute(connection => connection.Query<PersonGridResponse>("[Hr].[GetPersonsBySearch]",
+               new
+               {
+                   filter = filter
+               }, commandType: CommandType.StoredProcedure));
+        }
     }
 }

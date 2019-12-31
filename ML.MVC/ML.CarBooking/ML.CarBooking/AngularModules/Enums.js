@@ -73,7 +73,7 @@
         { id: 1, name: 'Phó Phòng' },
         { id: 3, name: 'Thư Ký' },
         { id: 4, name: 'Nhân Viên' },
-        { id: 5, name: 'Tài Xế' },
+        { id: 5, name: 'Lái Xe' },
         { id: 6, name: 'Phụ Xe' },
     ]
 };

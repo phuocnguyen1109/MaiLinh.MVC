@@ -151,22 +151,22 @@
                 { id: 1, name: 'Không' },
                 { id: 2, name: 'Phật Giáo' },
                 { id: 3, name: 'Thiên Chúa Giáo' },
-                { id: 4, name: 'Hồi Giáo' }
+                { id: 4, name: 'Công Giáo' },
+
             ];
 
             vm.countries = [
                 { id: 0, name: '-- Chọn Quốc Tịch --' },
-                { id: 1, name: 'Việt Nam' },
-                { id: 2, name: 'Thái Lan' },
-                { id: 3, name: 'Malaysia' }
+                { id: 1, name: 'Việt Nam' }
             ];
 
             vm.nations = [
                 { id: 0, name: '-- Chọn Dân Tộc --' },
                 { id: 1, name: 'Kinh' },
-                { id: 2, name: 'Ê - ĐÊ' },
-                { id: 3, name: 'H` Mông' },
-                { id: 4, name: 'Nùng' }
+                { id: 2, name: 'Hoa' },
+                { id: 3, name: 'Ê - ĐÊ' },
+                { id: 4, name: 'H` Mông' },
+                { id: 5, name: 'Nùng' }
             ];
 
             vm.departments = E.Departments;

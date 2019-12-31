@@ -12,6 +12,7 @@ namespace ML.Entities
         public int WorkLisenceId { get; set; }
         public int Duration { get; set; }
         public DateTime FromDate { get; set; }
+        public string IssuePlace { get; set; }
         public DateTime ToDate { get; set; }
         public int PersonId { get; set; }
     }

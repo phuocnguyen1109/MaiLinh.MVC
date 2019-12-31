@@ -46,5 +46,7 @@ namespace ML.Business.Interfaces.Hr
         int CreateOrUpdatePersonEquipment(PersonEquipment request);
 
         int CheckEmployeeCode(string employeeCode);
+
+        IEnumerable<PersonGridResponse> GetPersonBySearch(string filter);
     }
 }

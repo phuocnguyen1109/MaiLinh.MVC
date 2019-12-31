@@ -46,6 +46,7 @@ namespace ML.DataLayer.Interfaces.Hr
         int CreateOrUpdatePersonEquipment(PersonEquipment request);
 
         int CheckEmployeeCode(string employeeCode);
+        IEnumerable<PersonGridResponse> GetPersonBySearch(string filter);
 
 
     }
