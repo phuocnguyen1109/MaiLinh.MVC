@@ -104,7 +104,7 @@
         };
 
         function checkValid() {
-            if (vm.personRelationship.FullName && vm.personRelationship.YearOfBirth && vm.personRelationship.Address && vm.personRelationship.RelationshipId) {
+            if (vm.personRelationship.FullName && vm.personRelationship.YearOfBirth && vm.personRelationship.RelationshipId) {
                 vm.isValid = true;
             }
             else {

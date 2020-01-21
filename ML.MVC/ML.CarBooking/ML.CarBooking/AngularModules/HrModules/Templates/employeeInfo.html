@@ -57,7 +57,7 @@
                                     </div>
                                     <div class="col-md-6" style="padding: 10px 0 0 5px;">
                                         <label  for="">QUẬN / HUYỆN:</label>
-                                        <select ng-if="vm.addressDistricts" style="width:90%;" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" ng-disabled="vm.personAddresses.address.CityId !=5 || vm.addressDistricts.length==1" ng-options="l.Id as l.Name for l in vm.addressDistricts" ng-model="vm.personAddresses.address.DistrictId"></select>
+                                        <select ng-if="vm.addressDistricts" style="width:90%;" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" ng-disabled="vm.personAddresses.address.CityId !=31 || vm.addressDistricts.length==1" ng-options="l.Id as l.Name for l in vm.addressDistricts" ng-model="vm.personAddresses.address.DistrictId"></select>
                                     </div>
                                 </div>
                             </div>
@@ -76,7 +76,7 @@
                                     </div>
                                     <div class="col-md-6" style="padding: 10px 0 0 5px;">
                                         <label for="">QUẬN / HUYỆN:</label>
-                                        <select ng-if="vm.addressContactDistricts" style="width:90%;" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" ng-options="l.Id as l.Name for l in vm.addressContactDistricts" ng-disabled="vm.personAddresses.contactAddress.CityId != 5 || vm.addressContactDistricts.length == 1" ng-model="vm.personAddresses.contactAddress.DistrictId"></select>
+                                        <select ng-if="vm.addressContactDistricts" style="width:90%;" ng-class="vm.IsViewing ? 'disableEl form-control':'form-control'" ng-options="l.Id as l.Name for l in vm.addressContactDistricts" ng-disabled="vm.personAddresses.contactAddress.CityId != 31 || vm.addressContactDistricts.length == 1" ng-model="vm.personAddresses.contactAddress.DistrictId"></select>
                                     </div>
                                 </div>
                             </div>

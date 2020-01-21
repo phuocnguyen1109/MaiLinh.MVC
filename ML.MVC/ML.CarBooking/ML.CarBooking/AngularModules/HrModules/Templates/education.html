@@ -140,9 +140,10 @@
                     <tr>
                         <th class="txt-center custom-col" style="width:5%;">ĐÃ CÓ</th>
                         <th class="custom-col" style="width:20%;">TÊN GIẤY PHÉP HÀNH NGHỀ</th>
-                        <th class="custom-col" style="width:15%;">THỜI HẠN SD (tháng)</th>
-                        <th class="custom-col" style="width:25%;">NGÀY CẤP</th>
-                        <th class="custom-col" style="width:25%;">CÓ GIÁ TRỊ ĐẾN</th>
+                        <th class="custom-col" style="width:5%;">THỜI HẠN SD (tháng)</th>
+                        <th class="custom-col" style="width:15%;">NGÀY CẤP</th>
+                        <th class="custom-col" style="width:25%;">NƠI CẤP</th>
+                        <th class="custom-col" style="width:20%;">CÓ GIÁ TRỊ ĐẾN</th>
                         <th class="custom-col"></th>
                     </tr>
                 </thead>
@@ -156,6 +157,7 @@
                                 <date-picker value="row.FromDate" on-change="vm.changeFromDate(value, $index)" format="dd/MM/yyyy"></date-picker>
                             </div>
                         </td>
+                        <td class="custom-col"><input type="text" class="form-control" ng-model="row.IssuePlace" placeholder="Nơi cấp" /></td>
                         <td class="custom-col"><span style="width:60%;" class="information">{{row.ToDate | date:'dd/MM/yyyy'}}</span></td>
                         <td class="custom-col">
                             <button class="btn btn-outline-primary" ng-click="vm.saveLincense(row)" ng-disabled="!row.IsChecked">

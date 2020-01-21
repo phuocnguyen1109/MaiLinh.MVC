@@ -1,174 +1,235 @@
-﻿
-CREATE SCHEMA Vh
-GO
-CREATE TABLE [Vh].[TRANGTHIETBI](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[ID_PHUONGTIEN] [int] NULL,
-	[ID_THIETBI] [int] NULL,
-	[ID_YEUCAU] [int] NULL,
-	[NGAY_CAP] [date] NULL,
-	[NGAY_HET_HAN] [date] NULL,
-	[NGAY_GIAO_THEO_XE] [date] NULL,
-	[TINH_TRANG] [bit] NULL,
- CONSTRAINT [PK_TRANGTHIETBI] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
+﻿ALTER TABLE [Hr].[PersonWorkLicense]
+ADD [IssuePlace] nvarchar(250)
+
 GO
 
-CREATE TABLE [Vh].[THIET_BI_GPS](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[KY_HIEU] [varchar](20) NULL,
-	[NHA_CUNG_CAP] [nvarchar](200) NULL,
-	[SO_SERI] [varchar](100) NULL,
-	[XBX_SIM] [varchar](100) NULL,
-	[ID_TINH_TRANG] [int] NULL,
-	[GHI_CHU] [nvarchar](400) NULL,
-	[IS_DELETED] [bit] NULL,
- CONSTRAINT [PK_THIET_BI_GPS] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
+ALTER PROC [Hr].[GetPersonInformation]  
+
+ @id INT  
+
+AS   
+
+BEGIN  
+
+ SELECT  
+
+ p.Id,  
+
+ p.EmpCode,  
+
+ pa.UserName,  
+
+ p.FirstName,  
+
+ p.LastName,  
+
+ p.IsMale,  
+
+ p.DoB,  
+
+ p.PlaceOfBirth,  
+
+ p.ContractTypeId,  
+
+ p.HomeTownId,  
+
+ p.MLCDate,  
+
+ p.IsPension,  
+
+ p.NationId,  
+
+ p.StartDate,  
+
+ p.ReligionId,  
+
+ p.DepartmentId,  
+
+ p.RoleId,  
+
+ p.SIContractNumber,  
+
+ p.SINote,  
+
+ p.SINumber,  
+
+ pc.Id AS ContractId,  
+
+ pc.ContractTypeId,  
+
+ pc.ContractNumber,  
+
+ pc.Duration,  
+
+ pc.SignedIn,  
+
+ pa1.[Address],  
+
+ pa1.Id AS AddessId,  
+
+
+
+ pa1.CityId AS AddressCityId,  
+
+
+
+ pa1.DistrictId AS AddressDistrictId,  
+
+
+
+ pa1.[Address] AS ContractAddress,  
+
+
+
+ pa1.Id AS ContractAddessId,  
+
+
+
+ pa1.CityId AS ContractAddressCityId,  
+
+
+
+ pa1.DistrictId AS ContractAddressDistrictId,  
+
+
+
+ p.Actived,  
+
+
+
+ p.MariageStatus,  
+
+
+
+ edu.GradeId,  
+
+
+
+ edu.Major,  
+
+
+
+ drive.DriveLicenseId,  
+
+
+
+ drive.ExpiredOn AS DriveLicenseExpired,  
+
+
+
+ drive.SignedPlace AS DriveLicensePlace,
+
+
+
+ p.Email,
+
+
+
+ p.PhoneNumber,
+
+ [CooperationAmount] ,
+
+ [CooperationFirstPay] ,
+
+ [CooperationMinutePerMonth],
+
+ [SocialInsuranceCode],
+
+ [SocialInsuranceSalaryJoin],
+
+ [SocialInsurancePayPerMonth],
+
+ [TaxCode] 
+
+
+
+ FROM [Hr].[Person] p  
+
+
+
+ JOIN [Hr].[PersonAccount] pa ON p.Id = pa.PersonId  
+
+
+
+ LEFT JOIN [Hr].[PersonContract] pc ON p.Id = pc.PersonId  
+
+
+
+ LEFT JOIN [Hr].[PersonEducation] edu ON p.Id = edu.PersonId  
+
+
+
+ LEFT JOIN [Hr].[PersonDriveLicense] drive ON p.Id = drive.PersonId  
+
+
+
+ LEFT JOIN [Hr].[PersonAddress] pa1 ON p.Id = pa1.PersonId AND pa1.[Type] =1  
+
+
+
+ LEFT JOIN [Hr].[PersonAddress] pa2 ON p.Id = pa2.PersonId AND pa2.[Type] =2  
+
+ WHERE p.Id = @id  
+
+ SELECT Id,WorkLicenseId AS WorkLisenceId,Duration, FromDate, ToDate, IssuePlace, PersonId FROM [Hr].[PersonWorkLicense] WHERE PersonId = @id  
+
+ SELECT * FROM [Hr].[PersonLanguage] WHERE PersonId = @id   
+
+END  
+
 GO
 
-ALTER TABLE [Vh].[THIET_BI_GPS] ADD  CONSTRAINT [DF_THIET_BI_GPS_IS_DELETED]  DEFAULT ((0)) FOR [IS_DELETED]
-GO
+ALTER PROC [Hr].[CreateOrUpdatePersonWorkLicense]
 
-CREATE TABLE [Vh].[PHUONGTIEN](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[DINHNGHIA_PT_ID] [int] NULL,
-	[DOIXE_THANG] [int] NULL,
-	[DOIXE_NAM] [int] NULL,
-	[THUTU] [int] NULL,
-	[CODE] [varchar](50) NULL,
-	[NAM_SX] [int] NULL,
-	[DK_LAN_1] [date] NULL,
-	[SO_KHUNG] [varchar](50) NULL,
-	[SO_MAY] [varchar](50) NULL,
-	[SO_CHO] [int] NULL,
-	[MAU_XE] [varchar](50) NULL,
-	[ID_MAUXE] [int] NULL,
-	[ID_CONGSUAT] [int] NULL,
-	[SO_DANGKY] [varchar](50) NULL,
-	[CHU_XE] [nvarchar](200) NULL,
-	[ID_VUNGHOATDONG] [int] NULL,
-	[NGAY_NHAP] [date] NULL,
-	[GHICHU_NGAY_NHAP] [ntext] NULL,
-	[NGAY_THANHLY] [date] NULL,
-	[GHICHU_NGAY_THANHLY] [ntext] NULL,
-	[BAIXE_ID] [int] NULL,
-	[DIACHI_BAIXE] [nvarchar](300) NULL,
-	[CHIPHI_BAIXE] [int] NULL,
-	[VUNG_HD_ID] [nchar](10) NULL,
-	[GHICHU] [ntext] NULL,
-	[IS_DELETED] [bit] NULL,
-	[DUNG_TICH_XANG] [int] NULL,
- CONSTRAINT [PK_PHUONGTIEN] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
+@workLicenseId INT, 
 
-ALTER TABLE [Vh].[PHUONGTIEN] ADD  CONSTRAINT [DF_PHUONGTIEN_IS_DELETED]  DEFAULT ((0)) FOR [IS_DELETED]
-GO
+@duration INT,
 
-CREATE TABLE [Vh].[NHIENLIEU_PHUONGTIEN](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[ID_PHUONGTIEN] [int] NULL,
-	[NGAY_DO] [date] NULL,
-	[KM_DAU] [int] NULL,
-	[KM_CUOI] [int] NULL,
-	[SO_LIT] [int] NULL,
-	[ID_LOAI_NL] [int] NULL,
-	[ID_CAYXANG] [int] NULL,
-	[LAI_XE] [nvarchar](200) NULL,
-	[GHI_CHU] [ntext] NULL,
-	[IS_DELETED] [bit] NULL,
- CONSTRAINT [PK_NHIENLIEU_PHUONGTIEN] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
+@fromDate DateTime,
 
-ALTER TABLE [Vh].[NHIENLIEU_PHUONGTIEN] ADD  CONSTRAINT [DF_NHIENLIEU_PHUONGTIEN_IS_DELETED]  DEFAULT ((0)) FOR [IS_DELETED]
-GO
+@toDate DateTime,
+@issuePlace NVARCHAR(250),
 
-CREATE TABLE [Vh].[GPS_PHUONGTIEN](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[ID_PHUONGTIEN] [int] NULL,
-	[NGAY_LAP] [date] NULL,
-	[NGAY_THAO] [date] NULL,
-	[CHU_THIET_BI] [nvarchar](200) NULL,
-	[NGAY_TRA] [date] NULL,
-	[GHI_CHU] [nvarchar](400) NULL,
-	[IS_DELETED] [bit] NULL,
- CONSTRAINT [PK_GPS_PHUONGTIEN] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
+@personId INT,
 
-ALTER TABLE [Vh].[GPS_PHUONGTIEN] ADD  CONSTRAINT [DF_GPS_PHUONGTIEN_IS_DELETED]  DEFAULT ((0)) FOR [IS_DELETED]
-GO
-CREATE TABLE [Vh].[GIAYTOXE](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[ID_PHUONGTIEN] [int] NULL,
-	[ID_LOAI_CAVET] [int] NULL,
-	[TEN_NGAN_HANG] [nvarchar](200) NULL,
-	[NGUOI_PHU_TRACH] [nvarchar](200) NULL,
-	[THOI_HAN_BAN_SAO] [date] NULL,
-	[BHDS_NGAYHETHAN] [date] NULL,
-	[BHDS_TEN_CTY_BH] [nvarchar](200) NULL,
-	[BHVC_NGAYHETHAN] [date] NULL,
-	[BHVC_TEN_CTY_BH] [nvarchar](200) NULL,
-	[KIEMDINH_TEMXANH] [date] NULL,
-	[KIEMDINH_TEMVANG] [date] NULL,
-	[PHI_SD_DUONGBO_NGAY_HETHAN] [date] NULL,
-	[SO_THANG_DONG] [int] NULL,
-	[THOIHAN_PHUHIEU_HOPDONG] [date] NULL,
-	[GHICHU] [ntext] NULL,
- CONSTRAINT [PK_GIAYTOXE] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
+@userId INT
 
-CREATE TABLE [Vh].[DINHNGHIA_PHUONGTIEN](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[DONGXE] [nvarchar](50) NULL,
-	[HIEUXE] [nvarchar](50) NULL,
-	[VT_DONGXE] [varchar](20) NULL,
-	[VT_HIEUXE] [varchar](20) NULL,
-	[IS_DELETED] [bit] NULL,
- CONSTRAINT [PK_DINHNGHIA_PHUONGTIEN] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
+AS
 
-ALTER TABLE [Vh].[DINHNGHIA_PHUONGTIEN] ADD  CONSTRAINT [DF_DINHNGHIA_PHUONGTIEN_IS_DELETED]  DEFAULT ((0)) FOR [IS_DELETED]
-GO
+BEGIN
 
-CREATE TABLE [Vh].[DINHMUC_NHIENLIEU_PHUONGTIEN](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[ID_PHUONGTIEN] [int] NULL,
-	[ID_KHU_VUC] [int] NULL,
-	[SO_LIT] [int] NULL,
-	[ID_LOAI_NL] [int] NULL,
-	[IS_DELETED] [bit] NULL,
- CONSTRAINT [PK_DINHMUC_NHIENLIEU_PHUONGTIEN] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
+	IF EXISTS (SELECT 1 FROM [Hr].[PersonWorkLicense] WHERE PersonId = @personId AND WorkLicenseId = @workLicenseId)
 
-ALTER TABLE [Vh].[DINHMUC_NHIENLIEU_PHUONGTIEN] ADD  CONSTRAINT [DF_DINHMUC_NHIENLIEU_PHUONGTIEN_IS_DELETED]  DEFAULT ((0)) FOR [IS_DELETED]
-GO
+	BEGIN
+
+		UPDATE [Hr].[PersonWorkLicense]
+
+		SET Duration = @duration,
+
+			FromDate = @fromDate,
+
+			ToDate = @toDate,
+
+			IssuePlace = @issuePlace,
+
+			UpdatedBy = @userId,
+
+			UpdatedOn = GETDATE()
+
+		WHERE WorkLicenseId = @workLicenseId AND PersonId = @personId
+
+	END
+
+	ELSE
+
+	BEGIN
+
+		INSERT INTO [Hr].[PersonWorkLicense] (WorkLicenseId, Duration, FromDate, ToDate, IssuePlace, PersonId, CreatedBy, CreatedOn)
+
+		VALUES( @workLicenseId, @duration, @fromDate, @toDate, @issuePlace, @personId, @userId, GETDATE())
+
+	END
+
+	SELECT @@ROWCOUNT
+
+END

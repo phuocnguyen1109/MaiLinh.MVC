@@ -26,11 +26,24 @@
     ],
 
     EducationGrades: [
-        { Id: 1, Name: 'Tốt Nghiệp Tiểu Học' },
-        { Id: 2, Name: 'Tốt Nghiệp THCS' },
-        { Id: 3, Name: 'Tốt Nghiệp THPT' },
-        { Id: 4, Name: 'Tốt Nghiệp Cao Đẳng' },
-        { Id: 1, Name: 'Tốt Nghiệp Đại Học' }
+        { Id: 1, Name: 'Lớp 1' },
+        { Id: 2, Name: 'Lớp 2' },
+        { Id: 3, Name: 'Lớp 3' },
+        { Id: 4, Name: 'Lớp 4' },
+        { Id: 5, Name: 'Lớp 5' },
+        { Id: 6, Name: 'Lớp 6' },
+        { Id: 7, Name: 'Lớp 7' },
+        { Id: 8, Name: 'Lớp 8' },
+        { Id: 9, Name: 'Lớp 9' },
+        { Id: 10, Name:'Lớp 10' },
+        { Id: 11, Name: 'Lớp 11' },
+        { Id: 12, Name: 'Lớp 12' },
+        { Id: 13, Name: 'Trung Cấp' },
+        { Id: 14, Name: 'Cao Đẳng' },
+        { Id: 15, Name: 'Đại Học' },
+        { Id: 16, Name: 'Thạc Sĩ' },
+        { Id: 17, Name: 'Tiến Sĩ' }
+        
     ],
 
     Equipments: [
@@ -73,7 +86,7 @@
         { id: 1, name: 'Phó Phòng' },
         { id: 3, name: 'Thư Ký' },
         { id: 4, name: 'Nhân Viên' },
-        { id: 5, name: 'Tài Xế' },
+        { id: 5, name: 'Lái Xe' },
         { id: 6, name: 'Phụ Xe' },
     ]
 };

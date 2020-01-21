@@ -94,7 +94,6 @@
             vm.personEdu.DriveLicenseExpired = data.DriveLicenseExpired;
             vm.personEdu.DriveLicensePlace = data.DriveLicensePlace;
             vm.personEdu.PersonWorkLicenses = buildWorkLincenseGrid(data.PersonWorkLicenses);
-            console.log(vm.personEdu);
         }
 
         
@@ -162,6 +161,7 @@
                     item.Duration = selectedWL.Duration;
                     item.FromDate = selectedWL.FromDate;
                     item.ToDate = selectedWL.ToDate;
+                    item.IssuePlace = selectedWL.IssuePlace;
                 }
             });
         }
@@ -169,7 +169,8 @@
 
         function getListQualifications() {
             vm.listQualifications = [
-                { LevelId: '', Level:'--Chọn Trình Độ--'},
+                { LevelId: '', Level: '--Chọn Trình Độ--' },
+                { LevelId: "Xuất sắc", Level: "Xuất sắc" },
                 { LevelId: "Giỏi", Level: "Giỏi" },
                 { LevelId: "Khá", Level: "Khá" },
                 { LevelId: "Trung bình", Level: "Trung bình" },
@@ -223,6 +224,7 @@
                 PersonId: parseInt(personId),
                 Duration: r.Duration,
                 WorkLisenceId: parseInt(r.Id),
+                IssuePlace: r.IssuePlace,
                 FromDate: r.FromDate,
                 ToDate: r.ToDate
             };

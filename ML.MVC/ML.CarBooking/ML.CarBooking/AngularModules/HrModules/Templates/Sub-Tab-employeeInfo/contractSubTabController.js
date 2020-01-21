@@ -75,6 +75,8 @@
                 { contractPeriodId: 12, contractPeriod: "12 tháng" },
                 { contractPeriodId: 24, contractPeriod: "24 tháng" },
                 { contractPeriodId: 36, contractPeriod: "36 tháng" },
+                { contractPeriodId: 48, contractPeriod: "48 tháng" },
+                { contractPeriodId: 60, contractPeriod: "60 tháng" },
                 { contractPeriodId: 0, contractPeriod: "Không xác định" },
             ];
         }

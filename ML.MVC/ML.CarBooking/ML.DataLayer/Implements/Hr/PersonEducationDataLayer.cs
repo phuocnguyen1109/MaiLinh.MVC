@@ -229,6 +229,7 @@ namespace ML.DataLayer.Implements.Hr
                     duration = request.Duration,
                     fromDate = request.FromDate,
                     toDate = request.ToDate,
+                    issuePlace = request.IssuePlace,
                     personId = request.PersonId,
                     userId = userId
                 }, commandType: CommandType.StoredProcedure));

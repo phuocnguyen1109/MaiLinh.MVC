@@ -1830,7 +1830,6 @@
     <Content Include="Content\CustomCSS\sb-admin-2.css" />
     <Content Include="Content\CustomCSS\sb-admin-2.min.css" />
     <Content Include="Content\Images\no_avatar.png" />
-    <Content Include="Content\Images\xe_16_2.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -1938,6 +1937,7 @@
     <Content Include="SQL_Scripts\Hr_Update_006.sql" />
     <Content Include="SQL_Scripts\Hr_Update_005.sql" />
     <Content Include="SQL_Scripts\Hr_Update_004.sql" />
+    <Content Include="SQL_Scripts\Hr_Update_024.sql" />
     <Content Include="SQL_Scripts\Hr_Update_023.sql" />
     <Content Include="SQL_Scripts\Hr_Update_022.sql" />
     <Content Include="SQL_Scripts\Hr_Update_021.sql" />
