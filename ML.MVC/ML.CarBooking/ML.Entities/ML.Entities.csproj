@@ -73,6 +73,7 @@
     <Compile Include="ResponseModels\Hr\PersonResponse.cs" />
     <Compile Include="ResponseModels\Hr\PersonWorkingHistoryResponse.cs" />
     <Compile Include="ResponseModels\Hr\UserClaimsModel.cs" />
+    <Compile Include="VH\TrangThietBi.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
