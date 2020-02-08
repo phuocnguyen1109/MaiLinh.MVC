@@ -1937,6 +1937,7 @@
     <Content Include="SQL_Scripts\Hr_Update_006.sql" />
     <Content Include="SQL_Scripts\Hr_Update_005.sql" />
     <Content Include="SQL_Scripts\Hr_Update_004.sql" />
+    <Content Include="SQL_Scripts\Hr_Update_024.sql" />
     <Content Include="SQL_Scripts\Hr_Update_023.sql" />
     <Content Include="SQL_Scripts\Hr_Update_022.sql" />
     <Content Include="SQL_Scripts\Hr_Update_021.sql" />
