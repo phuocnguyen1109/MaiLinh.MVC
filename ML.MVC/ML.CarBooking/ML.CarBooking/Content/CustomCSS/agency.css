@@ -125,6 +125,10 @@ textarea {
     height: 100px;
 }
 
+.label-black{
+    color: black !important;
+}
+
 select {
     font-size: 12px !important;
 }

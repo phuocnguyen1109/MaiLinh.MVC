@@ -72,7 +72,8 @@
     ],
 
     Departments: [
-            { id: 0, name: '-- Chọn Bộ Phận --' },
+        { id: 0, name: '-- Chọn Bộ Phận --' },
+        { id: -1, name: 'Administrator' },
             { id: 1, name: 'Nhân Sự' },
             { id: 2, name: 'Kế Toán' },
             { id: 3, name: 'Kỹ Thuật - An Toàn' },
