@@ -188,6 +188,7 @@
     <Compile Include="Controllers\API\Hr\PersonController.cs" />
     <Compile Include="Controllers\API\Hr\PersonSalaryInformationController.cs" />
     <Compile Include="Controllers\API\Hr\WorkingHistoryController.cs" />
+    <Compile Include="Controllers\API\Vh\DinhNghia_PhuongTienController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

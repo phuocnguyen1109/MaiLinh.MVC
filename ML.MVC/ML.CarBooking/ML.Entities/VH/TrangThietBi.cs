@@ -6,6 +6,17 @@ using System.Threading.Tasks;
 
 namespace ML.Entities.VH
 {
+
+    public class DINHNGHIA_PHUONGTIEN
+    {
+        public int ID { get; set; }
+        public string DONGXE { get; set; }
+        public string HIEUXE { get; set; }
+        public string VT_DONGXE { get; set; }
+        public string VT_HIEUXE { get; set; }
+        public bool IS_DELETED { get; set; }
+    }
+
     public class TrangThietBi
     {
         public int ID { get; set; }

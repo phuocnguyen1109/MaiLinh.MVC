@@ -32,14 +32,14 @@
 
             </thead>
             <tbody>
-               <tr ng-if="vm.vehicleMasters.length == 0">
+               <tr ng-if="vm.allDinhnghia_phuongtien.length == 0">
                    <td class="custom-col" colspan="5"><h5>Chưa có dữ liệu</h5></td>
                </tr>
-               <tr ng-if="vm.vehicleMasters.length > 0" ng-repeat="row in vm.vehicleMasters">
-                   <td class="custom-col">{{row.Type}}</td>
-                   <td class="custom-col">{{row.Brand}}</td>
-                   <td class="custom-col">{{row.ShortType}}</td>
-                   <td class="custom-col">{{row.ShortCS}}</td>
+               <tr ng-if="vm.allDinhnghia_phuongtien.length > 0" ng-repeat="row in vm.allDinhnghia_phuongtien">
+                   <td class="custom-col">{{row.DONGXE}}</td>
+                   <td class="custom-col">{{row.HIEUXE}}</td>
+                   <td class="custom-col">{{row.VT_DONGXE}}</td>
+                   <td class="custom-col">{{row.VT_HIEUXE}}</td>
                    <td class="custom-col">
                        <button class="btn btn-outline-success" ng-click="vm.editVehicleMaster(row, $index)">Chỉnh sửa</button>
                        <button class="btn btn-outline-danger" ng-click="vm.deleteVehicleMaster(row, $index)">Xóa</button>

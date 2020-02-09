@@ -1,29 +1,29 @@
 ﻿<div class="uib-custom-modal-content" ng-init="vm.initialize()">
     <div class="modal-header">
-        <h5 class="modal-title text-uppercase" id="modal-title">THÊM ĐỊNH NGHĨA PHƯƠNG TIỆN</h5>
+        <h5 class="modal-title text-uppercase" id="modal-title">{{vm.title}}</h5>
     </div>
     <div class="modal-body" id="modal-body">
         <p ng-if="vm.isExisting" class="err-message">* Đã tồn tại định phương tiện</p>
         <label for="dongxe">
             NHẬP DÒNG XE :
         </label>
-            <input class="form-control" ng-model="vm.vehicleMaster.Type" name="dongxe" type="text" />
+            <input class="form-control" ng-model="vm.vehicleMaster.DONGXE" name="dongxe" type="text" />
             <label for="hieuxe">
                 NHẬP HIỆU XE :
             </label>
-            <input class="form-control" name="hieuxe" ng-model="vm.vehicleMaster.Brand" type="text" />
+            <input class="form-control" name="hieuxe" ng-model="vm.vehicleMaster.HIEUXE" type="text" />
 
             <div  style="width: 45%; float: left;">
                 <label for="vtdongxe">
                     VIẾT TẮT DÒNG XE :
                 </label>
-                <input class="form-control" name="vtdongxe" ng-model="vm.vehicleMaster.ShortType" type="text" />
+                <input class="form-control" name="vtdongxe" ng-model="vm.vehicleMaster.VT_DONGXE" type="text" />
             </div>
             <div style="width:45%; display: inline-block; float: right; margin-bottom: 15px;">
                 <label for="vtcsxe">
                     VIẾT TẮT CS XE :
                 </label>
-                <input class="form-control" ng-model="vm.vehicleMaster.ShortCS" name="vtcsxe"  type="text" />
+                <input class="form-control" ng-model="vm.vehicleMaster.VT_HIEUXE" name="vtcsxe"  type="text" />
             </div>
     </div>
     <div class="modal-footer" style="width: 100%;">

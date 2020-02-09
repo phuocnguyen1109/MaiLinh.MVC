@@ -3,9 +3,8 @@
     angular.module('mainApp')
         .controller('addVehicleMasterController', addVehicleMasterController);
 
-    function addVehicleMasterController($uibModalInstance, $window) {
+    function addVehicleMasterController($http, $uibModalInstance, $window, model) {
         var vm = this;
-
         vm.initialize = initialize;
         vm.close = close;
         vm.add = add;
@@ -14,17 +13,21 @@
         vm.isExisting = false;
 
         function initialize() {
-            _resetModel();
-
-
+            vm.title = model ? "Sửa Định Nghĩa Phương Tiện" : "Thêm Định Nghĩa Phương Tiện";
+            if (model) {
+                vm.vehicleMaster = model;
+            }
+            else {
+                _resetModel();
+            }
         }
 
         function isValid()
         {
-            if (vm.vehicleMaster.Type
-                && vm.vehicleMaster.Brand
-                && vm.vehicleMaster.ShortType
-                && vm.vehicleMaster.ShortCS) {
+            if (vm.vehicleMaster.DONGXE
+                && vm.vehicleMaster.HIEUXE
+                && vm.vehicleMaster.VT_DONGXE
+                && vm.vehicleMaster.VT_HIEUXE) {
                 return true;
             }
             return false;
@@ -32,11 +35,12 @@
 
         function _resetModel() {
             vm.vehicleMaster = {
-                Id: 0, 
-                Type: null,
-                Brand: null,
-                ShortType: null,
-                ShortCS: null
+                ID: 0, 
+                HIEUXE: null,
+                DONGXE: null,
+                VT_DONGXE: null,
+                VT_HIEUXE: null,
+                IS_DELETED: false
             }
         }
 
@@ -44,19 +48,16 @@
 
         function close() {
             _resetModel();
-            $uibModalInstance.dismiss('close');
+            $uibModalInstance.dismiss();
         }
 
         function add() {
-            let str_vehicleMasters = $window.localStorage.getItem('Vehicle_Masters');
-            let vehicleMasters = JSON.parse(str_vehicleMasters);
-            if (!str_vehicleMasters) {
-                $window.localStorage.setItem('Vehicle_Masters', JSON.stringify([vm.vehicleMaster]));
-            } else {
-                vehicleMasters.push(vm.vehicleMaster);
-                $window.localStorage.setItem('Vehicle_Masters', JSON.stringify(vehicleMasters));
-            }
-            $uibModalInstance.close(vm.vehicleMaster);
+            $http.post('/api/Dinhnghia_Phuongtien/CreateOrUpdate_Dinhnghia_Phuongtien', vm.vehicleMaster)
+                .then(reponse => {
+                    vm.vehicleMaster.ID = reponse.data;
+                    $uibModalInstance.close(vm.vehicleMaster);
+                });
+            
         }
     }
 }
