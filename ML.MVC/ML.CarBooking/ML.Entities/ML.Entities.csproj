@@ -66,6 +66,7 @@
     <Compile Include="RequestModels\Hr\CreateAndUpdatePersonEducationRequest.cs" />
     <Compile Include="RequestModels\Hr\CreateAndUpdatePersonHealthCheckRequest.cs" />
     <Compile Include="RequestModels\Hr\CreateSimpleRequest.cs" />
+    <Compile Include="ResponseModels\Grid_PhuongTien.cs" />
     <Compile Include="ResponseModels\Hr\GetPersonHelthCheckByPerson.cs" />
     <Compile Include="ResponseModels\Hr\LocationObject.cs" />
     <Compile Include="ResponseModels\Hr\PersonEducationResponse.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="ResponseModels\Hr\PersonResponse.cs" />
     <Compile Include="ResponseModels\Hr\PersonWorkingHistoryResponse.cs" />
     <Compile Include="ResponseModels\Hr\UserClaimsModel.cs" />
+    <Compile Include="ResponseModels\ThongTin_PhuongTien.cs" />
     <Compile Include="VH\TrangThietBi.cs" />
   </ItemGroup>
   <ItemGroup />

@@ -2,32 +2,45 @@
     'use strict'
     angular.module('mainApp').controller('vehicleManagementController', vehicleManagementController);
 
-    function vehicleManagementController($rootScope, $scope, $state, $window) {
+    function vehicleManagementController($http, $rootScope, $scope, $state, $window) {
         var vm = this;
         vm.test = "Vehicle worked";
         vm.selectedVehicleMaster = {};
         vm.vehicleModel = {};
         vm.gotoEdit = gotoEdit;
         vm.initialize = initialize;
+        vm.save = save;
 
         vm.changeVehicleMaster = changeVehicleMaster;
 
 
+        function save() {
+            $http.post('/api/Phuongtien/Create_New_PhuongTien', vm.vehicleModel)
+                .then(function (response) {
+                    $state.go('editVehicle', { id: response.data });
+
+                });
+        }
+
         function initialize() {
             getVehicleMasters();
-            vm.vehicles = [
-                { id: 1, brandName: 'VIOS E', seats: 7, productYear: 2015, color: 'Bạc', type: 'None', workingZone: 'TP.HCM', income: { incomeDate: '28/06/2015', incomeNote: '' }, outcome: { outcomeDate: '', outcomeNote: '' }, maintainKM: '' },
-                { id: 1, brandName: 'VIOS E', seats: 7, productYear: 2015, color: 'Bạc', type: 'None', workingZone: 'TP.HCM', income: { incomeDate: '28/06/2015', incomeNote: '' }, outcome: { outcomeDate: '', outcomeNote: '' }, maintainKM: '' },
-                { id: 1, brandName: 'VIOS E', seats: 7, productYear: 2015, color: 'Bạc', type: 'None', workingZone: 'TP.HCM', income: { incomeDate: '28/06/2015', incomeNote: '' }, outcome: { outcomeDate: '', outcomeNote: '' }, maintainKM: '' },
-                { id: 1, brandName: 'VIOS E', seats: 7, productYear: 2015, color: 'Bạc', type: 'None', workingZone: 'TP.HCM', income: { incomeDate: '28/06/2015', incomeNote: '' }, outcome: { outcomeDate: '', outcomeNote: '' }, maintainKM: '' }];
+            getAll_Phuongtien();
+        }
+
+        function getAll_Phuongtien() {
+            $http.get('/api/PhuongTien/Get_List_PhuongTien')
+                .then(reponse => {
+                    vm.vehicles = reponse.data;
+                });
         }
 
         function changeVehicleMaster() {
-            vm.vehicleModel.Brand = vm.selectedVehicleMaster.Brand;
-            vm.vehicleModel.Type = vm.selectedVehicleMaster.Type;
-            vm.vehicleModel.ShortCS = vm.selectedVehicleMaster.ShortCS;
-            vm.vehicleModel.Number = getVehicleNumber(vm.selectedVehicleMaster.Brand);
-            vm.vehicleModel.Code = generateVehicleCode(vm.vehicleModel.Type, vm.selectedVehicleMaster.ShortCS, vm.vehicleModel.Month, vm.vehicleModel.Year, vm.vehicleModel.Number);
+            vm.vehicleModel.DONGXE = vm.selectedVehicleMaster.DONGXE;
+            vm.vehicleModel.HIEUXE = vm.selectedVehicleMaster.HIEUXE;
+            vm.vehicleModel.DINHNGHIA_PT_ID = vm.selectedVehicleMaster.ID;
+            vm.vehicleModel.VT_HIEUXE = vm.selectedVehicleMaster.VT_HIEUXE;
+            vm.vehicleModel.THUTU = getVehicleNumber(vm.selectedVehicleMaster.HIEUXE);
+            vm.vehicleModel.CODE = generateVehicleCode(vm.vehicleModel.HIEUXE, vm.selectedVehicleMaster.VT_HIEUXE, vm.vehicleModel.DOIXE_THANG, vm.vehicleModel.DOIXE_NAM, vm.vehicleModel.THUTU);
         }
 
         function getVehicleNumber(_brand) {
@@ -40,20 +53,29 @@
         }
 
         function generateVehicleCode(_type, _shortCS, _month, _year, _code) {
+            if (!_year || !_month) return;
             let str_Month = _month >= 10 ? _month.toString() : (10 + _month).toString().substring(1);
-            let str_Year = _year.toString().length != 4 ? 'XX' : _year.toString().substring(2);
+            let str_Year =_year.toString().length != 4 ? 'XX' : _year.toString().substring(2);
             let str_Code = (10000 + _code).toString().substring(1);
             return (_type + _shortCS + str_Month + str_Year + str_Code).toUpperCase().replace(' ', '');
         }
 
-        function gotoEdit(vehicleId) {
-            $state.go('editVehicle', { id: vehicleId });
+        function gotoEdit() {
+            let selectedVehicle = angular.copy(vm.vehicles).filter(x => x.selected);
+            if (selectedVehicle.length == 1) {
+                $state.go('editVehicle', { id: selectedVehicle[0].ID });
+            }
+           
         }
 
         function getVehicleMasters() {
-            let str_v = $window.localStorage.getItem('Vehicle_Masters');
-            vm.vehicleMasters = JSON.parse(str_v);
+            $http.get('/api/Dinhnghia_Phuongtien/GetAll_Dinhnghia_Phuongtien')
+                .then(response => {
+                    vm.all_VehicleMaster = response.data;
+                });
         }
+
+      
     }
 
 })();

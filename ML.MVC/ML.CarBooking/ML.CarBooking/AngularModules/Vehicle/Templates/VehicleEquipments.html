@@ -2,194 +2,38 @@
       <table class="table table-bordered table-hover" >
           <thead class="thead-light shadow_tb">
               <tr>
-                  <th colspan="6">
+                  <th class="custom-col" colspan="6">
                       TRANG THIẾT BỊ THEO XE
                   </th>
               </tr>
               <tr>
-                  <th style="width:20%;">TÊN TRANG THIẾT BỊ</th>
-                  <th style="width:10%;">THEO YÊU CẦU</th>
-                  <th style="width:20%;">NGÀY CẤP CỦA HC</th>
-                  <th style="width:20%;">NGÀY HẾT HẠN</th>
-                  <th style="width:20%;">NGÀY GIAO THEO XE</th>
-                  <th style="width:10%;">TÌNH TRẠNG</th>
+                  <th class="custom-col" style="width:20%;">TÊN TRANG THIẾT BỊ</th>
+                  <th class="custom-col" style="width:10%;">THEO YÊU CẦU</th>
+                  <th class="custom-col" style="width:20%;">NGÀY CẤP CỦA HC</th>
+                  <th class="custom-col" style="width:20%;">NGÀY HẾT HẠN</th>
+                  <th class="custom-col" style="width:20%;">NGÀY GIAO THEO XE</th>
+                  <th class="custom-col" style="width:10%;">TÌNH TRẠNG</th>
               </tr>
           </thead>
           <tbody>
-              <tr>
-                  <td>TÚI Y TẾ</td>
-                  <td>
-                      <select class="form-control">
-                          <option>NN</option>
-                          <option>KH</option>
-                          <option>CTY</option>
+              <tr ng-if="vm.equipments && vm.equipments.length > 0" ng-repeat="row in vm.equipments">
+                  <td class="custom-col">{{row.NAME}}</td>
+                  <td class="custom-col">
+                      <select class="form-control" ng-options="t.id as t.name for t in vm.YEUCAU_TTB" ng-model="row.ID_YEUCAU">
+                       
                       </select>
                   </td>
-                  <td>
-                      <input type="date" class="form-control" />
+                  <td class="custom-col">
+                      <date-picker value="row.NGAY_CAP" format="dd/MM/yyyy"></date-picker>
                   </td>
-                  <td>
-                      <input type="date" class="form-control" />
+                  <td class="custom-col">
+                      <date-picker value="row.NGAY_HET_HAN" format="dd/MM/yyyy"></date-picker>
                   </td>
-                  <td>
-                      <input type="date" class="form-control" />
+                  <td class="custom-col">
+                      <date-picker value="row.NGAY_GIAO_THEO_XE" format="dd/MM/yyyy"></date-picker>
                   </td>
-                  <td>
-                      <input type="text" class="form-control" />
-                  </td>
-              </tr>
-              <tr>
-                  <td>DANH SÁCH THUỐC/DỤNG CỤ Y TẾ</td>
-                  <td>
-                      <select class="form-control">
-                          <option>NN</option>
-                          <option>KH</option>
-                          <option>CTY</option>
-                      </select>
-                  </td>
-                  <td>
-                      <input type="date" class="form-control" />
-                  </td>
-                  <td>
-                      <input type="date" class="form-control" />
-                  </td>
-                  <td>
-                      <input type="date" class="form-control" />
-                  </td>
-                  <td>
-                      <input type="text" class="form-control" />
-                  </td>
-              </tr>
-              <tr>
-                  <td>ÁO PHẢN QUANG</td>
-                  <td>
-                      <select class="form-control">
-                          <option>NN</option>
-                          <option>KH</option>
-                          <option>CTY</option>
-                      </select>
-                  </td>
-                  <td>
-                      <input type="date" class="form-control" />
-                  </td>
-                  <td>
-                      <input type="date" class="form-control" />
-                  </td>
-                  <td>
-                      <input type="date" class="form-control" />
-                  </td>
-                  <td>
-                      <input type="text" class="form-control" />
-                  </td>
-              </tr>
-              <tr>
-                  <td>TAM GIÁC CẢNH BÁO</td>
-                  <td>
-                      <select class="form-control">
-                          <option>NN</option>
-                          <option>KH</option>
-                          <option>CTY</option>
-                      </select>
-                  </td>
-                  <td>
-                      <input type="date" class="form-control" />
-                  </td>
-                  <td>
-                      <input type="date" class="form-control" />
-                  </td>
-                  <td>
-                      <input type="date" class="form-control" />
-                  </td>
-                  <td>
-                      <input type="text" class="form-control" />
-                  </td>
-              </tr>
-              <tr>
-                  <td>BÚA THOÁT HIỂM</td>
-                  <td>
-                      <select class="form-control">
-                          <option>NN</option>
-                          <option>KH</option>
-                          <option>CTY</option>
-                      </select>
-                  </td>
-                  <td>
-                      <input type="date" class="form-control" />
-                  </td>
-                  <td>
-                      <input type="date" class="form-control" />
-                  </td>
-                  <td>
-                      <input type="date" class="form-control" />
-                  </td>
-                  <td>
-                      <input type="text" class="form-control" />
-                  </td>
-              </tr>
-              <tr>
-                  <td>ĐÈN PIN CHIẾU SÁNG</td>
-                  <td>
-                      <select class="form-control">
-                          <option>NN</option>
-                          <option>KH</option>
-                          <option>CTY</option>
-                      </select>
-                  </td>
-                  <td>
-                      <input type="date" class="form-control" />
-                  </td>
-                  <td>
-                      <input type="date" class="form-control" />
-                  </td>
-                  <td>
-                      <input type="date" class="form-control" />
-                  </td>
-                  <td>
-                      <input type="text" class="form-control" />
-                  </td>
-              </tr>
-              <tr>
-                  <td>LƯỚI TRÙM</td>
-                  <td>
-                      <select class="form-control">
-                          <option>NN</option>
-                          <option>KH</option>
-                          <option>CTY</option>
-                      </select>
-                  </td>
-                  <td>
-                      <input type="date" class="form-control" />
-                  </td>
-                  <td>
-                      <input type="date" class="form-control" />
-                  </td>
-                  <td>
-                      <input type="date" class="form-control" />
-                  </td>
-                  <td>
-                      <input type="text" class="form-control" />
-                  </td>
-              </tr>
-              <tr>
-                  <td>BÌNH CHỮA CHÁY</td>
-                  <td>
-                      <select class="form-control">
-                          <option>NN</option>
-                          <option>KH</option>
-                          <option>CTY</option>
-                      </select>
-                  </td>
-                  <td>
-                      <input type="date" class="form-control" />
-                  </td>
-                  <td>
-                      <input type="date" class="form-control" />
-                  </td>
-                  <td>
-                      <input type="date" class="form-control" />
-                  </td>
-                  <td>
-                      <input type="text" class="form-control" />
+                  <td class="custom-col">
+                      <input type="text" class="form-control" ng-model="row.TINH_TRANG" />
                   </td>
               </tr>
           </tbody>

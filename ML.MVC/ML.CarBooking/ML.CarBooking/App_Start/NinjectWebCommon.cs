@@ -25,6 +25,7 @@ namespace ML.CarBooking.App_Start
     using ML.DataLayer.Implements;
     using ML.Business.Interfaces.Vh;
     using ML.Business.Implements.Vh;
+    using ML.DataLayer.Implements.Vh;
 
     public static class NinjectWebCommon
     {
@@ -107,6 +108,9 @@ namespace ML.CarBooking.App_Start
 
             kernel.Bind<IDinhnghia_PhuongtienDataLayer>().To<Dinhnghia_PhuongtienDataLayer>().InSingletonScope();
             kernel.Bind<IDinhnghia_PhuongtienBusiness>().To<Dinhnghia_PhuongtienBusiness>().InSingletonScope();
+
+            kernel.Bind<IPhuongTienDataLayer>().To<PhuongTienDataLayer>().InSingletonScope();
+            kernel.Bind<IPhuongTienBusiness>().To<PhuongTienBusiness>().InSingletonScope();
 
 
 

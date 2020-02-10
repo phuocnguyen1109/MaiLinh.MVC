@@ -57,6 +57,7 @@
     <Compile Include="Implements\Hr\PersonMariage.cs" />
     <Compile Include="Implements\Hr\PersonSalaryInformationDataLayer.cs" />
     <Compile Include="Implements\Hr\PersonWorkingHistoryDataLayer.cs" />
+    <Compile Include="Implements\Vh\PhuongTienDataLayer.cs" />
     <Compile Include="Interfaces\Common\IAccountDataLayer.cs" />
     <Compile Include="Interfaces\Hr\ILocationDataLayer.cs" />
     <Compile Include="Interfaces\Hr\IPersonDataLayer.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="Interfaces\Hr\IPersonSalaryInformationDataLayer.cs" />
     <Compile Include="Interfaces\Hr\IPersonWorkingHistoryDataLayer.cs" />
     <Compile Include="Interfaces\Vh\IDinhnghia_PhuongtienDataLayer.cs" />
+    <Compile Include="Interfaces\Vh\IPhuongTienDataLayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

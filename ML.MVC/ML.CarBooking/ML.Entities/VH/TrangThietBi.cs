@@ -92,4 +92,27 @@ namespace ML.Entities.VH
     {
 
     }
+
+    public class GiayToXe {
+        public int ID { get; set; }
+        public int ID_PHUONGTIEN { get; set; }
+        public int ID_LOAI_CAVET { get; set; }
+        public string TEN_NGAN_HANG { get; set; }
+        public string NGUOI_PHU_TRACH { get; set; }
+        public DateTime? THOI_HAN_BAN_SAO { get; set; }
+        public DateTime? BHDS_BGAYHETHAN { get; set; }
+        public string BHDS_TEN_CTY_BH { get; set; }
+        public DateTime? BHVC_NGAYHETHAN { get; set; }
+        public string BHVC_TEN_CTY_BH { get; set; }
+        public DateTime? KIEMDINH_TEMXANH { get; set; }
+        public DateTime? KIEMDINH_TEMVANG { get; set; }
+        public DateTime? PHI_SD_DUONGBO_NGAY_HETHAN { get; set; }
+        public int SO_THANG_DONG { get; set; }
+        public DateTime? THOIHAN_PHUHIEU_HOPDONG { get; set; }
+        public string GHICHU { get; set; }
+        public string BHVC_NOIBO { get; set; }
+        public string BHVC_BENNGOAI { get; set; }
+
+
+    }
 }

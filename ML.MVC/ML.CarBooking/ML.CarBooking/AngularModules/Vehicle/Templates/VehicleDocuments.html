@@ -18,19 +18,17 @@
             <tbody>
                 <tr>
                     <td>
-                        <select class="form-control">
-                            <option>BẢN CHÍNH</option>
-                            <option>SAO Y NGÂN HÀNG</option>
+                        <select class="form-control" ng-options="t.id as t.name for t in vm.dk_NganHang" ng-model="vm.thongtin_Phuongtien.GIAYTOXE.ID_LOAI_CAVET">
                         </select>
                     </td>
                     <td>
-                        <input class="form-control" type="text" value="VIETCONBANK" />
+                        <input class="form-control" type="text" ng-model="vm.thongtin_Phuongtien.GIAYTOXE.TEN_NGAN_HANG" />
                     </td>
                     <td>
-                        <input type="text" class="form-control" value="01644202279" />
+                        <input type="text" class="form-control" ng-model="vm.thongtin_Phuongtien.GIAYTOXE.NGUOI_PHU_TRACH" />
                     </td>
                     <td>
-                        <input type="date" class="form-control" value="2020-05-12" />
+                        <date-picker value="vm.thongtin_Phuongtien.GIAYTOXE.THOI_HAN_BAN_SAO" format="dd/MM/yyyy"></date-picker>
                     </td>
                 </tr>
             </tbody>
@@ -54,10 +52,10 @@
                 <tbody>
                     <tr>
                         <td>
-                            <input type="date" class="form-control" value="2020-06-19" />
+                            <date-picker value="vm.thongtin_Phuongtien.GIAYTOXE.KIEMDINH_TEMXANH" format="dd/MM/yyyy"></date-picker>
                         </td>
                         <td>
-                            <input type="date" class="form-control" />
+                            <date-picker value="vm.thongtin_Phuongtien.GIAYTOXE.KIEMDINH_TEMVANG" format="dd/MM/yyyy"></date-picker>
                         </td>
                     </tr>
                 </tbody>
@@ -80,10 +78,10 @@
                 <tbody>
                     <tr>
                         <td>
-                            <input type="date" class="form-control" value="2020-06-19" />
+                            <date-picker value="vm.thongtin_Phuongtien.GIAYTOXE.PHI_SD_DUONGBO_NGAY_HETHAN" format="dd/MM/yyyy"></date-picker>
                         </td>
                         <td>
-                            <input type="number" class="form-control" value="24" />
+                            <input type="number" class="form-control" ng-model="vm.thongtin_Phuongtien.GIAYTOXE.SO_THANG_DONG" />
                         </td>
                     </tr>
                 </tbody>
@@ -108,10 +106,10 @@
                 <tbody>
                     <tr>
                         <td>
-                            <input type="date" class="form-control" value="2020-10-10" />
+                            <date-picker value="vm.thongtin_Phuongtien.GIAYTOXE.BHDS_NGAYHETHAN" format="dd/MM/yyyy"></date-picker>
                         </td>
                         <td>
-                            <input type="text" class="form-control" value="PVI" />
+                            <input type="text" class="form-control" ng-model="vm.thongtin_Phuongtien.GIAYTOXE.BHDS_TEN_CTY_BH" />
                         </td>
                     </tr>
                 </tbody>
@@ -120,7 +118,7 @@
         <div class="col-md-2"></div>
         <div class="col-lg-5 col-md-5">
             <label>THỜI HẠN PHÙ HIỆU HỢP ĐỒNG:</label>
-            <input type="date" class="form-control" />
+            <date-picker value="vm.thongtin_Phuongtien.GIAYTOXE.THOIHAN_PHUHIEU_HOPDONG" format="dd/MM/yyyy"></date-picker>
         </div>
     </div>
 
@@ -143,16 +141,16 @@
             <tbody>
                 <tr>
                     <td>
-                        <input type="date" class="form-control" value="2020-09-11" />
+                        <date-picker value="vm.thongtin_Phuongtien.GIAYTOXE.BHVC_NGAYHETHAN" format="dd/MM/yyyy"></date-picker>
                     </td>
                     <td>
-                        <input type="text" class="form-control" value="BH Bảo Long" />
+                        <input type="text" class="form-control" ng-model="vm.thongtin_Phuongtien.BHVC_TEN_CTY_BH" />
                     </td>
                     <td>
-                        <input type="text" class="form-control" />
+                        <input type="text" class="form-control" ng-model="vm.thongtin_Phuongtien.GIAYTOXE.BHVC_NOIBO" />
                     </td>
                     <td>
-                        <input type="text" class="form-control" />
+                        <input type="text" class="form-control" ng-model="vm.thongtin_Phuongtien.GIAYTOXE.BHVC_BENNGOAI" />
                     </td>
                 </tr>
             </tbody>
@@ -161,6 +159,6 @@
 
     <div class="row" style="width:100%; margin-left:5px;">
         <label>GHI CHÚ:</label>
-        <textarea style="height:100px;" class="form-control"></textarea>
+        <textarea style="height:100px;" class="form-control" ng-model="vm.thongtin_Phuongtien.GIAYTOXE.GHICHU"></textarea>
     </div>
 </div>

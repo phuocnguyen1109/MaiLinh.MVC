@@ -1,4 +1,5 @@
 ﻿using ML.Entities;
+using ML.Entities.VH;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -38,6 +39,27 @@ namespace ML.Common.Data.Utilities
             }
 
             return tblResult;
+        }
+
+        public static DataTable ConvertToDataTable(this IEnumerable<TrangThietBi> trangthietbi)
+        {
+            DataTable result = new DataTable();
+            result.Columns.Add("ID", typeof(int));
+            result.Columns.Add("ID_PHUONGTIEN", typeof(int));
+            result.Columns.Add("ID_THIETBI", typeof(int));
+            result.Columns.Add("ID_YEUCAU", typeof(int));
+            result.Columns.Add("NGAY_CAP", typeof(DateTime));
+            result.Columns.Add("NGAY_HET_HAN", typeof(DateTime));
+            result.Columns.Add("NGAY_GIAO_THEO_XE", typeof(DateTime));
+            result.Columns.Add("TINHTRANG", typeof(bool));
+
+            foreach (var item in trangthietbi)
+            {
+                result.Rows.Add(item.ID, item.ID_PHUONGTIEN, item.ID_THIETBI, item.ID_YEUCAU, item.NGAY_CAP, item.NGAY_HET_HAN, item.NGAY_GIAO_THEO_XE, item.TINH_TRANG);
+            }
+
+            return result;
+
         }
     }
 }

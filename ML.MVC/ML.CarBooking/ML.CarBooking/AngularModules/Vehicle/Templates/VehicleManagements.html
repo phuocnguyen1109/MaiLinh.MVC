@@ -39,19 +39,19 @@
             <tbody>
                 <tr ng-repeat="row in vm.vehicles">
                     <td><input type="checkbox" ng-model="row.selected" /></td>
-                    <td>{{row.id}}</td>
-                    <td>{{row.brandName}}</td>
-                    <td>{{row.seats}}</td>
-                    <td>{{row.productYear}}</td>
-                    <td>{{row.color}}</td>
-                    <td>{{row.type}}</td>
-                    <td>{{row.workingZone}}</td>
-                    <td>{{row.income.incomeDate}}</td>
-                    <td>{{row.income.incomeNote}}</td>
-                    <td>{{row.outcome.outcomeDate}}</td>
-                    <td>{{row.outcome.outcomeNote}}</td>
-                    <td>Đỗ Thái Lân</td>
-                    <td>{{row.maintainKM}}</td>
+                    <td>{{row.ID}}</td>
+                    <td>{{row.HIEUXE}}</td>
+                    <td>{{row.SO_CHO}}</td>
+                    <td>{{row.NAM_SX}}</td>
+                    <td>{{row.MAU_XE}}</td>
+                    <td>{{row.LOAIHINH_KD}}</td>
+                    <td>{{row.VUNG_HOAT_DONG}}</td>
+                    <td>{{row.NGAY_NHAP}}</td>
+                    <td>{{row.GHICHU_NGAY_NHAP}}</td>
+                    <td>{{row.NGAY_THANHLY}}</td>
+                    <td>{{row.GHICHU_NGAY_THANHLY}}</td>
+                    <td>{{row.LAIXE_BAOQUAN}}</td>
+                    <td>{{row.SO_KM_BAODUONG}}</td>
                 </tr>
             </tbody>
         </table>
@@ -59,7 +59,7 @@
             <i class="fas fa-fw fa fa-plus"></i> THÊM MỚI
         </button>
 
-        <button class="btn btn-outline-success mr-1" ng-click="vm.gotoEdit(1)">
+        <button class="btn btn-outline-success mr-1" ng-click="vm.gotoEdit()">
             <i class="fas fa-fw fa-pen"></i> CHỈNH SỬA
         </button>
         <button class="btn btn-outline-danger" ng-click="vm.remove()">
@@ -68,7 +68,6 @@
     </div>
 </div>
 
-<!-- Delete Language Modal -->
 <div class="modal fade" id="AddVehicleModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="custom-modal-content">
@@ -76,42 +75,47 @@
                 <div>
                     <label>
                         HIỆU XE:
-                        <select class="form-control" ng-model="vm.selectedVehicleMaster"  ng-change="vm.changeVehicleMaster()"
-                                ng-options="t.Brand for t in vm.vehicleMasters">
+                        <select style="min-width: 100px; " class="form-control" ng-model="vm.selectedVehicleMaster" ng-change="vm.changeVehicleMaster()"
+                                ng-options="t.HIEUXE for t in vm.all_VehicleMaster">
                         </select>
                     </label>
 
                     <label>
                         DÒNG XE:
-                        <input type="text" class="form-control" ng-model="vm.vehicleModel.Type" disabled />
+                        <input type="text" class="form-control" ng-model="vm.vehicleModel.DONGXE" disabled />
                     </label>
 
                     <label>
                         CS XE:
-                        <input type="text" class="form-control" ng-model="vm.vehicleModel.ShortCS" disabled />
+                        <input type="text" class="form-control" ng-model="vm.vehicleModel.VT_HIEUXE" disabled />
                     </label>
                 </div>
                 <div>
                     <label>
                         ĐỜI XE:
-                        </label>
+                    </label>
                     <div style="width: 100%;">
-                        <input type="number" class="form-control d-inline" style="width: 30%;" placeholder="Tháng" ng-model="vm.vehicleModel.Month" />
-                        <input type="number" class="form-control d-inline" style="width: 30%;" placeholder="Năm" ng-model="vm.vehicleModel.Year" />
-                        <input type="number" class="form-control d-inline" style="width: 30%;" disabled placeholder=" Thứ Tự" ng-model="vm.vehicleModel.Number"/>
+                        <input type="number" class="form-control d-inline" style="width: 30%;" placeholder="Tháng" ng-change="vm.changeVehicleMaster()" ng-model="vm.vehicleModel.DOIXE_THANG" />
+                        <input type="number" class="form-control d-inline" style="width: 30%;" placeholder="Năm" ng-change="vm.changeVehicleMaster()" ng-model="vm.vehicleModel.DOIXE_NAM" />
+                        <input type="number" class="form-control d-inline" style="width: 30%;" disabled placeholder=" Thứ Tự" ng-model="vm.vehicleModel.THUTU" />
                     </div>
                 </div>
-                <div>
+                <div style="width: 50%; float: left;">
                     <label>
-
                         MÃ XE:
-                        </label>
-                        <input type="text" class="form-control d-inline" disabled ng-model="vm.vehicleModel.Code"  placeholder="Mã Xe" />
+                    </label>
+                    <input type="text" class="form-control d-inline" disabled ng-model="vm.vehicleModel.CODE" placeholder="Mã Xe" />
+                </div>
+                <div style="width: 40%; float: left; margin-left: 10px;">
+                    <label>
+                        SỐ CHỔ: 
+                    </label>
+                    <input type="number" class="form-control d-inline"  ng-model="vm.vehicleModel.SO_CHO" placeholder="Số Chổ" />
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
-                <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.deleted(vm.deletedDataRow)">Đồng ý</button>
+                <button type="button" class="btn btn-outline-primary" data-dismiss="modal" ng-click="vm.save()">Đồng ý</button>
             </div>
         </div>
     </div>

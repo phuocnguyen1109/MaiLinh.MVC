@@ -1,81 +1,110 @@
 ﻿<div class="row">
     <div class="col-lg-3 col-md-3">
         <div class="row">
-            <div class="col-md-7 form-group float-mr d-gr">
+            <div class="col-md-7  float-mr d-gr">
                 <label class="label-black" for="id">Mã Phương Tiện:</label>
-                <input class="form-control" id="id" type="text" disabled value="0001" />
+                <input class="form-control" id="id" type="text" disabled ng-model="vm.thongtin_Phuongtien.PHUONGTIEN.CODE" />
             </div>
-            <div class="col-md-4 form-group float-mr d-gr">
+            <div class="col-md-4  float-mr d-gr">
                 <label class="label-black" for="seat">NXS</label>
-                <input type="text" class="form-control" value="7" />
+                <input type="text" class="form-control" ng-model="vm.thongtin_Phuongtien.PHUONGTIEN.NAM_SX" />
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-7 float-mr d-gr">
                 <label class="label-black" for="brandName">HIỆU XE:</label>
-                <select class="form-control" id="brandName">
-                    <option>VIOS S</option>
-                    <option>CAMRY 2.0E</option>
-                    <option>EVEREST</option>
+                <select style="min-width: 100px; " class="form-control" ng-model="vm.thongtin_Phuongtien.PHUONGTIEN.DINHNGHIA_PT_ID"
+                        ng-options="t.ID as t.HIEUXE for t in vm.all_VehicleMaster">
                 </select>
             </div>
             <div class="col-md-4 float-mr d-gr">
                 <label class="label-black" for="seat"> SỐ CHỔ:</label>
-                <input type="number" class="form-control" value="7" />
+                <input type="number" class="form-control" ng-model="vm.thongtin_Phuongtien.PHUONGTIEN.SO_CHO" />
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-7 float-mr d-gr">
                 <label class="label-black" for="color">SỐ ĐĂNG KÝ:</label>
-                <input id="color" type="text" class="form-control" value="51F-303.16" />
+                <input id="color" type="text" class="form-control" ng-model="vm.thongtin_Phuongtien.PHUONGTIEN.SO_DANGKY" />
             </div>
             <div class="col-md-4 float-mr d-gr">
                 <label class="label-black" for="color">MÀU XE:</label>
-                <input id="color" type="text" class="form-control" value="Bạc" />
+                <input id="color" type="text" class="form-control" ng-model="vm.thongtin_Phuongtien.PHUONGTIEN.MAU_XE" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-5 float-mr d-gr">
+                <label class="label-black" for="color">VÙNG HOẠT ĐỘNG:</label>
+                <select class="form-control" ng-model="vm.thongtin_Phuongtien.ID_VUNGHOATDONG" ng-options="t.id as t.name for t in vm.VUNGHOATDONG"></select>
+            </div>
+            <div class="col-md-6 float-mr d-gr">
+                <label class="label-black" for="color">BÃI XE:</label>
+                <select class="form-control" ng-model="vm.thongtin_Phuongtien.BAIXE_ID" ng-options="t.id as t.name for t in vm.BAIXE"></select>
             </div>
         </div>
     </div>
 
     <div class="col-lg-2 col-md-2">
-        <div class="form-group d-gr">
+        <div class=" d-gr">
             <label class="label-black" for="sk">SỐ KHUNG:</label>
-            <input id="sk" type="text" class="form-control" value="RL4BT9F38F-4014866" />
+            <input id="sk" type="text" class="form-control" ng-model="vm.thongtin_Phuongtien.PHUONGTIEN.SO_KHUNG" />
         </div>
-        <div class="form-group d-gr">
+        <div class=" d-gr">
             <label class="label-black" for="sm">SỐ MÁY:</label>
-            <input id="sm" type="text" class="form-control" value="1NZZ-289060" />
+            <input id="sm" type="text" class="form-control" ng-model="vm.thongtin_Phuongtien.PHUONGTIEN.SO_MAY" />
+        </div>
+        <div class=" d-gr">
+            <label class="label-black">CÔNG SUẤT:</label>
+            <select class="form-control" ng-model="vm.thongtin_Phuongtien.PHUONGTIEN.ID_CONGSUAT" ng-options="t.id as t.name for t in vm.CONGSUAT"></select>
+        </div>
+        <div class=" d-gr">
+            <label class="label-black">ĐỊA CHỈ BÃI XE:</label>
+            <input class="form-control" style="width: 650px;" placeholder="Địa chỉ bãi xe" ng-model="vm.thongtin_Phuongtien.DIACHI_BAIXE" />
         </div>
     </div>
 
     <div class="col-lg-3 col-md-3">
-        <div class="form-group d-gr">
+        <div class=" d-gr">
             <label class="label-black">CHỦ XE:</label>
-            <input type="text" class=" form-control" value="NGUYỄN HỮU PHƯỚC" />
+            <input type="text" class=" form-control" ng-model="vm.thongtin_Phuongtien.PHUONGTIEN.CHU_XE" />
         </div>
-        <div class="form-group d-gr">
+        <div class=" d-gr">
             <label class="label-black">ĐK LẦN ĐẦU:</label>
-            <input type="date" class="form-control" value="11/09/2015" />
+            <date-picker value="vm.thongtin_Phuongtien.PHUONGTIEN.DK_LAN_1" format="dd/MM/yyyy"></date-picker>
         </div>
     </div>
 
-    <div class="col-lg-4 col-md-4">
-        <div style="width:40%" class="form-group float-mr d-gr">
+    <div class="col-lg-2 col-md-2">
+        <div class=" float-mr d-gr">
             <label class="label-black">NGÀY NHẬP:</label>
-            <input type="date" class="form-control" />
+            <date-picker value="vm.thongtin_Phuongtien.PHUONGTIEN.NGAY_NHAP" format="dd/MM/yyyy"></date-picker>
         </div>
-        <div style="width:50%" class="form-group float-mr d-gr">
-            <label class="label-black">GHI CHÚ:</label>
-            <input type="text" class="form-control" />
-        </div>
-        <div style="width:40%" class="form-group float-mr d-gr">
+
+        <div class="d-gr">
             <label class="label-black">NGÀY THANH LÝ:</label>
-            <input type="date" class="form-control" />
+            <date-picker value="vm.thongtin_Phuongtien.PHUONGTIEN.NGAY_THANHLY" format="dd/MM/yyyy"></date-picker>
         </div>
-        <div style="width:50%" class="form-group float-mr d-gr">
+
+        <div class="d-gr" style="margin-top:45px;">
+            <label class="label-black">CHI PHÍ BÃI XE:</label>
+            <input type="number" class="form-control" ng-model="vm.thongtin_Phuongtien.CHIPHI_BAIXE" />
+        </div>
+
+
+    </div>
+
+    <div class="col-md-2 col-lg-2">
+        <div class=" float-mr d-gr">
             <label class="label-black">GHI CHÚ:</label>
-            <input type="text" class="form-control" />
+            <input type="text" class="form-control" ng-model="vm.thongtin_Phuongtien.PHUONGTIEN.GHICHU_NGAY_NHAP" />
+        </div>
+
+        <div class=" float-mr d-gr">
+            <label class="label-black">GHI CHÚ:</label>
+            <input type="text" class="form-control" ng-model="vm.thongtin_Phuongtien.PHUONGTIEN.GHICHU_NGAY_THANHLY" />
         </div>
     </div>
 
